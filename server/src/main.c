@@ -12,10 +12,11 @@
 
 int		main(int ac, char **av)
 {
-  t_param	param;
+  t_param	*param;
 
   if (ac < 7)
     error("argv");
-  set_param(av, &param);
+  param = malloc(sizeof(t_param));
+  set_param(av, param);
   return (0);
 }

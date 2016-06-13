@@ -5,7 +5,7 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Mon Jun 13 20:25:51 2016 Cloquet
+## Last update Mon Jun 13 20:34:20 2016 Cloquet
 ##
 
 SRC	=	src/main.c		\
@@ -16,7 +16,7 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	zappy_server
 
-CFLAGS	=	-W -Wextra -Wall -I include/
+CFLAGS	=	-W -Wextra -Wall -g -I include/
 
 all:		$(NAME)
 
