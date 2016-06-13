@@ -18,3 +18,11 @@ memory.h
 server.h
 /home/cloquet/PSU_2015_zappy/server/src/server.h
 
+/home/cloquet/PSU_2015_zappy/server/src/set_params.c
+server.h
+/home/cloquet/PSU_2015_zappy/server/src/server.h
+
+/home/cloquet/PSU_2015_zappy/server/src/utils.c
+server.h
+/home/cloquet/PSU_2015_zappy/server/src/server.h
+

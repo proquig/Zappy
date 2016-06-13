@@ -4,5 +4,5 @@ mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Debug  ..
 make
-mv server ..
+mv zappy_server ..
 cd -

@@ -32,12 +32,13 @@ void		set_max_client(char *pString, t_param *param)
   param->c = atoi(pString);
 }
 
-void		set_temp(char *pString, t_param *param)
+void		set_delay(char *pString, t_param *param)
 {
   if (pString == NULL || atoi(pString) < 0)
     error("Max clients number is incorrect.");
   param->t = atoi(pString);
 }
+
 
 void		set_team(char **pString, t_param *param)
 {
@@ -53,6 +54,7 @@ void		set_param(char **pString, t_param *param)
 	  {"-x", &set_width},
 	  {"-y", &set_height},
 	  {"-c", &set_max_client},
+	  {"-t", &set_delay},
   };
 
   j = -1;

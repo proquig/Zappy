@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
-project(server)
+project(zappy_server)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra")
 
 
 include_directories(include)

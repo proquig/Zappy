@@ -33,3 +33,7 @@
 # Debug files
 *.dSYM/
 *.su
+
+build
+zappy_server
+zappy_client

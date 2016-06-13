@@ -45,5 +45,6 @@ void		set_param(char **pString, t_param *param);
 void		set_port(char *pString, t_param *param);
 void		set_width(char *pString, t_param *param);
 void		set_height(char *pString, t_param *param);
+void		set_delay(char *pString, t_param *param);
 
 #endif /* _ZAPPY_SERVER_H_ */
