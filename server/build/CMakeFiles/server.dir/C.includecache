@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/server.h
+stdlib.h
+-
+stdio.h
+-
+memory.h
+-
+
+/home/cloquet/PSU_2015_zappy/server/src/main.c
+server.h
+/home/cloquet/PSU_2015_zappy/server/src/server.h
+
