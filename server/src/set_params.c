@@ -73,6 +73,7 @@ int		set_params(char **args, t_param *params)
 		    return (0);
 	    }
     }
+  i = -1;
   while (option[++i].arg && option[i].param);
   return (!option[i].arg);
 }
