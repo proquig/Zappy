@@ -12,11 +12,11 @@
 
 void		init_params(t_param *params)
 {
-  params->p = 0;
-  params->x = 0;
-  params->y = 0;
-  params->c = 0;
-  params->t = 0;
+  params->p = 9090;
+  params->x = 10;
+  params->y = 10;
+  params->c = 10;
+  params->t = 10;
   params->n = NULL;
 }
 

@@ -15,6 +15,7 @@
 #include	<stdio.h>
 #include	<memory.h>
 #include	<netdb.h>
+#include	<zconf.h>
 
 # define MAX_FD 255
 
@@ -28,42 +29,35 @@ enum				FD {
 
 typedef struct			s_param
 {
-  int		p;
-  int		x;
-  int 		y;
-  int		c;
-  int		t;
-  char		**n;
-}		t_param;
+  int				p;
+  int				x;
+  int 				y;
+  int				c;
+  int				t;
+  char				**n;
+}				t_param;
 
-typedef struct	s_option
+typedef struct			s_option
 {
-  char 		arg;
-  void		*param;
-  int		(*f)(char **, void *);
-}		t_option;
+  char 				arg;
+  void				*param;
+  int				(*f)(char **, void *);
+}				t_option;
 
-typedef struct	s_env
+typedef struct			s_env
 {
-  char		fd_type[MAX_FD];
-  fct		fct_read[MAX_FD];
-  fct		fct_write[MAX_FD];
-}		t_env;
+  char				fd_type[MAX_FD];
+  fct				fct_read[MAX_FD];
+  fct				fct_write[MAX_FD];
+}				t_env;
 
-void		error(char *msg);
-void		set_param(char **pString, t_param *param);
-void		set_port(char *pString, t_param *param);
-void		set_width(char *pString, t_param *param);
-void		set_height(char *pString, t_param *param);
-void		set_delay(char *pString, t_param *param);
-int			init_server(t_param *param);
-
-void		error(char *msg);
-int			is_number(char *str);
-
-void		init_params(t_param *params);
-int			set_int_param(char **args, void *param);
-int			set_char_param(char **args, void *param);
-int			set_params(char **args, t_param *params);
+int				init_server(t_param *param, t_env *);
+void				error(char *msg);
+int				is_number(char *str);
+void				init_params(t_param *params);
+int				set_int_param(char **args, void *param);
+int				set_char_param(char **args, void *param);
+int				set_params(char **args, t_param *params);
+int 				start_server(t_env *e);
 
 #endif /* _ZAPPY_SERVER_H_ */
