@@ -8,18 +8,17 @@
 ** Last update Tue Jun 14 11:04:40 2016 Cloquet
 */
 
-
 #include "server.h"
 
 void			client_read(t_env *e, int fd)
 {
-  int			r;
+  ssize_t		r;
   char			buf[4096];
 
   if ((r = read(fd, buf, 4096)) > 0)
     {
       buf[r] = 0;
-      printf("Send by %d: %s\n", fd, buf);
+      printf("Send by %d: %s\r\n", fd, buf);
     }
   else
     {
