@@ -13,12 +13,14 @@
 int		main(int ac, char **av)
 {
   t_param	param;
+  t_env		env;
 
   if (ac < 7)
     error("argv");
   init_params(&param);
   if (!set_params(av, &param))
     error("Wrong args");
-  //init_server(&param);
+  init_server(&param, &env);
+  start_server(&env);
   return (0);
 }
