@@ -56,14 +56,14 @@ void		set_port(char *pString, t_param *param);
 void		set_width(char *pString, t_param *param);
 void		set_height(char *pString, t_param *param);
 void		set_delay(char *pString, t_param *param);
-int		init_server(t_param *param);
+int			init_server(t_param *param);
 
 void		error(char *msg);
-int		is_number(char *str);
+int			is_number(char *str);
 
 void		init_params(t_param *params);
-int		set_int_param(char **args, void *param);
-int		set_char_param(char **args, void *param);
-int		set_params(char **args, t_param *params);
+int			set_int_param(char **args, void *param);
+int			set_char_param(char **args, void *param);
+int			set_params(char **args, t_param *params);
 
 #endif /* _ZAPPY_SERVER_H_ */

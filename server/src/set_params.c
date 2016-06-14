@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Tue Jun 14 09:51:06 2016 Guillaume PROQUIN
-** Last update Tue Jun 14 11:33:50 2016 Guillaume PROQUIN
+** Last update Tue Jun 14 14:37:49 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -39,12 +39,12 @@ int		set_char_param(char **args, void *param)
 
   i = -1;
   while (args[++i] && args[i][0] != '-');
-  if (!i || (i && !(*((char**)param) = malloc((i + 1) * sizeof(char*)))))
+  if (!i || (i && !(*((char***)param) = malloc((i + 1) * sizeof(char *)))))
     return (0);
   j = -1;
   while (++j < i)
-    ((char**)param)[j] = args[j];
-  ((char**)param)[j] = NULL;
+	(*(char***)param)[j] = args[j];
+  (*(char***)param)[j] = NULL;
   return (1);
 }
 
@@ -65,15 +65,14 @@ int		set_params(char **args, t_param *params)
   i = 0;
   while (args[++i] && args[1][0] == '-')
     {
-      j = -1;
-      if (args[i][0] == '-')
-	{
-	  while (option[++j].arg && option[j].arg != args[i][1]);
-	  if (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param))
-	    return (0);
-	}
+	  j = -1;
+	  if (args[i][0] == '-')
+	    {
+		  while (option[++j].arg && option[j].arg != args[i][1]);
+		  if (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param))
+		    return (0);
+	    }
     }
-  i = -1;
   while (option[++i].arg && option[i].param);
   return (!option[i].arg);
 }
