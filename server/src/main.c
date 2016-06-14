@@ -5,7 +5,7 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:17:55 2016 Cloquet
-** Last update Fri Jun 10 12:18:16 2016 Cloquet
+** Last update Tue Jun 14 11:32:35 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -16,8 +16,9 @@ int		main(int ac, char **av)
 
   if (ac < 7)
     error("argv");
-  set_param(av, &param);
-  //TODO::Création de la carte
+  init_params(&param);
+  if (!set_params(av, &param))
+    error("Wrong args");
   init_server(&param);
   return (0);
 }

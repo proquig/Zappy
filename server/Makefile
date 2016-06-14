@@ -5,7 +5,6 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Tue Jun 14 10:30:16 2016 Cloquet
 ##
 
 SRC	=	src/main.c		\
@@ -22,12 +21,15 @@ CFLAGS	=	-W -Wextra -Wall -g -I include/
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-	cc -o $(NAME) $(OBJ)
+		cc -o $(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJ)
+		rm -f $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:		clean
+		rm -f $(NAME)
 
-re: fclean all
+re:		fclean all
+
+dbg:		CFLAGS += -g
+dbg:		re

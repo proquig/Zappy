@@ -1,75 +1,79 @@
-//
-// Created by cloquet on 13/06/16.
-//
+/*
+** set_params.c for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server/src
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Tue Jun 14 09:51:06 2016 Guillaume PROQUIN
+** Last update Tue Jun 14 11:33:50 2016 Guillaume PROQUIN
+*/
 
 #include "server.h"
 
-void		set_port(char *pString, t_param *param)
+void		init_params(t_param *params)
 {
-  if (pString == NULL || atoi(pString) <= 0)
-    error("Port number is incorrect.");
-  param->p = atoi(pString);
+  params->p = 0;
+  params->x = 0;
+  params->y = 0;
+  params->c = 0;
+  params->t = 0;
+  params->n = NULL;
 }
 
-void		set_width(char *pString, t_param *param)
+int		set_int_param(char **args, void *param)
 {
-  if (pString == NULL || atoi(pString) <= 0)
-    error("Width number is incorrect.");
-  param->x = atoi(pString);
+  int		i;
+
+  i = -1;
+  while (args[++i] && args[i][0] != '-');
+  if (i != 1 || (args[0] && !is_number(args[0])))
+    return (0);
+  *((int*)param) = atoi(args[0]);
+  return (1);
 }
 
-void		set_height(char *pString, t_param *param)
+int		set_char_param(char **args, void *param)
 {
-  if (pString == NULL || atoi(pString) <= 0)
-    error("Height number is incorrect.");
-  param->y = atoi(pString);
+  int		i;
+  int		j;
+
+  i = -1;
+  while (args[++i] && args[i][0] != '-');
+  if (!i || (i && !(*((char**)param) = malloc((i + 1) * sizeof(char*)))))
+    return (0);
+  j = -1;
+  while (++j < i)
+    ((char**)param)[j] = args[j];
+  ((char**)param)[j] = NULL;
+  return (1);
 }
 
-void		set_max_client(char *pString, t_param *param)
+int		set_params(char **args, t_param *params)
 {
-  if (pString == NULL || atoi(pString) <= 0)
-    error("Max clients number is incorrect.");
-  param->c = atoi(pString);
-}
-
-void		set_delay(char *pString, t_param *param)
-{
-  if (pString == NULL || atoi(pString) <= 0)
-    error("Max clients number is incorrect.");
-  param->t = atoi(pString);
-}
-
-
-void		set_team(char **pString, t_param *param)
-{
-  (void)pString;
-  (void)param;
-}
-
-void		set_param(char **pString, t_param *param)
-{
-  int 		j;
-  int 		i;
-  t_option 	option[] = {
-	  {"-p", &set_port},
-	  {"-x", &set_width},
-	  {"-y", &set_height},
-	  {"-c", &set_max_client},
-	  {"-t", &set_delay},
-	  {NULL, NULL}
+  int		i;
+  int		j;
+  t_option	option[] = {
+    {'p', &params->p, &set_int_param},
+    {'x', &params->x, &set_int_param},
+    {'y', &params->y, &set_int_param},
+    {'c', &params->c, &set_int_param},
+    {'t', &params->t, &set_int_param},
+    {'n', &params->n, &set_char_param},
+    {0, NULL, NULL}
   };
 
-  j = -1;
-  while (pString[++j])
+  i = 0;
+  while (args[++i] && args[1][0] == '-')
     {
-      i = -1;
-      while (option[++i].options)
+      j = -1;
+      if (args[i][0] == '-')
 	{
-	  if (strcmp(option[i].options, pString[j]) == 0)
-	      option[i].f(pString[j + 1], param);
-	  if (strcmp("-n", pString[j]) == 0)
-	    set_team(pString, param);
+	  while (option[++j].arg && option[j].arg != args[i][1]);
+	  if (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param))
+	    return (0);
 	}
     }
-  printf("Port:%i\nMaxclient:%i\nTime:%i\nX:%i\nY:%i\n", param->p, param->c, param->t, param->x, param->y);
+  i = -1;
+  while (option[++i].arg && option[i].param);
+  return (!option[i].arg);
 }
