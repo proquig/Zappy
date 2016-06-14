@@ -34,6 +34,7 @@
 *.dSYM/
 *.su
 
+.idea
 build
 zappy_server
 zappy_client

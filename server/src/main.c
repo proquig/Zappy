@@ -12,11 +12,12 @@
 
 int		main(int ac, char **av)
 {
-  t_param	*param;
+  t_param	param;
 
   if (ac < 7)
     error("argv");
-  param = malloc(sizeof(t_param));
-  set_param(av, param);
+  set_param(av, &param);
+  //TODO::Création de la carte
+  init_server(&param);
   return (0);
 }

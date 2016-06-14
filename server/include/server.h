@@ -14,37 +14,47 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <memory.h>
+#include <netdb.h>
 
-/*
--p numero de port
--x largeur du Monde
--y hauteur du Monde
--n nom_de_equipe_1 nom_de_equipe_2 ...
--c nombre de clients par équipe autorisés au commencement du jeu
--t delai temporel d’execution des actions.
- */
+# define MAX_FD 255
 
-typedef struct	s_param
+typedef void			(*fct)();
+
+enum				FD {
+  FD_FREE = 0,
+  FD_CLIENT = 1,
+  FD_SERVER = 2
+};
+
+typedef struct			s_param
 {
-  int		p;
-  int		x;
-  int 		y;
-  char		**team;
-  int		c;
-  int		t;
-}		t_param;
+  uint16_t			p;
+  int				x;
+  int 				y;
+  char				**team;
+  int				c;
+  int				t;
+}				t_param;
 
-typedef struct	s_option
+typedef struct			s_option
 {
-  char 		*options;
-  void		(*f)(char *, t_param *);
-}		t_option;
+  char 				*options;
+  void				(*f)(char *, t_param *);
+}				t_option;
 
-void		error(char *msg);
-void		set_param(char **pString, t_param *param);
-void		set_port(char *pString, t_param *param);
-void		set_width(char *pString, t_param *param);
-void		set_height(char *pString, t_param *param);
-void		set_delay(char *pString, t_param *param);
+typedef struct			s_env
+{
+  char				fd_type[MAX_FD];
+  fct				fct_read[MAX_FD];
+  fct				fct_write[MAX_FD];
+}				t_env;
+
+void				error(char *msg);
+void				set_param(char **pString, t_param *param);
+void				set_port(char *pString, t_param *param);
+void				set_width(char *pString, t_param *param);
+void				set_height(char *pString, t_param *param);
+void				set_delay(char *pString, t_param *param);
+int				init_server(t_param *param);
 
 #endif /* _ZAPPY_SERVER_H_ */

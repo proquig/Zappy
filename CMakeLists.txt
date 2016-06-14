@@ -9,6 +9,7 @@ include_directories(server/include)
 set(SOURCE_FILES
         server/src/main.c
         server/src/set_params.c
-        server/src/utils.c)
+        server/src/utils.c
+        server/src/init_server.c)
 
 add_executable(server ${SOURCE_FILES})

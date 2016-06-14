@@ -5,11 +5,12 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Mon Jun 13 20:34:20 2016 Cloquet
+## Last update Tue Jun 14 10:30:16 2016 Cloquet
 ##
 
 SRC	=	src/main.c		\
 		src/set_params.c	\
+		src/init_server.c	\
 		src/utils.c
 
 OBJ	=	$(SRC:.c=.o)
