@@ -2,8 +2,10 @@
 // Created by cloquet on 14/06/16.
 //
 
-t_commande commande[] = {
-{"avance",}
+#include "player.h"
+
+t_command commande[] = {
+{"avance", &avance}
 {"droite",}
 {"gauche",}
 {"voir", }
@@ -17,3 +19,8 @@ t_commande commande[] = {
 {"connect_nbr",}
 {"-",}
 };
+
+void avance()
+{
+
+}

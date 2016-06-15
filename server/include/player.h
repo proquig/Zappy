@@ -32,6 +32,12 @@ typedef struct		s_player
   int 			fd;
   int 			team;
   int 			lvl;
+  t_player		*next;
 }			t_player;
 
+typedef struct 		s_command
+{
+  char *		cmd;
+  void 			(*f)();
+}			t_command;
 #endif //ZAPPY_SERVER_PLAYER_H

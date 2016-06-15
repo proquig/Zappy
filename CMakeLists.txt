@@ -10,6 +10,7 @@ set(SOURCE_FILES
         server/src/main.c
         server/src/set_params.c
         server/src/utils.c
-        server/src/init_server.c)
+        server/src/init_server.c
+        server/src/command.c)
 
 add_executable(server ${SOURCE_FILES})
