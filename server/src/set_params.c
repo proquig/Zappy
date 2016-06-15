@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Tue Jun 14 09:51:06 2016 Guillaume PROQUIN
-** Last update Wed Jun 15 14:13:54 2016 Guillaume PROQUIN
+** Last update Wed Jun 15 17:47:56 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -68,8 +68,8 @@ int		set_params(const char **args, t_param *params)
       j = -1;
       while (args[i][0] == '-'
 	     && option[++j].arg && option[j].arg != args[i][1]);
-      if (args[i][0] == '-'
-	  && (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param)))
+      if (args[i][0] == '-' && (args[i][2] || !option[j].f ||
+				!(*option[j].f)(&args[i + 1], option[j].param)))
 	return (0);
     }
   i = -1;

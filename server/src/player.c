@@ -47,10 +47,11 @@ t_player		*del_player(t_player *list, int fd)
   if (!list)
     return (NULL);
   tmp = list;
-  while (tmp->fd != fd && tmp->next->fd != fd && (tmp = tmp->next));
+  while (tmp->fd != fd && tmp->next &&
+		  tmp->next->fd != fd && (tmp = tmp->next));
   if (tmp == list)
     return (list->next);
-  if (tmp->next->fd == fd)
+  if (tmp->next && tmp->next->fd == fd)
     {
       tmp->next = tmp->next->next;
       free(tmp);
