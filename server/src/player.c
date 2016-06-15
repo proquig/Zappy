@@ -44,6 +44,7 @@ t_player		*add_player(t_player *list, t_player *player)
 t_player		*del_player(t_player *list, int fd)
 {
   t_player		*tmp;
+
   if (!list)
     return (NULL);
   tmp = list;

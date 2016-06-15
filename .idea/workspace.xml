@@ -13,11 +13,9 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0afe2a8-c1a0-49ae-b92a-e1f311986866" name="Default" comment="derp, helper method rename&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PSU_2015_zappy.iml" afterPath="$PROJECT_DIR$/.idea/PSU_2015_zappy.iml" />
+    <list default="true" id="e0afe2a8-c1a0-49ae-b92a-e1f311986866" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/player.c" afterPath="$PROJECT_DIR$/server/src/player.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/set_params.c" afterPath="$PROJECT_DIR$/server/src/set_params.c" />
     </list>
     <ignored path="PSU_2015_zappy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,8 +104,8 @@
           <file leaf-file-name="player.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/src/player.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="446">
-                  <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+                <state relative-caret-position="590">
+                  <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
@@ -130,8 +128,8 @@
           <file leaf-file-name="player.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/include/player.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="698">
-                  <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="49" selection-end-column="4" />
+                <state relative-caret-position="248">
+                  <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -559,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466006335091</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix&#10;">
+      <created>1466010452383</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1466010452383</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -606,7 +611,8 @@
     <MESSAGE value="t_player&#10;" />
     <MESSAGE value="t_player" />
     <MESSAGE value="Change delete t_player function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change delete t_player function" />
+    <MESSAGE value="Fix&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -833,14 +839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/include/player.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="53" column="48" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -859,10 +857,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/include/player.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="716">
+          <caret line="53" column="48" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/player.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+        <state relative-caret-position="590">
+          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="2" />
           <folding />
         </state>
       </provider>
