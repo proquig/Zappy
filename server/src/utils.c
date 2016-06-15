@@ -10,13 +10,13 @@
 
 #include "server.h"
 
-void		error(char *msg)
+void		error(const char *msg)
 {
-  fprintf(stderr, "%s\n",msg);
+  fprintf(stderr, "%s\n", msg);
   exit(0);
 }
 
-int		is_number(char *str)
+int		is_number(const char *str)
 {
   return (!str[0] || (str[0] >= '0' && str[0] <= '9' && is_number(&str[1])));
 }

@@ -5,34 +5,34 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Tue Jun 14 09:51:06 2016 Guillaume PROQUIN
-** Last update Tue Jun 14 14:37:49 2016 Guillaume PROQUIN
+** Last update Tue Jun 14 17:06:18 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
 
 void		init_params(t_param *params)
 {
-  params->p = 9090;
-  params->x = 10;
-  params->y = 10;
-  params->c = 10;
-  params->t = 10;
+  params->p = 0;
+  params->x = 0;
+  params->y = 0;
+  params->c = 6;
+  params->t = 100;
   params->n = NULL;
 }
 
-int		set_int_param(char **args, void *param)
+int		set_int_param(const char **args, void *param)
 {
   int		i;
 
   i = -1;
   while (args[++i] && args[i][0] != '-');
-  if (i != 1 || (args[0] && !is_number(args[0])))
+  if (i != 1 || (args[0] && (!is_number(args[0]) || atoi(args[0]) <= 0)))
     return (0);
   *((int*)param) = atoi(args[0]);
   return (1);
 }
 
-int		set_char_param(char **args, void *param)
+int		set_char_param(const char **args, void *param)
 {
   int		i;
   int		j;
@@ -43,12 +43,12 @@ int		set_char_param(char **args, void *param)
     return (0);
   j = -1;
   while (++j < i)
-	(*(char***)param)[j] = args[j];
+	(*(char***)param)[j] = strdup(args[j]);
   (*(char***)param)[j] = NULL;
   return (1);
 }
 
-int		set_params(char **args, t_param *params)
+int		set_params(const char **args, t_param *params)
 {
   int		i;
   int		j;
@@ -66,12 +66,11 @@ int		set_params(char **args, t_param *params)
   while (args[++i] && args[1][0] == '-')
     {
 	  j = -1;
-	  if (args[i][0] == '-')
-	    {
-		  while (option[++j].arg && option[j].arg != args[i][1]);
-		  if (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param))
-		    return (0);
-	    }
+	  while (args[i][0] == '-'
+			 && option[++j].arg && option[j].arg != args[i][1]);
+	  if (args[i][0] == '-'
+		  && (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param)))
+		return (0);
     }
   i = -1;
   while (option[++i].arg && option[i].param);

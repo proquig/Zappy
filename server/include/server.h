@@ -41,7 +41,7 @@ typedef struct			s_option
 {
   char 				arg;
   void				*param;
-  int				(*f)(char **, void *);
+  int				(*f)(const char **, void *);
 }				t_option;
 
 typedef struct			s_env
@@ -52,12 +52,12 @@ typedef struct			s_env
 }				t_env;
 
 int				init_server(t_param *param, t_env *);
-void				error(char *msg);
-int				is_number(char *str);
-void				init_params(t_param *params);
-int				set_int_param(char **args, void *param);
-int				set_char_param(char **args, void *param);
-int				set_params(char **args, t_param *params);
-int 				start_server(t_env *e);
+void			error(const char *msg);
+int				is_number(const char *str);
+void			init_params(t_param *params);
+int				set_int_param(const char **args, void *param);
+int				set_char_param(const char **args, void *param);
+int				set_params(const char **args, t_param *params);
+int 			start_server(t_env *e);
 
 #endif /* _ZAPPY_SERVER_H_ */

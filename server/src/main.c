@@ -11,7 +11,7 @@
 #include "player.h"
 #include "server.h"
 
-int		main(int ac, char **av)
+int		main(int ac, const char **av)
 {
   t_param	param;
   t_env		env;
