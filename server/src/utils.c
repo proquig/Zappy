@@ -12,7 +12,7 @@
 
 void		error(const char *msg)
 {
-  fprintf(stderr, "%s\n", msg);
+  fprintf(stderr, "\033[31m%s\033[0m\n", msg);
   exit(0);
 }
 

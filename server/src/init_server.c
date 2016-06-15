@@ -8,9 +8,10 @@
 ** Last update Wed Jun 15 10:48:53 2016 Cloquet
 */
 
+#include <player.h>
 #include "server.h"
 
-void			client_read(t_env *e, int fd)
+void			client_read(t_env *e, int fd, t_player *list)
 {
   ssize_t		r;
   char			buf[4096];
@@ -23,6 +24,7 @@ void			client_read(t_env *e, int fd)
   else
     {
       printf("Connection closed\n");
+      del_player(list, fd);
       close(fd);
       e->fd_type[fd] = FD_FREE;
     }
@@ -46,18 +48,21 @@ void			add_client(t_env *e, int s)
   dprintf(fd, "BIENVENUE\r\n");
 }
 
-void 			server_read(t_env *e, int fd)
+void 			server_read(t_env *e, int fd, t_player *list)
 {
   add_client(e, fd);
+  add_player(list, init_player(fd));
 }
 
 int 			start_server(t_env *e)
 {
+  t_player		*root;
   int			i;
   fd_set		fd_read;
   int			fd_max;
   struct timeval	tv;
 
+  root = init_player(-1);
   while (1)
     {
       tv.tv_sec = 1;
@@ -76,8 +81,7 @@ int 			start_server(t_env *e)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  e->fct_read[i](e, i);
-      printf("waiting...\n");
+	  e->fct_read[i](e, i, root);
     }
 }
 

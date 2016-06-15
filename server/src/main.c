@@ -11,70 +11,25 @@
 #include "player.h"
 #include "server.h"
 
+void		print_param(t_param param)
+{
+  int 		i;
+
+  i = -1;
+  printf("\033[32;1mListening on port %i\n"
+		 "Configuration : Max(%i) "
+		 "WorldX(%i) WorldY(%i) T(%i)\033[0m\n",
+	 param.p, param.c, param.x, param.y, param.t);
+  printf("\033[32;1mTeam :\033[0m\n");
+  while (param.n[++i])
+      printf("\033[32;1m\tName(%s) Max(%i)\033[0m\n", param.n[i], param.c);
+}
+
 int		main(int ac, const char **av)
 {
   t_param	param;
   t_env		env;
 
-  /*
-  //
-  t_player *list;
-  t_player *tmp;
-  list = init_player(1);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP1\n");
-  list = del_player(list, list);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP2\n");
-  list = init_player(0);
-  t_player *player1 = init_player(1);
-  t_player *player2 = init_player(2);
-  add_player(list, player1);
-  add_player(list, player2);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP3\n");
-  list = del_player(list, list);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP4\n");
-  list = del_player(list, player1);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP5\n");
-  list = del_player(list,player2);
-  tmp = list;
-  while (tmp)
-  {
-	printf("%d\n", tmp->fd);
-	tmp = tmp->next;
-  }
-  printf("END STEP6\n");
-  return (0);
-   */
-  //
   if (ac < 7)
     error("argv");
   init_params(&param);
@@ -82,6 +37,7 @@ int		main(int ac, const char **av)
     error("Wrong args");
   if (init_server(&param, &env) == -1)
     error("Server init failed");
+  print_param(param);
   start_server(&env);
   return (0);
 }
