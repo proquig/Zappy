@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Wed Jun 15 13:55:08 2016 Guillaume PROQUIN
-** Last update Wed Jun 15 13:55:11 2016 Guillaume PROQUIN
+** Last update Wed Jun 15 14:14:28 2016 Guillaume PROQUIN
 */
 
 #include "player.h"
@@ -14,12 +14,13 @@ t_player		*init_player(int fd)
 {
   t_player	*player;
 
+  srand(0);
   if (!(player = malloc(sizeof(t_player))))
-	return (NULL);
+    return (NULL);
   player->fd = fd;
   player->x = 0;
   player->y = 0;
-  player->dir = UP; // TODO: rand
+  player->dir = (enum Direction)(rand() % 4);
   player->team = -1;
   player->lvl = 0;
   player->next = NULL;
@@ -31,28 +32,28 @@ t_player		*add_player(t_player *list, t_player *player)
   t_player		*tmp;
 
   if (!list && !player)
-	return (NULL);
+    return (NULL);
   if (!list)
-	return (player);
+    return (player);
   tmp = list;
   while (tmp->next && (tmp = tmp->next));
   tmp->next = player;
   return (list);
 }
 
-t_player		*del_player(t_player *list, t_player *player)
+t_player		*del_player(t_player *list, int fd)
 {
   t_player		*tmp;
-  if (!list || !player)
-	return (NULL);
+  if (!list)
+    return (NULL);
   tmp = list;
-  while (tmp != player && tmp->next != player && (tmp = tmp->next));
-  if (tmp == player)
-	return (player->next);
-  if (tmp->next == player)
-  	{
-	  tmp->next = player->next;
-	  free(player);
-  	}
+  while (tmp->fd != fd && tmp->next->fd != fd && (tmp = tmp->next));
+  if (tmp == list)
+    return (list->next);
+  if (tmp->next->fd == fd)
+    {
+      tmp->next = tmp->next->next;
+      free(tmp);
+    }
   return (list);
 }

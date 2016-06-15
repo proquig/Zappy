@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Tue Jun 14 09:51:06 2016 Guillaume PROQUIN
-** Last update Tue Jun 14 17:06:18 2016 Guillaume PROQUIN
+** Last update Wed Jun 15 14:13:54 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -43,7 +43,7 @@ int		set_char_param(const char **args, void *param)
     return (0);
   j = -1;
   while (++j < i)
-	(*(char***)param)[j] = strdup(args[j]);
+    (*(char***)param)[j] = strdup(args[j]);
   (*(char***)param)[j] = NULL;
   return (1);
 }
@@ -65,12 +65,12 @@ int		set_params(const char **args, t_param *params)
   i = 0;
   while (args[++i] && args[1][0] == '-')
     {
-	  j = -1;
-	  while (args[i][0] == '-'
-			 && option[++j].arg && option[j].arg != args[i][1]);
-	  if (args[i][0] == '-'
-		  && (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param)))
-		return (0);
+      j = -1;
+      while (args[i][0] == '-'
+	     && option[++j].arg && option[j].arg != args[i][1]);
+      if (args[i][0] == '-'
+	  && (args[i][2] || !(*option[j].f)(&args[i + 1], option[j].param)))
+	return (0);
     }
   i = -1;
   while (option[++i].arg && option[i].param);
