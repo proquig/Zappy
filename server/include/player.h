@@ -25,12 +25,13 @@ typedef struct		s_ressources
 
 typedef struct		s_player
 {
-  size_t 		x;
-  size_t 		y;
+  unsigned int 		x;
+  unsigned int 		y;
   enum Direction 	dir;
   t_ressources		ress;
   int 			fd;
   int 			team;
+  int 			lvl;
 }			t_player;
 
 #endif //ZAPPY_SERVER_PLAYER_H

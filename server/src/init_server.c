@@ -4,8 +4,8 @@
 ** Made by Cloquet
 ** Login   <cloquet@epitech.net>
 ** 
-** Started on  Tue Jun 14 11:03:24 2016 Cloquet
-** Last update Tue Jun 14 11:04:40 2016 Cloquet
+** Started on  Wed Jun 15 10:48:49 2016 Cloquet
+** Last update Wed Jun 15 10:48:53 2016 Cloquet
 */
 
 #include "server.h"
@@ -36,17 +36,19 @@ void			add_client(t_env *e, int s)
 
   client_sin_len = sizeof(client_sin);
   if ((fd = accept(s, (struct sockaddr *) &client_sin, &client_sin_len)) == -1)
-    exit(0);
+    {
+      perror("accept");
+      exit(0);
+    }
   e->fd_type[fd] = FD_CLIENT;
   e->fct_read[fd] = client_read;
   e->fct_write[fd] = NULL;
-  dprintf(fd, "Welcome to Trantor\r\n");
+  dprintf(fd, "BIENVENUE\r\n");
 }
 
 void 			server_read(t_env *e, int fd)
 {
   add_client(e, fd);
-  printf("New client\r\n");
 }
 
 int 			start_server(t_env *e)
@@ -71,7 +73,8 @@ int 			start_server(t_env *e)
 	  }
       if (select(fd_max + 1, &fd_read, NULL, NULL, &tv) == -1)
 	perror("select");
-      for (i = 0; i < MAX_FD; i++)
+      i = -1;
+      while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
 	  e->fct_read[i](e, i);
       printf("waiting...\n");

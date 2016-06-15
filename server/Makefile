@@ -16,7 +16,7 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	zappy_server
 
-CFLAGS	=	-W -Wextra -Wall -g -I include/
+CFLAGS	=	-W -Wextra -Wall -I include/
 
 all:		$(NAME)
 
@@ -33,3 +33,6 @@ re:		fclean all
 
 dbg:		CFLAGS += -g
 dbg:		re
+
+shlag:		CFLAGS += -Wpedantic -Wshadow -Werror
+shlag:		re

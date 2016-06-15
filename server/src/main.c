@@ -8,6 +8,7 @@
 ** Last update Tue Jun 14 13:27:49 2016 Guillaume PROQUIN
 */
 
+#include "player.h"
 #include "server.h"
 
 int		main(int ac, char **av)
@@ -20,7 +21,8 @@ int		main(int ac, char **av)
   init_params(&param);
   if (!set_params(av, &param))
     error("Wrong args");
-  init_server(&param, &env);
+  if (init_server(&param, &env) == -1)
+    error("Server init failed");
   start_server(&env);
   return (0);
 }
