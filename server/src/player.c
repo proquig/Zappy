@@ -41,21 +41,30 @@ t_player		*add_player(t_player *list, t_player *player)
   return (list);
 }
 
+t_player		*search_player(t_player *list, int fd)
+{
+  t_player		*tmp;
+
+  if (!list)
+	return (NULL);
+  tmp = list;
+  while (tmp->fd != fd && tmp->next &&
+		 tmp->next->fd != fd && (tmp = tmp->next));
+  return (tmp ? tmp : NULL);
+}
+
 t_player		*del_player(t_player *list, int fd)
 {
   t_player		*tmp;
 
   if (!list)
     return (NULL);
-  tmp = list;
-  while (tmp->fd != fd && tmp->next &&
-		  tmp->next->fd != fd && (tmp = tmp->next));
+  tmp = search_player(list, fd);
   if (tmp == list)
-    return (list->next);
-  if (tmp->next && tmp->next->fd == fd)
-    {
-      tmp->next = tmp->next->next;
-      free(tmp);
-    }
+	list = list->next;
+  else if (tmp && tmp->next && tmp->next->fd == fd)
+	tmp->next = tmp->next->next;
+  if (tmp)
+  	free(tmp);
   return (list);
 }

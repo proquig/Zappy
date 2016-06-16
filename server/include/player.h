@@ -21,14 +21,20 @@ enum				Direction
   RIGHT
 };
 
+enum 				RESSOURCES
+{
+  LINEMATE,
+  DERAUMERE,
+  SIBUR,
+  MENDIANE,
+  PHIRAS,
+  THYSTAME,
+  RES_SIZE
+};
+
 typedef struct		s_ressources
 {
-  int 				linemate;
-  int 				deraumere;
-  int	 			sibur;
-  int 				mendiane;
-  int 				phiras;
-  int				thystame;
+  enum RESSOURCES 	res[RES_SIZE];
 }					t_ressources;
 
 typedef struct		s_player
@@ -36,7 +42,7 @@ typedef struct		s_player
   unsigned int 		x;
   unsigned int 		y;
   enum Direction 	dir;
-  t_ressources		ress;
+  t_ressources		res;
   int 				fd;
   int 				team;
   int 				lvl;
