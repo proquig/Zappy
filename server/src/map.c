@@ -42,24 +42,6 @@ t_square		***create_map(unsigned int size_x, unsigned int size_y)
   	}
   return (map);
 }
-/*
- * void 			init_map(void *squares,
-						 unsigned int size_x, unsigned int size_y)
-{
-  int 			i;
-  int 			j;
-  t_square		*map[size_x][size_y] = (t_square(*)[size_x][size_y])squares;
-
-  //map = (t_square*[size_x][size_y])map;
-  i = -1;
-  while ((unsigned int)(++i) < size_y)
-  {
-    j = -1;
-    while ((unsigned int)(++j) < size_x)
-	  init_square(map[size_y][size_x], size_x, size_y);
-  }
-}
- */
 
 void 			put_random_ressource(t_square ***map, int size_x, int size_y)
 {
@@ -94,6 +76,6 @@ void			print_map_contents(t_square ***map, int fd,
   {
 	j = -1;
 	while ((unsigned int)(++j) < x)
-	  print_square_contents(map[y][x], fd);
+	  print_square_contents(map[i][j], fd);
   }
 }
