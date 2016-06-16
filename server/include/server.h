@@ -59,8 +59,8 @@ void				init_params(t_param *params);
 int				set_int_param(const char **args, void *param);
 int				set_char_param(const char **args, void *param);
 int				set_params(const char **args, t_param *params);
-int 				start_server(t_env *e);
+int 				start_server(t_env *e, t_param*);
 char				**get_cmds(const char *str, const char *dels);
-int				analyse_commande(char **tab, t_player *player);
+int				analyse_commande(char **tab, t_player *player, t_param *);
 
 #endif /* _ZAPPY_SERVER_H_ */

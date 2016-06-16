@@ -38,6 +38,6 @@ int		main(int ac, const char **av)
   if (init_server(&param, &env) == -1)
     error("Server init failed");
   print_param(param);
-  start_server(&env);
+  start_server(&env, &param);
   return (0);
 }

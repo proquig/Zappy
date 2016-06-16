@@ -20,18 +20,27 @@ t_command	commande[] = {
 	{"-", NULL, &die},
 };
 
-int	analyse_commande(char **tab, t_player *player)
+int	analyse_commande(char **tab, t_player *player, t_param *param)
 {
   int	i;
 
   i = -1;
-  if (player->team == 0)
+  while (param->n[++i] && player->team == -1)
+    if (strcmp(param->n[i], tab[0]) == 0)
+      {
+	player->team = i;
+	dprintf(player->fd, "%i\n%i %i\n", player->fd, player->x, player->y);
+      }
+  if (player->team == -1)
     {
       dprintf(player->fd,"ko\r\n");
       return (-1);
     }
+  i = -1;
   while (commande[++i].cmd)
+    {
       if (strcmp(commande[i].cmd, tab[0]) == 0)
 	commande[i].f();
+    }
   return (0);
 }

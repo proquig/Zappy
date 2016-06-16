@@ -18,7 +18,7 @@ void 			closeclient(t_env *e, int fd, t_player *list)
   e->fd_type[fd] = FD_FREE;
 }
 
-void			client_read(t_env *e, int fd, t_player *list)
+void			client_read(t_env *e, int fd, t_player *list, t_param *param)
 {
   ssize_t		r;
   char			buf[4096];
@@ -27,14 +27,14 @@ void			client_read(t_env *e, int fd, t_player *list)
     {
       buf[r] = 0;
       printf("Send by %d: %s\r\n", fd, buf);
-      if (analyse_commande(get_cmds(buf, " "), search_player(list, fd)) == -1)
+      if (analyse_commande(get_cmds(buf, " \r\n"), search_player(list, fd), param) == -1)
 	closeclient(e, fd, list);
     }
   else
    closeclient(e, fd, list);
 }
 
-void			add_client(t_env *e, int s)
+int			add_client(t_env *e, int s)
 {
   struct sockaddr_in	client_sin;
   unsigned int 		client_sin_len;
@@ -50,15 +50,19 @@ void			add_client(t_env *e, int s)
   e->fct_read[fd] = client_read;
   e->fct_write[fd] = NULL;
   dprintf(fd, "BIENVENUE\r\n");
+  return (fd);
 }
 
 void 			server_read(t_env *e, int fd, t_player *list)
 {
-  add_client(e, fd);
-  add_player(list, init_player(fd));
+  int 			fdclient;
+
+  fdclient = add_client(e, fd);
+  printf("j add au clt le fd = %i\n", fdclient);
+  add_player(list, init_player(fdclient));
 }
 
-int 			start_server(t_env *e)
+int 			start_server(t_env *e, t_param *param)
 {
   t_player		*root;
   int			i;
@@ -85,7 +89,7 @@ int 			start_server(t_env *e)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  e->fct_read[i](e, i, root);
+	  e->fct_read[i](e, i, root, param);
     }
 }
 
