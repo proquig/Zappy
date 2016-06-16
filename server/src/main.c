@@ -10,6 +10,7 @@
 
 #include "player.h"
 #include "server.h"
+#include "map.h"
 
 void		print_param(t_param param)
 {
@@ -25,6 +26,17 @@ void		print_param(t_param param)
       printf("\033[32;1m\tName(%s) Max(%i)\033[0m\n", param.n[i], param.c);
 }
 
+void 		zappy(t_param *param, t_env *env)
+{
+  t_square 	map[param->y][param->x];
+
+  if (init_server(param, env) == -1)
+    error("Server init failed");
+  print_param(*param);
+  init_map(&map, param->x, param->y);
+  start_server(env, param);
+}
+
 int		main(int ac, const char **av)
 {
   t_param	param;
@@ -35,9 +47,6 @@ int		main(int ac, const char **av)
   init_params(&param);
   if (!set_params(av, &param))
     error("Wrong args");
-  if (init_server(&param, &env) == -1)
-    error("Server init failed");
-  print_param(param);
-  start_server(&env, &param);
+  zappy(&param, &env);
   return (0);
 }

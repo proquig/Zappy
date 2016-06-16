@@ -1,6 +1,6 @@
 #!/bin/sh
 
-make re;
+make dbg;
 
 echo  "\033[32;1mTEST Erreur : 1\033[0m"
 valgrind ./zappy_server -p 90 -x 10 -y 10 -n toto titi -c 10 -t 10

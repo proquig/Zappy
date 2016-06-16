@@ -58,7 +58,6 @@ void 			server_read(t_env *e, int fd, t_player *list)
   int 			fdclient;
 
   fdclient = add_client(e, fd);
-  printf("j add au clt le fd = %i\n", fdclient);
   add_player(list, init_player(fdclient));
 }
 
