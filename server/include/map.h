@@ -12,7 +12,8 @@
 # define  	__ZAPPY_SERVER_MAP_H__
 
 # include	<stdio.h>
-# include	"player.h"
+
+typedef struct	s_player t_player;
 
 typedef struct	s_square
 {

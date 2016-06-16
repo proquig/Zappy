@@ -19,8 +19,8 @@
 #include			"player.h"
 #include			"map.h"
 
-# define MAX_FD 255
-# define GRAPHIC 900
+# define			MAX_FD 255
+# define			GRAPHIC 900
 
 typedef void			(*fct)();
 

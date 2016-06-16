@@ -8,7 +8,7 @@
 ** Last update Wed Jun 15 14:14:28 2016 Guillaume PROQUIN
 */
 
-#include "player.h"
+#include "server.h"
 
 t_player		*init_player(int fd)
 {

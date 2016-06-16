@@ -12,7 +12,9 @@
 # define			ZAPPY_SERVER_PLAYER_H
 
 # include			<stdlib.h>
-# include			"server.h"
+
+typedef struct 		s_param t_param;
+typedef struct 		s_square t_square;
 
 enum				Direction
 {

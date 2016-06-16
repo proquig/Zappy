@@ -8,7 +8,7 @@
 ** Last update Thu Jun 16 10:31:26 2016 Guillaume PROQUIN
 */
 
-#include "map.h"
+#include "server.h"
 
 void			init_square(t_square *square, unsigned int x, unsigned int y)
 {
