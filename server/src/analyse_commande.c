@@ -49,7 +49,7 @@ int	analyse_commande(char **tab, t_player *player, t_param *param, t_square ***m
   if (player->team == -1)
     {
       if (strcmp(commande[i].cmd, tab[0]) == 0)
-	commande[i].f();
+	commande[i].f(tab, player, param, map);
     }
   return (0);
 }
