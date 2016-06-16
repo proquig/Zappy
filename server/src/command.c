@@ -4,12 +4,11 @@
 
 #include "player.h"
 
-
-
 void avance()
 {
 
 }
+
 void move_right()
 {
 
@@ -49,18 +48,22 @@ void broadcast()
 {
 
 }
+
 void incantation()
 {
 
 }
+
 void forker()
 {
 
 }
+
 void connect_nbr()
 {
 
 }
+
 void die()
 {
 

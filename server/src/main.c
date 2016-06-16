@@ -10,7 +10,6 @@
 
 #include "player.h"
 #include "server.h"
-#include "map.h"
 
 void        init_env(t_env *env)
 {
@@ -47,7 +46,7 @@ void 		zappy(t_param *param, t_env *env)
     error("Server init failed");
   print_param(*param);
   map = create_map(param->x, param->y);
-  start_server(env, param);
+  start_server(env, param, map);
 }
 
 int		main(int ac, const char **av)

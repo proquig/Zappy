@@ -9,6 +9,7 @@
 */
 
 #include "server.h"
+#include "map.h"
 
 void 			closeclient(t_env *e, int fd, t_player *list)
 {
@@ -18,7 +19,7 @@ void 			closeclient(t_env *e, int fd, t_player *list)
   e->fd_type[fd] = FD_FREE;
 }
 
-void			client_read(t_env *e, int fd, t_player *list, t_param *param)
+void			client_read(t_env *e, int fd, t_player *list, t_param *param, t_square ***map)
 {
   ssize_t		r;
   char			buf[4096];
@@ -27,7 +28,7 @@ void			client_read(t_env *e, int fd, t_player *list, t_param *param)
     {
       buf[r] = 0;
       printf("Send by %d: %s\r\n", fd, buf);
-      if (analyse_commande(get_cmds(buf, " \r\n"), search_player(list, fd), param) == -1)
+      if (analyse_commande(get_cmds(buf, " \t\r\n"), search_player(list, fd), param, map) == -1)
 	closeclient(e, fd, list);
     }
   else
@@ -61,7 +62,7 @@ void 			server_read(t_env *e, int fd, t_player *list)
   add_player(list, init_player(fdclient));
 }
 
-int 			start_server(t_env *env, t_param *param)
+int 			start_server(t_env *env, t_param *param, t_square ***map)
 {
   t_player		*root;
   int			i;
@@ -88,7 +89,7 @@ int 			start_server(t_env *env, t_param *param)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  env->fct_read[i](env, i, root, param);
+	  env->fct_read[i](env, i, root, param, map);
     }
 }
 

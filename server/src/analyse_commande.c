@@ -20,9 +20,10 @@ t_command	commande[] = {
 	{"-", NULL, &die},
 };
 
-int	analyse_commande(char **tab, t_player *player, t_param *param)
+
+void 	set_team(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-  int	i;
+  int i;
 
   i = -1;
   while (param->n[++i] && player->team == -1)
@@ -31,13 +32,21 @@ int	analyse_commande(char **tab, t_player *player, t_param *param)
 	player->team = i;
 	dprintf(player->fd, "%i\n%i %i\n", player->fd, player->x, player->y);
       }
-  if (player->team == -1)
+  printf("%s\n", tab[0]);
+  if (player->team == -1 && strcmp("GRAPHIC", tab[0]) == 0)
     {
-      dprintf(player->fd,"ko\r\n");
-      return (-1);
+      player->team = GRAPHIC;
+      print_map_contents(map, player->fd, param->x, param->y);
     }
+}
+
+int	analyse_commande(char **tab, t_player *player, t_param *param, t_square ***map)
+{
+  int	i;
+
   i = -1;
-  while (commande[++i].cmd)
+  set_team(tab, player, param, map);
+  if (player->team == -1)
     {
       if (strcmp(commande[i].cmd, tab[0]) == 0)
 	commande[i].f();

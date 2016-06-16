@@ -17,8 +17,10 @@
 #include			<netdb.h>
 #include			<zconf.h>
 #include			"player.h"
+#include			"map.h"
 
 # define MAX_FD 255
+# define GRAPHIC 900
 
 typedef void			(*fct)();
 
@@ -59,8 +61,8 @@ void				init_params(t_param *params);
 int				set_int_param(const char **args, void *param);
 int				set_char_param(const char **args, void *param);
 int				set_params(const char **args, t_param *params);
-int 				start_server(t_env *e, t_param*);
+int 				start_server(t_env *e, t_param*, t_square ***);
 char				**get_cmds(const char *str, const char *dels);
-int				analyse_commande(char **tab, t_player *player, t_param *);
+int				analyse_commande(char **tab, t_player *player, t_param *, t_square ***map);
 
 #endif /* _ZAPPY_SERVER_H_ */
