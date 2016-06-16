@@ -2,69 +2,109 @@
 // Created by cloquet on 14/06/16.
 //
 
-#include "player.h"
+#include "server.h"
 
-void avance()
+void avance(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
+  dprintf(player->fd, "ok\n");
 }
 
-void move_right()
+void move_right(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void gauche()
+void gauche(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void voir()
+void voir(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void inventaire()
+void inventaire(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void prend()
+void prend(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void pose()
+void pose(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void expulse()
+void expulse(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void broadcast()
+void broadcast(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void incantation()
+void incantation(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void forker()
+void forker(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void connect_nbr()
+void connect_nbr(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
 
-void die()
+void die(char **tab, t_player *player, t_param *param, t_square ***map)
 {
-
+  (void)tab;
+  (void)player;
+  (void)param;
+  (void)map;
 }
