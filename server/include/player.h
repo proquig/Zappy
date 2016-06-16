@@ -23,6 +23,7 @@ enum				Direction
 
 enum 				RESSOURCES
 {
+  FOOD,
   LINEMATE,
   DERAUMERE,
   SIBUR,
@@ -32,24 +33,24 @@ enum 				RESSOURCES
   RES_SIZE
 };
 
-typedef struct			s_ressources
+typedef struct		s_ressources
 {
-  enum RESSOURCES 		res[RES_SIZE];
-}				t_ressources;
+  unsigned int 		res[RES_SIZE];
+}					t_ressources;
 
-typedef struct			s_player
+typedef struct		s_player
 {
-  unsigned int 			x;
-  unsigned int 			y;
-  enum Direction 		dir;
-  t_ressources			ress;
+  unsigned int 		x;
+  unsigned int 		y;
+  enum Direction 	dir;
+  t_ressources		res;
   int 				fd;
   int 				team;
   int 				lvl;
-  struct s_player		*next;
-}				t_player;
+  struct s_player	*next;
+}					t_player;
 
-typedef struct 			s_command
+typedef struct 		s_command
 {
   char *			cmd;
   char *			sec;

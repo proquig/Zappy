@@ -11,12 +11,21 @@
 #ifndef   	__ZAPPY_SERVER_MAP_H__
 # define  	__ZAPPY_SERVER_MAP_H__
 
+# include	<stdio.h>
 # include	"player.h"
 
 typedef struct	s_square
 {
+  unsigned int	x;
+  unsigned int	y;
   t_ressources	res;
-  t_player	*player;
+  t_player		*player;
 }		t_square;
+
+void		init_square(t_square *square, unsigned int x, unsigned int y);
+void		init_map(t_square ***map, unsigned int x, unsigned int y);
+void		put_random_ressource(t_square ***map, int size_x, int size_y);
+void		print_square_contents(t_square *square, int fd);
+void		print_map_contents(t_square ***map, int fd, unsigned int x, unsigned int y);
 
 #endif

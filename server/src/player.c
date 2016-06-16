@@ -48,8 +48,7 @@ t_player		*search_player(t_player *list, int fd)
   if (!list)
 	return (NULL);
   tmp = list;
-  while (tmp->fd != fd && tmp->next &&
-		 tmp->next->fd != fd && (tmp = tmp->next));
+  while (tmp->fd != fd && (tmp = tmp->next));
   return (tmp ? tmp : NULL);
 }
 
