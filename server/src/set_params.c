@@ -39,7 +39,7 @@ int		set_char_param(const char **args, void *param)
 
   i = -1;
   while (args[++i] && args[i][0] != '-');
-  if (!i || (i && !(*((char***)param) = malloc((i + 1) * sizeof(char *)))))
+  if (!i || !(*((char***)param) = malloc((i + 1) * sizeof(char *))))
     return (0);
   j = -1;
   while (++j < i)

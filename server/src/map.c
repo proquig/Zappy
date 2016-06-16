@@ -22,12 +22,35 @@ void			init_square(t_square *square, unsigned int x, unsigned int y)
   square->y = y;
 }
 
-void 			init_map(t_square ***map,
+t_square		***create_map(unsigned int size_x, unsigned int size_y)
+{
+  int 			i;
+  int 			j;
+  t_square		***map;
+
+  map = malloc(size_y * sizeof(t_square**));
+  i = -1;
+  while ((unsigned int)(++i) < size_y)
+  	{
+	  map[i] = malloc(size_x * sizeof(t_square*));
+	  j = -1;
+	  while ((unsigned int)(++j) < size_x)
+	  {
+		map[i][j] = malloc(sizeof(t_square));
+		init_square(map[i][j], (unsigned int) i, (unsigned int) j);
+	  }
+  	}
+  return (map);
+}
+/*
+ * void 			init_map(void *squares,
 						 unsigned int size_x, unsigned int size_y)
 {
   int 			i;
   int 			j;
+  t_square		*map[size_x][size_y] = (t_square(*)[size_x][size_y])squares;
 
+  //map = (t_square*[size_x][size_y])map;
   i = -1;
   while ((unsigned int)(++i) < size_y)
   {
@@ -36,6 +59,7 @@ void 			init_map(t_square ***map,
 	  init_square(map[size_y][size_x], size_x, size_y);
   }
 }
+ */
 
 void 			put_random_ressource(t_square ***map, int size_x, int size_y)
 {

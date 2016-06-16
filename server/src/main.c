@@ -12,6 +12,19 @@
 #include "server.h"
 #include "map.h"
 
+void        init_env(t_env *env)
+{
+  int       i;
+
+  i = -1;
+  while (++i < MAX_FD)
+  {
+    env->fct_read[i] = NULL;
+    env->fct_write[i] = NULL;
+    env->fd_type[i] = FD_FREE;
+  }
+}
+
 void		print_param(t_param param)
 {
   int 		i;
@@ -28,12 +41,12 @@ void		print_param(t_param param)
 
 void 		zappy(t_param *param, t_env *env)
 {
-  t_square 	map[param->y][param->x];
+  t_square  ***map;
 
   if (init_server(param, env) == -1)
     error("Server init failed");
   print_param(*param);
-  init_map(&map, param->x, param->y);
+  map = create_map(param->x, param->y);
   start_server(env, param);
 }
 
@@ -45,6 +58,7 @@ int		main(int ac, const char **av)
   if (ac < 7)
     error("argv");
   init_params(&param);
+  init_env(&env);
   if (!set_params(av, &param))
     error("Wrong args");
   zappy(&param, &env);

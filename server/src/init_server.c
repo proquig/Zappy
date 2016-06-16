@@ -61,7 +61,7 @@ void 			server_read(t_env *e, int fd, t_player *list)
   add_player(list, init_player(fdclient));
 }
 
-int 			start_server(t_env *e, t_param *param)
+int 			start_server(t_env *env, t_param *param)
 {
   t_player		*root;
   int			i;
@@ -78,7 +78,7 @@ int 			start_server(t_env *e, t_param *param)
       fd_max = 0;
       i = -1;
       while (++i < MAX_FD)
-	if (e->fd_type[i] != FD_FREE)
+	if (env->fd_type[i] != FD_FREE)
 	  {
 	    FD_SET(i, &fd_read);
 	    fd_max = i;
@@ -88,7 +88,7 @@ int 			start_server(t_env *e, t_param *param)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  e->fct_read[i](e, i, root, param);
+	  env->fct_read[i](env, i, root, param);
     }
 }
 
@@ -99,17 +99,15 @@ int			init_server(t_param *param, t_env *env)
   socklen_t		size;
   int 			fd;
 
-  if (!(pe = getprotobyname("TCP")))
-    return (-1);
-  if ((fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
+  if (!(pe = getprotobyname("TCP"))
+      || (fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
     return (-1);
   size = sizeof(s_in);
   s_in.sin_family = AF_INET;
   s_in.sin_port = htons(param->p);
   s_in.sin_addr.s_addr = INADDR_ANY;
-  if (bind(fd, (const struct sockaddr *) &s_in, size) == -1)
-    return (-1);
-  if (listen(fd, MAX_FD) == -1)
+  if (bind(fd, (const struct sockaddr *) &s_in, size) == -1
+      || listen(fd, MAX_FD) == -1)
     return (-1);
   env->fd_type[fd] = FD_SERVER;
   env->fct_read[fd] = server_read;

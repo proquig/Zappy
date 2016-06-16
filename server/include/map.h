@@ -23,7 +23,7 @@ typedef struct	s_square
 }		t_square;
 
 void		init_square(t_square *square, unsigned int x, unsigned int y);
-void		init_map(t_square ***map, unsigned int x, unsigned int y);
+t_square	***create_map(unsigned int x, unsigned int y);
 void		put_random_ressource(t_square ***map, int size_x, int size_y);
 void		print_square_contents(t_square *square, int fd);
 void		print_map_contents(t_square ***map, int fd, unsigned int x, unsigned int y);
