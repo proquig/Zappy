@@ -12,6 +12,8 @@ SRC	=	src/main.c		\
 		src/init_server.c	\
 		src/player.c		\
 		src/utils.c		\
+		src/analyse_commande.c	\
+		src/command.c		\
 		src/map.c
 
 OBJ	=	$(SRC:.c=.o)

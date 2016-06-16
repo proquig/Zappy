@@ -8,8 +8,15 @@
 ** Last update Wed Jun 15 10:48:53 2016 Cloquet
 */
 
-#include <player.h>
 #include "server.h"
+
+void 			closeclient(t_env *e, int fd, t_player *list)
+{
+  printf("Connection closed\n");
+  del_player(list, fd);
+  close(fd);
+  e->fd_type[fd] = FD_FREE;
+}
 
 void			client_read(t_env *e, int fd, t_player *list)
 {
@@ -20,14 +27,11 @@ void			client_read(t_env *e, int fd, t_player *list)
     {
       buf[r] = 0;
       printf("Send by %d: %s\r\n", fd, buf);
+      if (analyse_commande(get_cmds(buf, " "), search_player(list, fd)) == -1)
+	closeclient(e, fd, list);
     }
   else
-    {
-      printf("Connection closed\n");
-      del_player(list, fd);
-      close(fd);
-      e->fd_type[fd] = FD_FREE;
-    }
+   closeclient(e, fd, list);
 }
 
 void			add_client(t_env *e, int s)

@@ -8,14 +8,15 @@
 ** Last update Tue Jun 14 11:35:59 2016 Guillaume PROQUIN
 */
 
-#ifndef		__ZAPPY_SERVER_H__
-# define	__ZAPPY_SERVER_H__
+#ifndef				__ZAPPY_SERVER_H__
+# define			__ZAPPY_SERVER_H__
 
-#include	<stdlib.h>
-#include	<stdio.h>
-#include	<memory.h>
-#include	<netdb.h>
-#include	<zconf.h>
+#include			<stdlib.h>
+#include			<stdio.h>
+#include			<memory.h>
+#include			<netdb.h>
+#include			<zconf.h>
+#include			"player.h"
 
 # define MAX_FD 255
 
@@ -52,12 +53,14 @@ typedef struct			s_env
 }				t_env;
 
 int				init_server(t_param *param, t_env *);
-void			error(const char *msg);
+void				error(const char *msg);
 int				is_number(const char *str);
-void			init_params(t_param *params);
+void				init_params(t_param *params);
 int				set_int_param(const char **args, void *param);
 int				set_char_param(const char **args, void *param);
 int				set_params(const char **args, t_param *params);
-int 			start_server(t_env *e);
+int 				start_server(t_env *e);
+char				**get_cmds(const char *str, const char *dels);
+int				analyse_commande(char **tab, t_player *player);
 
 #endif /* _ZAPPY_SERVER_H_ */

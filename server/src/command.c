@@ -4,23 +4,64 @@
 
 #include "player.h"
 
-t_command commande[] = {
-{"avance", &avance}
-{"droite",}
-{"gauche",}
-{"voir", }
-{"inventaire",}
-{"prend objet",}
-{"pose objet",}
-{"expulse",}
-{"broadcast texte",}
-{"incantation",}
-{"fork",}
-{"connect_nbr",}
-{"-",}
-};
+
 
 void avance()
+{
+
+}
+void move_right()
+{
+
+}
+
+void gauche()
+{
+
+}
+
+void voir()
+{
+
+}
+
+void inventaire()
+{
+
+}
+
+void prend()
+{
+
+}
+
+void pose()
+{
+
+}
+
+void expulse()
+{
+
+}
+
+void broadcast()
+{
+
+}
+void incantation()
+{
+
+}
+void forker()
+{
+
+}
+void connect_nbr()
+{
+
+}
+void die()
 {
 
 }
