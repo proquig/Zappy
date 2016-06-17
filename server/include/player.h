@@ -25,9 +25,12 @@ t_player			*init_player(int fd);
 t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
+
 void 				avance(char **tab, t_player *player, t_param *param, t_square **map);
 void 				right(char **tab, t_player *player, t_param *param, t_square **map);
 void 				gauche(char **tab, t_player *player, t_param *param, t_square **map);
+
+char				*print_contents_seen(t_param *param, int x, int y, t_square **map);
 void 				voir(char **tab, t_player *player, t_param *param, t_square **map);
 void 				inventaire(char **tab, t_player *player, t_param *param, t_square **map);
 void 				prend(char **tab, t_player *player, t_param *param, t_square **map);

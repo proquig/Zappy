@@ -52,6 +52,8 @@ typedef struct		s_square
 {
   unsigned int		x;
   unsigned int		y;
+  unsigned int		size_x;
+  unsigned int		size_y;
   t_ressources		res;
   t_player		*player;
 }			t_square;

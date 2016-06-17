@@ -10,7 +10,8 @@
 
 #include "server.h"
 
-void			init_square(t_square *square, unsigned int x, unsigned int y)
+void			init_square(t_square *square, unsigned int x, unsigned int y,
+							unsigned int size[2])
 {
   int 			i;
 
@@ -20,12 +21,17 @@ void			init_square(t_square *square, unsigned int x, unsigned int y)
   square->player = NULL;
   square->x = x;
   square->y = y;
+  square->size_x = size[0];
+  square->size_y = size[1];
 }
 
 t_square		**create_map(unsigned int size_x, unsigned int size_y)
 {
   int 			i;
   int 			j;
+  unsigned int 	size[2] = {
+		  size_x, size_y
+  };
   t_square		**map;
 
   map = malloc(size_y * sizeof(t_square*));
@@ -36,7 +42,7 @@ t_square		**create_map(unsigned int size_x, unsigned int size_y)
 		return (NULL);
 	  j = -1;
 	  while ((unsigned int)(++j) < size_x)
-		init_square(&map[i][j], (unsigned int) i, (unsigned int) j);
+		init_square(&map[i][j], (unsigned int) i, (unsigned int) j, size);
   	}
   return (map);
 }

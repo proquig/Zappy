@@ -17,8 +17,6 @@
 #include			<netdb.h>
 #include			<zconf.h>
 #include			"common.h"
-//#include			"player.h"
-//#include			"map.h"
 
 # define			MAX_FD 255
 # define			GRAPHIC 900

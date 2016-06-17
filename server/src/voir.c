@@ -16,33 +16,41 @@ void print_contents_seen(int fd, int x, int y, t_square **map)
 	  "thystame",
   };
   int i;
-  unsigned int j;
+  int j;
 
+  x = (x < 0) ? (map[0][0].size_x + x) : (x % map[0][0].size_x);
+  y = (y < 0) ? (map[0][0].size_y + y) : (y % map[0][0].size_y);
   i = -1;
-  dprintf(fd, ",");
   while (++i < RES_SIZE)
     {
-      j = 0;
-      while (j < map[y][x].res.res[i])
-	{
-	  dprintf(fd, " %s", name[i]);
-	  j++;
-	}
+      j = -1;
+      while ((unsigned int)(++j) < map[y][x].res.res[i]);
+		dprintf(fd, " %s", map[y][x].res.res[i]);
     }
 }
 
 void voir(char **tab, t_player *player, t_param *param, t_square **map)
 {
-  int lvl;
+  int i;
+  int range;
+  int dir;
 
-  lvl = 0;
   (void)tab;
-  (void)param;
-  dprintf(player->fd, "{ joueur");
-  while (lvl > player->lvl)
-    {
-      print_contents_seen(player->fd, player->x, player->y, map);
-      lvl++;
-    }
-  dprintf(player->fd, " }\n");
+  dir = (player->dir == LEFT || player->dir == DOWN) ? -1 : 1;
+  range = -1;
+  while (++range <= player->lvl)
+  	{
+	  i = (range * -1);
+	  while (i++ <= range)
+	    {
+		  if (player->dir % 2)
+		    str = print_contents_seen(param, player->x + (range * dir),
+									  player->y + i, map);
+		  else
+		    str = print_contents_seen(param, player->x + i,
+									  player->y + (range * dir), map);
+		  dprintf(player->fd, "%s%s%s", (range ? "" : "{"), str,
+				  i == player->lvl ? "}" : ",");
+	    }
+  	}
 }
