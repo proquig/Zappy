@@ -17,6 +17,7 @@ void right(char **tab, t_player *player, t_param *param, t_square **map)
     player->dir = UP;
   if (player->dir == RIGHT)
     player->dir = DOWN;
+  dprintf(player->fd, "ok\n");
 }
 
 void gauche(char **tab, t_player *player, t_param *param, t_square **map)
@@ -32,39 +33,10 @@ void gauche(char **tab, t_player *player, t_param *param, t_square **map)
     player->dir = DOWN;
   if (player->dir == RIGHT)
     player->dir = UP;
+  dprintf(player->fd, "ok\n");
 }
 
-void voir(char **tab, t_player *player, t_param *param, t_square **map)
-{
-  int x;
-  int y;
 
-  y = -1;
-  (void)tab;
-  (void)param;
-  printf("player=%i - %i\n", player->y, player->x);
-  printf("in map=%i - %i\n", map[0][0].player->y, map[0][0].player->x);
-  while (++y < param->y)
-    {
-      x = 0;
-      while (x < param->x)
-	{
-	  if (map[y][x].player && map[y][x].player->fd == player->fd)
-	    {
-	      int i;
-
-	      i = 0;
-	      printf("PLOP\n");
-	      dprintf(player->fd, "{ joueur");
-	      while (map[y][x].res.res[i])
-		  dprintf(player->fd, ", %i", map[y][x].res.res[i++]);
-	      dprintf(player->fd, " }\n");
-	    }
-	  x++;
-	}
-    }
-
-}
 
 void inventaire(char **tab, t_player *player, t_param *param, t_square **map)
 {

@@ -44,6 +44,7 @@ void		avance(char **tab, t_player *player, t_param *param, t_square **map)
 	  {DOWN, &move_down},
 	  {LEFT, &move_left},
 	  {RIGHT, &move_right},
+	  {-1, NULL}
   };
   int 		i;
 

@@ -65,5 +65,5 @@ t_player		*del_player(t_player *list, int fd)
 	tmp->next = tmp->next->next;
   if (tmp)
   	free(tmp);
-  return (list);
+  return (tmp == list ? NULL : list);
 }

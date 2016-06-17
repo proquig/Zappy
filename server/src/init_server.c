@@ -76,7 +76,6 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
   root = NULL;
   while (1)
     {
-      printf("%p\n", root); // DEBUG
       tv.tv_sec = 1;
       tv.tv_usec = (__suseconds_t)0.1;
       FD_ZERO(&fd_read);

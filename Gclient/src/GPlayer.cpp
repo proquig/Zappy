@@ -23,7 +23,7 @@ int     GPlayer::getY()
     return (this->_y);
 }
 
-enum    GPlayer::getDirection()
+Direction   GPlayer::getDirection()
 {
     return (this->_direction);
 }
