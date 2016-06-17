@@ -13,7 +13,9 @@
 t_player		*init_player(int fd)
 {
   t_player	*player;
+  int 		i;
 
+  i = 0;
   srand(0);
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
@@ -23,6 +25,9 @@ t_player		*init_player(int fd)
   player->dir = (enum Direction)(rand() % 4);
   player->team = -1;
   player->lvl = 0;
+  player->res.res[FOOD] = 10;
+  while (++i < RES_SIZE)
+    player->res.res[i] = 0;
   player->next = NULL;
   return (player);
 }
