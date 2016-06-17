@@ -9,9 +9,12 @@
 
 COMP	=	g++
 
-SRC	=	src/main.c
+SRC	=	src/main.cpp	\
+		src/GUI.cpp		\
+		src/Board.cpp	\
+		src/GPlayer.cpp
 
-OBJ	=	$(SRC:.c=.o)
+OBJ	=	$(SRC:.cpp=.o)
 
 NAME	=	zappy_Gclient
 
@@ -19,7 +22,6 @@ LDFLAGS	=	-Llib/irrlicht -Wl,-rpath,$(PWD)/lib/irrlicht -lIrrlicht
 
 CXXFLAGS	=	-W			\
 			-Wextra			\
-			-Wall			\
 			-std=c++11		\
 			-I include/		\
 			-I include/irrlicht/
@@ -27,7 +29,7 @@ CXXFLAGS	=	-W			\
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		$(COMP) -o $(NAME) $(OBJ)
+		$(COMP) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 clean:
 		rm -f $(OBJ)

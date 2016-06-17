@@ -1,17 +1,17 @@
 #include "Board.hh"
 
-Board::Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSize, video::ITexture *texture)
+Board::Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSize, ITexture *texture)
 {
     this->_material.Wireframe = false;
     this->_material.Lighting = false;
     this->_square = smgr->getGeometryCreator()->createPlaneMesh(dimension2d<f32>(scale.X, scale.Z), dimension2du(1, 1), &this->_material);
-    this->_squareNode = smgr->addMeshSceneNode(this->_square, parent, id, position, rotation, vector3df(1.0f, 1.0f, 1.0f));
+    this->_boardRootNode = smgr->addMeshSceneNode(this->_square, parent, id, position, rotation, vector3df(1.0f, 1.0f, 1.0f));
     this->_nbSquareSize = nbSquareSize;
     this->_squareSize = scale.X;
     this->_texture = texture;
     if (nbSquareSize == 0)
-        this->_squareNode->setMaterialTexture(0, texture);
-    this->_blockNode = nullptr;
+        this->_boardRootNode->setMaterialTexture(0, texture);
+    this->_modelNode = nullptr;
     this->curBlockMesh = nullptr;
     init();
 }
@@ -39,7 +39,7 @@ void    Board::init()
             std::vector<Board *> line;
             while (i < this->_nbSquareSize)
             {
-                Board *newBoard = new Board(this->_squareNode, this->getSceneManager(), underSquareId, vector3df(x, 0.1f, z), vector3df(0.0f, 0.0f, 0.0f), vector3df(underSquareSize, 0.0f, underSquareSize), 0, this->_texture);
+                Board *newBoard = new Board(this->_boardRootNode, this->getSceneManager(), underSquareId, vector3df(x, 0.1f, z), vector3df(0.0f, 0.0f, 0.0f), vector3df(underSquareSize, 0.0f, underSquareSize), 0, this->_texture);
                 line.push_back(newBoard);
                 x += underSquareSize;
                 i++;
@@ -52,9 +52,9 @@ void    Board::init()
     }
 }
 
-IMeshSceneNode  *Board::getSquareNode()
+IMeshSceneNode  *Board::getBoardRootNode()
 {
-    return (this->_squareNode);
+    return (this->_boardRootNode);
 }
 
 IMesh       *Board::getSquare()
@@ -72,74 +72,84 @@ std::vector<std::vector<Board *> > *Board::getUnderSquares()
     return (&this->_underSquares);
 }
 
-void        Board::setMaterialFlag(video::E_MATERIAL_FLAG flag, bool newvalue)
+void        Board::setMaterialFlag(E_MATERIAL_FLAG flag, bool newvalue)
 {
-    this->_squareNode->setMaterialFlag(flag, newvalue);
+    this->_boardRootNode->setMaterialFlag(flag, newvalue);
 }
 
-void        Board::setMaterialTexture(u32 textureLayer, video::ITexture *texture)
+void        Board::setMaterialTexture(u32 textureLayer, ITexture *texture)
 {
-    this->_squareNode->setMaterialTexture(textureLayer, texture);
+    this->_boardRootNode->setMaterialTexture(textureLayer, texture);
 }
 
-void        Board::setPosition (const core::vector3df &newpos)
+void        Board::setPosition (const vector3df &newpos)
 {
-    this->_squareNode->setPosition(newpos);
+    this->_boardRootNode->setPosition(newpos);
 }
 
-void        Board::setScale(const core::vector3df &scale)
+void        Board::setScale(const vector3df &scale)
 {
-    this->_squareNode->setScale(scale);
+    this->_boardRootNode->setScale(scale);
 }
 
 void        Board::setVisible (bool isVisible)
 {
-    this->_squareNode->setVisible(isVisible);
+    this->_boardRootNode->setVisible(isVisible);
 }
 
 void        Board::remove()
 {
-    this->_squareNode->remove();
+    this->_boardRootNode->remove();
 }
 
-const core::vector3df &Board::getPosition() const
+const vector3df &Board::getPosition() const
 {
-    return (this->_squareNode->getPosition());
+    return (this->_boardRootNode->getPosition());
 }
 
-core::vector3df Board::getPositionUpperLeft() const
+const vector3df &Board::getPositionUpperLeft() const
 {
     return (this->getPosition() - (this->getScale() / 2));
 }
 
-const core::vector3df &Board::getScale() const
+const vector3df &Board::getScale() const
 {
-    return (this->_squareNode->getScale());
+    return (this->_boardRootNode->getScale());
 }
 
 ISceneManager   *Board::getSceneManager(void) const
 {
-    return (this->_squareNode->getSceneManager());
+    return (this->_boardRootNode->getSceneManager());
 }
 
-video::ITexture *Board::getTexture()
+ITexture *Board::getTexture()
 {
     return (this->_texture);
 }
 
-void            Board::setBlockNode(IMeshSceneNode *newBlockNode)
+void            Board::setModelNode(IMeshSceneNode *newModelNode)
 {
-    if (this->_blockNode != nullptr)
-          this->_blockNode->remove();
-    this->_blockNode = newBlockNode;
+    if (this->_modelNode != nullptr)
+          this->_modelNode->remove();
+    this->_modelNode = newBlockNode;
 }
 
-IMeshSceneNode  *Board::getBlockNode()
+IMeshSceneNode  *Board::getModelNode()
 {
-    return (this->_blockNode);
+    return (this->_modelNode);
 }
 
 f32             Board::getSquareSize()
 {
     return (this->_squareSize);
+}
+
+IMesh   *Board::getCurModelMesh()
+{
+    return (this->_modelNode->getMesh());
+}
+
+void    Board::setCurModelMesh(IMesh *newCurModelMesh)
+{
+    this->_modelNode->setMesh(newCurModelMesh);
 }
