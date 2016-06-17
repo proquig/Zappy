@@ -5,14 +5,15 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Wed Jun 15 22:27:43 2016 jacque_x
-// Last update Fri Jun 17 14:54:51 2016 jacque_x
+// Last update Fri Jun 17 17:19:11 2016 jacque_x
 //
 
 #include "Client.hpp"
 
-Client::Client(int port)
+Client::Client(int port, char *team_name)
 {
   this->_port = port;
+  this->_team_name = team_name;
 }
 
 Client::~Client()

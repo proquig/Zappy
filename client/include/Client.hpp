@@ -5,7 +5,7 @@
 // Login   <jacque_x@epitech.net>
 //
 // Started on  Wed Jun 15 19:02:22 2016 jacque_x
-// Last update Fri Jun 17 14:54:33 2016 jacque_x
+// Last update Fri Jun 17 19:51:02 2016 jacque_x
 //
 
 #ifndef _CLIENT_HPP_
@@ -18,6 +18,7 @@
 #include        <stdio.h>
 #include        <memory.h>
 #include        <netdb.h>
+#include	<thread>
 #include        <zconf.h>
 #include        <sys/types.h>
 #include        <sys/socket.h>
@@ -28,18 +29,22 @@
 class Client
 {
 public:
-  int		_port;
-  int           _sock;
-  struct sockaddr_in   _sin;
-  Client(int port);
+  int			_port;
+  int			_sock;
+  char			*_team_name;
+  struct sockaddr_in	_sin;
+  //
+  Client(int port, char *team_name);
   ~Client();
   void  create_socket();
   void  init_struct();
   void	connect_to_server();
+  bool	mygetline();
 };
 
+void	get_command(Client client);
 void    verif_params(char **av);
 void    error(const char *msg);
-void	get_command(Client client);
+void	start_ia(Client client);
 
 #endif
