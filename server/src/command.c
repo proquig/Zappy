@@ -53,7 +53,6 @@ void 		inventaire(char **tab, t_player *player, t_param *param, t_square **map)
   int 		i;
 
   i = -1;
-  dprintf(player->fd, "");
   while (++i < RES_SIZE)
     dprintf(player->fd, "%s%s %u%s", i ? "" : "{", name[i],
 	    player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");

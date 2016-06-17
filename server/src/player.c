@@ -24,7 +24,7 @@ t_player		*init_player(int fd)
   player->y = 0;
   player->dir = (enum Direction)(rand() % 4);
   player->team = -1;
-  player->lvl = 0;
+  player->lvl = 3;
   player->res.res[FOOD] = 10;
   while (++i < RES_SIZE)
     player->res.res[i] = 0;

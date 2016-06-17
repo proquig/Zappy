@@ -4,9 +4,9 @@
 
 #include "server.h"
 
-void print_contents_seen(int fd, int x, int y, t_square **map)
+void		print_contents_seen(int fd, int x, int y, t_square **map)
 {
-  char *name[] = {
+  char 		*name[] = {
 	  "nourriture",
 	  "linemate",
 	  "deraumere",
@@ -15,8 +15,8 @@ void print_contents_seen(int fd, int x, int y, t_square **map)
 	  "phiras",
 	  "thystame",
   };
-  int i;
-  int j;
+  int 		i;
+  int 		j;
 
   x = (x < 0) ? (map[0][0].size_x + x) : (x % map[0][0].size_x);
   y = (y < 0) ? (map[0][0].size_y + y) : (y % map[0][0].size_y);
@@ -24,18 +24,19 @@ void print_contents_seen(int fd, int x, int y, t_square **map)
   while (++i < RES_SIZE)
     {
       j = -1;
-      while ((unsigned int)(++j) < map[y][x].res.res[i]);
-		dprintf(fd, " %s", map[y][x].res.res[i]);
+      while ((unsigned int)(++j) < map[y][x].res.res[i])
+		dprintf(fd, " %s", name[j]);
     }
 }
 
-void voir(char **tab, t_player *player, t_param *param, t_square **map)
+void 		voir(char **tab, t_player *player, t_param *param, t_square **map)
 {
-  int i;
-  int range;
-  int dir;
+  int 		i;
+  int 		range;
+  int 		dir;
 
   (void)tab;
+  (void)param;
   dir = (player->dir == LEFT || player->dir == DOWN) ? -1 : 1;
   range = -1;
   while (++range <= player->lvl)
@@ -43,14 +44,14 @@ void voir(char **tab, t_player *player, t_param *param, t_square **map)
 	  i = (range * -1);
 	  while (i++ <= range)
 	    {
-		  if (player->dir % 2)
-		    str = print_contents_seen(param, player->x + (range * dir),
-									  player->y + i, map);
-		  else
-		    str = print_contents_seen(param, player->x + i,
-									  player->y + (range * dir), map);
-		  dprintf(player->fd, "%s%s%s", (range ? "" : "{"), str,
-				  i == player->lvl ? "}" : ",");
+	      dprintf(player->fd, range ? "," : "{");
+	      print_contents_seen(player->fd, (player->dir % 2)
+					 ? (player->x + (range * dir))
+					 : (player->x + i),
+				  (player->dir % 2)
+				  ? (player->y + (range * dir))
+				  : (player->y + i), map);
 	    }
   	}
+  dprintf(player->fd, "}\n");
 }

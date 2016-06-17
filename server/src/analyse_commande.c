@@ -47,6 +47,8 @@ int	analyse_commande(char **tab, t_player *player, t_param *param, t_square **ma
   int	i;
 
   i = -1;
+  if (!tab || !tab[0])
+    return (0);
   set_team(tab, player, param, map);
   if (player->team == -1)
     {
