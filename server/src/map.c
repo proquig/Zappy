@@ -32,7 +32,7 @@ t_square		**create_map(unsigned int size_x, unsigned int size_y)
   i = -1;
   while ((unsigned int)(++i) < size_y)
   	{
-	  if (!map || (!map[i] = malloc(size_x * sizeof(t_square))))
+	  if (!map || !(map[i] = malloc(size_x * sizeof(t_square))))
 		return (NULL);
 	  j = -1;
 	  while ((unsigned int)(++j) < size_x)
