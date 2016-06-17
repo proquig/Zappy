@@ -16,13 +16,14 @@
 #include			<memory.h>
 #include			<netdb.h>
 #include			<zconf.h>
-#include "../../common/include/player.h"
-#include "../../common/include/map.h"
+#include			"common.h"
+//#include			"player.h"
+//#include			"map.h"
 
 # define			MAX_FD 255
 # define			GRAPHIC 900
 
-typedef void			(*fct)();
+typedef t_player	*(*fct)();
 
 enum				FD {
   FD_FREE = 0,

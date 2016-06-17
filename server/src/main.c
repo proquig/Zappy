@@ -8,8 +8,8 @@
 ** Last update Tue Jun 14 13:27:49 2016 Guillaume PROQUIN
 */
 
-#include "../../common/include/player.h"
 #include "server.h"
+#include "map.h"
 
 void        init_env(t_env *env)
 {

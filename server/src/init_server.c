@@ -9,17 +9,18 @@
 */
 
 #include "server.h"
-#include "../../common/include/map.h"
+#include "player.h"
 
-void 			closeclient(t_env *e, int fd, t_player *list)
+t_player 		*closeclient(t_env *e, int fd, t_player *list)
 {
   printf("Connection closed\n");
-  del_player(list, fd);
+  list = del_player(list, fd);
   close(fd);
   e->fd_type[fd] = FD_FREE;
+  return (list);
 }
 
-void			client_read(t_env *e, int fd, t_player *list, t_param *param, t_square **map)
+t_player		*client_read(t_env *e, int fd, t_player *list, t_param *param, t_square **map)
 {
   ssize_t		r;
   char			buf[4096];
@@ -29,10 +30,11 @@ void			client_read(t_env *e, int fd, t_player *list, t_param *param, t_square **
       buf[r] = 0;
       printf("Send by %d: %s\r\n", fd, buf);
       if (analyse_commande(get_cmds(buf, " \t\r\n"), search_player(list, fd), param, map) == -1)
-	closeclient(e, fd, list);
+	    list = closeclient(e, fd, list);
     }
   else
-   closeclient(e, fd, list);
+   list = closeclient(e, fd, list);
+  return (list);
 }
 
 int			add_client(t_env *e, int s)
@@ -54,12 +56,13 @@ int			add_client(t_env *e, int s)
   return (fd);
 }
 
-void 			server_read(t_env *e, int fd, t_player *list)
+t_player		*server_read(t_env *e, int fd, t_player *list)
 {
   int 			fdclient;
 
   fdclient = add_client(e, fd);
-  add_player(list, init_player(fdclient));
+  list = add_player(list, init_player(fdclient));
+  return (list);
 }
 
 int 			start_server(t_env *env, t_param *param, t_square **map)
@@ -70,9 +73,10 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
   int			fd_max;
   struct timeval	tv;
 
-  root = NULL;//init_player(-1);
+  root = NULL;
   while (1)
     {
+      printf("%p\n", root); // DEBUG
       tv.tv_sec = 1;
       tv.tv_usec = (__suseconds_t)0.1;
       FD_ZERO(&fd_read);
@@ -89,7 +93,7 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  env->fct_read[i](env, i, root, param, map);
+	  root = env->fct_read[i](env, i, root, param, map);
     }
 }
 

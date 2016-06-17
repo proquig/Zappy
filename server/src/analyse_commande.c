@@ -3,6 +3,8 @@
 //
 
 #include "server.h"
+#include "player.h"
+#include "map.h"
 
 t_command	commande[] = {
 	{"avance", NULL, &avance},

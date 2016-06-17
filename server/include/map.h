@@ -12,16 +12,7 @@
 # define  	__ZAPPY_SERVER_MAP_H__
 
 # include	<stdio.h>
-
-typedef struct	s_player t_player;
-
-typedef struct	s_square
-{
-  unsigned int	x;
-  unsigned int	y;
-  t_ressources	res;
-  t_player		*player;
-}		t_square;
+# include	"common.h"
 
 void		init_square(t_square *square, unsigned int x, unsigned int y);
 t_square	**create_map(unsigned int x, unsigned int y);

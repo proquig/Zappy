@@ -10,18 +10,18 @@
 SRC	=	src/main.c		\
 		src/set_params.c	\
 		src/init_server.c	\
-		../common/src/player.c		\
+		src/player.c		\
 		src/utils.c		\
 		src/analyse_commande.c	\
 		src/command.c		\
 		src/avance.c		\
-		../common/src/map.c
+		src/map.c
 
 OBJ	=	$(SRC:.c=.o)
 
 NAME	=	zappy_server
 
-CFLAGS	=	-W -Wextra -Wall -I include/
+CFLAGS	=	-W -Wextra -Wall -I include/ -I ../common/include/
 
 all:		$(NAME)
 

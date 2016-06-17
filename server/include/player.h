@@ -12,46 +12,7 @@
 # define			ZAPPY_SERVER_PLAYER_H
 
 # include			<stdlib.h>
-
-typedef struct 		s_param t_param;
-typedef struct 		s_square t_square;
-
-enum				Direction
-{
-  UP,
-  LEFT,
-  DOWN,
-  RIGHT
-};
-
-enum 				RESSOURCES
-{
-  FOOD,
-  LINEMATE,
-  DERAUMERE,
-  SIBUR,
-  MENDIANE,
-  PHIRAS,
-  THYSTAME,
-  RES_SIZE
-};
-
-typedef struct		s_ressources
-{
-  unsigned int 		res[RES_SIZE];
-}					t_ressources;
-
-typedef struct		s_player
-{
-  int 				x;
-  int 				y;
-  enum Direction 		dir;
-  t_ressources			res;
-  int 				fd;
-  int 				team;
-  int 				lvl;
-  struct s_player	*next;
-}					t_player;
+# include			"common.h"
 
 typedef struct 		s_command
 {
@@ -77,6 +38,5 @@ void 				incantation(char **tab, t_player *player, t_param *param, t_square **ma
 void 				forker(char **tab, t_player *player, t_param *param, t_square **map);
 void 				connect_nbr(char **tab, t_player *player, t_param *param, t_square **map);
 void 				die(char **tab, t_player *player, t_param *param, t_square **map);
-
 
 #endif //ZAPPY_SERVER_PLAYER_H
