@@ -54,6 +54,12 @@ typedef struct			s_env
   fct				fct_write[MAX_FD];
 }				t_env;
 
+typedef struct			s_avance
+{
+  enum Direction 		str;
+  void 				(*ptr)(t_player *player, t_param *param, t_square ***map);
+}				t_avance;
+
 int				init_server(t_param *param, t_env *);
 void				error(const char *msg);
 int				is_number(const char *str);

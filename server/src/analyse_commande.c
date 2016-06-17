@@ -6,7 +6,7 @@
 
 t_command	commande[] = {
 	{"avance", NULL, &avance},
-	{"droite", NULL, &move_right},
+	{"droite", NULL, &right},
 	{"gauche", NULL, &gauche},
 	{"voir", NULL, &voir},
 	{"inventaire", NULL, &inventaire},
@@ -47,6 +47,11 @@ int	analyse_commande(char **tab, t_player *player, t_param *param, t_square ***m
   i = -1;
   set_team(tab, player, param, map);
   if (player->team == -1)
+    {
+      dprintf(player->fd, "ko\n");
+     return (-1);
+    }
+  while (commande[++i].cmd)
     {
       if (strcmp(commande[i].cmd, tab[0]) == 0)
 	commande[i].f(tab, player, param, map);

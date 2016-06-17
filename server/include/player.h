@@ -19,8 +19,8 @@ typedef struct 		s_square t_square;
 enum				Direction
 {
   UP,
-  DOWN,
   LEFT,
+  DOWN,
   RIGHT
 };
 
@@ -43,10 +43,10 @@ typedef struct		s_ressources
 
 typedef struct		s_player
 {
-  unsigned int 		x;
-  unsigned int 		y;
-  enum Direction 	dir;
-  t_ressources		res;
+  int 				x;
+  int 				y;
+  enum Direction 		dir;
+  t_ressources			res;
   int 				fd;
   int 				team;
   int 				lvl;
@@ -65,7 +65,7 @@ t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
 void 				avance(char **tab, t_player *player, t_param *param, t_square ***map);
-void 				move_right(char **tab, t_player *player, t_param *param, t_square ***map);
+void 				right(char **tab, t_player *player, t_param *param, t_square ***map);
 void 				gauche(char **tab, t_player *player, t_param *param, t_square ***map);
 void 				voir(char **tab, t_player *player, t_param *param, t_square ***map);
 void 				inventaire(char **tab, t_player *player, t_param *param, t_square ***map);

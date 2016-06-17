@@ -4,29 +4,34 @@
 
 #include "server.h"
 
-void avance(char **tab, t_player *player, t_param *param, t_square ***map)
+void right(char **tab, t_player *player, t_param *param, t_square ***map)
 {
   (void)tab;
-  (void)player;
   (void)param;
   (void)map;
-  dprintf(player->fd, "ok\n");
-}
-
-void move_right(char **tab, t_player *player, t_param *param, t_square ***map)
-{
-  (void)tab;
-  (void)player;
-  (void)param;
-  (void)map;
+  if (player->dir == UP)
+    player->dir = RIGHT;
+  if (player->dir == DOWN)
+    player->dir = LEFT;
+  if (player->dir == LEFT)
+    player->dir = UP;
+  if (player->dir == RIGHT)
+    player->dir = DOWN;
 }
 
 void gauche(char **tab, t_player *player, t_param *param, t_square ***map)
 {
   (void)tab;
-  (void)player;
   (void)param;
   (void)map;
+  if (player->dir == UP)
+    player->dir = LEFT;
+  if (player->dir == DOWN)
+    player->dir = RIGHT;
+  if (player->dir == LEFT)
+    player->dir = DOWN;
+  if (player->dir == RIGHT)
+    player->dir = UP;
 }
 
 void voir(char **tab, t_player *player, t_param *param, t_square ***map)
