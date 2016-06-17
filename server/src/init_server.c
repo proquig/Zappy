@@ -9,7 +9,7 @@
 */
 
 #include "server.h"
-#include "map.h"
+#include "../../common/include/map.h"
 
 void 			closeclient(t_env *e, int fd, t_player *list)
 {
@@ -70,7 +70,7 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
   int			fd_max;
   struct timeval	tv;
 
-  root = init_player(-1);
+  root = NULL;//init_player(-1);
   while (1)
     {
       tv.tv_sec = 1;

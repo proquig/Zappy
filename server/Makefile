@@ -10,12 +10,12 @@
 SRC	=	src/main.c		\
 		src/set_params.c	\
 		src/init_server.c	\
-		src/player.c		\
+		../common/src/player.c		\
 		src/utils.c		\
 		src/analyse_commande.c	\
 		src/command.c		\
 		src/avance.c		\
-		src/map.c
+		../common/src/map.c
 
 OBJ	=	$(SRC:.c=.o)
 
