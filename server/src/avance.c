@@ -4,7 +4,7 @@
 
 #include "server.h"
 
-void		move_up(t_player *player, t_param *param, t_square ***map)
+void		move_up(t_player *player, t_param *param, t_square **map)
 {
   (void)map;
   player->y--;
@@ -12,7 +12,7 @@ void		move_up(t_player *player, t_param *param, t_square ***map)
     player->y = param->y;
 }
 
-void		move_down(t_player *player, t_param *param, t_square ***map)
+void		move_down(t_player *player, t_param *param, t_square **map)
 {
   (void)map;
   player->y++;
@@ -20,7 +20,7 @@ void		move_down(t_player *player, t_param *param, t_square ***map)
     player->y = 0;
 }
 
-void		move_left(t_player *player, t_param *param, t_square ***map)
+void		move_left(t_player *player, t_param *param, t_square **map)
 {
   (void)map;
   player->x--;
@@ -28,7 +28,7 @@ void		move_left(t_player *player, t_param *param, t_square ***map)
     player->x = param->x;
 }
 
-void		move_right(t_player *player, t_param *param, t_square ***map)
+void		move_right(t_player *player, t_param *param, t_square **map)
 {
   (void)map;
   player->x++;
@@ -37,7 +37,7 @@ void		move_right(t_player *player, t_param *param, t_square ***map)
 }
 
 
-void		avance(char **tab, t_player *player, t_param *param, t_square ***map)
+void		avance(char **tab, t_player *player, t_param *param, t_square **map)
 {
   t_avance	avance1[] = {
 	  {UP, &move_up},

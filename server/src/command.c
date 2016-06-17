@@ -4,7 +4,7 @@
 
 #include "server.h"
 
-void right(char **tab, t_player *player, t_param *param, t_square ***map)
+void right(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)param;
@@ -19,7 +19,7 @@ void right(char **tab, t_player *player, t_param *param, t_square ***map)
     player->dir = DOWN;
 }
 
-void gauche(char **tab, t_player *player, t_param *param, t_square ***map)
+void gauche(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)param;
@@ -34,7 +34,39 @@ void gauche(char **tab, t_player *player, t_param *param, t_square ***map)
     player->dir = UP;
 }
 
-void voir(char **tab, t_player *player, t_param *param, t_square ***map)
+void voir(char **tab, t_player *player, t_param *param, t_square **map)
+{
+  int x;
+  int y;
+
+  y = -1;
+  (void)tab;
+  (void)param;
+  printf("player=%i - %i\n", player->y, player->x);
+  printf("in map=%i - %i\n", map[0][0].player->y, map[0][0].player->x);
+  while (++y < param->y)
+    {
+      x = 0;
+      while (x < param->x)
+	{
+	  if (map[y][x].player && map[y][x].player->fd == player->fd)
+	    {
+	      int i;
+
+	      i = 0;
+	      printf("PLOP\n");
+	      dprintf(player->fd, "{ joueur");
+	      while (map[y][x].res.res[i])
+		  dprintf(player->fd, ", %i", map[y][x].res.res[i++]);
+	      dprintf(player->fd, " }\n");
+	    }
+	  x++;
+	}
+    }
+
+}
+
+void inventaire(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -42,7 +74,7 @@ void voir(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void inventaire(char **tab, t_player *player, t_param *param, t_square ***map)
+void prend(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -50,7 +82,7 @@ void inventaire(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void prend(char **tab, t_player *player, t_param *param, t_square ***map)
+void pose(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -58,7 +90,7 @@ void prend(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void pose(char **tab, t_player *player, t_param *param, t_square ***map)
+void expulse(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -66,7 +98,7 @@ void pose(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void expulse(char **tab, t_player *player, t_param *param, t_square ***map)
+void broadcast(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -74,7 +106,7 @@ void expulse(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void broadcast(char **tab, t_player *player, t_param *param, t_square ***map)
+void incantation(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -82,7 +114,7 @@ void broadcast(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void incantation(char **tab, t_player *player, t_param *param, t_square ***map)
+void forker(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -90,7 +122,7 @@ void incantation(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void forker(char **tab, t_player *player, t_param *param, t_square ***map)
+void connect_nbr(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;
@@ -98,15 +130,7 @@ void forker(char **tab, t_player *player, t_param *param, t_square ***map)
   (void)map;
 }
 
-void connect_nbr(char **tab, t_player *player, t_param *param, t_square ***map)
-{
-  (void)tab;
-  (void)player;
-  (void)param;
-  (void)map;
-}
-
-void die(char **tab, t_player *player, t_param *param, t_square ***map)
+void die(char **tab, t_player *player, t_param *param, t_square **map)
 {
   (void)tab;
   (void)player;

@@ -19,7 +19,7 @@ void 			closeclient(t_env *e, int fd, t_player *list)
   e->fd_type[fd] = FD_FREE;
 }
 
-void			client_read(t_env *e, int fd, t_player *list, t_param *param, t_square ***map)
+void			client_read(t_env *e, int fd, t_player *list, t_param *param, t_square **map)
 {
   ssize_t		r;
   char			buf[4096];
@@ -62,7 +62,7 @@ void 			server_read(t_env *e, int fd, t_player *list)
   add_player(list, init_player(fdclient));
 }
 
-int 			start_server(t_env *env, t_param *param, t_square ***map)
+int 			start_server(t_env *env, t_param *param, t_square **map)
 {
   t_player		*root;
   int			i;

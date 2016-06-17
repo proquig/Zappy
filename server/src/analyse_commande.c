@@ -21,7 +21,7 @@ t_command	commande[] = {
 };
 
 
-void 	set_team(char **tab, t_player *player, t_param *param, t_square ***map)
+void 	set_team(char **tab, t_player *player, t_param *param, t_square **map)
 {
   int i;
 
@@ -40,7 +40,7 @@ void 	set_team(char **tab, t_player *player, t_param *param, t_square ***map)
     }
 }
 
-int	analyse_commande(char **tab, t_player *player, t_param *param, t_square ***map)
+int	analyse_commande(char **tab, t_player *player, t_param *param, t_square **map)
 {
   int	i;
 

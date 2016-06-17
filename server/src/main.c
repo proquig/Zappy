@@ -40,7 +40,7 @@ void		print_param(t_param param)
 
 void 		zappy(t_param *param, t_env *env)
 {
-  t_square  ***map;
+  t_square  **map;
 
   if (init_server(param, env) == -1)
     error("Server init failed");
