@@ -4,6 +4,7 @@ GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> cons
 {
     this->_board = board;
     this->_smgr = smgr;
+    this->initGMap();
 }
 
 GMap::~GMap()

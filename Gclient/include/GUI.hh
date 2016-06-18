@@ -25,6 +25,7 @@ class GUI
     IVideoDriver        *_driver;
     ISceneManager       *_smgr;
     IGUIEnvironment     *_env;
+    ITexture            *_floor;
     std::map<RESSOURCES, IMesh *>   _ressourcesMeshes;
     std::array<IMesh *, 8>        _playersMeshes;
     ITexture            *_textures;

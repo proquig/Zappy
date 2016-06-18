@@ -35,8 +35,13 @@ void    GUI::launch()
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
         exit(EXIT_FAILURE);
     }
-//    this->_gameBoard = new Board(/* ... */);
-    handleCommunications();
+    this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(75.0f, 0.0f, 75.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(150.0f, 0.0f, 150.0f), 15, this->_floor);
+    this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes);
+//  while ()
+//  {
+//      handleCommunications();
+//      draw...
+//  }
 }
 
 void    GUI::handleCommunications()
