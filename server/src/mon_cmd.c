@@ -3,6 +3,7 @@
 //
 
 #include "mon_cmd.h"
+#include "map.h"
 
 const t_cmd mon_cmds[] = {
 		{"msz", 0, &cmd_mon_msz},
@@ -25,16 +26,31 @@ int 	cmd_mon_msz(t_server *server, t_player *player)
 
 int 	cmd_mon_bct(t_server *server, t_player *player)
 {
+  unsigned int 	x;
+  unsigned int 	y;
+
+  x = strtoul(server->tab[1], NULL, 10);
+  y = strtoul(server->tab[2], NULL, 10);
+  if (x >= server->param.x
+	  || y >= server->param.y)
+	return (0);
+  print_square_contents(&server->map[x][y], player->fd);
   return (1);
 }
 
 int 	cmd_mon_mct(t_server *server, t_player *player)
 {
+  print_map_contents(server->map, player->fd);
   return (1);
 }
 
 int 	cmd_mon_tna(t_server *server, t_player *player)
 {
+  int 	i;
+
+  i = -1;
+  while (server->param.n[++i])
+	dprintf(player->fd, "tna %s\n", server->param.n[i]);
   return (1);
 }
 
@@ -73,7 +89,6 @@ void	exec_graphic_cmd(t_server *server, t_player *player)
   while (server->tab[++nb_params]);;
   while (mon_cmds[++i].cmd
 		 && strcmp(mon_cmds[i].cmd, server->tab[0]));
-  printf("%s %d %d\n", mon_cmds[i].cmd, (mon_cmds[i].nb_params + 1), nb_params);
   if (!mon_cmds[i].cmd || nb_params != (mon_cmds[i].nb_params + 1)
 	  || !mon_cmds[i].fn(server, player))
 	dprintf(player->fd, "%s\n", mon_cmds[i].cmd ? "sbp" : "suc");
