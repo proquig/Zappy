@@ -21,7 +21,9 @@
 # define			MAX_FD 255
 # define			GRAPHIC 900
 
-typedef t_player	*(*fct)();
+typedef void		(*fct)();
+
+typedef struct		s_server t_server;
 
 enum				FD {
   FD_FREE = 0,
@@ -32,8 +34,8 @@ enum				FD {
 typedef struct			s_param
 {
   int				p;
-  int				x;
-  int 				y;
+  unsigned int		x;
+  unsigned int 		y;
   int				c;
   int				t;
   char				**n;
@@ -56,18 +58,27 @@ typedef struct			s_env
 typedef struct			s_avance
 {
   enum Direction 		str;
-  void 				(*ptr)(t_player *player, t_param *param, t_square **map);
-}				t_avance;
+  void 					(*ptr)(t_server *server, t_player *player);
+}						t_avance;
 
-int				init_server(t_param *param, t_env *);
-void				error(const char *msg);
-int				is_number(const char *str);
-void				init_params(t_param *params);
-int				set_int_param(const char **args, void *param);
-int				set_char_param(const char **args, void *param);
-int				set_params(const char **args, t_param *params);
-int 				start_server(t_env *e, t_param*, t_square **map);
-char				**get_cmds(const char *str, const char *dels);
-int				analyse_commande(char **tab, t_player *player, t_param *, t_square **map);
+typedef struct          s_server
+{
+  char                  **tab;
+  t_square              **map;
+  t_player              *players;
+  t_param               param;
+  t_env					env;
+}                       t_server;
+
+int				        init_server(t_param *param, t_env *env);
+void                    error(const char *msg);
+int                     is_number(const char *str);
+void                    init_params(t_param *params);
+int                     set_int_param(const char **args, void *param);
+int                     set_char_param(const char **args, void *param);
+int                     set_params(const char **args, t_param *params);
+int                     start_server(t_server *server);
+char                    **get_cmds(const char *str, const char *dels);
+int                     analyse_commande(t_server *server, t_player *player);
 
 #endif /* _ZAPPY_SERVER_H_ */

@@ -18,7 +18,7 @@ void			init_square(t_square *square, unsigned int x, unsigned int y,
   i = -1;
   while (++i < RES_SIZE)
 	square->res.res[i] = 0;
-  square->player = NULL;
+  square->players = NULL;
   square->x = x;
   square->y = y;
   square->size_x = size[0];
@@ -69,17 +69,16 @@ void			print_square_contents(t_square *square, int fd)
   dprintf(fd, "\n");
 }
 
-void			print_map_contents(t_square **map, int fd,
-								   unsigned int x, unsigned int y)
+void			print_map_contents(t_square **map, int fd)
 {
   int 			i;
   int 			j;
 
   i = -1;
-  while ((unsigned int)(++i) < y)
+  while ((unsigned int)(++i) < map[0][0].size_y)
   {
 	j = -1;
-	while ((unsigned int)(++j) < x)
+	while ((unsigned int)(++j) < map[0][0].size_x)
 	  print_square_contents(&map[i][j], fd);
   }
 }

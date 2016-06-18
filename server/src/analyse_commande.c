@@ -23,42 +23,40 @@ t_command	commande[] = {
 };
 
 
-void 	set_team(char **tab, t_player *player, t_param *param, t_square **map)
+void 	set_team(t_server *server, t_player *player)
 {
   int i;
 
   i = -1;
-  while (param->n[++i] && player->team == -1)
-    if (strcmp(param->n[i], tab[0]) == 0)
+  while (server->param.n[++i] && player->team == -1)
+    if (strcmp(server->param.n[i], server->tab[0]) == 0)
       {
 	player->team = i;
 	dprintf(player->fd, "%i\n%i %i\n", player->fd, player->x, player->y);
       }
-  printf("%s\n", tab[0]);
-  if (player->team == -1 && strcmp("GRAPHIC", tab[0]) == 0)
+  printf("%s\n", server->tab[0]);
+  if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
     {
       player->team = GRAPHIC;
-      print_map_contents(map, player->fd, param->x, param->y);
+      print_map_contents(server->map, player->fd);
     }
 }
 
-int	analyse_commande(char **tab, t_player *player, t_param *param, t_square **map)
+int	analyse_commande(t_server *server, t_player *player)
 {
   int	i;
 
   i = -1;
-  if (!tab || !tab[0])
+  if (!server->tab || !server->tab[0])
     return (0);
-  set_team(tab, player, param, map);
+  set_team(server, player);
   if (player->team == -1)
     {
       dprintf(player->fd, "ko\n");
      return (-1);
     }
   while (commande[++i].cmd)
-    {
-      if (strcmp(commande[i].cmd, tab[0]) == 0)
-	commande[i].f(tab, player, param, map);
-    }
+      if (strcmp(commande[i].cmd, server->tab[0]) == 0)
+	commande[i].f(server, player);
   return (0);
 }

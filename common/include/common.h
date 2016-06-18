@@ -38,8 +38,8 @@ typedef struct		s_ressources
 
 typedef struct		s_player
 {
-  int 			x;
-  int 			y;
+  unsigned int 		x;
+  unsigned int 		y;
   enum Direction 	dir;
   t_ressources		res;
   int 			fd;
@@ -55,7 +55,7 @@ typedef struct		s_square
   unsigned int		size_x;
   unsigned int		size_y;
   t_ressources		res;
-  t_player		*player;
+  t_player		*players;
 }			t_square;
 
 #endif

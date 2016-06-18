@@ -11,17 +11,17 @@
 #include "server.h"
 #include "player.h"
 
-t_player 		*closeclient(t_env *e, int fd, t_player *list)
+void			close_client(t_server *server, int fd)
 {
   printf("Connection closed\n");
-  list = del_player(list, fd);
+  server->players = del_player(server->players, fd);
   close(fd);
-  e->fd_type[fd] = FD_FREE;
-  return (list);
+  server->env.fd_type[fd] = FD_FREE;
 }
 
-t_player		*client_read(t_env *e, int fd, t_player *list, t_param *param, t_square **map)
+void			client_read(t_server *server, int fd)
 {
+  // TODO: buffer circulaire
   ssize_t		r;
   char			buf[4096];
 
@@ -29,51 +29,48 @@ t_player		*client_read(t_env *e, int fd, t_player *list, t_param *param, t_squar
     {
       buf[r] = 0;
       printf("Send by %d: %s\r\n", fd, buf);
-      if (analyse_commande(get_cmds(buf, " \t\r\n"), search_player(list, fd), param, map) == -1)
-	    list = closeclient(e, fd, list);
+	  server->tab = get_cmds(buf, " \t\r\n");
+      if (analyse_commande(server, search_player(server->players, fd)) == -1)
+	    close_client(server, fd);
     }
   else
-   list = closeclient(e, fd, list);
-  return (list);
+   close_client(server, fd);
 }
 
-int			add_client(t_env *e, int s)
+int			add_client(t_env *env, int fd)
 {
   struct sockaddr_in	client_sin;
   unsigned int 		client_sin_len;
-  int 			fd;
 
   client_sin_len = sizeof(client_sin);
-  if ((fd = accept(s, (struct sockaddr *) &client_sin, &client_sin_len)) == -1)
+  if ((fd = accept(fd, (struct sockaddr *) &client_sin, &client_sin_len)) == -1)
     {
       perror("accept");
       exit(0);
     }
-  e->fd_type[fd] = FD_CLIENT;
-  e->fct_read[fd] = client_read;
-  e->fct_write[fd] = NULL;
+  env->fd_type[fd] = FD_CLIENT;
+  env->fct_read[fd] = client_read;
+  env->fct_write[fd] = NULL;
   dprintf(fd, "BIENVENUE\r\n");
   return (fd);
 }
 
-t_player		*server_read(t_env *e, int fd, t_player *list)
+void			server_read(t_server *server, int fd)
 {
   int 			fdclient;
 
-  fdclient = add_client(e, fd);
-  list = add_player(list, init_player(fdclient));
-  return (list);
+  fdclient = add_client(&server->env, fd);
+  server->players = add_player(server->players, init_player(fdclient));
 }
 
-int 			start_server(t_env *env, t_param *param, t_square **map)
+int 			start_server(t_server *server)
 {
-  t_player		*root;
   int			i;
   fd_set		fd_read;
   int			fd_max;
   struct timeval	tv;
 
-  root = NULL;
+  server->players = NULL;
   while (1)
     {
       tv.tv_sec = 1;
@@ -82,7 +79,7 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
       fd_max = 0;
       i = -1;
       while (++i < MAX_FD)
-	if (env->fd_type[i] != FD_FREE)
+	if (server->env.fd_type[i] != FD_FREE)
 	  {
 	    FD_SET(i, &fd_read);
 	    fd_max = i;
@@ -92,7 +89,7 @@ int 			start_server(t_env *env, t_param *param, t_square **map)
       i = -1;
       while (++i < MAX_FD)
 	if (FD_ISSET(i, &fd_read))
-	  root = env->fct_read[i](env, i, root, param, map);
+	  server->env.fct_read[i](server, i);
     }
 }
 

@@ -24,7 +24,7 @@ void        init_env(t_env *env)
   }
 }
 
-void		print_param(t_param param)
+void		print_param(t_param *param)
 {
   int 		i;
 
@@ -32,34 +32,30 @@ void		print_param(t_param param)
   printf("\033[32;1mListening on port %i\n"
 		 "Configuration : Max(%i) "
 		 "WorldX(%i) WorldY(%i) T(%i)\033[0m\n",
-	 param.p, param.c, param.x, param.y, param.t);
+	 param->p, param->c, param->x, param->y, param->t);
   printf("\033[32;1mTeam :\033[0m\n");
-  while (param.n[++i])
-      printf("\033[32;1m\tName(%s) Max(%i)\033[0m\n", param.n[i], param.c);
+  while (param->n[++i])
+      printf("\033[32;1m\tName(%s) Max(%i)\033[0m\n", param->n[i], param->c);
 }
 
-void 		zappy(t_param *param, t_env *env)
+void 		zappy(t_server *server)
 {
-  t_square  **map;
-
-  if (init_server(param, env) == -1)
+  if (init_server(&server->param, &server->env) == -1)
     error("Server init failed");
-  print_param(*param);
-  map = create_map(param->x, param->y);
-  start_server(env, param, map);
+  print_param(&server->param);
+  server->map = create_map(server->param.x, server->param.y);
+  start_server(server);
 }
 
 int		main(int ac, const char **av)
 {
-  t_param	param;
-  t_env		env;
-
+  t_server  server;
   if (ac < 7)
     error("argv");
-  init_params(&param);
-  init_env(&env);
-  if (!set_params(av, &param))
+  init_params(&server.param);
+  init_env(&server.env);
+  if (!set_params(av, &server.param))
     error("Wrong args");
-  zappy(&param, &env);
+  zappy(&server);
   return (0);
 }

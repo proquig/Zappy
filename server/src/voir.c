@@ -29,14 +29,12 @@ void		print_contents_seen(int fd, int x, int y, t_square **map)
     }
 }
 
-void 		voir(char **tab, t_player *player, t_param *param, t_square **map)
+void 		voir(t_server *server, t_player *player)
 {
   int 		i;
   int 		range;
   int 		dir;
 
-  (void)tab;
-  (void)param;
   dir = (player->dir == LEFT || player->dir == DOWN) ? -1 : 1;
   range = -1;
   while (++range <= player->lvl)
@@ -50,7 +48,7 @@ void 		voir(char **tab, t_player *player, t_param *param, t_square **map)
 					 : (player->x + i),
 				  (player->dir % 2)
 				  ? (player->y + (range * dir))
-				  : (player->y + i), map);
+				  : (player->y + i), server->map);
 	    }
   	}
   dprintf(player->fd, "}\n");
