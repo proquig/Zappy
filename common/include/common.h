@@ -58,4 +58,6 @@ typedef struct		s_square
   t_player		*players;
 }			t_square;
 
+extern const char 		*res_name[];
+
 #endif

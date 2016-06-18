@@ -4,28 +4,27 @@
 
 #include "server.h"
 
-void		print_contents_seen(int fd, int x, int y, t_square **map)
+void		print_contents_seen(t_server *server, t_player *player, int x, int y)
 {
-  char 		*name[] = {
-	  "nourriture",
-	  "linemate",
-	  "deraumere",
-	  "sibur",
-	  "mendiane",
-	  "phiras",
-	  "thystame",
-  };
+  t_player	*tmp;
   int 		i;
   int 		j;
 
-  x = (x < 0) ? (map[0][0].size_x + x) : (x % map[0][0].size_x);
-  y = (y < 0) ? (map[0][0].size_y + y) : (y % map[0][0].size_y);
+  x = (x < 0) ? (server->param.x + x) : (x % server->param.x);
+  y = (y < 0) ? (server->param.y + y) : (y % server->param.y);
   i = -1;
+  tmp = server->players;
+  while (tmp)
+  	{
+	  if (tmp->x == (unsigned int)x && tmp->y == (unsigned int)y)
+		dprintf(player->fd, " joueur");
+	  tmp = tmp->next;
+	}
   while (++i < RES_SIZE)
     {
       j = -1;
-      while ((unsigned int)(++j) < map[y][x].res.res[i])
-		dprintf(fd, " %s", name[j]);
+      while ((unsigned int)(++j) < server->map[y][x].res.res[i])
+		dprintf(player->fd, " %s", res_name[j]);
     }
 }
 
@@ -43,12 +42,10 @@ void 		voir(t_server *server, t_player *player)
 	  while (i++ <= range)
 	    {
 	      dprintf(player->fd, range ? "," : "{");
-	      print_contents_seen(player->fd, (player->dir % 2)
-					 ? (player->x + (range * dir))
-					 : (player->x + i),
+	      print_contents_seen(server, player, (player->dir % 2)
+					 ? (player->x + (range * dir)) : (player->x + i),
 				  (player->dir % 2)
-				  ? (player->y + (range * dir))
-				  : (player->y + i), server->map);
+				  ? (player->y + (range * dir)) : (player->y + i));
 	    }
   	}
   dprintf(player->fd, "}\n");

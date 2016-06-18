@@ -16,7 +16,9 @@ SRC	=	src/main.c		\
 		src/command.c		\
 		src/avance.c		\
 		src/voir.c		\
-		src/map.c
+		src/map.c		\
+		src/mon_cmd.c   \
+		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)
 

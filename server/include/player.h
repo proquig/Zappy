@@ -30,7 +30,7 @@ void 				avance(t_server *server, t_player *player);
 void 				right(t_server *server, t_player *player);
 void 				gauche(t_server *server, t_player *player);
 
-char				*print_contents_seen(t_param *param, int x, int y, t_square **map);
+void				print_contents_seen(t_server *server, t_player *player, int x, int y);
 void 				voir(t_server *server, t_player *player);
 void 				inventaire(t_server *server, t_player *player);
 void 				prend(t_server *server, t_player *player);

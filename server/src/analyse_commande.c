@@ -5,6 +5,7 @@
 #include "server.h"
 #include "player.h"
 #include "map.h"
+#include "mon_cmd.h"
 
 t_command	commande[] = {
 	{"avance", NULL, &avance},
@@ -19,11 +20,11 @@ t_command	commande[] = {
 	{"incantation", NULL, &incantation},
 	{"fork", NULL, &forker},
 	{"connect_nbr", NULL, &connect_nbr},
-	{"-", NULL, &die},
+	// {"-", NULL, &die},
 };
 
 
-void 	set_team(t_server *server, t_player *player)
+int 	set_team(t_server *server, t_player *player)
 {
   int i;
 
@@ -40,23 +41,33 @@ void 	set_team(t_server *server, t_player *player)
       player->team = GRAPHIC;
       print_map_contents(server->map, player->fd);
     }
+  return (player->team != -1);
 }
 
 int	analyse_commande(t_server *server, t_player *player)
 {
+  // TODO: free
   int	i;
 
   i = -1;
   if (!server->tab || !server->tab[0])
     return (0);
-  set_team(server, player);
   if (player->team == -1)
+	if (!set_team(server, player))
     {
       dprintf(player->fd, "ko\n");
-     return (-1);
+	  return (-1);
     }
-  while (commande[++i].cmd)
-      if (strcmp(commande[i].cmd, server->tab[0]) == 0)
-	commande[i].f(server, player);
+  	else
+	  return (0);
+  if (player->team != GRAPHIC)
+  	{
+	  while (commande[++i].cmd)
+	  	if (!strcmp(commande[i].cmd, server->tab[0]))
+		  commande[i].f(server, player);
+  	}
+  else
+	exec_graphic_cmd(server, player);
+
   return (0);
 }
