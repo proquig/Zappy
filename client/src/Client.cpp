@@ -8,12 +8,14 @@
 // Last update Fri Jun 17 17:19:11 2016 jacque_x
 //
 
+#include <SocketBuf.hpp>
 #include "Client.hpp"
 
-Client::Client(int port, char *team_name)
+Client::Client(int port, std::string &team_name, std::string &addr):
+	_port(port),
+	_team_name(team_name),
+	_address(addr)
 {
-  this->_port = port;
-  this->_team_name = team_name;
 }
 
 Client::~Client()
@@ -21,25 +23,62 @@ Client::~Client()
 
 }
 
-void	Client::create_socket()
+void			Client::create_socket()
 {
   this->_sock = socket(AF_INET, SOCK_STREAM, 0);
 }
 
-void	Client::init_struct()
+void			Client::init_struct()
 {
-  this->_sin.sin_addr.s_addr = inet_addr("127.0.0.1");
+  this->_sin.sin_addr.s_addr = inet_addr(this->_address.c_str());
   this->_sin.sin_family = AF_INET;
-  this->_sin.sin_port = htons(this->_port);
+  this->_sin.sin_port = htons(static_cast<uint16_t>(this->_port));
 }
 
-void	Client::connect_to_server()
+void			Client::connect_to_server()
 {
   if (connect(this->_sock, (struct sockaddr*)&(this->_sin), sizeof(this->_sin)) != -1)
-    printf("Connexion à %s sur le port %d\n", inet_ntoa(this->_sin.sin_addr), htons(this->_sin.sin_port));
-  else
     {
-      perror("connect");
-      printf("Impossible de se connecter\n");
+      std::cout << "Connexion à " << inet_ntoa(this->_sin.sin_addr)
+      << " sur le port " << htons(this->_sin.sin_port) << std::endl;
+      _socket1.setFdSocket(this->_sock);
     }
+  else
+    perror("connect");
+}
+
+bool		Client::mygetline(std::string	&command)
+{
+  command = _socket1.read();
+  return (true);
+}
+
+int			Client::get_port() const
+{
+  return _port;
+}
+
+void			Client::set_team_name(const std::string &_team_name)
+{
+  Client::_team_name = _team_name;
+}
+
+const std::string	&Client::get_team_name() const
+{
+  return _team_name;
+}
+
+const std::string	&Client::get_address() const
+{
+  return _address;
+}
+
+const sockaddr_in	&Client::get_sin() const
+{
+  return _sin;
+}
+
+int 			Client::get_sock() const
+{
+  return _sock;
 }

@@ -26,20 +26,34 @@
 #include        <arpa/inet.h>
 #include        <unistd.h>
 
+#include	"SocketBuf.hpp"
+
 class Client
 {
-public:
-  int			_port;
-  int			_sock;
-  char			*_team_name;
-  struct sockaddr_in	_sin;
-  //
-  Client(int port, char *team_name);
+
+ private:
+  int				_port;
+  std::string			_team_name;
+  std::string			_address;
+  struct sockaddr_in		_sin;
+  int				_sock;
+  Socket 			_socket1;
+
+ public:
+  Client(int, std::string &, std::string &);
   ~Client();
-  void  create_socket();
-  void  init_struct();
-  void	connect_to_server();
-  bool	mygetline();
+  void  			create_socket();
+  void  			init_struct();
+  void				connect_to_server();
+  bool				mygetline(std::string &);
+
+ public:
+  int 				get_port() const;
+  const std::string 		&get_team_name() const;
+  const std::string 		&get_address() const;
+  const sockaddr_in 		&get_sin() const;
+  int 				get_sock() const;
+  void				set_team_name(const std::string &_team_name);
 };
 
 void	get_command(Client client);

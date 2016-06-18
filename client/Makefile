@@ -5,20 +5,21 @@
 ## Login   <jacque_x@epitech.net>
 ## 
 ## Started on  Wed Jun 15 16:53:16 2016 jacque_x
-## Last update Fri Jun 17 19:13:24 2016 jacque_x
+## Last update Sat Jun 18 12:52:23 2016 Cloquet
 ##
 
 SRC     =       src/main.cpp		\
 		src/utils.cpp		\
 		src/Client.cpp		\
 		src/get_command.cpp	\
+		src/SocketBuf.cpp	\
 		src/IA.cpp
 
 OBJ     =       $(SRC:.cpp=.o)
 
 NAME    =       zappy_ai
 
-CXXFLAGS  =       -W -Wextra -Wall -I include/ -std=c++11
+CXXFLAGS  =      -W -Wextra -Wall -I include/ -std=c++11
 
 all:        	$(NAME)
 
@@ -33,8 +34,8 @@ fclean:         clean
 
 re:             fclean all
 
-dbg:            CFLAGS += -g
+dbg:            CXXFLAGS += -g
 dbg:            re
 
-shlag:          CFLAGS += -Wpedantic -Wshadow -Werror
+shlag:          CXXFLAGS += -Wpedantic -Wshadow -Werror
 shlag:          re

@@ -13,31 +13,19 @@
 
 void	get_command(Client client)
 {
-  std::string	str(client._team_name);
-  char          buf[255];
+  std::string	command;
+  std::string	str(client.get_team_name());
   IA		ia;
 
   str = str + "\n";
-  client._team_name = (char*)str.c_str();
-  start_ia(client);
-  while (client.mygetline())
+  client.set_team_name(str);
+  while (client.mygetline(command))
     {
-      ia.voir(client);
-      if (strcmp(buf, "mort\r\n") == 0)
-	exit(65);
+      if (command == "BIENVENUE\n")
+	  start_ia(client);
+      command = "";
+      //ia.voir(client);
     }
 }
 
-bool	Client::mygetline()
-{
-  size_t        n;
-  char          *command;
-  FILE          *stream;
 
-  command = NULL;
-  n = 0;
-  stream = fdopen(this->_sock, "r");
-  getline(&command, &n, stream);
-  printf("%s\n", command);
-  return (true);
-}

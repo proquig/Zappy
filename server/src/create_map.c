@@ -3,8 +3,3 @@
 //
 
 #include "server.h"
-
-void 	create_map(t_param param)
-{
-
-}
