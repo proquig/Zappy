@@ -8,6 +8,7 @@
 ** Last update Thu Jun 16 10:31:26 2016 Guillaume PROQUIN
 */
 
+#include <time.h>
 #include "server.h"
 
 void			init_square(t_square *square, unsigned int x, unsigned int y,
@@ -52,7 +53,6 @@ void 			put_random_ressource(t_square **map, int size_x, int size_y)
   unsigned int	x;
   unsigned int	y;
 
-  srand(0);
   x = rand() % size_x;
   y = rand() % size_y;
   map[y][x].res.res[rand() % RES_SIZE]++;

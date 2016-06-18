@@ -70,6 +70,12 @@ typedef struct          s_server
   t_env					env;
 }                       t_server;
 
+typedef struct 		s_expulse
+{
+  enum Direction	dir;
+  int 			pos;
+}			t_expulse;
+
 int				        init_server(t_param *param, t_env *env);
 void                    error(const char *msg);
 int                     is_number(const char *str);

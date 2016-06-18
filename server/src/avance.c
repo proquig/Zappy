@@ -6,7 +6,7 @@
 
 void		move_up(t_server *server, t_player *player)
 {
-  player->y--;
+  (int)player->y--;
   if (player->y < 0)
     player->y = server->param.y;
 }
@@ -14,13 +14,13 @@ void		move_up(t_server *server, t_player *player)
 void		move_down(t_server *server, t_player *player)
 {
   player->y++;
-  if (player->y < server->param.y)
+  if (player->y > server->param.y)
     player->y = 0;
 }
 
 void		move_left(t_server *server, t_player *player)
 {
-  player->x--;
+  (int)player->x--;
   if (player->x < 0)
     player->x = server->param.x;
 }
@@ -28,7 +28,7 @@ void		move_left(t_server *server, t_player *player)
 void		move_right(t_server *server, t_player *player)
 {
   player->x++;
-  if (player->x < server->param.x)
+  if (player->x > server->param.x)
     player->x = 0;
 }
 

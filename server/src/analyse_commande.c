@@ -20,9 +20,8 @@ t_command	commande[] = {
 	{"incantation", NULL, &incantation},
 	{"fork", NULL, &forker},
 	{"connect_nbr", NULL, &connect_nbr},
-	// {"-", NULL, &die},
+	 {NULL, NULL, NULL},
 };
-
 
 int 	set_team(t_server *server, t_player *player)
 {
@@ -33,7 +32,9 @@ int 	set_team(t_server *server, t_player *player)
     if (strcmp(server->param.n[i], server->tab[0]) == 0)
       {
 	player->team = i;
-	dprintf(player->fd, "%i\n%i %i\n", player->fd, player->x, player->y);
+	dprintf(player->fd, "%i\n%i %i\n",
+		server->param.c - size_player(server->players, i),
+		server->param.x, server->param.y);
       }
   printf("%s\n", server->tab[0]);
   if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
@@ -54,10 +55,10 @@ int	analyse_commande(t_server *server, t_player *player)
     return (0);
   if (player->team == -1)
 	if (!set_team(server, player))
-    {
-      dprintf(player->fd, "ko\n");
-	  return (-1);
-    }
+	  {
+	    dprintf(player->fd, "ko\n");
+	    return (-1);
+	  }
   	else
 	  return (0);
   if (player->team != GRAPHIC)

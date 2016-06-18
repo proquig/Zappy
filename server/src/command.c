@@ -2,6 +2,7 @@
 // Created by cloquet on 14/06/16.
 //
 
+#include <player.h>
 #include "server.h"
 
 void 		right(t_server *server, t_player *player)
@@ -45,14 +46,14 @@ void 		inventaire(t_server *server, t_player *player)
   };
   int 		i;
 
-  (void)server;
   i = -1;
+  (void)server;
   while (++i < RES_SIZE)
     dprintf(player->fd, "%s%s %u%s", i ? "" : "{", name[i],
 	    player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");
 }
 
-void prend(t_server *server, t_player *player)
+void		prend(t_server *server, t_player *player)
 {
   char 		*name[] = {
 	  "nourriture",
@@ -64,30 +65,51 @@ void prend(t_server *server, t_player *player)
 	  "thystame",
   };
   int 		i;
+  int 		err;
 
+  err = 1;
   i = -1;
   if (server->tab[1])
     {
       while (++i < RES_SIZE)
 	if (server->map[player->y][player->x].res.res[i] &&
 		  strcmp(server->tab[1], name[i]) == 0)
-	      player->res.res[i] += 1;
-  	dprintf(player->fd, "ok\n");
+	  {
+	    server->map[player->y][player->x].res.res[i] -= 1;
+	    player->res.res[i] += 1;
+	    err = 0;
+	  }
     }
-  else
-    dprintf(player->fd, "ko\n");
+  dprintf(player->fd, err ? "ko\n" : "ok\n");
 }
 
-void pose(t_server *server, t_player *player)
+void 		pose(t_server *server, t_player *player)
 {
-  (void)server;
-  (void)player;
-}
+  char 		*name[] = {
+	  "nourriture",
+	  "linemate",
+	  "deraumere",
+	  "sibur",
+	  "mendiane",
+	  "phiras",
+	  "thystame",
+  };
+  int 		i;
+  int 		err;
 
-void expulse(t_server *server, t_player *player)
-{
-  (void)server;
-  (void)player;
+  err = 1;
+  i = -1;
+  if (server->tab[1])
+    {
+      while (++i < RES_SIZE)
+	if (player->res.res[i] && strcmp(server->tab[1], name[i]) == 0)
+	  {
+	    server->map[player->y][player->x].res.res[i] += 1;
+	    player->res.res[i] -= 1;
+	    err = 0;
+	  }
+    }
+  dprintf(player->fd, err ? "ko\n" : "ok\n");
 }
 
 void broadcast(t_server *server, t_player *player)

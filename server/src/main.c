@@ -8,6 +8,7 @@
 ** Last update Tue Jun 14 13:27:49 2016 Guillaume PROQUIN
 */
 
+#include <time.h>
 #include "server.h"
 #include "map.h"
 
@@ -40,16 +41,29 @@ void		print_param(t_param *param)
 
 void 		zappy(t_server *server)
 {
+  int 		x;
+  int 		y;
+
+  x = -1;
   if (init_server(&server->param, &server->env) == -1)
     error("Server init failed");
   print_param(&server->param);
   server->map = create_map(server->param.x, server->param.y);
+  while (++x < (int)server->param.x)
+    {
+      y = -1;
+      while (++y < (int)server->param.y)
+	put_random_ressource(server->map, server->param.x, server->param.y);
+    }
+  printf("\033[32;1mGenerating world...done\033[0m\n");
   start_server(server);
 }
 
 int		main(int ac, const char **av)
 {
   t_server  server;
+
+  srand(time(NULL));
   if (ac < 7)
     error("argv");
   init_params(&server.param);

@@ -24,12 +24,28 @@ t_player		*init_player(int fd)
   player->y = 0;
   player->dir = (enum Direction)(rand() % 4);
   player->team = -1;
-  player->lvl = 3;
+  player->lvl = 1;
   player->res.res[FOOD] = 10;
   while (++i < RES_SIZE)
     player->res.res[i] = 0;
   player->next = NULL;
   return (player);
+}
+
+int 			size_player(t_player *root, int team)
+{
+  t_player		*tmp;
+  int			i;
+
+  i = 0;
+  tmp = root;
+  while (tmp)
+    {
+      if (tmp->team == team)
+	i++;
+      tmp = tmp->next;
+    }
+  return (i);
 }
 
 t_player		*add_player(t_player *list, t_player *player)

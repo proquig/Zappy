@@ -13,7 +13,7 @@
 
 void			close_client(t_server *server, int fd)
 {
-  printf("Connection closed\n");
+  printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
   close(fd);
   server->env.fd_type[fd] = FD_FREE;
@@ -31,7 +31,7 @@ void			client_read(t_server *server, int fd)
       printf("Send by %d: %s\r\n", fd, buf);
 	  server->tab = get_cmds(buf, " \t\r\n");
       if (analyse_commande(server, search_player(server->players, fd)) == -1)
-	    close_client(server, fd);
+	close_client(server, fd);
     }
   else
    close_client(server, fd);

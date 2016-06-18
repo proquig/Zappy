@@ -15,6 +15,7 @@ SRC	=	src/main.c		\
 		src/analyse_commande.c	\
 		src/command.c		\
 		src/avance.c		\
+		src/expulse.c		\
 		src/voir.c		\
 		src/map.c		\
 		src/mon_cmd.c   \

@@ -13,18 +13,20 @@
 
 # include			<stdlib.h>
 # include			"common.h"
+# include			"server.h"
 
-typedef struct 		s_command
+typedef struct 			s_command
 {
   char *			cmd;
   char *			sec;
   void 				(*f)(t_server *server, t_player *player);
-}					t_command;
+}				t_command;
 
 t_player			*init_player(int fd);
 t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
+int 				size_player(t_player *root, int team);
 
 void 				avance(t_server *server, t_player *player);
 void 				right(t_server *server, t_player *player);
@@ -41,5 +43,11 @@ void 				incantation(t_server *server, t_player *player);
 void 				forker(t_server *server, t_player *player);
 void 				connect_nbr(t_server *server, t_player *player);
 void 				die(t_server *server, t_player *player);
+
+void				move_up(t_server *server, t_player *player);
+void				move_down(t_server *server, t_player *player);
+void				move_left(t_server *server, t_player *player);
+void				move_right(t_server *server, t_player *player);
+
 
 #endif //ZAPPY_SERVER_PLAYER_H
