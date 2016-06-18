@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <map>
+#include <array>
 #include <iterator>
 #include "Board.hh"
 #include "GPlayer.hh"
 #include "GMap.hh"
 #include "irrlicht.h"
+#include "common.h"
 #include "driverChoice.h"
 
 using namespace irr;
@@ -16,21 +18,6 @@ using namespace scene;
 using namespace video;
 using namespace gui;
 
-enum    models
-{
-  PLAYER1,
-  PLAYER2,
-  EGG,
-  LINEMATE,
-  DERAUMERE,
-  SIBUR,
-  MENDIANE,
-  PHIRAS,
-  THYSTAME,
-  FOOD1,
-  FOOD2
-};
-
 class GUI
 {
     dimension2d<u32>    _deskres;
@@ -38,7 +25,8 @@ class GUI
     IVideoDriver        *_driver;
     ISceneManager       *_smgr;
     IGUIEnvironment     *_env;
-    std::map<models, IMesh *>   _meshes;
+    std::map<RESSOURCES, IMesh *>   _ressourcesMeshes;
+    std::array<IMesh *, 8>        _playersMeshes;
     ITexture            *_textures;
     Board               *_gameBoard;
     E_DRIVER_TYPE       _driverType;
@@ -57,11 +45,12 @@ public:
     IVideoDriver    *getDriver();
     ISceneManager   *getSmgr();
     IGUIEnvironment *getEnv();
-    std::map<models, IMesh *>  const &getMeshes();
+    std::map<RESSOURCES, IMesh *>  const &getRessourcesMeshes();
+    std::array<IMesh *, 8>  const &getPlayersMeshes();
     ITexture    *getTextures();
     Board       *getBoard();
     void        initMap(int sizeX, int sizeY);
-    void        refreshMap();
+    void        refreshMap(t_square const &toRefresh);
     void        refreshGame();
     void        addPlayer(t_player const &newPlayer);
 };

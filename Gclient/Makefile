@@ -12,7 +12,8 @@ COMP	=	g++
 SRC	=	src/main.cpp	\
 		src/GUI.cpp		\
 		src/Board.cpp	\
-		src/GPlayer.cpp
+		src/GPlayer.cpp	\
+		src/GMap.cpp
 
 OBJ	=	$(SRC:.cpp=.o)
 
@@ -24,6 +25,7 @@ CXXFLAGS	=	-W			\
 			-Wextra			\
 			-std=c++11		\
 			-I include/		\
+			-I ../common/include/	\
 			-I include/irrlicht/
 
 all:		$(NAME)

@@ -4,8 +4,9 @@ GPlayer::GPlayer(t_player const &newPlayer, IMesh *mesh)
 {
    this->_x = newPlayer.x;
    this->_y = newPlayer.y;
-   this->_direction = newPlayer.direction;
+   this->_direction = newPlayer.dir;
    this->_id = newPlayer.fd;
+   this->_lvl = newPlayer.lvl;
    this->_mesh = mesh;
 }
 
@@ -31,6 +32,11 @@ Direction   GPlayer::getDirection()
 int     GPlayer::getId()
 {
     return (this->_id);
+}
+
+int     GPlayer::getLvl()
+{
+    return (this->_lvl);
 }
 
 void    GPlayer::setX(int newX)

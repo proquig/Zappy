@@ -24,7 +24,7 @@ GUI::GUI()
 GUI::~GUI()
 {
     for (int i = 0; i < this->_sizeY; ++i)
-        delete[] this->map[i];
+        delete[] this->_map[i];
     delete[] this->_map;
 }
 
@@ -35,7 +35,7 @@ void    GUI::launch()
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
         exit(EXIT_FAILURE);
     }
-    this->_gameBoard = new Board(/* ... */);
+//    this->_gameBoard = new Board(/* ... */);
     handleCommunications();
 }
 
@@ -69,9 +69,14 @@ IGUIEnvironment *GUI::getEnv()
     return (this->_env);
 }
 
-std::map<models, IMesh *>  const &GUI::getMeshes()
+std::map<RESSOURCES, IMesh *>  const &GUI::getRessourcesMeshes()
 {
-    return (this->_meshes);
+    return (this->_ressourcesMeshes);
+}
+
+std::array<IMesh *, 8>  const &GUI::getPlayersMeshes()
+{
+    return (this->_playersMeshes);
 }
 
 ITexture    *GUI::getTextures()
@@ -101,24 +106,24 @@ void    GUI::refreshMap(t_square const &toRefresh)
     //
     //modifications de la map
     //
-    if (x == this->sizeX - 1)
+    if (x == this->_sizeX - 1)
     {
         x = 0;
         y++;
     }
-    if (y == this->sizeY - 1)
+    if (y == this->_sizeY - 1)
         y = 0;
 }
 
 void    GUI::refreshGame()
 {
     this->_gMap->setMap(this->_map);
-    this->_gMap->setPlayers(this->_players);
-    this->_gMap->dispMeshesOnBoard();
+    this->_gMap->refreshGMapPlayers(this->_players);
+    this->_gMap->refreshGMapRes();
 }
 
 void    GUI::addPlayer(t_player const &newPlayer)
 {
-    GPlayer *playerToAdd = new(newPlayer, this->_meshes[PLAYER1]);
+    GPlayer *playerToAdd = new GPlayer(newPlayer, this->_playersMeshes[0]);
     this->_players.push_back(playerToAdd);
 }

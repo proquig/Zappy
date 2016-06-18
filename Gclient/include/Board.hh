@@ -1,9 +1,11 @@
 #ifndef BOARD_HH_
 #define BOARD_HH_
 
-#include "irrlicht.h"
+#include <map>
 #include <vector>
 #include <string>
+#include "irrlicht.h"
+#include "common.h"
 
 using namespace irr;
 using namespace core;
@@ -19,7 +21,8 @@ class   Board
     std::vector<std::vector<Board *> > _underSquares;
     ITexture     *_texture;
     f32                 _squareSize;
-    IMeshSceneNode      *_modelNode;
+    IMeshSceneNode      *_playerNode;
+    std::map<RESSOURCES, IMeshSceneNode *>  _ressourcesNodes;
 
     void    init();
 public:
@@ -30,21 +33,23 @@ public:
     u32         getNbSquareSize();
     std::vector<std::vector<Board *> > *getUnderSquares();
     void        setMaterialFlag(E_MATERIAL_FLAG flag, bool newvalue);
-    void        setMaterialTexture(u32 textureLayer, Texture *texture);
+    void        setMaterialTexture(u32 textureLayer, ITexture *texture);
     void        setPosition (const vector3df &newpos);
     void        setScale(const vector3df &scale);
     void        setVisible (bool isVisible);
     void        remove();
     const vector3df   &getPosition() const;
-    const vector3df   &getPositionUpperLeft() const;
+    vector3df   getPositionUpperLeft() const;
     const vector3df   &getScale() const;
     ISceneManager   *getSceneManager(void) const;
     video::ITexture *getTexture();
-    void            setModelNode(IMeshSceneNode *newBlockNode);
-    IMeshSceneNode  *getModelNode();
+    void            setPlayerNode(IMeshSceneNode *newPlayerNode);
+    IMeshSceneNode  *getPlayerNode();
     f32             getSquareSize();
-    IMesh           *getCurModelMesh();
-    void            setCurModelMesh(newCurModelMesh);
+    IMesh           *getCurPlayerMesh();
+    void            setCurPlayerMesh(IMesh *newCurModelMesh);
+    std::map<RESSOURCES, IMeshSceneNode *>  *getRessourcesNodes();
+    void    setRessourcesNodes(std::map<RESSOURCES, IMeshSceneNode *>  const &resourcesNodes);
 };
 
 #endif

@@ -11,8 +11,7 @@ Board::Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &p
     this->_texture = texture;
     if (nbSquareSize == 0)
         this->_boardRootNode->setMaterialTexture(0, texture);
-    this->_modelNode = nullptr;
-    this->curBlockMesh = nullptr;
+    this->_playerNode = nullptr;
     init();
 }
 
@@ -107,7 +106,7 @@ const vector3df &Board::getPosition() const
     return (this->_boardRootNode->getPosition());
 }
 
-const vector3df &Board::getPositionUpperLeft() const
+vector3df Board::getPositionUpperLeft() const
 {
     return (this->getPosition() - (this->getScale() / 2));
 }
@@ -127,16 +126,16 @@ ITexture *Board::getTexture()
     return (this->_texture);
 }
 
-void            Board::setModelNode(IMeshSceneNode *newModelNode)
+void            Board::setPlayerNode(IMeshSceneNode *newPlayerNode)
 {
-    if (this->_modelNode != nullptr)
-          this->_modelNode->remove();
-    this->_modelNode = newBlockNode;
+    if (this->_playerNode != nullptr)
+          this->_playerNode->remove();
+    this->_playerNode = newPlayerNode;
 }
 
-IMeshSceneNode  *Board::getModelNode()
+IMeshSceneNode  *Board::getPlayerNode()
 {
-    return (this->_modelNode);
+    return (this->_playerNode);
 }
 
 f32             Board::getSquareSize()
@@ -144,12 +143,22 @@ f32             Board::getSquareSize()
     return (this->_squareSize);
 }
 
-IMesh   *Board::getCurModelMesh()
+IMesh   *Board::getCurPlayerMesh()
 {
-    return (this->_modelNode->getMesh());
+    return (this->_playerNode->getMesh());
 }
 
-void    Board::setCurModelMesh(IMesh *newCurModelMesh)
+void    Board::setCurPlayerMesh(IMesh *newCurModelMesh)
 {
-    this->_modelNode->setMesh(newCurModelMesh);
+    this->_playerNode->setMesh(newCurModelMesh);
+}
+
+std::map<RESSOURCES, IMeshSceneNode *>  *Board::getRessourcesNodes()
+{
+    return (&this->_ressourcesNodes);
+}
+
+void    Board::setRessourcesNodes(std::map<RESSOURCES, IMeshSceneNode *>  const &ressourcesNodes)
+{
+    this->_ressourcesNodes = ressourcesNodes;
 }
