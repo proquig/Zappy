@@ -5,27 +5,35 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Fri Jun 17 14:44:55 2016 jacque_x
-// Last update Fri Jun 17 20:11:08 2016 jacque_x
+// Last update Sat Jun 18 13:05:49 2016 jacque_x
 //
 
-#include "Client.hpp"
 #include "IA.hpp"
 
-void	get_command(Client client)
+void    IA::get_command(Client *client)
 {
-  std::string	command;
-  std::string	str(client.get_team_name());
-  IA		ia;
+  std::string command;
+  action map;
 
-  str = str + "\n";
-  client.set_team_name(str);
-  while (client.mygetline(command))
+  map.insert(std::make_pair(std::string("BIENVENUE\n"), &IA::team));
+  map.insert(std::make_pair(std::string("12 23\n"), &IA::coord));
+  map.insert(std::make_pair(std::string("mort\n"), &IA::dead));
+  map.insert(std::make_pair(std::string("ok\n"), &IA::ok));
+  while (client->mygetline(command))
+  {
+    std::cout << "Server send : " << command << std::endl;
+    if (command.length() == 2)
+      std::cout << " ";
+    else if (map.count(command))
     {
-      if (command == "BIENVENUE\n")
-	  start_ia(client);
-      command = "";
-      //ia.voir(client);
+      for (action::iterator it = map.begin(); it != map.end(); ++it)
+      {
+        if (it->first == command)
+          (this->*it->second)(client);
+      }
     }
+    else
+      this->parse_command(client, 0);
+    command = "";
+  }
 }
-
-

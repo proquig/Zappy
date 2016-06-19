@@ -20,7 +20,6 @@ Client::Client(int port, std::string &team_name, std::string &addr):
 
 Client::~Client()
 {
-
 }
 
 void			Client::create_socket()
@@ -30,6 +29,8 @@ void			Client::create_socket()
 
 void			Client::init_struct()
 {
+  if (this->_address == "localhost")
+    this->_address = "127.0.0.1";
   this->_sin.sin_addr.s_addr = inet_addr(this->_address.c_str());
   this->_sin.sin_family = AF_INET;
   this->_sin.sin_port = htons(static_cast<uint16_t>(this->_port));
@@ -39,8 +40,7 @@ void			Client::connect_to_server()
 {
   if (connect(this->_sock, (struct sockaddr*)&(this->_sin), sizeof(this->_sin)) != -1)
     {
-      std::cout << "Connexion à " << inet_ntoa(this->_sin.sin_addr)
-      << " sur le port " << htons(this->_sin.sin_port) << std::endl;
+      std::cout << "Connexion à " << inet_ntoa(this->_sin.sin_addr) << " sur le port " << htons(this->_sin.sin_port) << std::endl;
       _socket1.setFdSocket(this->_sock);
     }
   else
@@ -50,7 +50,18 @@ void			Client::connect_to_server()
 bool		Client::mygetline(std::string	&command)
 {
   command = _socket1.read();
+  setCommand(command);
   return (true);
+}
+
+void        Client::setCommand(std::string command)
+{
+  this->_command = command;
+}
+
+std::string Client::getCommand()
+{
+  return _command;
 }
 
 int			Client::get_port() const
@@ -58,9 +69,9 @@ int			Client::get_port() const
   return _port;
 }
 
-void			Client::set_team_name(const std::string &_team_name)
+void			Client::set_team_name(const std::string &team_name)
 {
-  Client::_team_name = _team_name;
+  Client::_team_name = team_name;
 }
 
 const std::string	&Client::get_team_name() const
