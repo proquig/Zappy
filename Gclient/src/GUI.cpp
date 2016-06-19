@@ -23,20 +23,49 @@ GUI::GUI()
 
 GUI::~GUI()
 {
+/*
     for (int i = 0; i < this->_sizeY; ++i)
         delete[] this->_map[i];
-    delete[] this->_map;
+   delete[] this->_map;
+*/
 }
 
 void    GUI::launch()
 {
+    int lastFPS = -1;
+    int FPS;
+
     if (loadMeshesAndTextures() == false)
     {
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
         exit(EXIT_FAILURE);
     }
-    this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(75.0f, 0.0f, 75.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(150.0f, 0.0f, 150.0f), 15, this->_floor);
+    this->_smgr->addCameraSceneNode(this->_smgr->getRootSceneNode(), core::vector3df(150, 200, 10), core::vector3df(150, 0, 140));
+    //this->_smgr->addCameraSceneNodeMaya(this->_smgr->getRootSceneNode());
+
+    this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(150.0f, 0.0f, 150.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(300.0f, 0.0f, 300.0f), 15, this->_floor);
     this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes);
+
+    while (this->_device->run())
+    {
+        if (this->_device->isWindowActive())
+        {
+            FPS = this->_driver->getFPS();
+            this->_driver->beginScene(true, true, irr::video::SColor(255,200,200,200));
+            this->_smgr->drawAll();
+            this->_env->drawAll();
+            this->_driver->endScene();
+            if (lastFPS != FPS)
+            {
+              stringw str = L"Zappy [";
+              str += this->_driver->getName();
+              str += "] FPS:";
+              str += FPS;
+              this->_device->setWindowCaption(str.c_str());
+              lastFPS = FPS;
+            }
+        }
+    }
 //  while ()
 //  {
 //      handleCommunications();
@@ -51,7 +80,25 @@ void    GUI::handleCommunications()
 
 bool    GUI::loadMeshesAndTextures()
 {
-    return (false);
+    if ((this->_floor = this->_driver->getTexture("modelsAndTextures/Floor/grass2.jpg")) == nullptr)
+        return (false);
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(FOOD, this->_smgr->getMesh("modelsAndTextures/Pizza/pizza.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(LINEMATE, this->_smgr->getMesh("modelsAndTextures/Gems/diamond_gray.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(DERAUMERE, this->_smgr->getMesh("modelsAndTextures/Gems/diamond_green.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(SIBUR, this->_smgr->getMesh("modelsAndTextures/Gems/diamond_orange.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(MENDIANE, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_yellow.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(PHIRAS, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
+    this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(THYSTAME, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
+    this->_playersMeshes[0] = this->_smgr->getMesh("modelsAndTextures/Players/Level1/Brendan/Brendan_ColladaMax.DAE");
+    
+    std::map<RESSOURCES, IMesh *>::iterator it = this->_ressourcesMeshes.begin();
+    while (it != this->_ressourcesMeshes.end())
+    {
+        if (it->second == nullptr)
+            return (false);
+        ++it;
+    }
+    return (true);
 }
 
 IrrlichtDevice  *GUI::getDevice()
