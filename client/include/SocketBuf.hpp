@@ -13,7 +13,6 @@ class 		Socket
 {
   int 		_fd_socket;
   std::string 	_command;
-
  public:
   Socket(){};
 
@@ -34,7 +33,10 @@ class 		Socket
 
     buf = NULL;
     if (!(f = fdopen(this->_fd_socket, "r")))
+    {
       perror("fdopen");
+      exit(-1);
+    }
     if ((a = getline(&buf, &len, f)) == -1)
       exit(0);
     buf[a] = 0;

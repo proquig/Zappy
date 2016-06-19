@@ -8,7 +8,7 @@
 // Last update Fri Jun 17 19:50:46 2016 jacque_x
 //
 
-#include "Client.hpp"
+#include "IA.hpp"
 
 int	main(int ac, char **av)
 {
@@ -18,11 +18,14 @@ int	main(int ac, char **av)
   std::string teamName(av[1]);
   std::string adress(av[3]);
 
-  Client client(std::atoi(av[2]), teamName, adress);
-    
+  teamName += "\n";
+  Client  client(std::atoi(av[2]), teamName, adress);
+  IA      ia;
+
+  std::cout << client.get_team_name() << std::endl;
   client.create_socket();
   client.init_struct();
   client.connect_to_server();
-  get_command(client);
+  ia.get_command(&client);
   return (0);
 }
