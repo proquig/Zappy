@@ -35,35 +35,17 @@ void 		gauche(t_server *server, t_player *player)
 
 void 		inventaire(t_server *server, t_player *player)
 {
-  char 		*name[] = {
-	  "nourriture",
-	  "linemate",
-	  "deraumere",
-	  "sibur",
-	  "mendiane",
-	  "phiras",
-	  "thystame",
-  };
   int 		i;
 
   i = -1;
   (void)server;
   while (++i < RES_SIZE)
-    dprintf(player->fd, "%s%s %u%s", i ? "" : "{", name[i],
+    dprintf(player->fd, "%s%s %u%s", i ? "" : "{", res_name[i],
 	    player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");
 }
 
 void		prend(t_server *server, t_player *player)
 {
-  char 		*name[] = {
-	  "nourriture",
-	  "linemate",
-	  "deraumere",
-	  "sibur",
-	  "mendiane",
-	  "phiras",
-	  "thystame",
-  };
   int 		i;
   int 		err;
 
@@ -73,7 +55,7 @@ void		prend(t_server *server, t_player *player)
     {
       while (++i < RES_SIZE)
 	if (server->map[player->y][player->x].res.res[i] &&
-		  strcmp(server->tab[1], name[i]) == 0)
+		  strcmp(server->tab[1], res_name[i]) == 0)
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
 	    player->res.res[i] += 1;
@@ -85,15 +67,6 @@ void		prend(t_server *server, t_player *player)
 
 void 		pose(t_server *server, t_player *player)
 {
-  char 		*name[] = {
-	  "nourriture",
-	  "linemate",
-	  "deraumere",
-	  "sibur",
-	  "mendiane",
-	  "phiras",
-	  "thystame",
-  };
   int 		i;
   int 		err;
 
@@ -102,7 +75,7 @@ void 		pose(t_server *server, t_player *player)
   if (server->tab[1])
     {
       while (++i < RES_SIZE)
-	if (player->res.res[i] && strcmp(server->tab[1], name[i]) == 0)
+	if (player->res.res[i] && strcmp(server->tab[1], res_name[i]) == 0)
 	  {
 	    server->map[player->y][player->x].res.res[i] += 1;
 	    player->res.res[i] -= 1;

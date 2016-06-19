@@ -20,7 +20,7 @@ const t_cmd mon_cmds[] = {
 
 int 	cmd_mon_msz(t_server *server, t_player *player)
 {
-  dprintf(player->fd, "msz %d %d\n", server->param.x, server->param.y);
+  dprintf(player->fd, "msz %u %u\n", server->param.x, server->param.y);
   return (1);
 }
 
@@ -56,16 +56,48 @@ int 	cmd_mon_tna(t_server *server, t_player *player)
 
 int 	cmd_mon_ppo(t_server *server, t_player *player)
 {
+  t_player	*tmp;
+  int 	i;
+
+  i = -1;
+  tmp = server->players;
+  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->team == GRAPHIC || i != atoi(server->tab[1]))
+	return (0);
+  dprintf(player->fd, "ppo %u %u %u %u\n", i,
+		  player->x, player->y, player->dir);
   return (1);
 }
 
 int 	cmd_mon_plv(t_server *server, t_player *player)
 {
+  t_player	*tmp;
+  int 	i;
+
+  i = -1;
+  tmp = server->players;
+  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->team == GRAPHIC || tmp->fd == -1 || i != atoi(server->tab[1]))
+	return (0);
+  dprintf(player->fd, "plv %u %u\n", i, player->lvl);
   return (1);
 }
 
 int 	cmd_mon_pin(t_server *server, t_player *player)
 {
+  t_player	*tmp;
+  int 	i;
+
+  i = -1;
+  tmp = server->players;
+  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->team == GRAPHIC || i != atoi(server->tab[1]))
+	return (0);
+  dprintf(player->fd, "plv %u %u %u", i, player->x, player->y);
+  i = -1;
+  while (++i < RES_SIZE)
+	dprintf(player->fd, " %d", player->res.res[i]);
+  dprintf(player->fd, "\n");
   return (1);
 }
 

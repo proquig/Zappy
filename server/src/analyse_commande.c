@@ -40,7 +40,10 @@ int 	set_team(t_server *server, t_player *player)
   if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
     {
       player->team = GRAPHIC;
-      print_map_contents(server->map, player->fd);
+	  cmd_mon_msz(server, player);
+	  cmd_mon_sgt(server, player);
+	  cmd_mon_mct(server, player);
+	  cmd_mon_tna(server, player);
     }
   return (player->team != -1);
 }
@@ -69,6 +72,5 @@ int	analyse_commande(t_server *server, t_player *player)
   	}
   else
 	exec_graphic_cmd(server, player);
-
   return (0);
 }
