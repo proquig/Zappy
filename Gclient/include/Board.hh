@@ -17,20 +17,23 @@ class   Board
     IMeshSceneNode      *_boardRootNode;
     SMaterial    _material;
     IMesh               *_square;
-    u32                 _nbSquareSize;
+    u32                 _nbSquareSizeX;
+    u32                 _nbSquareSizeY;
     std::vector<std::vector<Board *> > _underSquares;
     ITexture     *_texture;
-    f32                 _squareSize;
+    f32                 _squareSizeX;
+    f32                 _squareSizeY;
     IMeshSceneNode      *_playerNode;
     std::map<RESSOURCES, IMeshSceneNode *>  _ressourcesNodes;
 
     void    init();
 public:
-    Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSize, ITexture *texture);
+    Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSizeX, u32 nbSquareSizeY, ITexture *texture);
     ~Board();
     IMeshSceneNode  *getBoardRootNode();
     IMesh       *getSquare();
-    u32         getNbSquareSize();
+    u32         getNbSquareSizeX();
+    u32         getNbSquareSizeY();
     std::vector<std::vector<Board *> > *getUnderSquares();
     void        setMaterialFlag(E_MATERIAL_FLAG flag, bool newvalue);
     void        setMaterialTexture(u32 textureLayer, ITexture *texture);
@@ -45,7 +48,8 @@ public:
     video::ITexture *getTexture();
     void            setPlayerNode(IMeshSceneNode *newPlayerNode);
     IMeshSceneNode  *getPlayerNode();
-    f32             getSquareSize();
+    f32             getSquareSizeX();
+    f32             getSquareSizeY();
     IMesh           *getCurPlayerMesh();
     void            setCurPlayerMesh(IMesh *newCurModelMesh);
     std::map<RESSOURCES, IMeshSceneNode *>  *getRessourcesNodes();

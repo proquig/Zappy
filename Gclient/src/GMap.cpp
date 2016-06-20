@@ -75,8 +75,8 @@ vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
         repos.Y = -1.0f / res->getBoundingBox().getExtent().Y;
     else
         repos.Y = 9.0f / res->getBoundingBox().getExtent().Y;
-    repos.X = (rand() % (int)curBoard->getSquareSize()) - ((int)curBoard->getSquareSize() / 2);
-    repos.Z = (rand() % (int)curBoard->getSquareSize()) - ((int)curBoard->getSquareSize() / 2);
+    repos.X = (rand() % (int)curBoard->getSquareSizeX()) - ((int)curBoard->getSquareSizeX() / 2);
+    repos.Z = (rand() % (int)curBoard->getSquareSizeY()) - ((int)curBoard->getSquareSizeY() / 2);
     if (repos.X < 0)
         repos.X++;
     else if (repos.X > 0)
