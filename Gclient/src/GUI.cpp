@@ -21,8 +21,7 @@ GUI::GUI()
   _device->getCursorControl()->setVisible(false);
   
   //
-  this->_sizeX = 15;
-  this->_sizeY = 15;
+  this->initMap(15, 15);
   //
 }
 

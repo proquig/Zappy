@@ -97,7 +97,31 @@ vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
 
 void   GMap::refreshGMapRes()
 {
+    int i;
+    int j;
+    int k;
+    std::map<RESSOURCES, IMeshSceneNode *>  *ressourcesNodes;
     
+    j = 0;
+    while (j < this->_board->getNbSquareSizeY())
+    {
+        i = 0;
+        while (i < this->_board->getNbSquareSizeX())
+        {
+            k = 0;
+            while ((RESSOURCES)k < RES_SIZE)
+            {
+                ressourcesNodes = this->_board[j][i]->getRessourcesNodes();
+                if (this->map[j][i].res.res[(RESSOURCES)k] > 0)
+                    ressourcesNodes->at((RESSOURCES)k)->setVisible(true);
+                else
+                    ressourcesNodes->at((RESSOURCES)k)->setVisible(false);                    
+                k++;
+            }
+            i++;
+        }
+        j++;
+    }
 }
 
 void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
