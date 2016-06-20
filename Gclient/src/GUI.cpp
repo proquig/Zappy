@@ -1,6 +1,6 @@
 #include "GUI.hh"
 
-GUI::GUI()
+GUI::GUI(std::string const &address, int port)
 {
   IrrlichtDevice *nulldevice = createDevice(EDT_NULL);
   this->_deskres = nulldevice->getVideoModeList()->getDesktopResolution();
@@ -20,6 +20,7 @@ GUI::GUI()
   this->_env = _device->getGUIEnvironment();
   _device->getCursorControl()->setVisible(false);
   
+  this->initCommunications(address, port);
   //
   this->initMap(15, 15);
   //
@@ -71,6 +72,23 @@ void    GUI::launch()
             }
         }
     }
+}
+
+void    GUI::initCommunications(std::string const &address, int port)
+{
+    boost::asio::io_service ios;
+			
+	// On veut se connecter sur la machine locale, port 7171
+    if (address == "localhost")
+        boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string("127.0.0.1"), port);
+    else
+	    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(address), port);
+				
+	// On crée une socket // (1)
+	boost::asio::ip::tcp::socket socket(ios);
+				
+	// Tentative de connexion, bloquante // (2)
+//	socket.connect(endpoint);
 }
 
 void    GUI::handleCommunications()

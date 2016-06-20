@@ -19,7 +19,8 @@ OBJ	=	$(SRC:.cpp=.o)
 
 NAME	=	zappy_Gclient
 
-LDFLAGS	=	-Llib/irrlicht -Wl,-rpath,$(PWD)/lib/irrlicht -lIrrlicht
+LDFLAGS	=	-Llib/irrlicht -Wl,-rpath,$(PWD)/lib/irrlicht -lIrrlicht	\
+			-L/opt/local/lib -lboost_system
 
 CXXFLAGS	=	-W			\
 			-Wextra			\
