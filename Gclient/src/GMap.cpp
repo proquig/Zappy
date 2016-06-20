@@ -1,4 +1,5 @@
 #include "GMap.hh"
+#include <iostream>
 
 GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IMesh *, 8> const &playersMeshes) : _ressourcesMeshes(ressourcesMeshes), _playersMeshes(playersMeshes)
 {
@@ -16,6 +17,7 @@ void   GMap::initGMap()
     std::vector<std::vector<Board *> >::iterator    j = this->_board->getUnderSquares()->begin();
     std::vector<Board *>::iterator  i;
 
+    srand(time(NULL));
     while (j != this->_board->getUnderSquares()->end())
     {
         i = j->begin();
@@ -52,35 +54,45 @@ void    GMap::initRessourcesNodes(Board *curBoard)
 
     while (i < RES_SIZE)
     {
-        meshRescale = 10.0f / ((this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().X + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Y + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Z) / 3.0f);
-        IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_ressourcesMeshes[(RESSOURCES)i], curBoard->getBoardRootNode(), -1, randomResPos(curBoard, this->_ressourcesMeshes[(RESSOURCES)i]), vector3df(0.0f, 0.0f, 0.0f), vector3df(meshRescale, meshRescale, meshRescale));
+        meshRescale = 3.0f / ((this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().X + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Y + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Z) / 3.0f);
+        IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_ressourcesMeshes[(RESSOURCES)i], curBoard->getBoardRootNode(), -1, randomResPos(curBoard, this->_ressourcesMeshes[(RESSOURCES)i]), vector3df(-60.0f, -135.0f, -5.0f), vector3df(meshRescale, meshRescale, meshRescale));
         newNode->setMaterialFlag(EMF_WIREFRAME, false);
         newNode->setMaterialFlag(EMF_LIGHTING, false);
         newNode->setMaterialType(EMT_SOLID);
-        newNode->setVisible(false);
+        newNode->setVisible(true);
         ressourcesNodes[(RESSOURCES)i] = newNode;
+        curBoard->setRessourcesNodes(ressourcesNodes);
         i++;
     }
-    curBoard->setRessourcesNodes(ressourcesNodes);
 }
 
 vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
 {
     vector3df   repos;
-    unsigned int    i = 0;
-    std::map<RESSOURCES, IMeshSceneNode *>  *ressourcesNodes = curBoard->getRessourcesNodes();
-
-    srand(time(NULL));
-    repos.Y = 1.0f / res->getBoundingBox().getExtent().Y;
-    repos.X = rand() % (int)curBoard->getSquareSize();
-    repos.Y = rand() % (int)curBoard->getSquareSize();
-    while (i < RES_SIZE)
+    std::map<RESSOURCES, IMeshSceneNode *>::iterator it = curBoard->getRessourcesNodes()->begin();
+    
+    if (res == this->_ressourcesMeshes[FOOD])
+        repos.Y = -1.0f / res->getBoundingBox().getExtent().Y;
+    else
+        repos.Y = 9.0f / res->getBoundingBox().getExtent().Y;
+    repos.X = (rand() % (int)curBoard->getSquareSize()) - ((int)curBoard->getSquareSize() / 2);
+    repos.Z = (rand() % (int)curBoard->getSquareSize()) - ((int)curBoard->getSquareSize() / 2);
+    if (repos.X < 0)
+        repos.X++;
+    else if (repos.X > 0)
+        repos.X--;
+    if (repos.Z < 0)
+        repos.Z++;
+    else if (repos.Z > 0)
+        repos.Z--;
+    while (it != curBoard->getRessourcesNodes()->end())
     {
-        if (((*ressourcesNodes)[(RESSOURCES)i]->getPosition().X == repos.X) && 
-            ((*ressourcesNodes)[(RESSOURCES)i]->getPosition().Y == repos.Y))
+       if (((it->second->getPosition().X == repos.X) || (it->second->getPosition().X == repos.X + 2) || (it->second->getPosition().X == repos.X - 2)) && 
+            ((it->second->getPosition().Y == repos.Y) || (it->second->getPosition().Y == repos.Y + 2) || (it->second->getPosition().Y == repos.Y - 2)))
             repos = randomResPos(curBoard, res);
-        i++;
+       ++it;
     }
+    return (repos);
 }
 
 void   GMap::refreshGMapRes()
@@ -103,7 +115,25 @@ void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
 
 void   GMap::clearAllRessources()
 {
-    
+    std::vector<std::vector<Board *> >::iterator    j = this->_board->getUnderSquares()->begin();
+    std::vector<Board *>::iterator  i;
+    std::map<RESSOURCES, IMeshSceneNode *>::iterator it;
+
+    while (j != this->_board->getUnderSquares()->end())
+    {
+        i = j->begin();
+        while (i != j->end())
+        {
+            it = (*i)->getRessourcesNodes()->begin();
+            while (it != (*i)->getRessourcesNodes()->end())
+            {
+                it->second->setVisible(false);
+                ++it;
+            }
+            ++i;
+        }
+        ++j;
+    }
 }
 
 void   GMap::clearAllPlayers()
