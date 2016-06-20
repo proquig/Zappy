@@ -97,10 +97,11 @@ vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
 
 void   GMap::refreshGMapRes()
 {
-    int i;
-    int j;
+    unsigned int i;
+    unsigned int j;
     int k;
     std::map<RESSOURCES, IMeshSceneNode *>  *ressourcesNodes;
+    std::vector<std::vector<Board *> > *underSquares = this->_board->getUnderSquares();
     
     j = 0;
     while (j < this->_board->getNbSquareSizeY())
@@ -111,8 +112,8 @@ void   GMap::refreshGMapRes()
             k = 0;
             while ((RESSOURCES)k < RES_SIZE)
             {
-                ressourcesNodes = this->_board[j][i]->getRessourcesNodes();
-                if (this->map[j][i].res.res[(RESSOURCES)k] > 0)
+                ressourcesNodes = (*underSquares)[j][i]->getRessourcesNodes();
+                if (this->_map[j][i].res.res[(RESSOURCES)k] > 0)
                     ressourcesNodes->at((RESSOURCES)k)->setVisible(true);
                 else
                     ressourcesNodes->at((RESSOURCES)k)->setVisible(false);                    
@@ -133,6 +134,14 @@ void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
     {
         underSquares[(*it)->getX()][(*it)->getY()]->setCurPlayerMesh(this->_playersMeshes[(*it)->getLvl()]);
         underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setVisible(true);
+        underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 0.0f, 0.0f));
+        if ((*it)->getDirection() == UP)
+            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 180.0f, 0.0f));
+        else if ((*it)->getDirection() == RIGHT)
+            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, -90.0f, 0.0f));
+        else if ((*it)->getDirection() == LEFT)
+            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 90.0f, 0.0f));
+        
         ++it;
     }
 }
