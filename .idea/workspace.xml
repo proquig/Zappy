@@ -13,17 +13,15 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0afe2a8-c1a0-49ae-b92a-e1f311986866" name="Default" comment="Fix dump bug">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/zappy_ai" afterPath="$PROJECT_DIR$/client/zappy_ai" />
+    <list default="true" id="e0afe2a8-c1a0-49ae-b92a-e1f311986866" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/zappy_ai" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PSU_2015_zappy.iml" afterPath="$PROJECT_DIR$/.idea/PSU_2015_zappy.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/include/Client.hpp" afterPath="$PROJECT_DIR$/client/include/Client.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/include/IA.hpp" afterPath="$PROJECT_DIR$/client/include/IA.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/include/SocketBuf.hpp" afterPath="$PROJECT_DIR$/client/include/SocketBuf.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/Client.cpp" afterPath="$PROJECT_DIR$/client/src/Client.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/IA.cpp" afterPath="$PROJECT_DIR$/client/src/IA.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/get_command.cpp" afterPath="$PROJECT_DIR$/client/src/get_command.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main.cpp" afterPath="$PROJECT_DIR$/client/src/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/analyse_commande.c" afterPath="$PROJECT_DIR$/server/src/analyse_commande.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/init_server.c" afterPath="$PROJECT_DIR$/server/src/init_server.c" />
     </list>
     <ignored path="PSU_2015_zappy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +47,7 @@
           <file leaf-file-name="IA.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/IA.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
+                <state relative-caret-position="522">
                   <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
                   <folding />
                 </state>
@@ -286,146 +284,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/PSU_2015_zappy.iml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/include/Board.hh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/include/GPlayer.hh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/include/GUI.hh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/src/Board.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/src/GPlayer.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/src/GUI.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/src/main.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/common/include/common.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/include/map.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/include/player.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/include/server.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/analyse_commande.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/avance.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/command.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/create_map.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/init_server.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/main.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/map.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/player.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/voir.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/test.sh</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/include/GMap.hh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Gclient/src/GMap.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/common/src/common.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/include/mon_cmd.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/expulse.c</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/src/mon_cmd.c</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" TEST_MODE="SUITE_TEST">
@@ -747,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466105939911</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fix dump bug">
+      <created>1466348619744</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1466348619744</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -756,22 +621,22 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11145833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32845187" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17290749" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32740587" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845187" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32845187" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845187" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1041,21 +906,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/IA.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="522">
           <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/get_command.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/include/IA.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1075,6 +932,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/include/IA.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="73" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
           <folding />
         </state>
       </provider>

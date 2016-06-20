@@ -32,9 +32,8 @@ int 	set_team(t_server *server, t_player *player)
     if (strcmp(server->param.n[i], server->tab[0]) == 0)
       {
 	player->team = i;
-	dprintf(player->fd, "%i\n%i %i\n",
-		server->param.c - size_player(server->players, i),
-		server->param.x, server->param.y);
+	dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
+	dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
       }
   printf("%s\n", server->tab[0]);
   if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)

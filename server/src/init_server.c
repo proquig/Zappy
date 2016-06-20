@@ -5,7 +5,7 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Wed Jun 15 10:48:49 2016 Cloquet
-** Last update Wed Jun 15 10:48:53 2016 Cloquet
+** Last update Mon Jun 20 11:07:32 2016 jacque_x
 */
 
 #include "server.h"
@@ -51,7 +51,7 @@ int			add_client(t_env *env, int fd)
   env->fd_type[fd] = FD_CLIENT;
   env->fct_read[fd] = client_read;
   env->fct_write[fd] = NULL;
-  dprintf(fd, "BIENVENUE\r\n");
+  dprintf(fd, "BIENVENUE\n");
   return (fd);
 }
 
