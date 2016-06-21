@@ -15,4 +15,4 @@ file(
 
 #set(SOURCE_FILES server/src/*.c)
 
-add_executable(server ${SOURCES})
+add_executable(server ${SOURCES} server/include/action.h server/src/free.c server/src/action.c server/include/action.h)

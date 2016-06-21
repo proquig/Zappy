@@ -26,6 +26,7 @@ t_player		*init_player(int fd)
   player->team = -1;
   player->lvl = 1;
   player->res.res[FOOD] = 10;
+ // player->action = init_action(NULL, 0);
   while (++i < RES_SIZE)
     player->res.res[i] = 0;
   player->next = NULL;

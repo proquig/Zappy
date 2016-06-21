@@ -37,6 +37,12 @@ void			client_read(t_server *server, int fd)
    close_client(server, fd);
 }
 
+/*void        client_write(t_server *server, int fd)
+{
+
+}
+*/
+
 int			add_client(t_env *env, int fd)
 {
   struct sockaddr_in	client_sin;
@@ -54,6 +60,8 @@ int			add_client(t_env *env, int fd)
   dprintf(fd, "BIENVENUE\n");
   return (fd);
 }
+
+
 
 void			server_read(t_server *server, int fd)
 {
@@ -73,12 +81,13 @@ int 			start_server(t_server *server)
   server->players = NULL;
   while (1)
     {
-      tv.tv_sec = 1;
-      tv.tv_usec = (__suseconds_t)0.1;
-      FD_ZERO(&fd_read);
-      fd_max = 0;
+      tv.tv_sec = tv.tv_usec = 1 / server->param.t * 1000;
+      tv.tv_usec = 1 / server->param.t * 1000000;
+        FD_ZERO(&fd_read);
+//        FD_ZERO(&fd_write);
+        fd_max = 0;
       i = -1;
-      while (++i < MAX_FD)
+      while (++i < (server->param.c * 2))
 	if (server->env.fd_type[i] != FD_FREE)
 	  {
 	    FD_SET(i, &fd_read);
@@ -87,9 +96,11 @@ int 			start_server(t_server *server)
       if (select(fd_max + 1, &fd_read, NULL, NULL, &tv) == -1)
 	perror("select");
       i = -1;
-      while (++i < MAX_FD)
+      while (++i < (server->param.c * 2))
 	if (FD_ISSET(i, &fd_read))
 	  server->env.fct_read[i](server, i);
+/*        if (FD_ISSET(i, &fd_write))
+            server->env.fct_write;*/
     }
 }
 

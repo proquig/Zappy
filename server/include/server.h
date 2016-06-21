@@ -87,4 +87,11 @@ int                     start_server(t_server *server);
 char                    **get_cmds(const char *str, const char *dels);
 int                     analyse_commande(t_server *server, t_player *player);
 
+void free_tab(char **tab);
+
+/*t_action    *init_action(void (*fonction)(t_server *server, t_player *player),
+                         int time);
+t_action    *add_action(t_action *list, t_action *new);
+*/
+
 #endif /* _ZAPPY_SERVER_H_ */

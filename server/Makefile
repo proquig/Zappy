@@ -19,6 +19,8 @@ SRC	=	src/main.c		\
 		src/voir.c		\
 		src/map.c		\
 		src/mon_cmd.c   \
+		src/free.c      \
+		src/action.c    \
 		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)

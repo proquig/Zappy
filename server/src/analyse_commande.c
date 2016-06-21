@@ -8,18 +8,18 @@
 #include "mon_cmd.h"
 
 t_command	commande[] = {
-	{"avance", NULL, &avance},
+	{"avance", NULL, &avance}, //temps = 7/t
 	{"droite", NULL, &right},
 	{"gauche", NULL, &gauche},
 	{"voir", NULL, &voir},
-	{"inventaire", NULL, &inventaire},
-	{"prend", NULL, &prend},
+	{"inventaire", NULL, &inventaire}, // 1/t
+	{"prend", NULL, &prend},// 7/t
 	{"pose", NULL, &pose},
 	{"expulse", NULL, &expulse},
 	{"broadcast", "texte", &broadcast},
-	{"incantation", NULL, &incantation},
-	{"fork", NULL, &forker},
-	{"connect_nbr", NULL, &connect_nbr},
+	{"incantation", NULL, &incantation}, // 300/t
+	{"fork", NULL, &forker}, // 42/t
+	{"connect_nbr", NULL, &connect_nbr}, //0
 	 {NULL, NULL, NULL},
 };
 
@@ -28,6 +28,7 @@ int 	set_team(t_server *server, t_player *player)
   int i;
 
   i = -1;
+
   while (server->param.n[++i] && player->team == -1)
     if (strcmp(server->param.n[i], server->tab[0]) == 0)
       {
@@ -46,7 +47,6 @@ int 	set_team(t_server *server, t_player *player)
 
 int	analyse_commande(t_server *server, t_player *player)
 {
-  // TODO: free
   int	i;
 
   i = -1;
@@ -64,10 +64,14 @@ int	analyse_commande(t_server *server, t_player *player)
   	{
 	  while (commande[++i].cmd)
 	  	if (!strcmp(commande[i].cmd, server->tab[0]))
-		  commande[i].f(server, player);
+        {
+//            add_action(player->action->f = commande[i].f);
+            // player->action->time = temps de l'action
+            commande[i].f(server, player);
+        }
   	}
   else
 	exec_graphic_cmd(server, player);
-
+	free_tab(server->tab);
   return (0);
 }
