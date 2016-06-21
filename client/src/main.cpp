@@ -22,7 +22,7 @@ int	main(int ac, char **av)
   Client  client(std::atoi(av[2]), teamName, adress);
   IA      ia;
 
-  std::cout << client.get_team_name() << std::endl;
+  //std::cout << client.get_team_name() << std::endl;
   client.create_socket();
   client.init_struct();
   client.connect_to_server();

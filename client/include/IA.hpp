@@ -51,7 +51,7 @@ private:
   void	voir(Client *client);
   void	inventaire(Client *client);
   void	prendre(Client *client, std::string obj);
-  void	pose(Client *client);
+  void	pose(Client *client, std::string obj);
   void	expulse(Client *client);
   void	broad(Client *client);
   void	incant(Client *client);

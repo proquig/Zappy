@@ -1,15 +1,17 @@
 #include "Board.hh"
 
-Board::Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSize, ITexture *texture)
+Board::Board(ISceneNode *parent, ISceneManager *smgr, s32 id, const vector3df &position, const vector3df &rotation, const vector3df &scale, u32 nbSquareSizeX, u32 nbSquareSizeY, ITexture *texture)
 {
     this->_material.Wireframe = false;
     this->_material.Lighting = false;
     this->_square = smgr->getGeometryCreator()->createPlaneMesh(dimension2d<f32>(scale.X, scale.Z), dimension2du(1, 1), &this->_material);
     this->_boardRootNode = smgr->addMeshSceneNode(this->_square, parent, id, position, rotation, vector3df(1.0f, 1.0f, 1.0f));
-    this->_nbSquareSize = nbSquareSize;
-    this->_squareSize = scale.X;
+    this->_nbSquareSizeX = nbSquareSizeX;
+    this->_nbSquareSizeY = nbSquareSizeY;
+    this->_squareSizeX = scale.X;
+    this->_squareSizeY = scale.Z;
     this->_texture = texture;
-    if (nbSquareSize == 0)
+    if (nbSquareSizeX == 0 || nbSquareSizeY == 0)
         this->_boardRootNode->setMaterialTexture(0, texture);
     this->_playerNode = nullptr;
     init();
@@ -22,31 +24,32 @@ Board::~Board()
 
 void    Board::init()
 {
-    if (this->_nbSquareSize != 0)
+    if (this->_nbSquareSizeX != 0 && this->_nbSquareSizeY != 0)
     {
-        f32 underSquareSize =  this->_squareSize / this->_nbSquareSize;
+        f32 underSquareSizeX =  this->_squareSizeX / this->_nbSquareSizeX;
+        f32 underSquareSizeY =  this->_squareSizeY / this->_nbSquareSizeY;
    
         f32  x;
-        f32  z = (this->_squareSize / 2) - (underSquareSize / 2);
+        f32  z = (this->_squareSizeY / 2) - (underSquareSizeY / 2);
         u32  j = 0;
         u32  i;
         s32  underSquareId = 2;
-        while (j < this->_nbSquareSize)
+        while (j < this->_nbSquareSizeY)
         {
             i = 0;
-            x = - ((this->_squareSize / 2) - (underSquareSize / 2));
+            x = - ((this->_squareSizeX / 2) - (underSquareSizeX / 2));
             std::vector<Board *> line;
-            while (i < this->_nbSquareSize)
+            while (i < this->_nbSquareSizeX)
             {
-                Board *newBoard = new Board(this->_boardRootNode, this->getSceneManager(), underSquareId, vector3df(x, 0.1f, z), vector3df(0.0f, 0.0f, 0.0f), vector3df(underSquareSize, 0.0f, underSquareSize), 0, this->_texture);
+                Board *newBoard = new Board(this->_boardRootNode, this->getSceneManager(), underSquareId, vector3df(x, 0.1f, z), vector3df(0.0f, 0.0f, 0.0f), vector3df(underSquareSizeX, 0.0f, underSquareSizeY), 0, 0, this->_texture);
                 line.push_back(newBoard);
-                x += underSquareSize;
+                x += underSquareSizeX;
                 i++;
                 underSquareId++;
             }
             this->_underSquares.push_back(line);
             j++;
-            z -= underSquareSize;
+            z -= underSquareSizeY;
         }
     }
 }
@@ -61,9 +64,14 @@ IMesh       *Board::getSquare()
     return (this->_square);
 }
 
-u32         Board::getNbSquareSize()
+u32         Board::getNbSquareSizeX()
 {
-    return (this->_nbSquareSize);
+    return (this->_nbSquareSizeX);
+}
+
+u32         Board::getNbSquareSizeY()
+{
+    return (this->_nbSquareSizeY);
 }
 
 std::vector<std::vector<Board *> > *Board::getUnderSquares()
@@ -138,9 +146,14 @@ IMeshSceneNode  *Board::getPlayerNode()
     return (this->_playerNode);
 }
 
-f32             Board::getSquareSize()
+f32             Board::getSquareSizeX()
 {
-    return (this->_squareSize);
+    return (this->_squareSizeX);
+}
+
+f32             Board::getSquareSizeY()
+{
+    return (this->_squareSizeY);
 }
 
 IMesh   *Board::getCurPlayerMesh()

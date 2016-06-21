@@ -51,8 +51,8 @@ void    IA::what_i_do(Client *client, std::vector<std::string> tab, int x)
   {
       if (tab.size() >= 3)
           this->prendre(client, tab[2]);
-      else if (this->_linemate >= 1 && tab.size() == 2)
-          this->incant(client);
+      /*else if (this->_linemate >= 1 && tab.size() == 2)
+          this->incant(client);*/
       else
       {
           if (n == 1)
@@ -150,14 +150,30 @@ void    IA::prendre(Client *client, std::string obj)
       this->_thystame++;
   take = "prend ";
   take = take + obj + "\r\n";
-  std::cout << "Message send : "<< take;
+  std::cout << "Message send : " << take;
   send(client->get_sock(), take.c_str(), take.length(), 0);
 }
 
-void    IA::pose(Client *client)
+void    IA::pose(Client *client, std::string obj)
 {
-  std::cout << "Message send : pose\r\n";
-  send(client->get_sock(), "pose\r\n", strlen("pose\r\n"), 0);
+    std::string put;
+
+  if (obj == "linemate")
+      this->_linemate--;
+  if (obj == "deraumere")
+      this->_deraumere--;
+  if (obj == "sibur")
+      this->_sibur--;
+  if (obj == "mendiane")
+      this->_mendiane--;
+  if (obj == "phiras")
+      this->_phiras--;
+  if (obj == "thystame")
+      this->_thystame--;
+  put = "pose ";
+  put = put + obj + "\r\n";
+  std::cout << "Message send : " << put;
+  send(client->get_sock(), put.c_str(), put.length(), 0);
 }
 
 void    IA::expulse(Client *client)
@@ -175,7 +191,7 @@ void    IA::broad(Client *client)
 void    IA::incant(Client *client)
 {
   std::cout << "Message send : incantation\r\n";
-  send(client->get_sock(), "incantation\r\n", strlen("incant\r\n"), 0);
+  send(client->get_sock(), "incantation\r\n", strlen("incantation\r\n"), 0);
 }
 /* Getter Setter */
 

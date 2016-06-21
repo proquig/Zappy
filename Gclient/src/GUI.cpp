@@ -1,6 +1,6 @@
 #include "GUI.hh"
 
-GUI::GUI()
+GUI::GUI(std::string const &address, int port)
 {
   IrrlichtDevice *nulldevice = createDevice(EDT_NULL);
   this->_deskres = nulldevice->getVideoModeList()->getDesktopResolution();
@@ -18,7 +18,12 @@ GUI::GUI()
   this->_driver = _device->getVideoDriver();
   this->_smgr = _device->getSceneManager();
   this->_env = _device->getGUIEnvironment();
-  _device->getCursorControl()->setVisible(false); 
+  _device->getCursorControl()->setVisible(false);
+  
+  this->initCommunications(address, port);
+  //
+  this->initMap(15, 15);
+  //
 }
 
 GUI::~GUI()
@@ -40,14 +45,15 @@ void    GUI::launch()
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
         exit(EXIT_FAILURE);
     }
-    this->_smgr->addCameraSceneNode(this->_smgr->getRootSceneNode(), core::vector3df(150, 200, 10), core::vector3df(150, 0, 140));
+    this->_smgr->addCameraSceneNode(this->_smgr->getRootSceneNode(), core::vector3df(this->_sizeX * 10, (float)((float)this->_sizeY * 10) * ((float)this->_sizeX / 10), (float)this->_sizeY * 0.66f), core::vector3df(this->_sizeX * 10, 0, (float)((float)this->_sizeY * 10) - ((float)this->_sizeY * 0.66f)));
     //this->_smgr->addCameraSceneNodeMaya(this->_smgr->getRootSceneNode());
 
-    this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(150.0f, 0.0f, 150.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(300.0f, 0.0f, 300.0f), 15, this->_floor);
+    this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(10 * this->_sizeX, 0.0f, 10 * this->_sizeY), vector3df(0.0f, 0.0f, 0.0f), vector3df(20 * this->_sizeX, 0.0f, 20 * this->_sizeY), this->_sizeX, this->_sizeY, this->_floor);
     this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes);
 
     while (this->_device->run())
     {
+//      handleCommunications();
         if (this->_device->isWindowActive())
         {
             FPS = this->_driver->getFPS();
@@ -66,11 +72,23 @@ void    GUI::launch()
             }
         }
     }
-//  while ()
-//  {
-//      handleCommunications();
-//      draw...
-//  }
+}
+
+void    GUI::initCommunications(std::string const &address, int port)
+{
+    boost::asio::io_service ios;
+			
+	// On veut se connecter sur la machine locale, port 7171
+    if (address == "localhost")
+        boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string("127.0.0.1"), port);
+    else
+	    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(address), port);
+				
+	// On crée une socket // (1)
+	boost::asio::ip::tcp::socket socket(ios);
+				
+	// Tentative de connexion, bloquante // (2)
+//	socket.connect(endpoint);
 }
 
 void    GUI::handleCommunications()
