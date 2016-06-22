@@ -5,7 +5,7 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Sun Jun 19 10:31:54 2016 Guillaume PROQUIN
+## Last update Wed Jun 22 13:33:13 2016 Guillaume PROQUIN
 ##
 
 SRC	=	src/main.c		\
@@ -19,9 +19,11 @@ SRC	=	src/main.c		\
 		src/expulse.c		\
 		src/voir.c		\
 		src/map.c		\
-		src/mon_cmd.c   \
-		src/free.c      \
-		src/action.c    \
+		src/mon_cmd.c		\
+		src/free.c		\
+		src/action.c		\
+		src/handle_time.c	\
+		src/client.c		\
 		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)

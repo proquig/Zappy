@@ -10,9 +10,10 @@ include_directories(common/include)
 file(
     GLOB_RECURSE
     SOURCES
+    common/src/*.c
     server/src/*.c
 )
 
 #set(SOURCE_FILES server/src/*.c)
 
-add_executable(server ${SOURCES} server/include/action.h server/src/free.c server/src/action.c server/include/action.h)
+add_executable(server ${SOURCES})

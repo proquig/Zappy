@@ -63,7 +63,7 @@ void		prend(t_server *server, t_player *player)
 	  }
         while (++i < RES_SIZE)
             if (server->map[player->y][player->x].res.res[i] &&
-                strcmp(server->tab[1], name[i]) == 0)
+                strcmp(server->tab[1], res_name[i]) == 0)
             {
                 server->map[player->y][player->x].res.res[i] -= 1;
                 player->res.res[i] += 1;

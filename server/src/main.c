@@ -12,16 +12,16 @@
 #include "server.h"
 #include "map.h"
 
-void        init_env(t_env *env)
+void        init_env(t_fds *fds)
 {
   int       i;
 
   i = -1;
   while (++i < MAX_FD)
   {
-    env->fct_read[i] = NULL;
-    env->fct_write[i] = NULL;
-    env->fd_type[i] = FD_FREE;
+    fds->fct_read[i] = NULL;
+    fds->fct_write[i] = NULL;
+    fds->fd_type[i] = FD_FREE;
   }
 }
 
@@ -45,7 +45,7 @@ void 		zappy(t_server *server)
   int 		y;
 
   x = -1;
-  if (init_server(&server->param, &server->env) == -1)
+  if (init_server(&server->param, &server->fds) == -1)
     error("Server init failed");
   print_param(&server->param);
   server->map = create_map(server->param.x, server->param.y);
@@ -53,7 +53,7 @@ void 		zappy(t_server *server)
     {
       y = -1;
       while (++y < (int)server->param.y)
-	put_random_ressource(server->map, server->param.x, server->param.y);
+	    put_random_ressource(server->map, server->param.x, server->param.y);
     }
   printf("\033[32;1mGenerating world...done\033[0m\n");
   start_server(server);
@@ -67,7 +67,7 @@ int		main(int ac, const char **av)
   if (ac < 7)
     error("argv");
   init_params(&server.param);
-  init_env(&server.env);
+  init_env(&server.fds);
   if (!set_params(av, &server.param))
     error("Wrong args");
   zappy(&server);
