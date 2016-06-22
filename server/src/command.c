@@ -107,8 +107,8 @@ void incantation(t_server *server, t_player *player)
 
 void forker(t_server *server, t_player *player)
 {
-    (void)server;
     (void)player;
+    update_team(server->players, player->teams.id);
 }
 
 void connect_nbr(t_server *server, t_player *player)

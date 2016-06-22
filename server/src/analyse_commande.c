@@ -64,7 +64,7 @@ int	analyse_commande(t_server *server, t_player *player)
         }
 		else
 		  return (0);
-    if (player->team != GRAPHIC) {
+    if (player->teams.id != GRAPHIC) {
         while (commande[++i].cmd) {
 		  if (!strcmp(commande[i].cmd, server->tab[0]))
 			set_action(server, player->actions, commande[i].time, commande[i].f);

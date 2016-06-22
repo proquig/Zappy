@@ -16,8 +16,7 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
      }
      catch(boost::system::system_error &e)
      {
-         e.what();
-        
+      e.what();
          exit(EXIT_FAILURE);
      }
 }

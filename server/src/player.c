@@ -69,7 +69,7 @@ int 			len_players(t_player *root)
     return (i);
 }
 
-void        update_team(t_player *root, int id, int max)
+void        update_team(t_player *root, int id)
 {
     t_player *tmp;
 
@@ -77,7 +77,7 @@ void        update_team(t_player *root, int id, int max)
     while (tmp)
     {
         if (tmp->teams.id == id)
-            tmp->teams.max = max;
+            tmp->teams.max++;
         tmp = tmp->next;
     }
 }
