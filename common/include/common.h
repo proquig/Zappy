@@ -42,9 +42,11 @@ typedef struct		s_player
   unsigned int 		y;
   enum Direction 	dir;
   t_ressources		res;
-  int 			fd;
-  int 			team;
-  int 			lvl;
+  int 		    	fd;
+  int 	    		team;
+  int   			lvl;
+    void            *actions;
+    char            *buffer;
   struct s_player	*next;
 }			t_player;
 

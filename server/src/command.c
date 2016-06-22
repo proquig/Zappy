@@ -61,6 +61,14 @@ void		prend(t_server *server, t_player *player)
 	    player->res.res[i] += 1;
 	    err = 0;
 	  }
+        while (++i < RES_SIZE)
+            if (server->map[player->y][player->x].res.res[i] &&
+                strcmp(server->tab[1], name[i]) == 0)
+            {
+                server->map[player->y][player->x].res.res[i] -= 1;
+                player->res.res[i] += 1;
+                err = 0;
+	        }
     }
   dprintf(player->fd, err ? "ko\n" : "ok\n");
 }

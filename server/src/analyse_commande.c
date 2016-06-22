@@ -7,20 +7,20 @@
 #include "map.h"
 #include "mon_cmd.h"
 
-t_command	commande[] = {
-	{"avance", NULL, &avance},
-	{"droite", NULL, &right},
-	{"gauche", NULL, &gauche},
-	{"voir", NULL, &voir},
-	{"inventaire", NULL, &inventaire},
-	{"prend", NULL, &prend},
-	{"pose", NULL, &pose},
-	{"expulse", NULL, &expulse},
-	{"broadcast", "texte", &broadcast},
-	{"incantation", NULL, &incantation},
-	{"fork", NULL, &forker},
-	{"connect_nbr", NULL, &connect_nbr},
-	 {NULL, NULL, NULL},
+t_command commande[] = {
+        {"avance",      &avance,      7}, //temps = 7/t
+        {"droite",      &right,       7},
+        {"gauche",      &gauche,      7},
+        {"voir",        &voir,        7},
+        {"inventaire",  &inventaire,  1}, // 1/t
+        {"prend",       &prend,       7},// 7/t
+        {"pose",        &pose,        7},
+        {"expulse",     &expulse,     7},
+        {"broadcast",   &broadcast,   7},
+        {"incantation", &incantation, 300}, // 300/t
+        {"fork",        &forker,      42}, // 42/t
+        {"connect_nbr", &connect_nbr, 0}, //0
+        {NULL, NULL,                  0},
 };
 
 int 	set_team(t_server *server, t_player *player)
@@ -49,35 +49,30 @@ int 	set_team(t_server *server, t_player *player)
 
 int	analyse_commande(t_server *server, t_player *player)
 {
-  // TODO: free
   int	i;
 
-  i = -1;
-  //
-  t_player *tmp = server->players;
-  while (tmp)
-  {
-	printf("%i %i", tmp->x, tmp->y);
-	tmp = tmp->next;
-  }
-  //
-  if (!server->tab || !server->tab[0])
+    i = -1;
+    if (!server->tab || !server->tab[0])
+        return (0);
+    if (player->team == -1)
+	{
+        if (!set_team(server, player))
+		{
+            dprintf(player->fd, "ko\n");
+            return (-1);
+        }
+    }
+    else
+        return (0);
+    if (player->team != GRAPHIC) {
+        while (commande[++i].cmd) {
+            if (!strcmp(commande[i].cmd, server->tab[0])) {
+                player->actions = add_action(player->actions, init_action(commande[i].f, commande[i].time / server->param.t));
+            }
+        }
+    }
+    else
+        exec_graphic_cmd(server, player);
+    free_tab(server->tab);
     return (0);
-  if (player->team == -1)
-	if (!set_team(server, player))
-	  {
-	    dprintf(player->fd, "ko\n");
-	    return (-1);
-	  }
-  	else
-	  return (0);
-  if (player->team != GRAPHIC)
-  	{
-	  while (commande[++i].cmd)
-	  	if (!strcmp(commande[i].cmd, server->tab[0]))
-		  commande[i].f(server, player);
-  	}
-  else
-	exec_graphic_cmd(server, player);
-  return (0);
 }
