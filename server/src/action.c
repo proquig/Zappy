@@ -2,8 +2,8 @@
 // Created by cloque_b on 21/06/16.
 //
 
-#include "action.h"
-/*
+#include "server.h"
+
 t_action    *init_action(void (*fonction)(t_server *server, t_player *player), int time)
 {
     t_action *action;
@@ -28,4 +28,4 @@ t_action    *add_action(t_action *list, t_action *new)
     while (tmp->next && (tmp = tmp->next));
     tmp->next = new;
     return (list);
-}*/
+}

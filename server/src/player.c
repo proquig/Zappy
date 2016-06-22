@@ -26,7 +26,7 @@ t_player		*init_player(int fd)
   player->team = -1;
   player->lvl = 1;
   player->res.res[FOOD] = 10;
- // player->action = init_action(NULL, 0);
+  player->actions = init_action(NULL, 0);
   while (++i < RES_SIZE)
     player->res.res[i] = 0;
   player->next = NULL;
@@ -43,7 +43,7 @@ int 			size_player(t_player *root, int team)
   while (tmp)
     {
       if (tmp->team == team)
-	i++;
+	    i++;
       tmp = tmp->next;
     }
   return (i);

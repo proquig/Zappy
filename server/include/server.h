@@ -76,6 +76,18 @@ typedef struct 		s_expulse
   int 			pos;
 }			t_expulse;
 
+typedef struct s_action
+{
+    int         time;
+    void 		(*f)(t_server *server, t_player *player);
+    struct s_action *next;
+}               t_action;
+
+t_action    *init_action(void (*fonction)(t_server *server, t_player *player),
+                         int time);
+t_action    *add_action(t_action *list, t_action *new);
+
+int tablen(char **tab);
 int				        init_server(t_param *param, t_env *env);
 void                    error(const char *msg);
 int                     is_number(const char *str);
@@ -88,10 +100,5 @@ char                    **get_cmds(const char *str, const char *dels);
 int                     analyse_commande(t_server *server, t_player *player);
 
 void free_tab(char **tab);
-
-/*t_action    *init_action(void (*fonction)(t_server *server, t_player *player),
-                         int time);
-t_action    *add_action(t_action *list, t_action *new);
-*/
 
 #endif /* _ZAPPY_SERVER_H_ */

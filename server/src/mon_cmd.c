@@ -56,7 +56,9 @@ int 	cmd_mon_tna(t_server *server, t_player *player)
 
 int 	cmd_mon_ppo(t_server *server, t_player *player)
 {
-  return (1);
+    (void)player;
+
+    return (1);
 }
 
 int 	cmd_mon_plv(t_server *server, t_player *player)

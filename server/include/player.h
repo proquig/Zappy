@@ -18,8 +18,8 @@
 typedef struct 			s_command
 {
   char *			cmd;
-  char *			sec;
   void 				(*f)(t_server *server, t_player *player);
+    int             time;
 }				t_command;
 
 t_player			*init_player(int fd);
