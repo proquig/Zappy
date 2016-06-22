@@ -22,7 +22,7 @@
 # define			MAX_FD 900
 # define			GRAPHIC 900
 
-typedef void		(*fct)();
+typedef void		(*fct)(t_server *server, int fd);
 
 typedef struct		s_server t_server;
 
@@ -79,17 +79,6 @@ typedef struct 		s_expulse
   int 				pos;
 }					t_expulse;
 
-typedef struct		s_action
-{
-    int         	time;
-    void 			(*f)(t_server *server, t_player *player);
-    struct			s_action *next;
-}               	t_action;
-
-t_action    		*init_action(void (*fonction)(t_server *server, t_player *player),
-                         int time);
-t_action    		*add_action(t_action *list, t_action *new);
-
 int					tablen(char **tab);
 int					init_server(t_param *param, t_fds *fds);
 void				error(const char *msg);
@@ -102,15 +91,24 @@ int					start_server(t_server *server);
 char				**get_cmds(const char *str, const char *dels);
 int					analyse_commande(t_server *server, t_player *player);
 
-void				set_action_time(struct timeval *time, int value, int frequency);
+int					action_is_waiting(struct timeval *time);
 void				set_action_time(struct timeval *time, int value, int frequency);
 
 int 				set_fds(t_server *server);
 void				close_client(t_server *server, int fd);
 void				client_read(t_server *server, int fd);
+void				client_write(t_server *server, int fd);
 int					add_client(t_fds *fds, int fd);
 void				handle_clients(t_server *server);
 
-void free_tab(char **tab);
+void				free_tab(char **tab);
+
+
+// TODO: define max actions
+void				init_action(t_action *action);
+void				init_actions(t_action actions[10]);
+t_action			*find_free_action(t_action actions[10]);
+void        		set_action(t_server *server, t_action actions[10], int time,
+					   void (*fn)(t_server *, t_player *));
 
 #endif /* _ZAPPY_SERVER_H_ */

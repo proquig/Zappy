@@ -31,7 +31,7 @@ t_player		*init_player(int fd, t_param param)
   player->teams.max = param.c;
   player->lvl = 1;
   player->res.res[FOOD] = 10;
-  player->actions = init_action(NULL, 0);
+  init_actions(player->actions);
   while (++i < RES_SIZE)
     player->res.res[i] = 0;
   player->next = NULL;

@@ -15,7 +15,7 @@
 # include			"common.h"
 # include			"server.h"
 
-typedef struct 			s_command
+typedef struct 		s_command
 {
   char *			cmd;
   void 				(*f)(t_server *server, t_player *player);
@@ -27,7 +27,7 @@ t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
 int 				size_player(t_player *root, int team);
-int				len_players(t_player *root);
+int					len_players(t_player *root);
 void 				avance(t_server *server, t_player *player);
 void 				right(t_server *server, t_player *player);
 void 				gauche(t_server *server, t_player *player);

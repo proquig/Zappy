@@ -42,6 +42,15 @@ typedef struct          s_team
     int                 max;
 }                       t_team;
 
+typedef struct 		s_server t_server;
+typedef struct 		s_player t_player;
+
+typedef struct		s_action
+{
+  void 				(*f)(t_server *server, t_player *player);
+  struct timeval	time;
+}               	t_action;
+
 typedef struct		s_player
 {
   unsigned int 		x;
@@ -50,12 +59,12 @@ typedef struct		s_player
   t_ressources		res;
   int 		    	fd;
   int   			lvl;
-    t_team          teams;
-    //int             team;
-    void            *actions;
-    char            *buffer;
+  t_action			actions[10];
+  t_team			teams;
+  void				*actions;
+  char				*buffer;
   struct s_player	*next;
-}			t_player;
+}					t_player;
 
 typedef struct		s_square
 {

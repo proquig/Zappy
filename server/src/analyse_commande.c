@@ -57,20 +57,17 @@ int	analyse_commande(t_server *server, t_player *player)
     if (!server->tab || !server->tab[0])
         return (0);
     if (player->teams.id == -1)
-	{
         if (!set_team(server, player))
 		{
             dprintf(player->fd, "ko\n");
             return (-1);
         }
-    }
-    else
-        return (0);
-    if (player->teams.id != GRAPHIC) {
+		else
+		  return (0);
+    if (player->team != GRAPHIC) {
         while (commande[++i].cmd) {
-            if (!strcmp(commande[i].cmd, server->tab[0])) {
-                player->actions = add_action(player->actions, init_action(commande[i].f, commande[i].time / server->param.t));
-            }
+		  if (!strcmp(commande[i].cmd, server->tab[0]))
+			set_action(server, player->actions, commande[i].time, commande[i].f);
         }
     }
     else

@@ -51,6 +51,21 @@ void			client_read(t_server *server, int fd)
 	close_client(server, fd);
 }
 
+void 			client_write(t_server *server, int fd)
+{
+  t_player		*player;
+  int 			i;
+
+  i = -1;
+  if ((player = search_player(server->players, fd)))
+	while (++i < 10)
+	  if (player->actions[i].f && !action_is_waiting(&player->actions[i].time))
+	  {
+		player->actions[i].f(server, player);
+		init_action(&player->actions[i]);
+	  }
+}
+
 int			add_client(t_fds *fds, int fd)
 {
   struct sockaddr_in	client_sin;
@@ -64,7 +79,7 @@ int			add_client(t_fds *fds, int fd)
   }
   fds->fd_type[fd] = FD_CLIENT;
   fds->fct_read[fd] = client_read;
-  fds->fct_write[fd] = NULL;
+  fds->fct_write[fd] = client_write;
   dprintf(fd, "BIENVENUE\n");
   return (fd);
 }
@@ -75,6 +90,11 @@ void 		handle_clients(t_server *server)
 
   i = -1;
   while (++i < MAX_FD)
+  {
 	if (FD_ISSET(i, &server->fds.fds_read))
 	  server->fds.fct_read[i](server, i);
+	if (FD_ISSET(i, &server->fds.fds_write)
+		&& server->fds.fd_type[i] != FD_SERVER)
+	  	server->fds.fct_write[i](server, i);
+  }
 }

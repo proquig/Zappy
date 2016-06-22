@@ -10,6 +10,7 @@
 int			set_fds(t_server *server);
 void		close_client(t_server *server, int fd);
 void		client_read(t_server *server, int fd);
+void 		client_write(t_server *server, int fd);
 int			add_client(t_fds *fds, int fd);
 void 		handle_clients(t_server *server);
 
