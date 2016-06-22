@@ -12,6 +12,10 @@
 
 t_player		*init_player(int fd)
 {
+  // UP 	0,0 ; 9,9 ; 0,9 ; 1,9
+  // DOWN	0,0 ; 1,1 ; 0,1 ; 9,1
+  // LEFT	0,0 ; 9,1 ; 9,0 ; 9,9
+  // RIGHT	0,0 ; 1,9 ; 1,0 ; 1,1
   t_player	*player;
   int 		i;
 
@@ -20,8 +24,8 @@ t_player		*init_player(int fd)
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->fd = fd;
-  player->x = 0;
-  player->y = 0;
+  player->x = 0; // TODO: rand
+  player->y = 0; // TODO: rand
   player->dir = (enum Direction)(rand() % 4);
   player->team = -1;
   player->lvl = 1;

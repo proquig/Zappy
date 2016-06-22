@@ -10,8 +10,8 @@ void		print_contents_seen(t_server *server, t_player *player, int x, int y)
   int 		i;
   int 		j;
 
-  x = (x < 0) ? (server->param.x + x) : (x % server->param.x);
-  y = (y < 0) ? (server->param.y + y) : (y % server->param.y);
+  x = (x < 0) ? (server->param.x + x) % server->param.x : x % server->param.x;
+  y = (y < 0) ? (server->param.y + y) % server->param.y : y % server->param.y;
   i = -1;
   tmp = server->players;
   while (tmp)
@@ -30,23 +30,28 @@ void		print_contents_seen(t_server *server, t_player *player, int x, int y)
 
 void 		voir(t_server *server, t_player *player)
 {
+  int 		x;
+  int 		y;
   int 		i;
   int 		range;
-  int 		dir;
 
-  dir = (player->dir == LEFT || player->dir == DOWN) ? -1 : 1;
+  x = (player->dir == LEFT || player->dir == UP) ? -1 : 1;
+  y = (player->dir == RIGHT || player->dir == UP) ? -1 : 1;
   range = -1;
   while (++range <= player->lvl)
-  	{
-	  i = (range * -1);
-	  while (i++ <= range)
-	    {
-	      dprintf(player->fd, range ? "," : "{");
-	      print_contents_seen(server, player, (player->dir % 2)
-					 ? (player->x + (range * dir)) : (player->x + i),
-				  (player->dir % 2)
-				  ? (player->y + (range * dir)) : (player->y + i));
-	    }
-  	}
+  {
+	i = (range * -1);
+	while (i <= range)
+	{
+	  dprintf(player->fd, range ? "," : "{");
+	  print_contents_seen(server, player, (player->dir % 2)
+										  ? (player->x + (range * x))
+										  : (player->x - i * x),
+						  (player->dir % 2)
+						  ? (player->y - i * y)
+						  : (player->y + (range * y)));
+	  ++i;
+	}
+  }
   dprintf(player->fd, "}\n");
 }

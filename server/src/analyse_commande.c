@@ -53,6 +53,14 @@ int	analyse_commande(t_server *server, t_player *player)
   int	i;
 
   i = -1;
+  //
+  t_player *tmp = server->players;
+  while (tmp)
+  {
+	printf("%i %i", tmp->x, tmp->y);
+	tmp = tmp->next;
+  }
+  //
   if (!server->tab || !server->tab[0])
     return (0);
   if (player->team == -1)
