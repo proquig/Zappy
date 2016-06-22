@@ -27,22 +27,20 @@ int set_team(t_server *server, t_player *player) {
     int i;
 
     i = -1;
-    while (server->param.n[++i] && player->team == -1)
+    while (server->param.n[++i] && player->team == -1) {
         if (strcmp(server->param.n[i], server->tab[0]) == 0 &&
-                size_player(server->players, i) < server->param.c) {
+            size_player(server->players, i) < server->param.c) {
             player->team = i;
             dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
             dprintf(player->fd, "%i %i\n", server->param.x, server->param.y);
         }
+    }
     if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0) {
         player->team = GRAPHIC;
         print_map_contents(server->map, player->fd);
     }
     return (player->team != -1);
 }
-//  check erreur team tees done
-//  action test décharge list
-//  print tout en fin done
 
 int analyse_commande(t_server *server, t_player *player) {
     int i;

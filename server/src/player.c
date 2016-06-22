@@ -49,6 +49,21 @@ int 			size_player(t_player *root, int team)
   return (i);
 }
 
+int 			len_players(t_player *root)
+{
+    t_player		*tmp;
+    int			i;
+
+    i = 0;
+    tmp = root;
+    while (tmp)
+    {
+        i++;
+        tmp = tmp->next;
+    }
+    return (i);
+}
+
 t_player		*add_player(t_player *list, t_player *player)
 {
   t_player		*tmp;

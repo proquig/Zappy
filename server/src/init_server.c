@@ -67,6 +67,12 @@ void server_read(t_server *server, int fd)
 {
     int fdclient;
 
+    if (server->param.c * tablen(server->param.n) <= len_players(server->players))
+    {
+        close(fd);
+        server->env.fd_type[fd] = FD_FREE;
+        return;
+    }
     fdclient = add_client(&server->env, fd);
     server->players = add_player(server->players, init_player(fdclient));
 }
@@ -80,7 +86,7 @@ int set_fdset(t_server *server, fd_set *fd_read, fd_set *fd_write)
     FD_ZERO(fd_write);
     fd_max = 0;
     i = -1;
-    while (++i < (server->param.c * tablen(server->param.n)))
+    while (++i < MAX_FD)
         if (server->env.fd_type[i] != FD_FREE)
         {
             FD_SET(i, fd_read);
@@ -106,11 +112,17 @@ int start_server(t_server *server) {
         if (select(fd_max + 1, &fd_read, &fd_write, NULL, &tv) == -1)
             perror("select");
         i = -1;
-        while (++i < (server->param.c * tablen(server->param.n)))
-            if (FD_ISSET(i, &fd_read))
+        while (++i < MAX_FD) {
+            //printf("%i\n", tablen(server->param.n));
+            if (FD_ISSET(i, &fd_read)) {
+                printf("Nombre de team:%i\n", tablen(server->param.n));
                 server->env.fct_read[i](server, i);
 
-  //        server->env.fct_write[i](server, i);
+            }
+        }
+        printf("size player%i\n", len_players(server->players));
+
+        //        server->env.fct_write[i](server, i);
     }
 }
 
@@ -128,7 +140,7 @@ int init_server(t_param *param, t_env *env) {
     s_in.sin_port = htons(param->p);
     s_in.sin_addr.s_addr = INADDR_ANY;
     if (bind(fd, (const struct sockaddr *) &s_in, size) == -1
-        || listen(fd, MAX_FD) == -1)
+        || listen(fd, (param->c * tablen(param->n)) == -1))
         return (-1);
     env->fd_type[fd] = FD_SERVER;
     env->fct_read[fd] = server_read;
