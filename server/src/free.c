@@ -4,7 +4,6 @@
 
 #include "server.h"
 
-
 int tablen(char **tab)
 {
     int i;

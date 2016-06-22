@@ -72,6 +72,7 @@ int			add_client(t_fds *fds, int fd)
 void 		handle_clients(t_server *server)
 {
   int 	i;
+
   i = -1;
   while (++i < MAX_FD)
 	if (FD_ISSET(i, &server->fds.fds_read))

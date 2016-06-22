@@ -28,24 +28,25 @@ int 	set_team(t_server *server, t_player *player)
   int i;
 
   i = -1;
-  while (server->param.n[++i] && player->team == -1)
+  while (server->param.n[++i] && player->teams.id == -1)
     if (strcmp(server->param.n[i], server->tab[0]) == 0 &&
-    size_player(server->players, i) < server->param.c)
+    size_player(server->players, i) < server->players->teams.max)
       {
-	player->team = i;
+          player->teams.id = i;
+          player->teams.max = server->param.c; // danger
 	dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
 	dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
       }
   printf("%s\n", server->tab[0]);
-  if (player->team == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
+  if (player->teams.id == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
     {
-      player->team = GRAPHIC;
+      player->teams.id = GRAPHIC;
 	  cmd_mon_msz(server, player);
 	  cmd_mon_sgt(server, player);
 	  cmd_mon_mct(server, player);
 	  cmd_mon_tna(server, player);
     }
-  return (player->team != -1);
+  return (player->teams.id != -1);
 }
 
 int	analyse_commande(t_server *server, t_player *player)
@@ -55,7 +56,7 @@ int	analyse_commande(t_server *server, t_player *player)
     i = -1;
     if (!server->tab || !server->tab[0])
         return (0);
-    if (player->team == -1)
+    if (player->teams.id == -1)
 	{
         if (!set_team(server, player))
 		{
@@ -65,7 +66,7 @@ int	analyse_commande(t_server *server, t_player *player)
     }
     else
         return (0);
-    if (player->team != GRAPHIC) {
+    if (player->teams.id != GRAPHIC) {
         while (commande[++i].cmd) {
             if (!strcmp(commande[i].cmd, server->tab[0])) {
                 player->actions = add_action(player->actions, init_action(commande[i].f, commande[i].time / server->param.t));

@@ -22,7 +22,7 @@ typedef struct 			s_command
   int				time;
 }				t_command;
 
-t_player			*init_player(int fd);
+t_player			*init_player(int fd, t_param p);
 t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);

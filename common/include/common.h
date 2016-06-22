@@ -49,8 +49,9 @@ typedef struct		s_player
   enum Direction 	dir;
   t_ressources		res;
   int 		    	fd;
-  int 	    		team;
   int   			lvl;
+    t_team          teams;
+    //int             team;
     void            *actions;
     char            *buffer;
   struct s_player	*next;

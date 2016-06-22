@@ -22,7 +22,7 @@ void			server_read(t_server *server, int fd)
         return;
     }
     fdclient = add_client(&server->fds, fd);
-    server->players = add_player(server->players, init_player(fdclient));
+    server->players = add_player(server->players, init_player(fdclient, server->param));
 }
 
 int 			start_server(t_server *server)

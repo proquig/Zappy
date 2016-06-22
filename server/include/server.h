@@ -19,7 +19,7 @@
 #include			<sys/time.h>
 #include			"common.h"
 
-# define			MAX_FD 255
+# define			MAX_FD 900
 # define			GRAPHIC 900
 
 typedef void		(*fct)();

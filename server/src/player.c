@@ -10,7 +10,7 @@
 
 #include "server.h"
 
-t_player		*init_player(int fd)
+t_player		*init_player(int fd, t_param param)
 {
   // UP 	0,0 ; 9,9 ; 0,9 ; 1,9
   // DOWN	0,0 ; 1,1 ; 0,1 ; 9,1
@@ -24,10 +24,11 @@ t_player		*init_player(int fd)
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->fd = fd;
-  player->x = 0; // TODO: rand
-  player->y = 0; // TODO: rand
+  player->x = rand() % param.x;
+  player->y = rand() % param.y;
   player->dir = (enum Direction)(rand() % 4);
-  player->team = -1;
+  player->teams.id = -1;
+  player->teams.max = param.c;
   player->lvl = 1;
   player->res.res[FOOD] = 10;
   player->actions = init_action(NULL, 0);
@@ -46,7 +47,7 @@ int 			size_player(t_player *root, int team)
   tmp = root;
   while (tmp)
     {
-      if (tmp->team == team)
+      if (tmp->teams.id == team)
 	    i++;
       tmp = tmp->next;
     }
@@ -66,6 +67,19 @@ int 			len_players(t_player *root)
         tmp = tmp->next;
     }
     return (i);
+}
+
+void        update_team(t_player *root, int id, int max)
+{
+    t_player *tmp;
+
+    tmp = root;
+    while (tmp)
+    {
+        if (tmp->teams.id == id)
+            tmp->teams.max = max;
+        tmp = tmp->next;
+    }
 }
 
 t_player		*add_player(t_player *list, t_player *player)
@@ -93,7 +107,32 @@ t_player		*search_player(t_player *list, int fd)
   return (tmp);
 }
 
+
 t_player		*del_player(t_player *list, int fd)
+{
+    t_player		*tmp;
+    t_player		*tmp1;
+
+    if (!list)
+        return (NULL);
+    tmp = list;
+    while (tmp->fd != fd && tmp->next &&
+           tmp->next->fd != fd && (tmp = tmp->next));
+    if (tmp == list)
+    {
+        list = list->next;
+        free(tmp);
+    }
+    else if (tmp->next && tmp->next->fd == fd)
+    {
+        tmp1 = tmp->next;
+        tmp->next = tmp->next->next;
+        free(tmp1);
+    }
+    return (list);
+}
+
+/*t_player		*del_player(t_player *list, int fd)
 {
   t_player		*tmp;
   //t_player		*tmp1;
@@ -104,7 +143,7 @@ t_player		*del_player(t_player *list, int fd)
 	tmp->fd = -1;
   //tmp->lvl
   //tmp->
-/*  tmp = list;
+ tmp = list;
   while (tmp->fd != fd && tmp->next &&
 		 tmp->next->fd != fd && (tmp = tmp->next));
   if (tmp == list)
@@ -119,5 +158,5 @@ t_player		*del_player(t_player *list, int fd)
 	free(tmp1);
   }
   return (list);
-  */
-}
+
+}*/

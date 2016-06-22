@@ -62,7 +62,7 @@ int 	cmd_mon_ppo(t_server *server, t_player *player)
   i = -1;
   tmp = server->players;
   while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->team == GRAPHIC || i != atoi(server->tab[1]))
+  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(server->tab[1]))
 	return (0);
   dprintf(player->fd, "ppo %u %u %u %u\n", i,
 		  player->x, player->y, player->dir);
@@ -77,7 +77,7 @@ int 	cmd_mon_plv(t_server *server, t_player *player)
   i = -1;
   tmp = server->players;
   while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->team == GRAPHIC || tmp->fd == -1 || i != atoi(server->tab[1]))
+  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != atoi(server->tab[1]))
 	return (0);
   dprintf(player->fd, "plv %u %u\n", i, player->lvl);
   return (1);
@@ -91,7 +91,7 @@ int 	cmd_mon_pin(t_server *server, t_player *player)
   i = -1;
   tmp = server->players;
   while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->team == GRAPHIC || i != atoi(server->tab[1]))
+  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(server->tab[1]))
 	return (0);
   dprintf(player->fd, "plv %u %u %u", i, player->x, player->y);
   i = -1;
