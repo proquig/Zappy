@@ -38,13 +38,10 @@ class GUI
     std::vector<GPlayer *> _players;
     int                 _sizeX;
     int                 _sizeY;
-    int                 _fd;
 public:
-    GUI(std::string const &address, int ip);
+    GUI();
     ~GUI();
     void    launch();
-    void    initCommunications(std::string const &address, int port);
-    void    handleCommunications();
     bool    loadMeshesAndTextures();
     IrrlichtDevice  *getDevice();
     IVideoDriver    *getDriver();

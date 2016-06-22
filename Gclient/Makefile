@@ -13,7 +13,8 @@ SRC	=	src/main.cpp	\
 		src/GUI.cpp		\
 		src/Board.cpp	\
 		src/GPlayer.cpp	\
-		src/GMap.cpp
+		src/GMap.cpp	\
+		src/GCommunicator.cpp
 
 OBJ	=	$(SRC:.cpp=.o)
 

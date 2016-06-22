@@ -1,10 +1,12 @@
 #include "GUI.hh"
+#include "GCommunicator.hh"
 
 int main(int ac, char **av)
 {
     if (ac == 3)
     {        
-        GUI gui(std::string(av[1]), atoi(av[2]));
+        GUI gui;
+        GCommunicator communicator(std::string(av[1]), atoi(av[2]), &gui);
         gui.launch();
     }
     else
