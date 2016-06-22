@@ -15,8 +15,6 @@ void			server_read(t_server *server, int fd)
 {
     int fdclient;
 
-  fdclient = add_client(&server->fds, fd);
-  server->players = add_player(server->players, init_player(fdclient));
     if (server->param.c * tablen(server->param.n) <= len_players(server->players))
     {
         close(fd);
@@ -36,7 +34,7 @@ int 			start_server(t_server *server)
   while (42)
     {
       tv.tv_sec = 0;
-      tv.tv_usec = (1 / server->param.t);
+      tv.tv_usec = (1 / server->param.t * 1000000);
       fd_max = set_fds(server);
       if (select(fd_max + 1, &server->fds.fds_read, NULL, NULL, &tv) == -1)
         perror("select"); // SHUTDOWN

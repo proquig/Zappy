@@ -36,6 +36,12 @@ typedef struct		s_ressources
   unsigned int 		res[RES_SIZE];
 }			t_ressources;
 
+typedef struct          s_team
+{
+    int                 id;
+    int                 max;
+}                       t_team;
+
 typedef struct		s_player
 {
   unsigned int 		x;

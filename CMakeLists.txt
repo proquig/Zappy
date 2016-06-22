@@ -14,6 +14,4 @@ file(
     server/src/*.c
 )
 
-#set(SOURCE_FILES server/src/*.c)
-
 add_executable(server ${SOURCES})

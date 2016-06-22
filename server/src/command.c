@@ -102,13 +102,13 @@ void broadcast(t_server *server, t_player *player)
 void incantation(t_server *server, t_player *player)
 {
   (void)server;
-  (void)player;
+  player->lvl += 1;
 }
 
 void forker(t_server *server, t_player *player)
 {
-  (void)server;
-  (void)player;
+    (void)server;
+    (void)player;
 }
 
 void connect_nbr(t_server *server, t_player *player)

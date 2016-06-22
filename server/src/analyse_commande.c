@@ -29,7 +29,8 @@ int 	set_team(t_server *server, t_player *player)
 
   i = -1;
   while (server->param.n[++i] && player->team == -1)
-    if (strcmp(server->param.n[i], server->tab[0]) == 0)
+    if (strcmp(server->param.n[i], server->tab[0]) == 0 &&
+    size_player(server->players, i) < server->param.c)
       {
 	player->team = i;
 	dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
