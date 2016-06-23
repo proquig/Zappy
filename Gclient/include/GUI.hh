@@ -37,6 +37,7 @@ class GUI
     std::vector<GPlayer *> _players;
     int                 _sizeX;
     int                 _sizeY;
+    
 public:
     GUI();
     ~GUI();
