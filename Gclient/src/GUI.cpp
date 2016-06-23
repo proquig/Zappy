@@ -12,17 +12,6 @@ GUI::GUI()
     std::cout << "This driver is not available" << std::endl;
     exit(EXIT_SUCCESS);
   }
-
-  if (!(this->_device = createDevice(this->_driverType, this->_deskres, 32, false, false, false, 0)))
-    exit(EXIT_FAILURE);
-  this->_driver = _device->getVideoDriver();
-  this->_smgr = _device->getSceneManager();
-  this->_env = _device->getGUIEnvironment();
-  _device->getCursorControl()->setVisible(false);
- 
-  //
-  this->initMap(15, 15);
-  //
 }
 
 GUI::~GUI()
@@ -39,6 +28,15 @@ void    GUI::launch()
     int lastFPS = -1;
     int FPS;
 
+  if (!(this->_device = createDevice(this->_driverType, this->_deskres, 32, false, false, false, 0)))
+    exit(EXIT_FAILURE);
+  this->_driver = _device->getVideoDriver();
+  this->_smgr = _device->getSceneManager();
+  this->_env = _device->getGUIEnvironment();
+  this->_device->getCursorControl()->setVisible(false);
+
+  sleep(1);
+ 
     if (loadMeshesAndTextures() == false)
     {
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
@@ -52,13 +50,13 @@ void    GUI::launch()
 
     while (this->_device->run())
     {
-//      handleCommunications();
         if (this->_device->isWindowActive())
         {
             FPS = this->_driver->getFPS();
             this->_driver->beginScene(true, true, irr::video::SColor(255,200,200,200));
             this->_smgr->drawAll();
             this->_env->drawAll();
+            this->refreshGame();
             this->_driver->endScene();
             if (lastFPS != FPS)
             {
@@ -136,13 +134,11 @@ Board       *GUI::getBoard()
     return (this->_gameBoard);
 }
 
-void    GUI::initMap(int sizeX, int sizeY)
+void    GUI::initMap()
 {
-    this->_map = new t_square*[sizeY];
-    for (int i = 0; i < sizeY; ++i)
-        this->_map[i] = new t_square[sizeX];
-    this->_sizeX = sizeX;
-    this->_sizeY = sizeY;
+    this->_map = new t_square*[this->_sizeY];
+    for (int i = 0; i < this->_sizeY; ++i)
+        this->_map[i] = new t_square[this->_sizeX];
 }
 
 void    GUI::refreshMap(t_square const &toRefresh)
@@ -173,4 +169,31 @@ void    GUI::addPlayer(t_player const &newPlayer)
 {
     GPlayer *playerToAdd = new GPlayer(newPlayer, this->_playersMeshes[0]);
     this->_players.push_back(playerToAdd);
+}
+
+void    GUI::removePlayer(int id)
+{
+    std::vector<GPlayer *>::iterator    it = this->_players.begin();
+
+    while (it != this->_players.end())
+    {
+        if ((*it)->getId() == id)
+            this->_players.erase(it);
+        ++it;
+    }
+}
+
+void    GUI::setSizeX(int sizeX)
+{
+    this->_sizeX = sizeX;
+}
+
+void    GUI::setSizeY(int sizeY)
+{
+    this->_sizeY = sizeY;
+}
+
+t_square    **GUI::getMap()
+{
+    return (this->_map);
 }

@@ -14,6 +14,7 @@ SRC	=	src/main.cpp	\
 		src/Board.cpp	\
 		src/GPlayer.cpp	\
 		src/GMap.cpp	\
+		src/Tool.cpp	\
 		src/GCommunicator.cpp
 
 OBJ	=	$(SRC:.cpp=.o)
@@ -21,7 +22,7 @@ OBJ	=	$(SRC:.cpp=.o)
 NAME	=	zappy_Gclient
 
 LDFLAGS	=	-Llib/irrlicht -Wl,-rpath,$(PWD)/lib/irrlicht -lIrrlicht	\
-			-L/opt/local/lib -lboost_system
+			-lpthread
 
 CXXFLAGS	=	-W			\
 			-Wextra			\

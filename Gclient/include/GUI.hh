@@ -5,8 +5,7 @@
 #include <map>
 #include <array>
 #include <iterator>
-#include <boost/asio.hpp>
-#include <boost/array.hpp>
+#include <unistd.h>
 #include "Board.hh"
 #include "GPlayer.hh"
 #include "GMap.hh"
@@ -38,6 +37,7 @@ class GUI
     std::vector<GPlayer *> _players;
     int                 _sizeX;
     int                 _sizeY;
+    
 public:
     GUI();
     ~GUI();
@@ -51,10 +51,14 @@ public:
     std::array<IMesh *, 8>  const &getPlayersMeshes();
     ITexture    *getTextures();
     Board       *getBoard();
-    void        initMap(int sizeX, int sizeY);
+    void        initMap();
     void        refreshMap(t_square const &toRefresh);
     void        refreshGame();
     void        addPlayer(t_player const &newPlayer);
+    void        setSizeX(int sizeX);
+    void        setSizeY(int sizeY);
+    t_square    **getMap();
+    void        removePlayer(int id);
 };
 
 #endif

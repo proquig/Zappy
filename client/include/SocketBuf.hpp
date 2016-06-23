@@ -19,6 +19,11 @@ class 		Socket
   ~Socket()
   { };
 
+  int  getFdSocket()
+  {
+    return (this->_fd_socket);
+  }
+
   void	setFdSocket(int fd)
   {
     _fd_socket = fd;

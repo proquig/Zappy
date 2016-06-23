@@ -59,7 +59,7 @@ void    GMap::initRessourcesNodes(Board *curBoard)
         newNode->setMaterialFlag(EMF_WIREFRAME, false);
         newNode->setMaterialFlag(EMF_LIGHTING, false);
         newNode->setMaterialType(EMT_SOLID);
-        newNode->setVisible(true);
+        newNode->setVisible(false);
         ressourcesNodes[(RESSOURCES)i] = newNode;
         curBoard->setRessourcesNodes(ressourcesNodes);
         i++;
