@@ -5,7 +5,7 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Fri Jun 17 17:33:54 2016 jacque_x
-// Last update Fri Jun 17 18:17:20 2016 jacque_x
+// Last update Tue Jun 21 18:03:21 2016 jacque_x
 //
 
 #ifndef _IA_HPP_
@@ -16,21 +16,19 @@
 class IA
 {
 private:
-    typedef void (IA::*fct)(Client *client);
-    typedef std::map<std::string, fct> action;
+  typedef void (IA::*fct)(Client *client);
+  typedef std::map<std::string, fct> action;
 
-    action  map;
+  action  map;
   int	_lvl;
-  std::string _ressource_parcer;
-  int	_ressources;
-  int	_linemate;
-  int	_deraumere;
-  int	_sibur;
-  int	_mendiane;
-  int	_phiras;
-  int	_thystame;
+  int _players;
+  int _nbr_client;
   int	_food;
+  std::string _command;
+  std::string _ressource_parcer;
   std::string _team_name;
+  std::vector<int> _ressources;
+  std::vector<std::string> table_res;
 
  public:
   IA();
@@ -39,48 +37,41 @@ private:
   void  welcome(Client *client);
   void  coord(Client *client);
   void  dead(Client *client);
-  void  ok(Client *client);
+  bool  full_or_not(Client *client, std::vector<std::vector<int>> tab_lvl);
+  void	put_all(Client *client, std::vector<std::vector<int>> tab_lvl);
   void  first(Client *client);
   void  get_command(Client *client);
-  void  parse_command(Client *client, int n);
-  void  team(Client *client);
-  void  what_i_do(Client *client, std::vector<std::string> tab, int x);
+  void  parse_command(Client *client);
+  void  init_team(Client *client);
+  void  what_i_do(Client *client, std::vector<std::string> tab);
+  void  connect_nbr(Client *client);
   void	avance(Client *client);
   void	droite(Client *client);
   void	gauche(Client *client);
   void	voir(Client *client);
   void	inventaire(Client *client);
   void	prendre(Client *client, std::string obj);
-  void	pose(Client *client, std::string obj);
+  void	pose(Client *client, int i);
   void	expulse(Client *client);
   void	broad(Client *client);
-  void	incant(Client *client);
+  int	incant(Client *client);
   void	inventaire();
   void	prendre();
   void	pose();
   void	expulse();
   void	broad();
   void	incant();
+  void  random_number(Client *client, int n);
 
   /* Getter Setter */
   int  get_lvl() const;
   void set_lvl(int _lvl);
+  std::string getCommand() const;
+  void setCommand(std::string command);
   std::string get_ressource_parcer() const;
   void set_ressource_parcer(std::string _ressource_parcer);
-  int  get_ressources() const;
-  void set_ressources(int _ressources);
-  int  get_linemate() const;
-  void set_linemate(int _linemate);
-  int  get_deraumere() const;
-  void set_deraumere(int _deraumere);
-  int  get_sibur() const;
-  void set_sibur(int _sibur);
-  int  get_mendiane() const;
-  void set_mendiane(int _mendiane);
-  int  get_phiras() const;
-  void set_phiras(int _phiras);
-  int  get_thystame() const;
-  void set_thystame(int _thystame);
+  std::vector<int>  get_ressources() const;
+  void set_ressources(std::vector<int> _ressources);
   int  get_food() const;
   void set_food(int _food);
   std::string get_team_name() const;
