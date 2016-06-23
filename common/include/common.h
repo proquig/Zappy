@@ -61,8 +61,6 @@ typedef struct		s_player
   int   			lvl;
   t_action			actions[10];
   t_team			teams;
-  void				*actions;
-  char				*buffer;
   struct s_player	*next;
 }					t_player;
 
