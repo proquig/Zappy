@@ -117,7 +117,6 @@ void    GCommunicator::pnwf(std::string &line)
     else
         newPlayer.dir = (Direction)std::stoi(words[3]);
     newPlayer.lvl = std::stoi(words[4]);
-    newPlayer.teams.id = std::stoi(words[5]);
     this->_gui->addPlayer(newPlayer);  
 }
 
