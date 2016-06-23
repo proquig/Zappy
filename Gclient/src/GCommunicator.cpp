@@ -44,6 +44,23 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
     this->_func_ptrs.insert(std::pair<std::string, f>("pnw", &GCommunicator::pnwf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pdi", &GCommunicator::pdif));
     this->_func_ptrs.insert(std::pair<std::string, f>("seg", &GCommunicator::segf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("ppo", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("plv", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pin", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pex", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pbc", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pic", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pie", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pfk", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pdr", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pgt", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("enw", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("eht", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("ebo", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("edi", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("smg", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("suc", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("sbp", &GCommunicator::sgtf));
 }
 
 GCommunicator::~GCommunicator()
@@ -55,6 +72,7 @@ void    GCommunicator::handleCommunications()
 {
     std::string line;
     std::string tmp;
+
     while (!((line = this->_socket.read()).empty()))
     {
         std::cout << line;
@@ -130,3 +148,4 @@ void    GCommunicator::segf(std::string &line)
     std::cout << "team '" << line << "' win the game !" << std::endl;
     exit(EXIT_SUCCESS);
 }
+
