@@ -24,6 +24,7 @@ SRC	=	src/main.c		\
 		src/action.c		\
 		src/handle_time.c	\
 		src/client.c		\
+		src/elevation.c		\
 		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)

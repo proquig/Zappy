@@ -30,12 +30,12 @@ int 	set_team(t_server *server, t_player *player)
   i = -1;
   while (server->param.n[++i] && player->teams.id == -1)
     if (strcmp(server->param.n[i], server->tab[0]) == 0 &&
-    size_player(server->players, i) < server->players->teams.max)
+    size_player(server->players, i) < server->param.c)
       {
           player->teams.id = i;
           player->teams.max = server->param.c; // danger
-	dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
-	dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
+          dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
+          dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
       }
   printf("%s\n", server->tab[0]);
   if (player->teams.id == -1 && strcmp("GRAPHIC", server->tab[0]) == 0)
@@ -46,7 +46,20 @@ int 	set_team(t_server *server, t_player *player)
 	  cmd_mon_mct(server, player);
 	  cmd_mon_tna(server, player);
     }
+    printf("id team=%i\n", player->teams.id);
   return (player->teams.id != -1);
+}
+
+int     is_in_command(char *str)
+{
+
+    int i;
+
+    i = -1;
+    while (commande[++i].cmd)
+        if (!strcmp(commande[i].cmd, str))
+            return (1);
+    return (0);
 }
 
 int	analyse_commande(t_server *server, t_player *player)
@@ -65,13 +78,28 @@ int	analyse_commande(t_server *server, t_player *player)
 		else
 		  return (0);
     if (player->teams.id != GRAPHIC) {
-        while (commande[++i].cmd) {
-		  if (!strcmp(commande[i].cmd, server->tab[0]))
-			set_action(server, player->actions, commande[i].time, commande[i].f);
+        while (commande[++i].cmd)
+        {
+            if (!strcmp(server->tab[0], "incantation") )
+            {
+               if (incantation_is_possible(server, player) == 1) {
+                   tell_to_players(server->players, player);
+                   set_action(server, player->actions, commande[9].time, commande[9].f);
+               }
+                server->tab[0] = "";
+                return 0;
+            }
+            else if (!strcmp(commande[i].cmd, server->tab[0]))
+		    	set_action(server, player->actions, commande[i].time, commande[i].f);
         }
+
+        if (!is_in_command(server->tab[0]))
+		  dprintf(player->fd,"ko\n");
     }
     else
         exec_graphic_cmd(server, player);
-    free_tab(server->tab);
+//    free_tab(server->tab);
+    //TODO::free
+    server->tab[0] = "";
     return (0);
 }

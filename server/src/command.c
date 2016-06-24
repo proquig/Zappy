@@ -61,14 +61,6 @@ void		prend(t_server *server, t_player *player)
 	    player->res.res[i] += 1;
 	    err = 0;
 	  }
-        while (++i < RES_SIZE)
-            if (server->map[player->y][player->x].res.res[i] &&
-                strcmp(server->tab[1], res_name[i]) == 0)
-            {
-                server->map[player->y][player->x].res.res[i] -= 1;
-                player->res.res[i] += 1;
-                err = 0;
-	        }
     }
   dprintf(player->fd, err ? "ko\n" : "ok\n");
 }
@@ -99,22 +91,24 @@ void broadcast(t_server *server, t_player *player)
   (void)player;
 }
 
-void incantation(t_server *server, t_player *player)
-{
-  (void)server;
-  player->lvl += 1;
-}
-
 void forker(t_server *server, t_player *player)
 {
     (void)player;
+    (void)player;
+
+    struct timeval tv;
+
+    dprintf(player->fd, "ok\n");
+    /*set_action_time(&tv, 600, server->param.t);
+*/
+
     update_team(server->players, player->teams.id);
 }
 
 void connect_nbr(t_server *server, t_player *player)
 {
-  (void)server;
-  (void)player;
+    dprintf(player->fd, "%i\n", player->teams.max > server->param.t ?
+                                player->teams.max : server->param.t);
 }
 
 void die(t_server *server, t_player *player)

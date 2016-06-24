@@ -19,7 +19,7 @@
 #include			<sys/time.h>
 #include			"common.h"
 
-# define			MAX_FD 900
+# define			MAX_FD 100
 # define			GRAPHIC 900
 
 typedef void		(*fct)(t_server *server, int fd);
@@ -103,6 +103,9 @@ void				handle_clients(t_server *server);
 
 void				free_tab(char **tab);
 
+
+int     incantation_is_possible(t_server *server, t_player *player);
+int     tell_to_players(t_player *root, t_player *t);
 
 // TODO: define max actions
 void				init_action(t_action *action);

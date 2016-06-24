@@ -94,7 +94,8 @@ void 		handle_clients(t_server *server)
 	if (FD_ISSET(i, &server->fds.fds_read))
 	  server->fds.fct_read[i](server, i);
 	if (FD_ISSET(i, &server->fds.fds_write)
-		&& server->fds.fd_type[i] != FD_SERVER)
+		&& server->fds.fd_type[i] != FD_SERVER
+            && server->fds.fd_type[i] != FD_FREE)
 	  	server->fds.fct_write[i](server, i);
   }
 }

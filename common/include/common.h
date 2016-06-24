@@ -74,6 +74,12 @@ typedef struct		s_square
   t_player		*players;
 }			t_square;
 
+typedef struct      s_incantation
+{
+    int             nb_player;
+    t_ressources    res;
+}                   t_incantation;
+
 extern const char 		*res_name[];
 
 #endif

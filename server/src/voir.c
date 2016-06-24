@@ -24,7 +24,7 @@ void		print_contents_seen(t_server *server, t_player *player, int x, int y)
     {
       j = -1;
       while ((unsigned int)(++j) < server->map[y][x].res.res[i])
-		dprintf(player->fd, " %s", res_name[j]);
+		dprintf(player->fd, " %s", res_name[i]);
     }
 }
 
