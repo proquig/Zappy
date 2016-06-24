@@ -4,6 +4,7 @@
 
 #include "server.h"
 #include "player.h"
+#include "get_next_line.h"
 
 int 	set_fds(t_server *server)
 {
@@ -13,7 +14,6 @@ int 	set_fds(t_server *server)
   i = -1;
   FD_ZERO(&server->fds.fds_read);
   FD_ZERO(&server->fds.fds_write);
-  // CHECK MAX FD IN CLIENTS
   while (++i < MAX_FD)
 	if (server->fds.fd_type[i] != FD_FREE)
 	{
@@ -33,19 +33,48 @@ void			close_client(t_server *server, int fd)
   server->fds.fd_type[fd] = FD_FREE;
 }
 
+char            *cat_buff(char *str, char *buff)
+{
+  char          *ret;
+
+  str = str ? str : "";
+  buff = buff ? buff : "";
+  if (!(ret = malloc(strlen(buff) + strlen(str) + 1)))
+	return (NULL);
+  ret[0] = 0;
+  strcat(ret, str);
+  strcat(ret, buff);
+  if (strlen(str))
+	free(str);
+  return (ret);
+}
+
 void			client_read(t_server *server, int fd)
 {
-  // TODO: buffer circulaire
-  ssize_t		r;
-  char			buf[4096];
+  char 			*buff;
+  t_player		*player;
 
-  if ((r = read(fd, buf, 4096)) > 0)
+  // TODO: getnextline
+  // TODO: command ko
+  if ((buff = get_next_line(fd))
+	  && (player = search_player(server->players, fd)))
   {
-	buf[r] = 0;
-	printf("Send by %d: %s\r\n", fd, buf);
-	server->tab = get_cmds(buf, " \t\r\n");
-	if (analyse_commande(server, search_player(server->players, fd)) == -1)
-	  close_client(server, fd);
+	player->cmd = cat_buff(player->cmd, buff);
+	if (buff[strlen(buff) - 1] == '\n')
+	{
+	  printf("Send by %d: %s\r\n", fd, player->cmd);
+	  player->tab = get_cmds(player->cmd, " \t\r\n");
+	  if (analyse_commande(server, player) == -1)
+		close_client(server, fd);
+	  if (player->cmd)
+		free(player->cmd);
+	  player->cmd = NULL;
+	  //if (player->tab)
+		//free_tab(player->tab);
+	  // WHY ; WTF ?
+	  player->tab = NULL;
+	  // TODO free player->tab
+	}
   }
   else
 	close_client(server, fd);
@@ -58,10 +87,12 @@ void 			client_write(t_server *server, int fd)
 
   i = -1;
   if ((player = search_player(server->players, fd)))
-	while (++i < 10)
+	while (++i < NB_ACTIONS)
 	  if (player->actions[i].f && !action_is_waiting(&player->actions[i].time))
 	  {
+		player->actions[i].exec = 1;
 		player->actions[i].f(server, player);
+		free_tab(player->actions[i].cmd);
 		init_action(&player->actions[i]);
 	  }
 }

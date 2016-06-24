@@ -19,10 +19,12 @@ void			server_read(t_server *server, int fd)
     {
         close(fd);
         server->fds.fd_type[fd] = FD_FREE;
-        return;
     }
-    fdclient = add_client(&server->fds, fd);
-    server->players = add_player(server->players, init_player(fdclient, server->param));
+	else
+	{
+	  fdclient = add_client(&server->fds, fd);
+	  server->players = add_player(server->players, init_player(fdclient, &server->param));
+	}
 }
 
 int 			start_server(t_server *server)
@@ -34,7 +36,7 @@ int 			start_server(t_server *server)
   while (42)
     {
       tv.tv_sec = 0;
-      tv.tv_usec = (1 / server->param.t * 1000000);
+      tv.tv_usec = (1 / server->param.t * FREQUENCY);
       fd_max = set_fds(server);
       if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
         perror("select"); // SHUTDOWN

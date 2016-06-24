@@ -29,8 +29,8 @@ int 	cmd_mon_bct(t_server *server, t_player *player)
   unsigned int 	x;
   unsigned int 	y;
 
-  x = strtoul(server->tab[1], NULL, 10);
-  y = strtoul(server->tab[2], NULL, 10);
+  x = strtoul(player->tab[1], NULL, 10);
+  y = strtoul(player->tab[2], NULL, 10);
   if (x >= server->param.x
 	  || y >= server->param.y)
 	return (0);
@@ -61,8 +61,8 @@ int 	cmd_mon_ppo(t_server *server, t_player *player)
 
   i = -1;
   tmp = server->players;
-  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(server->tab[1]))
+  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
 	return (0);
   dprintf(player->fd, "ppo %u %u %u %u\n", i,
 		  player->x, player->y, player->dir);
@@ -76,8 +76,8 @@ int 	cmd_mon_plv(t_server *server, t_player *player)
 
   i = -1;
   tmp = server->players;
-  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != atoi(server->tab[1]))
+  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != atoi(player->tab[1]))
 	return (0);
   dprintf(player->fd, "plv %u %u\n", i, player->lvl);
   return (1);
@@ -90,8 +90,8 @@ int 	cmd_mon_pin(t_server *server, t_player *player)
 
   i = -1;
   tmp = server->players;
-  while (++i < atoi(server->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(server->tab[1]))
+  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
 	return (0);
   dprintf(player->fd, "plv %u %u %u", i, player->x, player->y);
   i = -1;
@@ -118,9 +118,9 @@ void	exec_graphic_cmd(t_server *server, t_player *player)
 
   i = -1;
   nb_params = -1;
-  while (server->tab[++nb_params]);;
+  while (player->tab[++nb_params]);
   while (mon_cmds[++i].cmd
-		 && strcmp(mon_cmds[i].cmd, server->tab[0]));
+		 && strcmp(mon_cmds[i].cmd, player->tab[0]));
   if (!mon_cmds[i].cmd || nb_params != (mon_cmds[i].nb_params + 1)
 	  || !mon_cmds[i].fn(server, player))
 	dprintf(player->fd, "%s\n", mon_cmds[i].cmd ? "sbp" : "suc");

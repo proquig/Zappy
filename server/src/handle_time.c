@@ -4,22 +4,28 @@
 
 #include "server.h"
 
+int 		time_is_lower(struct timeval *time1, struct timeval *time2)
+{
+  return (time1->tv_sec < time2->tv_sec ||
+		  (time1->tv_sec == time2->tv_sec && time1->tv_usec < time2->tv_usec));
+}
+
 int			action_is_waiting(struct timeval *time)
 {
   struct timeval	now;
 
   gettimeofday(&now, NULL);
-  return (now.tv_sec < time->tv_sec ||
-		  (now.tv_sec == time->tv_sec && now.tv_usec < time->tv_usec));
+  return (time_is_lower(&now, time));
 }
 
 void 		set_action_time(struct timeval *time, int value, int frequency)
 {
   int 		new_utime;
-  gettimeofday(time, NULL);
 
+  if (!time->tv_sec && !time->tv_usec)
+	gettimeofday(time, NULL);
   new_utime = (int)(time->tv_usec
-			  + ((double)value / frequency * 1000000));
-  time->tv_sec += new_utime / 1000000;
-  time->tv_usec = new_utime % 1000000;
+			  + ((double)value / frequency * FREQUENCY));
+  time->tv_sec += new_utime / FREQUENCY;
+  time->tv_usec = new_utime % FREQUENCY;
 }
