@@ -64,6 +64,7 @@ public:
     t_square    **getMap();
     void        removePlayer(int id);
     GPlayer     *getPlayer(int id);
+    Mutex       *getMutexes();
 };
 
 #endif

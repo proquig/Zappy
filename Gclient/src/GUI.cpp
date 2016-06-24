@@ -231,3 +231,8 @@ GPlayer     *GUI::getPlayer(int id)
     }
     return (nullptr);
 }
+
+Mutex   *GUI::getMutexes()
+{
+    return (this->_mutexes);
+}

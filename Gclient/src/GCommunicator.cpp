@@ -135,7 +135,7 @@ void    GCommunicator::pnwf(std::string &line)
     else
         newPlayer.dir = (Direction)std::stoi(words[3]);
     newPlayer.lvl = std::stoi(words[4]);
-    this->_gui->addPlayer(newPlayer);  
+    this->_gui->addPlayer(newPlayer);
 }
 
 void    GCommunicator::pdif(std::string &line)
@@ -151,6 +151,7 @@ void    GCommunicator::segf(std::string &line)
 
 void    GCommunicator::ppof(std::string &line)
 {
+    this->_gui->getMutexes()[0].lock();
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
     GPlayer *curPlayer = this->_gui->getPlayer(std::stoi(words[0]));
 
@@ -162,10 +163,12 @@ void    GCommunicator::ppof(std::string &line)
         curPlayer->setDirection(LEFT);
     else
         curPlayer->setDirection((Direction)std::stoi(words[3]));
+    this->_gui->getMutexes()[0].unlock();
 }
 
 void    GCommunicator::picf(std::string &line)
 {
+    this->_gui->getMutexes()[0].lock();
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
     std::vector<std::string>::iterator  it = words.begin();
     GPlayer *curPlayer;
@@ -177,4 +180,5 @@ void    GCommunicator::picf(std::string &line)
         curPlayer->setLvl(std::stoi(words[2]));
         ++it;
     }    
+    this->_gui->getMutexes()[0].unlock();
 }
