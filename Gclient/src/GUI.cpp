@@ -154,45 +154,31 @@ void    GUI::initMap()
     }*/
 }
 
-void    GUI::refreshMap(t_square const &toRefresh)
-{
-    static int  x = 0;
-    static int  y = 0;
-    
-    //
-    //modifications de la map
-    //
-    if (x == this->_sizeX - 1)
-    {
-        x = 0;
-        y++;
-    }
-    if (y == this->_sizeY - 1)
-        y = 0;
-}
-
 void    GUI::refreshGame()
 {
+    this->_mutex.lock();
+    std::cout << "test 1" << std::endl;
     this->_gMap->setMap(this->_map);
-    this->_mutexes[0].lock();
+    std::cout << "test 2" << std::endl;
+    std::cout << "test 2,5" << std::endl;
     this->_gMap->refreshGMapPlayers(this->_players);
-    this->_mutexes[0].unlock();
-    this->_mutexes[1].lock();
+    std::cout << "test 3" << std::endl;
     this->_gMap->refreshGMapRes();
-    this->_mutexes[1].unlock();
+    std::cout << "test 4" << std::endl;
+    this->_mutex.unlock();
 }
 
 void    GUI::addPlayer(t_player const &newPlayer)
 {
-    this->_mutexes[0].lock();
+    this->_mutex.lock();
     GPlayer *playerToAdd = new GPlayer(newPlayer, this->_playersMeshes[0]);
     this->_players.push_back(playerToAdd);
-    this->_mutexes[0].unlock();
+    this->_mutex.unlock();
 }
 
 void    GUI::removePlayer(int id)
 {
-    this->_mutexes[0].lock();
+    this->_mutex.lock();
     std::vector<GPlayer *>::iterator    it = this->_players.begin();
 
     while (it != this->_players.end())
@@ -201,7 +187,7 @@ void    GUI::removePlayer(int id)
             this->_players.erase(it);
         ++it;
     }
-    this->_mutexes[0].unlock();
+    this->_mutex.unlock();
 }
 
 void    GUI::setSizeX(int sizeX)
@@ -232,7 +218,7 @@ GPlayer     *GUI::getPlayer(int id)
     return (nullptr);
 }
 
-Mutex   *GUI::getMutexes()
+Mutex   &GUI::getMutex()
 {
-    return (this->_mutexes);
+    return (this->_mutex);
 }

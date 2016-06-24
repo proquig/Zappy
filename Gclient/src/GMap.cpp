@@ -130,20 +130,25 @@ void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
     std::vector<GPlayer *>::const_iterator   it = players.begin();
     std::vector<std::vector<Board *> >    underSquares = *this->_board->getUnderSquares();
     clearAllPlayers();
+
+    std::cout << "TEST 10" << std::endl; 
     while (it != players.end())
     {
+    std::cout << "TEST 11" << std::endl; 
         underSquares[(*it)->getX()][(*it)->getY()]->setCurPlayerMesh(this->_playersMeshes[(*it)->getLvl()]);
         underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setVisible(true);
         underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 0.0f, 0.0f));
+    std::cout << "TEST 12" << std::endl; 
         if ((*it)->getDirection() == UP)
             underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 180.0f, 0.0f));
         else if ((*it)->getDirection() == RIGHT)
             underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, -90.0f, 0.0f));
         else if ((*it)->getDirection() == LEFT)
             underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 90.0f, 0.0f));
-        
+    std::cout << "TEST 13" << std::endl; 
         ++it;
     }
+    std::cout << "TEST 14" << std::endl; 
 }
 
 void   GMap::clearAllRessources()

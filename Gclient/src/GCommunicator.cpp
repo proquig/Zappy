@@ -106,7 +106,7 @@ void    GCommunicator::bctf(std::string &line)
 {
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
 
-    this->_gui->getMutexes()[1].lock();
+    this->_gui->getMutex().lock();
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[FOOD] = std::stoi(words[2]);
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[LINEMATE] = std::stoi(words[3]);
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[DERAUMERE] = std::stoi(words[4]);
@@ -114,7 +114,7 @@ void    GCommunicator::bctf(std::string &line)
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[MENDIANE] = std::stoi(words[6]);
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[PHIRAS] = std::stoi(words[7]);
     this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[THYSTAME] = std::stoi(words[8]);
-    this->_gui->getMutexes()[1].unlock();
+    this->_gui->getMutex().unlock();
 }
 
 void    GCommunicator::tnaf(std::string &line)
@@ -153,10 +153,10 @@ void    GCommunicator::segf(std::string &line)
 
 void    GCommunicator::ppof(std::string &line)
 {
-    this->_gui->getMutexes()[0].lock();
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
     GPlayer *curPlayer = this->_gui->getPlayer(std::stoi(words[0]));
 
+    this->_gui->getMutex().lock();
     curPlayer->setX(std::stoi(words[1]));
     curPlayer->setY(std::stoi(words[2]));
     if (std::stoi(words[3]) == 1)
@@ -165,12 +165,12 @@ void    GCommunicator::ppof(std::string &line)
         curPlayer->setDirection(LEFT);
     else
         curPlayer->setDirection((Direction)std::stoi(words[3]));
-    this->_gui->getMutexes()[0].unlock();
+    this->_gui->getMutex().unlock();
 }
 
 void    GCommunicator::picf(std::string &line)
 {
-    this->_gui->getMutexes()[0].lock();
+    this->_gui->getMutex().lock();
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
     std::vector<std::string>::iterator  it = words.begin();
     GPlayer *curPlayer;
@@ -182,5 +182,5 @@ void    GCommunicator::picf(std::string &line)
         curPlayer->setLvl(std::stoi(words[2]));
         ++it;
     }    
-    this->_gui->getMutexes()[0].unlock();
+    this->_gui->getMutex().unlock();
 }

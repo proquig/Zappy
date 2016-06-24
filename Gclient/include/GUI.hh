@@ -39,7 +39,7 @@ class GUI
     std::vector<GPlayer *> _players;
     int                 _sizeX;
     int                 _sizeY;
-    Mutex               _mutexes[2];
+    Mutex               _mutex;
     
 public:
 
@@ -56,7 +56,6 @@ public:
     ITexture    *getTextures();
     Board       *getBoard();
     void        initMap();
-    void        refreshMap(t_square const &toRefresh);
     void        refreshGame();
     void        addPlayer(t_player const &newPlayer);
     void        setSizeX(int sizeX);
@@ -64,7 +63,7 @@ public:
     t_square    **getMap();
     void        removePlayer(int id);
     GPlayer     *getPlayer(int id);
-    Mutex       *getMutexes();
+    Mutex       &getMutex();
 };
 
 #endif
