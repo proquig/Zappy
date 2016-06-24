@@ -22,6 +22,9 @@
 # define			MAX_FD 1023
 # define			GRAPHIC 900
 
+# define			NB_ACTIONS 10
+# define			FREQUENCY 1000000
+
 typedef void		(*fct)(t_server *server, int fd);
 
 typedef struct		s_server t_server;
@@ -66,7 +69,7 @@ typedef struct		s_avance
 
 typedef struct		s_server
 {
-  char				**tab;
+//  char				**tab;
   t_square			**map;
   t_player			*players;
   t_param			param;
@@ -91,6 +94,7 @@ int					start_server(t_server *server);
 char				**get_cmds(const char *str, const char *dels);
 int					analyse_commande(t_server *server, t_player *player);
 
+int 				time_is_lower(struct timeval *time1, struct timeval *time2);
 int					action_is_waiting(struct timeval *time);
 void				set_action_time(struct timeval *time, int value, int frequency);
 
@@ -104,14 +108,15 @@ void				handle_clients(t_server *server);
 void				free_tab(char **tab);
 
 
-int     incantation_is_possible(t_server *server, t_player *player);
-int     tell_to_players(t_player *root, t_player *t);
+int     			incantation_is_possible(t_server *server, t_player *player);
+int     			tell_to_players(t_player *root, t_player *t);
 
 // TODO: define max actions
 void				init_action(t_action *action);
 void				init_actions(t_action actions[10]);
 t_action			*find_free_action(t_action actions[10]);
-void        		set_action(t_server *server, t_action actions[10], int time,
-					   void (*fn)(t_server *, t_player *));
+t_action        	*get_current_action(t_action actions[10]);
+void        		set_action(t_server *server, t_player *player, int time,
+							   void (*fn)(t_server *, t_player *));
 
 #endif /* _ZAPPY_SERVER_H_ */

@@ -44,11 +44,14 @@ typedef struct          s_team
 
 typedef struct 		s_server t_server;
 typedef struct 		s_player t_player;
+typedef struct 		s_action t_action;
 
 typedef struct		s_action
 {
   void 				(*f)(t_server *server, t_player *player);
+  char				**cmd;
   struct timeval	time;
+  char 				exec;
 }               	t_action;
 
 typedef struct		s_player
@@ -59,6 +62,8 @@ typedef struct		s_player
   t_ressources		res;
   int 		    	fd;
   int   			lvl;
+  char 				*cmd;
+  char 				**tab;
   t_action			actions[10];
   t_team			teams;
   struct s_player	*next;

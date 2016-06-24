@@ -10,12 +10,8 @@
 
 #include "server.h"
 
-t_player		*init_player(int fd, t_param param)
+t_player		*init_player(int fd, t_param *param)
 {
-  // UP 	0,0 ; 9,9 ; 0,9 ; 1,9
-  // DOWN	0,0 ; 1,1 ; 0,1 ; 9,1
-  // LEFT	0,0 ; 9,1 ; 9,0 ; 9,9
-  // RIGHT	0,0 ; 1,9 ; 1,0 ; 1,1
   t_player	*player;
   int 		i;
 
@@ -24,13 +20,15 @@ t_player		*init_player(int fd, t_param param)
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->fd = fd;
-  player->x = rand() % param.x;
-  player->y = rand() % param.y;
+  player->x = rand() % param->x;
+  player->y = rand() % param->y;
   player->dir = (enum Direction)(rand() % 4);
   player->teams.id = -1;
-  player->teams.max = param.c;
+  player->teams.max = param->c;
   player->lvl = 1;
   player->res.res[FOOD] = 10;
+  player->cmd = NULL;
+  player->tab = NULL;
   init_actions(player->actions);
   while (++i < RES_SIZE)
     player->res.res[i] = 0;

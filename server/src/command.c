@@ -51,11 +51,11 @@ void		prend(t_server *server, t_player *player)
 
   err = 1;
   i = -1;
-  if (server->tab[1])
+  if (player->tab[1])
     {
       while (++i < RES_SIZE)
 	if (server->map[player->y][player->x].res.res[i] &&
-		  strcmp(server->tab[1], res_name[i]) == 0)
+		  strcmp(player->tab[1], res_name[i]) == 0)
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
 	    player->res.res[i] += 1;
@@ -72,10 +72,10 @@ void 		pose(t_server *server, t_player *player)
 
   err = 1;
   i = -1;
-  if (server->tab[1])
+  if (player->tab[1])
     {
       while (++i < RES_SIZE)
-	if (player->res.res[i] && strcmp(server->tab[1], res_name[i]) == 0)
+	if (player->res.res[i] && strcmp(player->tab[1], res_name[i]) == 0)
 	  {
 	    server->map[player->y][player->x].res.res[i] += 1;
 	    player->res.res[i] -= 1;
