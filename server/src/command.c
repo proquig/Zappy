@@ -46,16 +46,17 @@ void 		inventaire(t_server *server, t_player *player)
 
 void		prend(t_server *server, t_player *player)
 {
-  int 		i;
+    t_action *action = get_current_action(player->actions);
+    int 		i;
   int 		err;
 
   err = 1;
   i = -1;
-  if (player->tab[1])
+  if (action->cmd && action->cmd[1])
     {
       while (++i < RES_SIZE)
 	if (server->map[player->y][player->x].res.res[i] &&
-		  strcmp(player->tab[1], res_name[i]) == 0)
+		  strcmp(action->cmd[1], res_name[i]) == 0)
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
 	    player->res.res[i] += 1;
@@ -72,7 +73,7 @@ void 		pose(t_server *server, t_player *player)
 
   err = 1;
   i = -1;
-  if (player->tab[1])
+  if (player->tab && player->tab[1])
     {
       while (++i < RES_SIZE)
 	if (player->res.res[i] && strcmp(player->tab[1], res_name[i]) == 0)

@@ -4,7 +4,6 @@
 
 #include "server.h"
 #include "player.h"
-#include "get_next_line.h"
 
 int 	set_fds(t_server *server)
 {
