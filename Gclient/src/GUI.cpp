@@ -83,6 +83,13 @@ bool    GUI::loadMeshesAndTextures()
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(PHIRAS, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(THYSTAME, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
     this->_playersMeshes[0] = this->_smgr->getMesh("modelsAndTextures/Players/Level1/Brendan/Brendan_ColladaMax.DAE");
+    this->_playersMeshes[1] = this->_playersMeshes[0];
+    this->_playersMeshes[2] = this->_playersMeshes[0];
+    this->_playersMeshes[3] = this->_playersMeshes[0];
+    this->_playersMeshes[4] = this->_playersMeshes[0];
+    this->_playersMeshes[5] = this->_playersMeshes[0];
+    this->_playersMeshes[6] = this->_playersMeshes[0];
+    this->_playersMeshes[7] = this->_playersMeshes[0];
     
     std::map<RESSOURCES, IMesh *>::iterator it = this->_ressourcesMeshes.begin();
     while (it != this->_ressourcesMeshes.end())

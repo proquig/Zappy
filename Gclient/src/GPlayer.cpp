@@ -58,3 +58,8 @@ void    GPlayer::setMesh(IMesh *newMesh)
 {
     this->_mesh = newMesh;
 }
+
+void    GPlayer::setLvl(int lvl)
+{
+    this->_lvl = lvl;
+}

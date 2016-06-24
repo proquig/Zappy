@@ -25,6 +25,7 @@ class   GPlayer
     void    setY(int newY);
     void    setDirection(Direction newDirection);
     void    setMesh(IMesh *newMesh);
+    void    setLvl(int lvl);
 };
 
 #endif

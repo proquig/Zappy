@@ -49,7 +49,7 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
     this->_func_ptrs.insert(std::pair<std::string, f>("pin", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pex", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pbc", &GCommunicator::sgtf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("pic", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pic", &GCommunicator::picf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pie", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pfk", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pdr", &GCommunicator::sgtf));
@@ -162,4 +162,19 @@ void    GCommunicator::ppof(std::string &line)
         curPlayer->setDirection(LEFT);
     else
         curPlayer->setDirection((Direction)std::stoi(words[3]));
+}
+
+void    GCommunicator::picf(std::string &line)
+{
+    std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
+    std::vector<std::string>::iterator  it = words.begin();
+    GPlayer *curPlayer;
+
+    it += 3;
+    while (it != words.end())
+    {
+        curPlayer = this->_gui->getPlayer(std::stoi(*it));
+        curPlayer->setLvl(std::stoi(words[2]));
+        ++it;
+    }    
 }

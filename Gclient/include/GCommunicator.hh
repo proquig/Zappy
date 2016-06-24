@@ -32,6 +32,7 @@ class   GCommunicator
     void    pdif(std::string &line);
     void    segf(std::string &line);
     void    ppof(std::string &line);
+    void    picf(std::string &line);
 };
 
 #endif
