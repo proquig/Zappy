@@ -42,7 +42,6 @@ class GUI
     Mutex               _mutex;
     
 public:
-
     GUI();
     ~GUI();
     void    launch();
