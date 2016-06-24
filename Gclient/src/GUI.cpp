@@ -143,9 +143,15 @@ Board       *GUI::getBoard()
 
 void    GUI::initMap()
 {
-    this->_map = new t_square*[this->_sizeY];
-    for (int i = 0; i < this->_sizeY; ++i)
-        this->_map[i] = new t_square[this->_sizeX];
+    int i = 0;
+    this->_map = new t_square*[this->_sizeY + 2];
+    for (int i = 0; i < this->_sizeY + 2; ++i)
+        this->_map[i] = new t_square[this->_sizeX + 2];
+/*    while (i < this->_sizeY + 2)
+    {
+        this->_map[i] = new t_square[this->_sizeX + 2];
+        i++;
+    }*/
 }
 
 void    GUI::refreshMap(t_square const &toRefresh)
