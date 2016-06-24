@@ -46,17 +46,18 @@ void 		inventaire(t_server *server, t_player *player)
 
 void		prend(t_server *server, t_player *player)
 {
-    t_action *action = get_current_action(player->actions);
-    int 		i;
+  int 		i;
   int 		err;
+  t_action *action;
 
   err = 1;
   i = -1;
-  if (action->cmd && action->cmd[1])
+  action = get_current_action(player->actions);
+  if (action && action->cmd && action->cmd[1])
     {
       while (++i < RES_SIZE)
-	if (server->map[player->y][player->x].res.res[i] &&
-		  strcmp(action->cmd[1], res_name[i]) == 0)
+	if (server->map[player->y][player->x].res.res[i]
+        && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
 	    player->res.res[i] += 1;
@@ -70,13 +71,15 @@ void 		pose(t_server *server, t_player *player)
 {
   int 		i;
   int 		err;
+  t_action	*action;
 
   err = 1;
   i = -1;
-  if (player->tab && player->tab[1])
+  action = get_current_action(player->actions);
+  if (action && action->cmd && action->cmd[1])
     {
       while (++i < RES_SIZE)
-	if (player->res.res[i] && strcmp(player->tab[1], res_name[i]) == 0)
+	if (player->res.res[i] && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] += 1;
 	    player->res.res[i] -= 1;

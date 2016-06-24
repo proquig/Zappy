@@ -73,7 +73,7 @@ int     analyse_commande(t_server *server, t_player *player)
     if (player->teams.id == -1)
         if (!set_team(server, player))
 		{
-            dprintf(player->fd, "ko2\n");
+            dprintf(player->fd, "ko\n");
             return (-1);
         }
 		else
@@ -95,7 +95,7 @@ int     analyse_commande(t_server *server, t_player *player)
         }
 
         if (!is_in_command(player->tab[0]))
-		  dprintf(player->fd,"ko1\n");
+		  dprintf(player->fd,"ko\n");
     }
     else
         exec_graphic_cmd(server, player);

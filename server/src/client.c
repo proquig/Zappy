@@ -82,8 +82,8 @@ void			client_read(t_server *server, int fd)
 		  close_client(server, fd);
 		//free(player->cmd);
 		//free_tab(player->tab);
-		player->cmd = NULL;
-		player->tab = NULL;
+		//player->cmd = NULL;
+		//player->tab = NULL;
 	  }
 	  else
 	  {
