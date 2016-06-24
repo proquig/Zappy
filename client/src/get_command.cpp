@@ -18,22 +18,22 @@ void    IA::get_command(Client *client)
   map.insert(std::make_pair(std::string("mort\n"), &IA::dead));
   while (client->mygetline(this->_command))
     {
-      std::cout << "\E[31;1mRECEIVED_1 : " << this->getCommand() << "\E[m";
+      this->print(this->getCommand(), 1);
       if (map.count(this->getCommand()))
         {
             (this->*map.at(this->getCommand()))(client);
-            this->setCommand("");
+            this->set_command("");
         }
       else if (this->getCommand() == "ok\n" || this->getCommand() == "ko\n")
         {
-            this->setCommand("");
+            this->set_command("");
             this->voir(client);
         }
       else
         {
             this->parse_command(client);
-            this->setCommand("");
+            this->set_command("");
         }
-      this->setCommand("");
+      this->set_command("");
     }
 }

@@ -8,12 +8,17 @@
 // Last update Wed Jun 15 22:33:05 2016 jacque_x
 //
 
-#include "Client.hpp"
+#include "IA.hpp"
 
 void            error(const char *msg)
 {
   fprintf(stderr, "\033[31m%s\033[0m\n", msg);
   exit(0);
+}
+
+void    IA::print(std::string command, int i)
+{
+  std::cout << "\E[31;1mRECEIVED_" << i << " : " << command << "\E[m";
 }
 
 void	verif_params(char **av)

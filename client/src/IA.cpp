@@ -12,8 +12,8 @@
 
 IA::IA()
 { 
-  this->_lvl = 1;
-  this->_ressources = {1, 0, 0, 0, 0, 0, 0};
+  this->set_lvl(1);
+  this->set_ressources({1, 0, 0, 0, 0, 0, 0});
 }
 
 IA::~IA()
@@ -26,16 +26,16 @@ void	IA::init_team(Client *client)
   std::cout << "MESSAGE SEND : " << client->get_team_name();
   send(client->get_sock(), client->get_team_name().c_str(), strlen(client->get_team_name().c_str()), 0);
   client->mygetline(this->_command);
-  std::cout << "\E[31;1mRECEIVED : " << this->getCommand() << "\E[m";
+  this->print(this->getCommand(), 2);
   client->mygetline(command1);
-  std::cout << "\E[31;1mRECEIVED : " << command1 << "\E[m";
+  this->print(command1, 3);
   this->voir(client);
 }
 
 void	IA::dead(Client *client)
 {
   (void)client;
-  std::cout << "\E[31;1mRECEIVED : mort\E[m\n";
+  this->print("mort", 4);
   exit (42);
 }
 
@@ -46,15 +46,15 @@ bool	IA::full_or_not(Client *client, std::vector<std::vector<int>> tab_lvl)
   (void)client;
 
   n = 1;
-  if (this->_lvl == 1)
+  if (this->get_lvl() == 1)
     x = 0;
   else
-    x = this->_lvl - 1;
+    x = this->get_lvl() - 1;
   while (n != 6)
     {
       if (tab_lvl[x][n] != 0)
 	  {
-	    if (this->_ressources[n] >= tab_lvl[x][n])
+	    if (this->get_ressources()[n] >= tab_lvl[x][n])
           n++;
 	    else
           return (false);
@@ -62,9 +62,8 @@ bool	IA::full_or_not(Client *client, std::vector<std::vector<int>> tab_lvl)
       else
         n++;
     }
-  if (this->_ressources[0] == tab_lvl[x][0])
-    return (true);
-  return (false);
+  std::cout << "il y a " << this->get_ressources()[0] << " joueurs sur ma case\n";
+  return (this->get_ressources()[0] == tab_lvl[x][0]);
 }
 
 void	IA::put_all(Client *client, std::vector<std::vector<int>> tab_lvl)
@@ -73,22 +72,22 @@ void	IA::put_all(Client *client, std::vector<std::vector<int>> tab_lvl)
   int	i;
 
   i = 1;
-  if (this->_lvl == 1)
+  if (this->get_lvl() == 1)
     x = 0;
   else
-    x = this->_lvl - 1;
-  while (this->_ressources[i] != (this->_ressources[i] - tab_lvl[x][i]))
+    x = this->get_lvl() - 1;
+  while (this->get_ressources()[i] != (this->get_ressources()[i] - tab_lvl[x][i]))
     {
       pose(client, i);
       client->mygetline(this->_command);
-      std::cout << "\E[31;1mRECEIVED : " << this->getCommand() << "\E[m";
+      this->print(this->getCommand(), 5);
       if (this->getCommand() == "mort\n")
         this->dead(client);
       i++;
     }
 }
 
-void    IA::coord(Client *client)
+void    IA::incant_or_not(Client *client)
 {
   std::srand((unsigned)time(0));
   std::vector<std::vector<int>> tab_lvl = {
@@ -101,13 +100,13 @@ void    IA::coord(Client *client)
           {6, 2, 2, 2, 2, 2, 1}
   };
 
-  if (full_or_not(client, tab_lvl) == true)
+  if (full_or_not(client, tab_lvl))
   {
     this->put_all(client, tab_lvl);
     this->incant(client);
   }
   else
-    this->random_number(client, 3);
+    this->random_number(client, 2);
 }
 
 void     IA::random_number(Client *client, int n)
@@ -115,17 +114,23 @@ void     IA::random_number(Client *client, int n)
   int x;
 
   x = (rand() % n) + 1;
-  if (x == 1)
-    this->avance(client);
+  if (this->get_voir().size() >= 3)
+  {
+    if (this->get_voir()[2].length() >= 1)
+      this->avance(client);
+    else if (x == 2)
+      this->avance(client);
+    else
+      this->gauche(client);
+  }
   else if (x == 2)
-    this->droite(client);
+    this->avance(client);
   else
     this->gauche(client);
 }
 
 void    IA::what_i_do(Client *client, std::vector<std::string> tab)
 {
-  std::string command;
   unsigned int	i;
   unsigned int	x;
 
@@ -143,14 +148,14 @@ void    IA::what_i_do(Client *client, std::vector<std::string> tab)
   while (i != (tab.size()))
     {
       this->prendre(client, tab[i]);
-      client->mygetline(command);
-      if (command == "mort\n")
+      client->mygetline(this->_command);
+      if (this->getCommand() == "mort\n")
         dead(client);
-      std::cout << "\E[31;1mRECEIVED_4 : " << command << "\E[m";
-      command = "";
+      this->print(this->getCommand(), 6);
+      this->set_command("");
       i++;
     }
-  this->coord(client);
+  this->incant_or_not(client);
 }
 
 void    IA::parse_command(Client *client)
@@ -160,29 +165,36 @@ void    IA::parse_command(Client *client)
   std::string               tok1;
   std::vector<std::string>  tab;
   std::vector<std::string>  tab1;
+  unsigned int                       i;
+  int                       x;
 
+  x = 0;
+  i = 0;
   while (std::getline(stream, tok, ','))
     tab.push_back(tok);
+  this->set_voir(tab);
   this->set_ressource_parcer(tab[0]);
   std::stringstream         stream1(this->get_ressource_parcer());
   while (std::getline(stream1, tok1, ' '))
     tab1.push_back(tok1);
+  while (i != tab1.size())
+  {
+    if (tab1[i] == "joueur")
+      x++;
+    i++;
+  }
+  std::cout << "il y  a " << x << " joueurs sur ma case\n";
   if (tab1.size() != 2)
     this->what_i_do(client, tab1);
   else
-    this->random_number(client, 3);
+    this->random_number(client, 2);
 }
 
 void	IA::voir(Client *client)
 {
+
   std::cout << "Message send\t:\tvoir\r\n";
   send(client->get_sock(), "voir\n", strlen("voir\n"), 0);
-}
-
-void     IA::inventaire(Client *client)
-{
-  std::cout << "Message send\t:\tinventaire\r\n";
-  send(client->get_sock(), "inventaire\r\n", strlen("inventaire\r\n"), 0);
 }
 
 void    IA::avance(Client *client)
@@ -206,13 +218,13 @@ void    IA::gauche(Client *client)
 void    IA::prendre(Client *client, std::string obj)
 {
   std::string take;
-  this->table_res = {"joueur", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame"};
+  this->set_table_res({"joueur", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame"});
   int i;
 
   i  = -1;
   while (++i != 6)
   {
-    if (obj == this->table_res[i])
+    if (obj == this->get_table_res()[i])
       this->_ressources[i]++;
   }
   take = "prend " + obj + "\r\n";
@@ -236,7 +248,7 @@ void    IA::pose(Client *client, int i)
     if (n == i)
     {
       this->_ressources[n]--;
-      put = "pose " + this->table_res[n] + "\r\n";
+      put = "pose " + this->get_table_res()[n] + "\r\n";
     }
   }
   std::cout << "Message send\t:\t" << put;
@@ -265,29 +277,14 @@ int    IA::incant(Client *client)
 
 /* Getter Setter */
 
-std::string IA::get_ressource_parcer() const
-{
-    return this->_ressource_parcer;
-}
-
 void IA::set_ressource_parcer(std::string _ressource_parcer)
 {
-    this->_ressource_parcer = _ressource_parcer;
+  this->_ressource_parcer = _ressource_parcer;
 }
 
-void IA::setCommand(std::string command)
+void IA::set_command(std::string command)
 {
   this->_command = command;
-}
-
-std::string IA::getCommand() const
-{
-  return _command;
-}
-
-int	IA::get_lvl() const
-{
-  return _lvl;
 }
 
 void	IA::set_lvl(int _lvl)
@@ -295,32 +292,47 @@ void	IA::set_lvl(int _lvl)
   IA::_lvl = _lvl;
 }
 
-std::vector<int>	IA::get_ressources() const
-{
-  return _ressources;
-}
-
 void	IA::set_ressources(std::vector<int> _ressources)
 {
   this->_ressources = _ressources;
 }
 
-int 	IA::get_food() const
+void    IA::set_table_res(std::vector<std::string> table_res)
 {
-  return _food;
+  this->_table_res = table_res;
 }
 
-void 	IA::set_food(int _food)
+void    IA::set_voir(std::vector<std::string> tab)
 {
-  IA::_food = _food;
+  this->_tab_voir = tab;
 }
 
-std::string IA::get_team_name() const
+int	IA::get_lvl() const
 {
-  return _team_name;
+  return _lvl;
 }
 
-void 	IA::set_team_name(std::string &_team_name)
+std::string IA::getCommand() const
 {
-  IA::_team_name = _team_name;
+  return _command;
+}
+
+std::string IA::get_ressource_parcer() const
+{
+  return this->_ressource_parcer;
+}
+
+std::vector<int>	IA::get_ressources() const
+{
+  return _ressources;
+}
+
+std::vector<std::string> IA::get_table_res() const
+{
+  return this->_table_res;
+}
+
+std::vector<std::string>  IA::get_voir() const
+{
+  return this->_tab_voir;
 }
