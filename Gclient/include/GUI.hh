@@ -6,12 +6,14 @@
 #include <array>
 #include <iterator>
 #include <unistd.h>
+#include <pthread.h>
 #include "Board.hh"
 #include "GPlayer.hh"
 #include "GMap.hh"
 #include "irrlicht.h"
 #include "common.h"
 #include "driverChoice.h"
+#include "Mutex.hh"
 
 using namespace irr;
 using namespace core;
@@ -37,8 +39,10 @@ class GUI
     std::vector<GPlayer *> _players;
     int                 _sizeX;
     int                 _sizeY;
+    Mutex               _mutexes[2];
     
 public:
+
     GUI();
     ~GUI();
     void    launch();

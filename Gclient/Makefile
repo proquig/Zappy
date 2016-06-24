@@ -15,6 +15,7 @@ SRC	=	src/main.cpp	\
 		src/GPlayer.cpp	\
 		src/GMap.cpp	\
 		src/Tool.cpp	\
+		src/Mutex.cpp	\
 		src/GCommunicator.cpp
 
 OBJ	=	$(SRC:.cpp=.o)

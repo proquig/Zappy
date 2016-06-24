@@ -2,16 +2,16 @@
 
 GUI::GUI()
 {
-  IrrlichtDevice *nulldevice = createDevice(EDT_NULL);
-  this->_deskres = nulldevice->getVideoModeList()->getDesktopResolution();
-  nulldevice->drop();
+    IrrlichtDevice *nulldevice = createDevice(EDT_NULL);
+    this->_deskres = nulldevice->getVideoModeList()->getDesktopResolution();
+    nulldevice->drop();
 
-  this->_driverType = driverChoiceConsole();
-  if (this->_driverType == video::EDT_COUNT || this->_driverType == video::EDT_NULL)
-  {
-    std::cout << "This driver is not available" << std::endl;
-    exit(EXIT_SUCCESS);
-  }
+    this->_driverType = driverChoiceConsole();
+    if (this->_driverType == video::EDT_COUNT || this->_driverType == video::EDT_NULL)
+    {
+        std::cout << "This driver is not available" << std::endl;
+        exit(EXIT_SUCCESS);
+    }
 }
 
 GUI::~GUI()
@@ -161,18 +161,25 @@ void    GUI::refreshMap(t_square const &toRefresh)
 void    GUI::refreshGame()
 {
     this->_gMap->setMap(this->_map);
+    this->_mutexes[0].lock();
     this->_gMap->refreshGMapPlayers(this->_players);
+    this->_mutexes[0].unlock();
+    this->_mutexes[1].lock();
     this->_gMap->refreshGMapRes();
+    this->_mutexes[1].unlock();
 }
 
 void    GUI::addPlayer(t_player const &newPlayer)
 {
+    this->_mutexes[0].lock();
     GPlayer *playerToAdd = new GPlayer(newPlayer, this->_playersMeshes[0]);
     this->_players.push_back(playerToAdd);
+    this->_mutexes[0].unlock();
 }
 
 void    GUI::removePlayer(int id)
 {
+    this->_mutexes[0].lock();
     std::vector<GPlayer *>::iterator    it = this->_players.begin();
 
     while (it != this->_players.end())
@@ -181,6 +188,7 @@ void    GUI::removePlayer(int id)
             this->_players.erase(it);
         ++it;
     }
+    this->_mutexes[0].unlock();
 }
 
 void    GUI::setSizeX(int sizeX)

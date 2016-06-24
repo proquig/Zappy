@@ -8,12 +8,13 @@
 #include "SocketBuf.hpp"
 #include "Tool.hh"
 
+
+
 class   GCommunicator
-{
-    
+{   
     typedef void (GCommunicator::*f)(std::string&);
    
-    GUI *_gui;
+    GUI             *_gui;
     Socket          _socket;
     fd_set          _readf;
     struct timeval  _tv;
