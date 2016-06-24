@@ -51,33 +51,48 @@ char            *cat_buff(char *str, char *buff)
 
 void			client_read(t_server *server, int fd)
 {
-  char 			*buff;
+  int 			i;
+  int 			j;
+  char			buff[1024];
+  ssize_t 		size;
   t_player		*player;
 
-  // TODO: getnextline
   // TODO: command ko
-  if ((buff = get_next_line(fd))
-	  && (player = search_player(server->players, fd)))
-  {
-	player->cmd = cat_buff(player->cmd, buff);
-	if (buff[strlen(buff) - 1] == '\n')
-	{
-	  printf("Send by %d: %s\r\n", fd, player->cmd);
-	  player->tab = get_cmds(player->cmd, " \t\r\n");
-	  if (analyse_commande(server, player) == -1)
-		close_client(server, fd);
-	  if (player->cmd)
-		free(player->cmd);
-	  player->cmd = NULL;
-	  //if (player->tab)
-		//free_tab(player->tab);
-	  // WHY ; WTF ?
-	  player->tab = NULL;
-	  // TODO free player->tab
-	}
-  }
-  else
+  // TODO: free
+  i = -1;
+  if (!(player = search_player(server->players, fd))
+	|| (size = read(fd, buff, 1023)) < 0)
 	close_client(server, fd);
+  buff[size] = 0;
+  while (size && (i == - 1 || i != size))
+  	{
+	  j = i + 1;
+	  printf("HELLO\n");
+	  while (++i < size && buff[i] && buff[i] != '\n');
+	  if (player->cmd)
+	  	printf("==>%s\n", player->cmd);
+	  if (buff[i])
+	  {
+		printf("IN THAT BITCH\n");
+		buff[i] = 0;
+		player->cmd = cat_buff(player->cmd, &buff[j]);
+		printf(">>%s<<\n", player->cmd);
+		player->tab = get_cmds(player->cmd, " \t\r\n");
+		printf("TAB[0] = %s TAB[1] = %s\n", player->tab[0], player->tab[1]);
+		if (analyse_commande(server, player) == -1)
+		  close_client(server, fd);
+		//free(player->cmd);
+		//free_tab(player->tab);
+		player->cmd = NULL;
+		player->tab = NULL;
+	  }
+	  else
+	  {
+		printf("I PASS HERE\n");
+		buff[i] = 0;
+		player->cmd = cat_buff(player->cmd, &buff[j]);
+	  }
+	}
 }
 
 void 			client_write(t_server *server, int fd)
