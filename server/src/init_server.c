@@ -36,7 +36,7 @@ int 			start_server(t_server *server)
       tv.tv_sec = 0;
       tv.tv_usec = (1 / server->param.t * 1000000);
       fd_max = set_fds(server);
-      if (select(fd_max + 1, &server->fds.fds_read, NULL, NULL, &tv) == -1)
+      if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
         perror("select"); // SHUTDOWN
 	  handle_clients(server);
     }

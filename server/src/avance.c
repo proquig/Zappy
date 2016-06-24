@@ -38,10 +38,10 @@ void		avance(t_server *server, t_player *player)
   int 		i;
 
   i = -1;
-    fprintf(stderr, "BEFORE => %i %i\n", player->x, player->y);
+//    fprintf(stderr, "BEFORE => %i %i\n", player->x, player->y);
   while (avance1[++i].ptr)
     if (avance1[i].str == player->dir)
       avance1[i].ptr(server, player);
-    fprintf(stderr, "Player nb : %i y=%i x=%i\n", player->fd, player->y, player->x);
+  //  fprintf(stderr, "Player nb : %i y=%i x=%i\n", player->fd, player->y, player->x);
   dprintf(player->fd, "ok\n");
 }

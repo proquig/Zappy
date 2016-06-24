@@ -19,7 +19,7 @@
 #include			<sys/time.h>
 #include			"common.h"
 
-# define			MAX_FD 100
+# define			MAX_FD 1023
 # define			GRAPHIC 900
 
 typedef void		(*fct)(t_server *server, int fd);

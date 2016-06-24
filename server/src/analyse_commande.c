@@ -62,7 +62,7 @@ int     is_in_command(char *str)
     return (0);
 }
 
-int	analyse_commande(t_server *server, t_player *player)
+int     analyse_commande(t_server *server, t_player *player)
 {
   int	i;
 
