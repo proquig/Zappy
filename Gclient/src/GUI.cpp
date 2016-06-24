@@ -197,3 +197,16 @@ t_square    **GUI::getMap()
 {
     return (this->_map);
 }
+
+GPlayer     *GUI::getPlayer(int id)
+{
+    std::vector<GPlayer *>::iterator    it = this->_players.begin();
+
+    while (it != this->_players.end())
+    {
+        if ((*it)->getId() == id)
+            return (*it);
+        ++it;
+    }
+    return (nullptr);
+}

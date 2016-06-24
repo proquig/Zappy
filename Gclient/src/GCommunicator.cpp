@@ -44,7 +44,7 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
     this->_func_ptrs.insert(std::pair<std::string, f>("pnw", &GCommunicator::pnwf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pdi", &GCommunicator::pdif));
     this->_func_ptrs.insert(std::pair<std::string, f>("seg", &GCommunicator::segf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("ppo", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("ppo", &GCommunicator::ppof));
     this->_func_ptrs.insert(std::pair<std::string, f>("plv", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pin", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pex", &GCommunicator::sgtf));
@@ -149,3 +149,17 @@ void    GCommunicator::segf(std::string &line)
     exit(EXIT_SUCCESS);
 }
 
+void    GCommunicator::ppof(std::string &line)
+{
+    std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
+    GPlayer *curPlayer = this->_gui->getPlayer(std::stoi(words[0]));
+
+    curPlayer->setX(std::stoi(words[1]));
+    curPlayer->setY(std::stoi(words[2]));
+    if (std::stoi(words[3]) == 1)
+        curPlayer->setDirection(RIGHT);
+    else if (std::stoi(words[3]) == 3)
+        curPlayer->setDirection(LEFT);
+    else
+        curPlayer->setDirection((Direction)std::stoi(words[3]));
+}

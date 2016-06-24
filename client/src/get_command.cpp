@@ -5,35 +5,35 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Fri Jun 17 14:44:55 2016 jacque_x
-// Last update Sat Jun 18 13:05:49 2016 jacque_x
+// Last update Tue Jun 21 14:06:37 2016 jacque_x
 //
 
 #include "IA.hpp"
 
 void    IA::get_command(Client *client)
 {
-  std::string command;
   action map;
 
-  map.insert(std::make_pair(std::string("BIENVENUE\n"), &IA::team));
-  map.insert(std::make_pair(std::string("12 23\n"), &IA::coord));
+  map.insert(std::make_pair(std::string("BIENVENUE\n"), &IA::init_team));
   map.insert(std::make_pair(std::string("mort\n"), &IA::dead));
-  map.insert(std::make_pair(std::string("ok\n"), &IA::ok));
-  while (client->mygetline(command))
-  {
-    std::cout << "Server send : " << command << std::endl;
-    if (command.length() == 2)
-      std::cout << " ";
-    else if (map.count(command))
+  while (client->mygetline(this->_command))
     {
-      for (action::iterator it = map.begin(); it != map.end(); ++it)
-      {
-        if (it->first == command)
-          (this->*it->second)(client);
-      }
+      std::cout << "\E[31;1mRECEIVED_1 : " << this->getCommand() << "\E[m";
+      if (map.count(this->getCommand()))
+        {
+            (this->*map.at(this->getCommand()))(client);
+            this->setCommand("");
+        }
+      else if (this->getCommand() == "ok\n" || this->getCommand() == "ko\n")
+        {
+            this->setCommand("");
+            this->voir(client);
+        }
+      else
+        {
+            this->parse_command(client);
+            this->setCommand("");
+        }
+      this->setCommand("");
     }
-    else
-      this->parse_command(client, 0);
-    command = "";
-  }
 }

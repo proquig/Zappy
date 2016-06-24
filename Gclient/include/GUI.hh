@@ -59,6 +59,7 @@ public:
     void        setSizeY(int sizeY);
     t_square    **getMap();
     void        removePlayer(int id);
+    GPlayer     *getPlayer(int id);
 };
 
 #endif
