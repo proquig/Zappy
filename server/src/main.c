@@ -9,6 +9,7 @@
 */
 
 #include <time.h>
+#include <signal.h>
 #include "server.h"
 #include "map.h"
 
@@ -82,6 +83,7 @@ int		main(int ac, const char **av)
   init_env(&server.fds);
   if (!set_params(av, &server.param))
     error("Wrong args");
+  signal(SIGPIPE, SIG_IGN);
   zappy(&server);
   return (0);
 }
