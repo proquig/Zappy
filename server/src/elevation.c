@@ -38,7 +38,6 @@ int     up_players(t_player *root, t_player *t)
         }
         tmp = tmp->next;
     }
-    dprintf(t->fd,"ok\n");
     return (i);
 }
 
@@ -53,6 +52,23 @@ int     tell_to_players(t_player *root, t_player *t)
     {
         if (tmp->x == t->x && tmp->y == t->y && tmp->lvl == t->lvl) {
             dprintf(t->fd,"elevation en cours\n");
+        }
+        tmp = tmp->next;
+    }
+    return (i);
+}
+
+int     tell_ko_players(t_player *root, t_player *t)
+{
+    t_player * tmp;
+    int         i;
+
+    tmp = root;
+    i = 0;
+    while (tmp)
+    {
+        if (tmp->x == t->x && tmp->y == t->y && tmp->lvl == t->lvl) {
+            dprintf(t->fd,"ko\n");
         }
         tmp = tmp->next;
     }
@@ -74,15 +90,16 @@ int     incantation_is_possible(t_server *server, t_player *player)
 
     i = 1;
     if (inc[player->lvl - 1].nb_player !=
-        players_on_square(server->players,
-                          player->x, player->y, player->lvl))
+            (players_on_square(server->players,
+                          player->x, player->y, player->lvl)))
     {
         dprintf(player->fd, "ko\n");
         return (0);
     }
     while (i < 7 && server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res.res[i])
         i++;
-    printf("blop %i\n",i );
+    if (i != 7)
+        tell_ko_players(server->players, player);
     return (i == 7);
 }
 

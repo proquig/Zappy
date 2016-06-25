@@ -94,6 +94,16 @@ void			client_read(t_server *server, int fd)
 	}
 }
 
+void  printab2(char **t)
+{
+    int i = 0;
+
+    while (t[i])
+    {
+        printf("LES ACTIONS : ~%s~\n", t[i++]);
+    }
+}
+
 void 			client_write(t_server *server, int fd)
 {
   t_player		*player;
@@ -102,13 +112,22 @@ void 			client_write(t_server *server, int fd)
   i = -1;
   if ((player = search_player(server->players, fd)))
 	while (++i < NB_ACTIONS)
-	  if (player->actions[i].f && !action_is_waiting(&player->actions[i].time))
-	  {
-		player->actions[i].exec = 1;
-		player->actions[i].f(server, player);
-		free_tab(player->actions[i].cmd);
-		init_action(&player->actions[i]);
-	  }
+    {
+/*        printf("BEFORE %p, %d, %d\n", player->actions[i].f, player->actions[i].exec, player->actions[i].time.tv_sec);
+        if (player->cmd && player->cmd[0])
+
+        printf(">>>>%s\n", player->actions[i].cmd[0]);*/
+        if (player->actions[i].f && !action_is_waiting(&player->actions[i].time))
+        {
+            player->actions[i].exec = 1;
+/*            printab2(player->actions[i].cmd);
+            printf("ACTION EXECUTE : #%s#\n", player->actions[i].cmd[0]);*/
+            player->actions[i].f(server, player);
+            free_tab(player->actions[i].cmd);
+            init_action(&player->actions[i]);
+        }
+//        printf("AFTER %p, %d, %d\n", player->actions[i].f, player->actions[i].exec, player->actions[i].time.tv_sec);
+    }
 }
 
 int			add_client(t_fds *fds, int fd)

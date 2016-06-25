@@ -65,28 +65,6 @@ void 		zappy(t_server *server)
         put_random_ressource(server->map, server->param.x, server->param.y);
         put_random_ressource(server->map, server->param.x, server->param.y);
         put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
       }
     }
   printf("\033[32;1mGenerating world...done\033[0m\n");

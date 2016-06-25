@@ -87,6 +87,8 @@ int     analyse_commande(t_server *server, t_player *player)
                    tell_to_players(server->players, player);
                    set_action(server, player, commande[9].time, commande[9].f);
                }
+                else
+                   tell_ko_players(server->players, player);
                 return 0;
             }
             else if (!strcmp(commande[i].cmd, player->tab[0]))

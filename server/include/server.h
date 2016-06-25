@@ -120,4 +120,6 @@ t_action        	*get_current_action(t_action actions[10]);
 void        		set_action(t_server *server, t_player *player, int time,
 							   void (*fn)(t_server *, t_player *));
 
+int     tell_ko_players(t_player *root, t_player *t);
+
 #endif /* _ZAPPY_SERVER_H_ */
