@@ -58,6 +58,17 @@ void 			put_random_ressource(t_square **map, int size_x, int size_y)
   map[y][x].res.res[rand() % RES_SIZE]++;
 }
 
+
+void 			put_food_ressource(t_square **map, int size_x, int size_y)
+{
+    unsigned int		x;
+    unsigned int		y;
+
+    x = rand() % size_x;
+    y = rand() % size_y;
+    map[y][x].res.res[FOOD]++;
+}
+
 void			print_square_contents(t_server *server, t_player *player, t_square *square)
 {
   int 			i;

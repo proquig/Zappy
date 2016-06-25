@@ -12,16 +12,16 @@
 
 t_player		*init_player(int fd, t_param *param)
 {
+    static int x = 0;
   t_player		*player;
   int			i;
 
   i = 0;
-  srand(0);
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->fd = fd;
   player->x = rand() % param->x;
-  player->y = rand() % param->y;
+  player->y = rand() * x++ % param->y;
   player->dir = (enum Direction)(rand() % 4);
   player->teams.id = -1;
   player->teams.max = param->c;
@@ -66,6 +66,22 @@ int 			len_players(t_player *root)
         tmp = tmp->next;
     }
     return (i);
+}
+
+int			get_team_max(t_player *root, int id, t_param param)
+{
+    t_player		*tmp;
+    int             max;
+
+    tmp = root;
+   max = param.c;
+    while (tmp)
+    {
+        if (tmp->teams.id == id)
+            max = tmp->teams.max > param.c ? tmp->teams.max : param.c;
+        tmp = tmp->next;
+    }
+    return (max);
 }
 
 void			update_team(t_player *root, int id)

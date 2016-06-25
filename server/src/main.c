@@ -62,7 +62,7 @@ void 		zappy(t_server *server)
         put_random_ressource(server->map, server->param.x, server->param.y);
         put_random_ressource(server->map, server->param.x, server->param.y);
         put_random_ressource(server->map, server->param.x, server->param.y);
-      }
+        }
     }
   printf("\033[32;1mGenerating world...done\033[0m\n");
   start_server(server);
@@ -71,8 +71,9 @@ void 		zappy(t_server *server)
 int		main(int ac, const char **av)
 {
   t_server	server;
+    struct timeval val;
 
-  srand(time(NULL));
+  srand(gettimeofday(&val, NULL) * time(NULL));
   if (ac < 7)
     error("argv");
   init_params(&server.param);

@@ -28,9 +28,10 @@ int 	set_team(t_server *server, t_player *player)
   int	i;
 
   i = -1;
+    //PLAYERUPDATE
   while (server->param.n[++i] && player->teams.id == -1)
     if (strcmp(server->param.n[i], player->tab[0]) == 0 &&
-    size_player(server->players, i) < server->param.c)
+    size_player(server->players, i) < get_team_max(server->players, i, server->param))
       {
           player->teams.id = i;
           player->teams.max = server->param.c;

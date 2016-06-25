@@ -129,4 +129,6 @@ int             	server_is_running(int check);
 void            	handle_signal(int signal);
 void            	server_shutdown(t_server *server, char *msg);
 
+int			get_team_max(t_player *root, int id, t_param param);
+
 #endif /* _ZAPPY_SERVER_H_ */

@@ -74,15 +74,21 @@ void 			start_server(t_server *server)
   server->players = NULL;
   server->loop.tv_sec = 0;
   server->loop.tv_usec = 0;
+    int res = 0;
   while (server_is_running(1))
-    {
+  {
+      res++;
 	  tv.tv_sec = 0;
       tv.tv_usec = (int)(1.0 / (double)server->param.t * FREQUENCY);
       fd_max = set_fds(server);
       if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
         server_shutdown(server, "select");
 	  handle_clients(server);
-    }
+      if (res % 100 == 0) {
+          res = 0;
+          put_food_ressource(server->map, server->param.x, server->param.y);
+      }
+  }
   server_shutdown(server, NULL);
 }
 

@@ -98,15 +98,10 @@ void broadcast(t_server *server, t_player *player)
 
 void forker(t_server *server, t_player *player)
 {
-    (void)player;
-    (void)player;
-
     struct timeval tv;
 
     send_msg(server, player->fd, "ok\n");
-    /*set_action_time(&tv, 600, server->param.t);
-*/
-
+    /*set_action_time(&tv, 600, server->param.t);*/
     update_team(server->players, player->teams.id);
 }
 

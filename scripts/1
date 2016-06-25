@@ -1,2 +1,2 @@
-connect: Connection refused
+connect: Connection timed out
 fdopen: Bad file descriptor
