@@ -26,12 +26,14 @@ int 	set_fds(t_server *server)
 
 void			close_client(t_server *server, int fd)
 {
+  if (!fd || fd == -1)
+	return ;
   printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
-    FD_CLR(fd, &server->fds.fds_read);
-    FD_CLR(fd, &server->fds.fds_write);
-    close(fd);
-    server->fds.fd_type[fd] = FD_FREE;
+  FD_CLR(fd, &server->fds.fds_read);
+  FD_CLR(fd, &server->fds.fds_write);
+  close(fd);
+  server->fds.fd_type[fd] = FD_FREE;
 }
 
 char            *cat_buff(char *str, char *buff)
@@ -129,20 +131,17 @@ void 			client_write(t_server *server, int fd)
     }
 }
 
-int			add_client(t_fds *fds, int fd)
+int			add_client(t_server *server, int fd)
 {
   struct sockaddr_in	client_sin;
   unsigned int 		client_sin_len;
 
   client_sin_len = sizeof(client_sin);
   if ((fd = accept(fd, (struct sockaddr *) &client_sin, &client_sin_len)) == -1)
-  {
-	perror("accept");
-	exit(0);
-  }
-  fds->fd_type[fd] = FD_CLIENT;
-  fds->fct_read[fd] = client_read;
-  fds->fct_write[fd] = client_write;
+	server_shutdown(server, "accept failed\n");
+  server->fds.fd_type[fd] = FD_CLIENT;
+  server->fds.fct_read[fd] = client_read;
+  server->fds.fct_write[fd] = client_write;
   return (fd);
 }
 

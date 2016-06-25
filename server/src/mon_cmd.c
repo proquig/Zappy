@@ -103,11 +103,17 @@ int 	cmd_mon_pin(t_server *server, t_player *player)
 
 int 	cmd_mon_sgt(t_server *server, t_player *player)
 {
+  send_msg(server, player->fd, "sgt %u\n", server->param.t);
   return (1);
 }
 
 int 	cmd_mon_sst(t_server *server, t_player *player)
 {
+  if (!is_number(player->tab[1]) || atoi(player->tab[1]) <= 0
+		  || atoi(player->tab[1]) > FREQUENCY)
+	return (0);
+  server->param.t = atoi(player->tab[1]);
+  send_msg(server, player->fd, "sgt %u\n", server->param.t);
   return (1);
 }
 

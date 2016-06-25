@@ -54,6 +54,7 @@ typedef struct		s_option
 
 typedef struct		s_fds
 {
+  int 				fd;
   char				fd_type[MAX_FD];
   fd_set			fds_read;
   fd_set			fds_write;
@@ -106,7 +107,7 @@ int 				set_fds(t_server *server);
 void				close_client(t_server *server, int fd);
 void				client_read(t_server *server, int fd);
 void				client_write(t_server *server, int fd);
-int					add_client(t_fds *fds, int fd);
+int					add_client(t_server *server, int fd);
 void				handle_clients(t_server *server);
 
 void				free_tab(char **tab);
@@ -123,5 +124,9 @@ t_action			*find_free_action(t_action actions[10]);
 t_action        	*get_current_action(t_action actions[10]);
 void        		set_action(t_server *server, t_player *player, int time,
 							   void (*fn)(t_server *, t_player *));
+
+int             	server_is_running(int check);
+void            	handle_signal(int signal);
+void            	server_shutdown(t_server *server, char *msg);
 
 #endif /* _ZAPPY_SERVER_H_ */
