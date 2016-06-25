@@ -38,7 +38,7 @@ void    GMap::initPlayerNode(Board *curBoard)
     f32 meshRescale;
     
     meshRepos = 1.0f / this->_playersMeshes[0]->getBoundingBox().getExtent().Y;
-    meshRescale = 12.0f / ((this->_playersMeshes[0]->getBoundingBox().getExtent().X + this->_playersMeshes[0]->getBoundingBox().getExtent().Y + this->_playersMeshes[0]->getBoundingBox().getExtent().Z) / 3.0f);
+    meshRescale = 15.0f / ((this->_playersMeshes[0]->getBoundingBox().getExtent().X + this->_playersMeshes[0]->getBoundingBox().getExtent().Y + this->_playersMeshes[0]->getBoundingBox().getExtent().Z) / 3.0f);
     IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_playersMeshes[0], curBoard->getBoardRootNode(), -1, vector3df(0.0f, meshRepos, 0.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(meshRescale, meshRescale, meshRescale));
     newNode->setMaterialFlag(EMF_WIREFRAME, false);
     newNode->setMaterialFlag(EMF_LIGHTING, false);
