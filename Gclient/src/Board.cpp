@@ -175,3 +175,13 @@ void    Board::setRessourcesNodes(std::map<RESSOURCES, IMeshSceneNode *>  const 
 {
     this->_ressourcesNodes = ressourcesNodes;
 }
+
+Egg     *Board::getEgg()
+{
+    return (this->_egg);
+}
+
+void    Board::setEgg(Egg *egg)
+{
+    this->_egg = egg;
+}

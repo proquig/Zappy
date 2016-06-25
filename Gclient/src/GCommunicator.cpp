@@ -54,9 +54,9 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
     this->_func_ptrs.insert(std::pair<std::string, f>("pfk", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pdr", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pgt", &GCommunicator::sgtf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("enw", &GCommunicator::sgtf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("eht", &GCommunicator::sgtf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("ebo", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("enw", &GCommunicator::enwf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("eht", &GCommunicator::ehtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("ebo", &GCommunicator::ebof));
     this->_func_ptrs.insert(std::pair<std::string, f>("edi", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("smg", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("suc", &GCommunicator::sgtf));
@@ -182,5 +182,28 @@ void    GCommunicator::picf(std::string &line)
         curPlayer->setLvl(std::stoi(words[2]));
         ++it;
     }    
+    this->_gui->getMutex().unlock();
+}
+
+void    GCommunicator::enwf(std::string &line)
+{
+    this->_gui->getMutex().lock();
+    std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
+
+    this->_gui->getGMap()->popEgg(std::stoi(words[0]), std::stoi(words[2]), std::stoi(words[3]));
+    this->_gui->getMutex().unlock();
+}
+
+void    GCommunicator::ehtf(std::string &line)
+{
+    this->_gui->getMutex().lock();
+    this->_gui->getGMap()->eraseEgg(std::stoi(line));
+    this->_gui->getMutex().unlock();
+}
+
+void    GCommunicator::ebof(std::string &line)
+{
+    this->_gui->getMutex().lock();
+    this->_gui->getGMap()->eraseEgg(std::stoi(line));
     this->_gui->getMutex().unlock();
 }

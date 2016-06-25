@@ -44,7 +44,13 @@ void    GUI::launch()
 //    this->_smgr->addCameraSceneNodeMaya(this->_smgr->getRootSceneNode());
 
     this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(10 * this->_sizeX, 0.0f, 10 * this->_sizeY), vector3df(0.0f, 0.0f, 0.0f), vector3df(20 * this->_sizeX, 0.0f, 20 * this->_sizeY), this->_sizeX, this->_sizeY, this->_floor);
-    this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes);
+    IMesh   *eggMesh;
+    if ((eggMesh = this->_smgr->getMesh("modelsAndTextures/Egg/Egg.obj")) == nullptr)
+        {
+            std::cerr << "an error occured while loading egg 3d model" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+    this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes, eggMesh);
 
     while (this->_device->run())
     {
@@ -210,4 +216,9 @@ GPlayer     *GUI::getPlayer(int id)
 Mutex   &GUI::getMutex()
 {
     return (this->_mutex);
+}
+
+GMap    *GUI::getGMap()
+{
+    return (this->_gMap);
 }

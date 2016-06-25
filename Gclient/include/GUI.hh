@@ -63,6 +63,7 @@ public:
     void        removePlayer(int id);
     GPlayer     *getPlayer(int id);
     Mutex       &getMutex();
+    GMap        *getGMap();
 };
 
 #endif

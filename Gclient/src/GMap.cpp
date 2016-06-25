@@ -1,18 +1,18 @@
 #include "GMap.hh"
 #include <iostream>
 
-GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IMesh *, 8> const &playersMeshes) : _ressourcesMeshes(ressourcesMeshes), _playersMeshes(playersMeshes)
+GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IMesh *, 8> const &playersMeshes, IMesh *eggMesh) : _ressourcesMeshes(ressourcesMeshes), _playersMeshes(playersMeshes)
 {
     this->_board = board;
     this->_smgr = smgr;
-    this->initGMap();
+    this->initGMap(eggMesh);
 }
 
 GMap::~GMap()
 {
 }
 
-void   GMap::initGMap()
+void   GMap::initGMap(IMesh *eggMesh)
 {
     std::vector<std::vector<Board *> >::iterator    j = this->_board->getUnderSquares()->begin();
     std::vector<Board *>::iterator  i;
@@ -25,6 +25,7 @@ void   GMap::initGMap()
         {
             this->initPlayerNode(*i);
             this->initRessourcesNodes(*i);
+            this->initEggNode(*i, eggMesh);
             ++i;
         }
         ++j;
@@ -67,6 +68,11 @@ void    GMap::initRessourcesNodes(Board *curBoard)
         curBoard->setRessourcesNodes(ressourcesNodes);
         i++;
     }
+}
+
+void    GMap::initEggNode(Board *curBoard, IMesh *eggMesh)
+{
+    curBoard->setEgg(new Egg(this->_smgr, curBoard->getBoardRootNode(), eggMesh));
 }
 
 vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
@@ -193,4 +199,30 @@ void   GMap::clearAllPlayers()
 void    GMap::setMap(t_square **map)
 {
     this->_map = map;
+}
+
+void    GMap::popEgg(int id, int x, int y)
+{
+    std::vector<std::vector<Board *> >    *underSquares = this->_board->getUnderSquares();
+
+    (*underSquares)[y][x]->getEgg()->setId(id);
+    (*underSquares)[y][x]->getEgg()->setVisible(true);
+}
+
+void    GMap::eraseEgg(int id)
+{
+    std::vector<std::vector<Board *> >::iterator    j = this->_board->getUnderSquares()->begin();
+    std::vector<Board *>::iterator  i;
+
+    while (j != this->_board->getUnderSquares()->end())
+    {
+        i = j->begin();
+        while (i != j->end())
+        {
+            if ((*i)->getEgg()->getId() == id)
+                (*i)->getEgg()->setVisible(false);
+            ++i;
+        }
+        ++j;
+    }
 }

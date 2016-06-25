@@ -33,6 +33,9 @@ class   GCommunicator
     void    segf(std::string &line);
     void    ppof(std::string &line);
     void    picf(std::string &line);
+    void    enwf(std::string &line);
+    void    ehtf(std::string &line);
+    void    ebof(std::string &line);
 };
 
 #endif

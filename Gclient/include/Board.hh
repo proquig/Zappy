@@ -6,6 +6,7 @@
 #include <string>
 #include "irrlicht.h"
 #include "common.h"
+#include "Egg.hh"
 
 using namespace irr;
 using namespace core;
@@ -25,6 +26,7 @@ class   Board
     f32                 _squareSizeY;
     IMeshSceneNode      *_playerNode;
     std::map<RESSOURCES, IMeshSceneNode *>  _ressourcesNodes;
+    Egg                 *_egg;
 
     void    init();
 public:
@@ -54,6 +56,8 @@ public:
     void            setCurPlayerMesh(IMesh *newCurModelMesh);
     std::map<RESSOURCES, IMeshSceneNode *>  *getRessourcesNodes();
     void    setRessourcesNodes(std::map<RESSOURCES, IMeshSceneNode *>  const &resourcesNodes);
+    Egg     *getEgg();
+    void    setEgg(Egg *egg);
 };
 
 #endif
