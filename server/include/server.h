@@ -74,7 +74,7 @@ typedef struct		s_server
   t_player			*players;
   t_param			param;
   t_fds				fds;
-  struct timeval	*loop;
+  struct timeval	loop;
 }					t_server;
 
 typedef struct 		s_expulse

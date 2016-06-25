@@ -151,13 +151,26 @@ void 		handle_clients(t_server *server)
   int 	i;
 
   i = -1;
+  t_player *player;
+  player = server->players;
   while (++i < MAX_FD)
-  {
 	if (FD_ISSET(i, &server->fds.fds_read))
 	  server->fds.fct_read[i](server, i);
-	if (FD_ISSET(i, &server->fds.fds_write)
-		&& server->fds.fd_type[i] != FD_SERVER
-            && server->fds.fd_type[i] != FD_FREE)
-	  	server->fds.fct_write[i](server, i);
-  }
+  if (!action_is_waiting(&server->loop))
+	{
+	  set_action_time(&server->loop, 1, server->param.t);
+	  while (player)
+	  {
+		player->res.res[FOOD] -= (player->teams.id != -1);
+		if (player->fd != -1 && FD_ISSET(player->fd, &server->fds.fds_write)
+			&& server->fds.fd_type[player->fd] != FD_FREE)
+		  server->fds.fct_write[player->fd](server, player->fd);
+		if (player->teams.id != -1 && player->res.res[FOOD] <= 0)
+		{
+		  send_msg(server, player->fd, "mort\n");
+		  close_client(server, player->fd);
+		}
+		player = player->next;
+	  }
+  	}
 }

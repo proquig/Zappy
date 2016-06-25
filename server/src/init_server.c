@@ -30,16 +30,15 @@ void 			start_server(t_server *server)
   int			  fd_max;
   struct timeval  tv;
   int             error;
-    int res;
 
-    res = 0;
   error = 1;
   server->players = NULL;
+  server->loop.tv_sec = 0;
+  server->loop.tv_usec = 0;
   while (error)
     {
-        res++;
-      tv.tv_sec = 0;
-      tv.tv_usec = (1 / server->param.t * FREQUENCY);
+	  tv.tv_sec = 0;
+      tv.tv_usec = (int)(1.0 / (double)server->param.t * FREQUENCY);
       fd_max = set_fds(server);
       if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
       {
@@ -47,30 +46,24 @@ void 			start_server(t_server *server)
         perror("select");
       }
 	  handle_clients(server);
-        if (res % 100000 == 0) {
-            res = 0;
-            put_random_ressource(server->map, server->param.x, server->param.y);
-        }
     }
 }
 
 int			init_server(t_param *param, t_fds *fds)
 {
-  struct protoent 	*pe;
-  struct sockaddr_in 	s_in;
-  socklen_t		size;
-  int 			fd;
+  struct protoent *pe;
+  struct sockaddr_in s_in;
+  socklen_t size;
+  int fd;
 
-  if (!(pe = getprotobyname("TCP"))
-      || (fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
-    return (-1);
+  if (!(pe = getprotobyname("TCP")) || (fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
+	return (-1);
   size = sizeof(s_in);
   s_in.sin_family = AF_INET;
   s_in.sin_port = htons(param->p);
   s_in.sin_addr.s_addr = INADDR_ANY;
-  if (bind(fd, (const struct sockaddr *) &s_in, size) == -1
-      || listen(fd, MAX_FD) == -1)
-    return (-1);
+  if (bind(fd, (const struct sockaddr *) &s_in, size) == -1 || listen(fd, MAX_FD) == -1)
+	return (-1);
   fds->fd_type[fd] = FD_SERVER;
   fds->fct_read[fd] = server_read;
   fds->fct_write[fd] = NULL;

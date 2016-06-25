@@ -26,7 +26,7 @@ t_player		*init_player(int fd, t_param *param)
   player->teams.id = -1;
   player->teams.max = param->c;
   player->lvl = 1;
-  player->res.res[FOOD] = 10;
+  player->res.res[FOOD] = 10 * 126;
   player->cmd = NULL;
   player->tab = NULL;
   init_actions(player->actions);

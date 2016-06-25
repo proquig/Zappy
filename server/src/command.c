@@ -60,7 +60,7 @@ void		prend(t_server *server, t_player *player)
         && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
-	    player->res.res[i] += 1;
+	    player->res.res[i] += i ? 1 : 126;
 	    err = 0;
 	  }
     }
@@ -79,10 +79,11 @@ void 		pose(t_server *server, t_player *player)
   if (action && action->cmd && action->cmd[1])
     {
       while (++i < RES_SIZE)
-	if (player->res.res[i] && !strcmp(action->cmd[1], res_name[i]))
+	if (((i && player->res.res[i]) || (!i && player->res.res[i] >= 126))
+        && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] += 1;
-	    player->res.res[i] -= 1;
+	    player->res.res[i] -= i ? 1 : 126;
 	    err = 0;
 	  }
     }
