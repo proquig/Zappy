@@ -62,7 +62,6 @@ bool	IA::full_or_not(Client *client, std::vector<std::vector<int>> tab_lvl)
       else
         n++;
     }
-  std::cout << "il y a " << this->get_ressources()[0] << " joueurs sur ma case\n";
   return (this->get_ressources()[0] == tab_lvl[x][0]);
 }
 
@@ -183,7 +182,7 @@ void    IA::parse_command(Client *client)
       x++;
     i++;
   }
-  std::cout << "il y  a " << x << " joueurs sur ma case\n";
+  this->_ressources[0] = x;
   if (tab1.size() != 2)
     this->what_i_do(client, tab1);
   else

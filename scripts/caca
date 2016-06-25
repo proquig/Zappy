@@ -1,0 +1,1522 @@
+Connexion à 127.0.0.1 sur le port 4242
+[31;1mRECEIVED_1 : BIENVENUE
+[mMESSAGE SEND : caca
+[31;1mRECEIVED_2 : 997
+[m[31;1mRECEIVED_3 : 100 100
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere mendiane, nourriture nourriture, nourriture nourriture, nourriture phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture sibur, nourriture sibur, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur, nourriture, nourriture, linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture nourriture, sibur, nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur, nourriture nourriture linemate deraumere, nourriture nourriture linemate sibur, nourriture linemate sibur}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate sibur,, mendiane,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	pose linemate
+[31;1mRECEIVED_5 : ok
+[mMessage send	:	incantation
+[31;1mRECEIVED_1 : elevation en cours
+[m[31;1mRECEIVED_6 : niveau actuel : 2
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture nourriture, nourriture nourriture linemate deraumere,, linemate,,, nourriture phiras phiras,}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate deraumere,,, nourriture phiras phiras, sibur, nourriture nourriture deraumere deraumere sibur, nourriture,, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, nourriture nourriture,, linemate sibur,, nourriture, linemate, sibur}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture,, nourriture, linemate, nourriture sibur,, nourriture sibur, sibur,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture,, nourriture sibur, sibur, nourriture phiras,, nourriture nourriture, nourriture nourriture nourriture,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur,, nourriture nourriture, nourriture nourriture nourriture, phiras,, nourriture, nourriture mendiane, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture,, nourriture, nourriture mendiane, nourriture nourriture nourriture sibur sibur, nourriture phiras, nourriture linemate phiras, nourriture linemate, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture phiras, nourriture linemate phiras, nourriture linemate, nourriture nourriture nourriture linemate deraumere sibur sibur, nourriture, deraumere, nourriture deraumere mendiane,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate phiras, nourriture, deraumere, nourriture deraumere mendiane, nourriture mendiane, linemate sibur phiras, mendiane,, nourriture nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere, linemate sibur phiras, mendiane,, nourriture linemate sibur, deraumere, nourriture nourriture linemate, nourriture, nourriture nourriture nourriture}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur mendiane, deraumere, nourriture nourriture linemate, nourriture, nourriture, nourriture thystame, nourriture sibur, nourriture nourriture, nourriture linemate deraumere}
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate, nourriture thystame, nourriture sibur, nourriture nourriture, nourriture, nourriture nourriture mendiane phiras,, linemate sibur sibur mendiane mendiane,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur, nourriture nourriture mendiane phiras,, linemate sibur sibur mendiane mendiane, linemate linemate deraumere phiras, nourriture nourriture, sibur sibur,, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture nourriture, sibur sibur,, nourriture nourriture linemate, nourriture nourriture linemate,, nourriture deraumere, nourriture nourriture deraumere}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur sibur, nourriture nourriture linemate,, nourriture deraumere, nourriture nourriture, nourriture linemate deraumere sibur phiras, nourriture nourriture, nourriture nourriture linemate, nourriture deraumere phiras phiras phiras thystame}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture linemate deraumere sibur phiras, nourriture nourriture, nourriture nourriture linemate, nourriture nourriture nourriture nourriture sibur phiras, nourriture deraumere sibur phiras, nourriture deraumere, nourriture nourriture nourriture, nourriture linemate linemate linemate}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture deraumere sibur phiras, nourriture deraumere, nourriture nourriture nourriture, nourriture linemate sibur,, nourriture nourriture nourriture nourriture linemate, linemate, nourriture sibur mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMesriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture, mendiane, nourriture linemate, nourriture linemate sibur phiras, nourriture nourriture sibur mendiane, nourriture nourriture, nourriture, nourriture linemate deraumere, phiras phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate, nourriture nourriture, nourriture, nourriture linemate deraumere, sibur phiras phiras thystame, nourriture,, nourriture,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture,, nourriture, sibur, nourriture sibur, linemate phiras, nourriture,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture sibur, linemate phiras, nourriture, nourriture,, nourriture nourriture, linemate phiras phiras, nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate phiras,, nourriture nourriture, linemate phiras phiras, nourriture nourriture deraumere deraumere sibur, linemate, nourriture linemate,, deraumere thystame}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, linemate, nourriture linemate,, nourriture nourriture deraumere sibur sibur phiras,, nourriture nourriture linemate, nourriture sibur, nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate,, nourriture nourriture linemate, nourriture sibur, nourriture sibur, nourriture, nourriture, nourriture linemate deraumere, nourriture nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate, nourriture, nourriture, nourriture linemate deraumere, nourriture nourriture nourriture thystame, nourriture linemate sibur phiras, nourriture,, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture linemate sibur phiras, nourriture,, nourriture nourriture phiras, nourriture linemate, linemate, nourriture linemate sibur, nourriture nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture linemate, linemate, nourriture linemate sibur, nourriture, nourriture sibur sibur, nourriture deraumere,, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate, nourriture sibur sibur, nourriture deraumere,, nourriture nourriture nourriture, nourriture sibur, nourriture phiras, nourriture, nourriture linemate sibur mendiane}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 re nourriture nourriture phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, sibur, nourriture nourriture, nourriture nourriture, nourriture nourriture nourriture, nourriture nourriture phiras, nourriture deraumere deraumere,,}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture nourriture phiras, nourriture deraumere deraumere,, nourriture linemate sibur,,, sibur, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere deraumere,,, sibur, nourriture nourriture nourriture nourriture sibur phiras, nourriture deraumere deraumere deraumere, nourriture nourriture linemate, deraumere sibur sibur mendiane, nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, sibur, nourriture nourriture phiras,,, nourriture deraumere sibur, nourriture nourriture nourriture, nourriture linemate sibur, nourriture nourriture nourriture nourriture sibur phiras}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture phiras, nourriture deraumere sibur, nourriture nourriture nourriture, nourriture linemate sibur,, nourriture deraumere deraumere, nourriture deraumere mendiane,, nourriture deraumere sibur phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture, nourriture deraumere deraumere, nourriture deraumere mendiane,,,,,,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere mendiane,,,, nourriture nourriture sibur sibur mendiane, nourriture linemate, linemate sibur, linemate, nourriture nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture deraumere sibur, nourriture deraumere deraumere,,,,,, nourriture nourriture sibur sibur mendiane}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere deraumere,,,, nourriture nourriture, nourriture thystame, nourriture,, sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, nourriture deraumere sibur,,,, sibur,, nourriture nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere sibur,, sibur,,,,,, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur,,,, sibur,, nourriture nourriture,, nourriture nourriture deraumere}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,,, nourriture linemate sibur,,, sibur}
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,, nourriture,,,,}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,,,,,,}
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,, nourriture sibur, nourriture nourriture, nourriture thystame, nourriture,}
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,,,,,, nourriture sibur}
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,,,, nourriture linemate sibur,,}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, nourriture linemate sibur,,, nourriture deraumere sibur phiras, nourriture nourriture nourriture nourriture sibur phiras, nourriture deraumere deraumere deraumere, nourriture nourriture linemate}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur, nourriture deraumere sibur phiras, nourriture nourriture nourriture nourriture sibur phiras, nourriture deraumere deraumere deraumere, nourriture, nourriture linemate deraumere sibur phiras, nourriture nourriture, nourriture, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture nourriture sibur phiras, nourriture linemate deraumere sibur phiras, nourriture nourriture, nourriture,, nourriture nourriture linemate, nourriture nourriture linemate, nourriture sibur,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture nourriture linemate, nourriture nourriture linemate, nourriture sibur,, nourriture nourriture, linemate linemate deraumere phiras,, nourriture nourriture linemate linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate, nourriture nourriture, linemate linemate deraumere phiras,,, nourriture nourriture mendiane phiras, nourriture,, nourriture nourriture linemate linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate linemate deraumere phiras, nourriture nourriture mendiane phiras, nourriture,,, nourriture thystame, nourriture, nourriture nourriture, nourriture nourriture linemate}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture thystame, nourriture, nourriture nourriture,, deraumere, nourriture linemate sibur, sibur, nourriture nourriture phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, deraumere, nourriture linemate sibur, sibur,, linemate sibur phiras, nourriture mendiane, linemate sibur, nourriture nourriture nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur, linemate sibur phiras, nourriture mendiane, linemate sibur,, nourriture, nourriture nourriture nourriture linemate deraumere sibur sibur, nourriture linemate sibur, nourriture linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture mendiane, nourriture, nourriture nourriture nourriture linemate deraumere sibur sibur, nourriture linemate sibur,, nourriture phiras, nourriture nourriture nourriture sibur sibur,, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture linemate deraumere sibur sibur, nourriture phiras, nourriture nourriture nourriture sibur sibur,,,, phiras, nourriture nourriture linemate deraumere, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture sibur sibur,, phiras, nourriture nourriture linemate deraumere,,, nourriture phiras, nourriture nourriture nourriture linemate deraumere, nourriture nourriture linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur phiras,, nourriture phiras, nourriture nourriture nourriture linemate deraumere,,, nourriture sibur, nourriture, sibur mendiane}
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture phiras,, nourriture sibur, nourriture,,, linemate sibur, deraumere, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur,, linemate sibur, deraumere,,, nourriture deraumere, nourriture phiras,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate sibur,, nourriture deraumere, nourriture phiras,,, nourriture linemate sibur, nourriture phiras,}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere,, nourriture linemate sibur, nourriture phiras,, mendiane,, nourriture nourriture linemate, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur, mendiane,, nourriture nourriture linemate, nourriture nourriture nourriture, deraumere thystame, nourriture nourriture linemate,, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, deraumere thystame, nourriture nourriture linemate,, nourriture linemate,, nourriture phiras, nourriture nourriture deraumere, nourriture nourriture nourriture deraumere phiras}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate,, nourriture phiras, nourriture nourriture deraumere, nourriture, nourriture nourriture sibur, nourriture deraumere, phiras, mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture phiras, nourriture nourriture sibur, nourriture deraumere, phiras, nourriture deraumere,, nourriture mendiane, deraumere sibur, nourriture linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere,, nourriture mendiane, deraumere sibur, nourriture nourriture nourriture deraumere sibur, nourriture sibur mendiane,, nourriture nourriture nourriture mendiane, nourriture nourriture nourriture deraumere phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture mendiane, nourriture sibur mendiane,, nourriture nourriture nourriture mendiane, nourriture linemate,, deraumere, nourriture nourriture linemate linemate phiras, sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, deraumere, nourriture nourriture linemate linemate phiras, linemate, nourriture,, nourriture nourriture sibur mendiane, nourriture mendiane}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere, nourriture,, nourriture nourriture sibur mendiane, nourriture mendiane phiras, linemate sibur phiras, nourriture, nourriture deraumere, linemate sibur}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, linemate sibur phiras, nourriture, nourriture deraumere, nourriture nourriture linemate sibur, nourriture nourriture linemate deraumere, linemate sibur, nourriture deraumere phiras, nourriture nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture nourriture linemate deraumere, linemate sibur, nourriture deraumere phiras, nourriture nourriture linemate, nourriture, nourriture nourriture nourriture sibur, nourriture linemate, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate sibur, nourriture, nourriture nourriture nourriture sibur, nourriture linemate, nourriture linemate linemate, nourriture nourriture linemate, nourriture, nourriture deraumere deraumere, mendiane}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture sibur, nourriture nourriture linemate, nourriture, nourriture deraumere deraumere, nourriture, nourriture linemate mendiane, nourriture, sibur, mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture linemate mendiane, nourriture, sibur, nourriture linemate, mendiane, nourriture nourriture sibur, mendiane phiras, sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, mendiane, nourriture nourriture sibur, mendiane phiras, sibur thystame, nourriture deraumere mendiane, nourriture deraumere, nourriture nourriture linemate sibur mendiane, nourriture linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur, nourriture deraumere mendiane, nourriture deraumere, nourriture nourriture linemate sibur mendiane, nourriture deraumere sibur, nourriture nourriture,, nourriture, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere, nourriture nourriture,, nourriture, nourriture phiras, nourriture nourriture, linemate linemate, nourriture sibur, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture nourriture, linemate linemate, nourriture sibur, nourriture nourriture linemate sibur, sibur, deraumere, nourriture nourriture sibur, deraumere thystame}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate linemate, sibur, deraumere, nourriture nourriture sibur, nourriture nourriture deraumere sibur, nourriture nourriture, nourriture sibur mendiane, nourriture nourriture, nourriture nourriture nourriture}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere, nourriture nourriture, nourriture sibur mendiane, nourriture nourriture, nourriture nourriture deraumere mendiane, sibur, linemate deraumere, deraumere, nourriture}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur mendiane, sibur, linemate deraumere, deraumere, nourriture nourriture,, nourriture sibur, nourriture, nourriture nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate deraumere,, nourriture sibur, nourriture, nourriture sibur, nourriture linemate, nourriture deraumere, nourriture, nourriture nourriture nourriture}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur, nourriture linemate, nourriture deraumere, nourriture, nourriture deraumere deraumere, nourriture nourriture thystame, nourriture nourriture phiras phiras, nourriture, nourriture nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere, nourriture nourriture thystame, nourriture nourriture phiras phiras, nourriture, nourriture nourriture linemate, nourriture nourriture, nourriture nourriture nourriture linemate mendiane, nourriture linemate,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture phiras phiras, nourriture nourriture, nourriture nourriture nourriture linemate mendiane, nourriture linemate, nourriture nourriture linemate linemate mendiane,, nourriture nourriture nourriture deraumere sibur,, linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture linemate mendiane,, nourriture nourriture nourriture deraumere sibur,, nourriture sibur,, nourriture nourriture nourriture nourriture sibur,,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture deraumere sibur,, nourriture nourriture nourriture nourriture sibur,, mendiane,, nourriture linemate sibur, nourriture linemate, nourriture linemate linemate deraumere deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture nourriture sibur,, nourriture linemate sibur, nourriture linemate,, nourriture nourriture mendiane, sibur, nourriture sibur phiras, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur, nourriture nourriture mendiane, sibur, nourriture sibur phiras,, nourriture, nourriture nourriture,,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur, nourriture, nourriture nourriture,, nourriture nourriture nourriture nourriture deraumere, nourriture nourriture, nourriture nourriture sibur phiras, deraumere sibur sibur, nourriture mendiane}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture nourriture, nourriture nourriture sibur phiras, deraumere sibur sibur, nourriture, nourriture deraumere, nourriture nourriture linemate linemate, nourriture, nourriture nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur phiras, nourriture deraumere, nourriture nourriture linemate linemate, nourriture, nourriture, nourriture linemate, nourriture, nourriture, deraumere deraumere sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate linemate, nourriture linemate, nourriture, nourriture, phiras, nourriture deraumere sibur, nourriture nourriture sibur, phiras,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture deraumere sibur, nourriture nourriture sibur, phiras,, nourriture phiras, phiras,, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur, nourriture phiras, phiras,, nourriture linemate phiras, nourriture deraumere mendiane, nourriture sibur phiras, nourriture sibur,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur phiras, nourriture deraumere mendiane, nourriture sibur phiras, nourriture sibur,, nourriture nourriture, nourriture nourriture nourriture linemate, deraumere, nourriture}
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur phiras, nourriture nourriture, nourriture nourriture nourriture linemate, deraumere, mendiane, sibur, nourriture nourriture, phiras, nourriture nourriture linemate linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture linemate, sibur, nourriture nourriture, phiras, linemate phiras phiras, nourriture, nourriture, linemate, nourriture nourriture linemate deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture, nourriture, linemate, nourriture sibur, nourriture linemate linemate, nourriture,, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture linemate linemate, nourriture,, sibur thystame,, nourriture deraumere sibur, nourriture nourriture mendiane phiras, linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture,, nourriture deraumere sibur, nourriture nourriture mendiane phiras, nourriture nourriture, nourriture nourriture deraumere phiras thystame, nourriture mendiane,, nourriture nourriture nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere sibur, nourriture nourriture deraumere phiras thystame, nourriture mendiane,, nourriture deraumere sibur,,, nourriture, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture mendiane,,, nourriture, nourriture linemate deraumere sibur,, nourriture, nourriture deraumere, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, nourriture, nourriture deraumere, nourriture nourriture mendiane,,, phiras, nourriture nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture,,, phiras, nourriture nourriture deraumere sibur, nourriture deraumere, nourriture, nourriture, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,,, nourriture nourriture, nourriture deraumere sibur, nourriture linemate deraumere sibur, nourriture nourriture mendiane, nourriture nourriture deraumere sibur}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture deraumere sibur, nourriture linemate deraumere sibur, nourriture nourriture mendiane,, nourriture nourriture nourriture nourriture deraumere sibur, phiras,, nourriture mendiane}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate deraumere sibur, nourriture nourriture nourriture nourriture deraumere sibur, phiras,, nourriture nourriture, linemate phiras, deraumere, nourriture nourriture phiras, nourriture thystame}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur phiras, linemate phiras, deraumere, nourriture nourriture phiras, nourriture linemate sibur, phiras, phiras, nourriture nourriture mendiane phiras,}
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere, phiras, phiras, nourriture nourriture mendiane phiras, nourriture phiras, linemate phiras, deraumere, nourriture nourriture, nourriture deraumere}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur phiras, linemate phiras, deraumere, nourriture nourriture,, nourriture sibur,, nourriture nourriture deraumere, nourriture nourriture nourriture nourriture}
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere, nourriture sibur,, nourriture nourriture deraumere, sibur, nourriture nourriture nourriture nourriture mendiane, nourriture linemate deraumere,, nourriture phiras}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	gauche
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, phiras, linemate phiras, nourriture sibur, nourriture nourriture, nourriture linemate sibur, nourriture phiras,, sibur}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate phiras, nourriture linemate sibur, nourriture phiras,, nourriture nourriture, nourriture sibur sibur phiras, nourriture nourriture nourriture, nourriture sibur mendiane phiras,}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture phiras, nourriture sibur sibur phiras, nourriture nourriture nourriture, nourriture sibur mendiane phiras, nourriture nourriture linemate,, nourriture nourriture linemate,, nourriture nourriture linemate phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture,, nourriture nourriture linemate,, nourriture sibur mendiane, nourriture, thystame, linemate sibur, linemate deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate, nourriture, thystame, linemate sibur, nourriture nourriture deraumere phiras, phiras, linemate sibur, nourriture mendiane, nourriture nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur thystame, phiras, linemate sibur, nourriture mendiane, nourriture sibur sibur, nourriture nourriture linemate, nourriture deraumere mendiane, nourriture sibur, nourriture deraumere}
+[mMessage send	:	prend thystame
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate sibur, nourriture nourriture linemate, nourriture deraumere mendiane, nourriture sibur, nourriture nourriture nourriture sibur, deraumere phiras, nourriture nourriture nourriture linemate,, nourriture nourriture nourriture nourriture sibur phiras}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere mendiane, deraumere phiras, nourriture nourriture nourriture linemate,, nourriture nourriture nourriture, nourriture nourriture linemate deraumere, nourriture nourriture nourriture sibur, nourriture nourriture nourriture,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture linemate, nourriture nourriture linemate deraumere, nourriture nourriture nourriture sibur, nourriture nourriture nourriture, nourriture, nourriture nourriture linemate mendiane, nourriture nourriture nourriture nourriture phiras phiras, phiras, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture sibur, nourriture nourriture linemate mendiane, nourriture nourriture nourriture nourriture phiras phiras, phiras, nourriture, nourriture phiras, sibur, nourriture sibur, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture nourriture phiras phiras, nourriture phiras, sibur, nourriture sibur, nourriture, nourriture sibur sibur, nourriture,, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur, nourriture sibur sibur, nourriture,,, nourriture mendiane phiras, nourriture nourriture linemate sibur phiras, linemate deraumere sibur, nourriture sibur sibur}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture mendiane phiras, nourriture nourriture linemate sibur phiras, linemate deraumere sibur, nourriture mendiane, deraumere sibur, mendiane, nourriture linemate, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate sibur phiras, deraumere sibur, mendiane, nourriture linemate, nourriture nourriture linemate linemate sibur,, deraumere sibur, nourriture, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur mendiane,, deraumere sibur, nourriture, linemate, nourriture nourriture nourriture linemate deraumere,, nourriture phiras, nourriture nourriture nourriture deraumere sibur phiras}
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere sibur, nourriture nourriture nourriture linemate deraumere,, nourriture phiras, sibur thystame, nourriture phiras, nourriture nourriture sibur, nourriture nourriture nourriture, nourriture mendiane}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture phiras, nourriture nourriture sibur, nourriture nourriture nourriture,, linemate deraumere, nourriture nourriture nourriture sibur mendiane, phiras, deraumere}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur, linemate deraumere, nourriture nourriture nourriture sibur mendiane, phiras, nourriture linemate linemate phiras, nourriture, nourriture nourriture, linemate, nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture sibur mendiane, nourriture, nourriture nourriture, linemate, nourriture nourriture nourriture linemate, mendiane, nourriture sibur mendiane, nourriture nourriture deraumere phiras phiras, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, mendiane, nourriture sibur mendiane, nourriture nourriture deraumere phiras phiras, nourriture nourriture deraumere, mendiane, nourriture mendiane, nourriture nourriture mendiane phiras, sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur mendiane, mendiane, nourriture mendiane, nourriture nourriture mendiane phiras, deraumere, nourriture linemate, nourriture nourriture nourriture mendiane, nourriture phiras, nourriture nourriture nourriture linemate linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture mendiane, nourriture linemate, nourriture nourriture nourriture mendiane, nourriture phiras, nourriture phiras, nourriture linemate, nourriture linemate,,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture mendiane, nourriture linemate, nourriture linemate,, nourriture deraumere sibur phiras, nourriture nourriture deraumere mendiane, nourriture nourriture nourriture, nourriture nourriture nourriture, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate, nourriture nourriture deraumere mendiane, nourriture nourriture nourriture, nourriture nourriture nourriture, phiras, nourriture sibur, nourriture nourriture deraumere, nourriture linemate, nourriture nourriture nourriture nourriture linemate mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture nourriture, nourriture sibur, nourriture nourriture deraumere, nourriture linemate, nourriture linemate linemate, phiras, nourriture sibur sibur, nourriture nourriture deraumere sibur, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture deraumere, phiras, nourriture sibur sibur, nourriture nourriture deraumere sibur, nourriture nourriture nourriture, nourriture, nourriture deraumere mendiane, nourriture nourriture, nourriture nourriture sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur sibur, nourriture, nourriture deraumere mendiane, nourriture nourriture, nourriture sibur, nourriture phiras, nourriture nourriture mendiane mendiane, nourriture sibur sibur, nourriture linemate phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere mendiane, nourriture phiras, nourriture nourriture mendiane mendiane, nourriture sibur sibur,, nourriture deraumere sibur, nourriture linemate sibur, nourriture, linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture mendiane mendiane, nourriture deraumere sibur, nourriture linemate sibur, nourriture, nourriture thystame, nourriture linemate, nourriture nourriture sibur,, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur, nourriture linemate, nourriture nourriture sibur,, nourriture thystame, nourriture nourriture sibur, phiras, nourriture nourriture nourriture nourriture deraumere phiras phiras,}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur, nourriture nourriture sibur, phiras, nourriture nourriture nourriture nourriture deraumere phiras phiras, nourriture nourriture deraumere deraumere, nourriture linemate deraumere sibur, nourriture, nourriture sibur phiras, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur phiras, nourriture linemate deraumere sibur, nourriture, nourriture sibur phiras, nourriture nourriture deraumere deraumere deraumere phiras, nourriture nourriture deraumere sibur, nourriture nourriture phiras, nourriture, linemate}
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, nourriture nourriture deraumere sibur, nourriture nourriture phiras, nourriture, nourriture nourriture sibur, nourriture nourriture nourriture phiras,, nourriture nourriture sibur sibur, nourriture sibur mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture phiras, nourriture nourriture nourriture phiras,, nourriture nourriture sibur sibur, linemate sibur, nourriture deraumere deraumere, linemate linemate deraumere, nourriture nourriture deraumere sibur, nourriture sibur sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture deraumere deraumere, linemate linemate deraumere, nourriture nourriture deraumere sibur, linemate linemate deraumere deraumere mendiane, linemate, nourriture, nourriture deraumere, linemate}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate linemate deraumere, linemate, nourriture, nourriture deraumere, sibur, sibur mendiane, nourriture phiras, nourriture, sibur mendiane phiras}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture, sibur mendiane, nourriture phiras, nourriture, nourriture nourriture sibur, nourriture sibur mendiane phiras, nourriture nourriture sibur phiras, nourriture, nourriture linemate sibur}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture phiras, nourriture sibur mendiane phiras, nourriture nourriture sibur phiras, nourriture, nourriture, nourriture nourriture nourriture sibur sibur, nourriture nourriture linemate mendiane, nourriture nourriture nourriture nourriture, nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur phiras, nourriture nourriture nourriture sibur sibur, nourriture nourriture linemate mendiane, nourriture nourriture nourriture nourriture, nourriture, mendiane, deraumere sibur,, nourriture nourriture nourriture phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate mendiane, mendiane, deraumere sibur,, nourriture,, nourriture deraumere mendiane, linemate deraumere, deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere sibur,, nourriture deraumere mendiane, linemate deraumere,, nourriture,, nourriture sibur,}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere mendiane, nourriture,, nourriture sibur, nourriture,,, sibur, nourriture deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,,, sibur, nourriture nourriture deraumere deraumere sibur, nourriture linemate deraumere, linemate deraumere, nourriture nourriture, nourriture nourriture nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture linemate deraumere, linemate deraumere, nourriture nourriture, sibur, nourriture nourriture linemate deraumere, linemate sibur sibur mendiane, linemate, nourriture nourriture nourriture sibur sibur}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate deraumere, nourriture nourriture linemate deraumere, linemate sibur sibur mendiane, linemate,, nourriture nourriture deraumere, nourriture nourriture, nourriture nourriture, nourriture nourriture}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate sibur sibur mendiane, nourriture nourriture deraumere, nourriture nourriture, nourriture nourriture,, nourriture nourriture nourriture nourriture linemate, nourriture nourriture sibur, nourriture nourriture linemate, nourriture nourriture sibur phiras}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture, nourriture nourriture nourriture nourriture linemate, nourriture nourriture sibur, nourriture nourriture linemate, nourriture, nourriture mendiane, nourriture linemate sibur sibur, nourriture sibur sibur, nourriture nourriture nourriture mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture sibur, nourriture mendiane, nourriture linemate sibur sibur, nourriture sibur sibur, nourriture nourriture, sibur, nourriture linemate, nourriture, nourriture linemate mendiane}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate sibur sibur, sibur, nourriture linemate, nourriture,, nourriture nourriture deraumere deraumere,, nourriture deraumere sibur, deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture linemate, nourriture nourriture deraumere deraumere,, nourriture deraumere sibur, nourriture nourriture sibur, nourriture nourriture nourriture nourriture deraumere, nourriture nourriture phiras, nourriture, deraumere}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture nourriture nourriture nourriture deraumere, nourriture nourriture phiras, nourriture, nourriture nourriture nourriture, deraumere,, nourriture nourriture linemate deraumere deraumere, linemate mendiane}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture phiras, deraumere,, nourriture nourriture linemate deraumere deraumere, nourriture linemate deraumere, nourriture phiras,, nourriture nourriture deraumere, nourriture sibur mendiane phiras thystame}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture phiras,, nourriture nourriture deraumere,, nourriture nourriture, sibur phiras,,}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur, nourriture nourriture, sibur phiras,, nourriture nourriture, nourriture nourriture deraumere, nourriture deraumere deraumere phiras, linemate linemate, nourriture nourriture}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur phiras, nourriture nourriture deraumere, nourriture deraumere deraumere phiras, linemate linemate, nourriture nourriture deraumere, nourriture nourriture, nourriture nourriture, nourriture,}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture deraumere deraumere phiras, nourriture nourriture, nourriture nourriture, nourriture, nourriture deraumere phiras phiras phiras thystame,, nourriture, deraumere, nourriture nourriture nourriture nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:raumere mendiane phiras, nourriture nourriture deraumere mendiane, sibur phiras thystame, sibur, nourriture nourriture linemate,,, linemate linemate sibur sibur,}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur sibur phiras thystame,,, linemate linemate sibur sibur, linemate mendiane,, nourriture nourriture linemate sibur, nourriture mendiane, nourriture nourriture}
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend thystame
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur,, nourriture nourriture linemate sibur, nourriture mendiane, linemate phiras, nourriture, linemate mendiane phiras, nourriture linemate linemate, nourriture nourriture deraumere}
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture nourriture linemate sibur, nourriture, linemate mendiane phiras, nourriture linemate linemate, nourriture, nourriture, nourriture phiras, nourriture sibur, nourriture}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur linemate mendiane phiras, nourriture, nourriture phiras, nourriture sibur,, nourriture nourriture linemate sibur phiras, deraumere phiras, nourriture nourriture nourriture nourriture deraumere phiras, phiras}
+[mMessage send	:	prend linemate
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture phiras, nourriture nourriture linemate sibur phiras, deraumere phiras, nourriture nourriture nourriture nourriture deraumere phiras, nourriture, mendiane, nourriture sibur, nourriture deraumere, nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur deraumere phiras, mendiane, nourriture sibur, nourriture deraumere, nourriture nourriture, nourriture, sibur mendiane, nourriture nourriture, phiras}
+[mMessage send	:	prend deraumere
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend phiras
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir
+[31;1mRECEIVED_1 : { joueur nourriture sibur, nourriture, sibur mendiane, nourriture nourriture,, nourriture,,, nourriture nourriture deraumere mendiane phiras}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+e nourriture, nourriture nourriture deraumere,, nourriture nourriture linemate}
+[mMessage send	:	prend nourriture
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend sibur
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	prend mendiane
+[31;1mRECEIVED_6 : ok
+[mMessage send	:	avance
+[31;1mRECEIVED_1 : ok
+[mMessage send	:	voir

@@ -44,7 +44,7 @@ void			Client::connect_to_server()
       _socket1.setFdSocket(this->_sock);
     }
   else
-    perror("connect");
+      perror("connect");
 }
 
 bool		Client::mygetline(std::string	&command)
