@@ -173,7 +173,8 @@ void    GUI::removePlayer(int id)
     {
         if ((*it)->getId() == id)
             this->_players.erase(it);
-        ++it;
+        else
+            ++it;
     }
     this->_mutex.unlock();
 }
