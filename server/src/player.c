@@ -49,7 +49,6 @@ int 			size_player(t_player *root, int team)
 	    i++;
       tmp = tmp->next;
     }
-    printf("nb payer in team :%i\n", i);
   return (i);
 }
 
@@ -66,7 +65,6 @@ int 			len_players(t_player *root)
             i++;
         tmp = tmp->next;
     }
-    printf("nb payer TOTAL :%i\n", i);
     return (i);
 }
 

@@ -38,7 +38,6 @@ int     up_players(t_server *server, t_player *t)
         }
         tmp = tmp->next;
     }
-    send_msg(server, t->fd,"ok\n");
     return (i);
 }
 
@@ -56,7 +55,7 @@ int     tell_to_players(t_server *server, t_player *t)
         }
         tmp = tmp->next;
     }
-    return (i);
+  return (i);
 }
 
 int     tell_ko_players(t_server *server, t_player *player)
@@ -100,7 +99,7 @@ int     incantation_is_possible(t_server *server, t_player *player)
     while (i < 7 && server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res.res[i])
         i++;
     if (i != 7)
-        tell_ko_players(server->players, player);
+        tell_ko_players(server, player);
     return (i == 7);
 }
 

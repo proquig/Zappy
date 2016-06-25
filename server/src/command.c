@@ -92,7 +92,7 @@ void 		pose(t_server *server, t_player *player)
 void broadcast(t_server *server, t_player *player)
 {
   (void)server;
-  (void)player;
+  dprintf(player->fd, "ko\n");
 }
 
 void forker(t_server *server, t_player *player)
