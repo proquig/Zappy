@@ -37,7 +37,7 @@ void    GMap::initPlayerNode(Board *curBoard)
     f32 meshRescale;
     
     meshRepos = 1.0f / this->_playersMeshes[0]->getBoundingBox().getExtent().Y;
-    meshRescale = 10.0f / ((this->_playersMeshes[0]->getBoundingBox().getExtent().X + this->_playersMeshes[0]->getBoundingBox().getExtent().Y + this->_playersMeshes[0]->getBoundingBox().getExtent().Z) / 3.0f);
+    meshRescale = 12.0f / ((this->_playersMeshes[0]->getBoundingBox().getExtent().X + this->_playersMeshes[0]->getBoundingBox().getExtent().Y + this->_playersMeshes[0]->getBoundingBox().getExtent().Z) / 3.0f);
     IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_playersMeshes[0], curBoard->getBoardRootNode(), -1, vector3df(0.0f, meshRepos, 0.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(meshRescale, meshRescale, meshRescale));
     newNode->setMaterialFlag(EMF_WIREFRAME, false);
     newNode->setMaterialFlag(EMF_LIGHTING, false);
@@ -54,7 +54,10 @@ void    GMap::initRessourcesNodes(Board *curBoard)
 
     while (i < RES_SIZE)
     {
-        meshRescale = 3.0f / ((this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().X + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Y + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Z) / 3.0f);
+        if (i == 0)
+            meshRescale = 4.0f / ((this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().X + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Y + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Z) / 3.0f);
+        else
+            meshRescale = 3.0f / ((this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().X + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Y + this->_ressourcesMeshes[(RESSOURCES)i]->getBoundingBox().getExtent().Z) / 3.0f);
         IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_ressourcesMeshes[(RESSOURCES)i], curBoard->getBoardRootNode(), -1, randomResPos(curBoard, this->_ressourcesMeshes[(RESSOURCES)i]), vector3df(-60.0f, -135.0f, -5.0f), vector3df(meshRescale, meshRescale, meshRescale));
         newNode->setMaterialFlag(EMF_WIREFRAME, false);
         newNode->setMaterialFlag(EMF_LIGHTING, false);
@@ -102,7 +105,7 @@ void   GMap::refreshGMapRes()
     int k;
     std::map<RESSOURCES, IMeshSceneNode *>  *ressourcesNodes;
     std::vector<std::vector<Board *> > *underSquares = this->_board->getUnderSquares();
-    
+
     j = 0;
     while (j < this->_board->getNbSquareSizeY())
     {
@@ -128,27 +131,23 @@ void   GMap::refreshGMapRes()
 void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
 {
     std::vector<GPlayer *>::const_iterator   it = players.begin();
-    std::vector<std::vector<Board *> >    underSquares = *this->_board->getUnderSquares();
+    std::vector<std::vector<Board *> >    *underSquares = this->_board->getUnderSquares();
     clearAllPlayers();
 
-    std::cout << "TEST 10" << std::endl; 
     while (it != players.end())
     {
-    std::cout << "TEST 11" << std::endl; 
-        underSquares[(*it)->getX()][(*it)->getY()]->setCurPlayerMesh(this->_playersMeshes[(*it)->getLvl()]);
-        underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setVisible(true);
-        underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 0.0f, 0.0f));
-    std::cout << "TEST 12" << std::endl; 
+        (*underSquares)[(*it)->getY()][(*it)->getX()]->setCurPlayerMesh(this->_playersMeshes[(*it)->getLvl()]);
+        (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setVisible(true);
+        (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setMaterialFlag(EMF_LIGHTING, false);
+        (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setRotation(vector3df(0.0f, 0.0f, 0.0f));
         if ((*it)->getDirection() == UP)
-            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 180.0f, 0.0f));
+            (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setRotation(vector3df(0.0f, 180.0f, 0.0f));
         else if ((*it)->getDirection() == RIGHT)
-            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, -90.0f, 0.0f));
+            (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setRotation(vector3df(0.0f, -90.0f, 0.0f));
         else if ((*it)->getDirection() == LEFT)
-            underSquares[(*it)->getX()][(*it)->getY()]->getPlayerNode()->setRotation(vector3df(0.0f, 90.0f, 0.0f));
-    std::cout << "TEST 13" << std::endl; 
+            (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setRotation(vector3df(0.0f, 90.0f, 0.0f));
         ++it;
     }
-    std::cout << "TEST 14" << std::endl; 
 }
 
 void   GMap::clearAllRessources()

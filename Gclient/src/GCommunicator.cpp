@@ -107,13 +107,13 @@ void    GCommunicator::bctf(std::string &line)
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
 
     this->_gui->getMutex().lock();
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[FOOD] = std::stoi(words[2]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[LINEMATE] = std::stoi(words[3]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[DERAUMERE] = std::stoi(words[4]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[SIBUR] = std::stoi(words[5]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[MENDIANE] = std::stoi(words[6]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[PHIRAS] = std::stoi(words[7]);
-    this->_gui->getMap()[std::stoi(words[0])][std::stoi(words[1])].res.res[THYSTAME] = std::stoi(words[8]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[FOOD] = std::stoi(words[2]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[LINEMATE] = std::stoi(words[3]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[DERAUMERE] = std::stoi(words[4]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[SIBUR] = std::stoi(words[5]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[MENDIANE] = std::stoi(words[6]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[PHIRAS] = std::stoi(words[7]);
+    this->_gui->getMap()[std::stoi(words[1])][std::stoi(words[0])].res.res[THYSTAME] = std::stoi(words[8]);
     this->_gui->getMutex().unlock();
 }
 

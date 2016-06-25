@@ -35,15 +35,13 @@ void    GUI::launch()
   this->_env = _device->getGUIEnvironment();
   this->_device->getCursorControl()->setVisible(false);
 
-  sleep(1);
- 
     if (loadMeshesAndTextures() == false)
     {
         std::cerr << "Error: 3D model or texture has not been loaded" << std::endl;
         exit(EXIT_FAILURE);
     }
     this->_smgr->addCameraSceneNode(this->_smgr->getRootSceneNode(), core::vector3df(this->_sizeX * 10, (float)((float)this->_sizeY * 10) * ((float)this->_sizeX / 10), (float)this->_sizeY * 0.66f), core::vector3df(this->_sizeX * 10, 0, (float)((float)this->_sizeY * 10) - ((float)this->_sizeY * 0.66f)));
-    //this->_smgr->addCameraSceneNodeMaya(this->_smgr->getRootSceneNode());
+//    this->_smgr->addCameraSceneNodeMaya(this->_smgr->getRootSceneNode());
 
     this->_gameBoard = new Board(this->_smgr->getRootSceneNode(), this->_smgr, 1, vector3df(10 * this->_sizeX, 0.0f, 10 * this->_sizeY), vector3df(0.0f, 0.0f, 0.0f), vector3df(20 * this->_sizeX, 0.0f, 20 * this->_sizeY), this->_sizeX, this->_sizeY, this->_floor);
     this->_gMap = new GMap(this->_smgr, this->_gameBoard, this->_ressourcesMeshes, this->_playersMeshes);
@@ -147,24 +145,14 @@ void    GUI::initMap()
     this->_map = new t_square*[this->_sizeY + 2];
     for (int i = 0; i < this->_sizeY + 2; ++i)
         this->_map[i] = new t_square[this->_sizeX + 2];
-/*    while (i < this->_sizeY + 2)
-    {
-        this->_map[i] = new t_square[this->_sizeX + 2];
-        i++;
-    }*/
 }
 
 void    GUI::refreshGame()
 {
     this->_mutex.lock();
-    std::cout << "test 1" << std::endl;
     this->_gMap->setMap(this->_map);
-    std::cout << "test 2" << std::endl;
-    std::cout << "test 2,5" << std::endl;
     this->_gMap->refreshGMapPlayers(this->_players);
-    std::cout << "test 3" << std::endl;
     this->_gMap->refreshGMapRes();
-    std::cout << "test 4" << std::endl;
     this->_mutex.unlock();
 }
 

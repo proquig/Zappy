@@ -21,7 +21,7 @@ Board::~Board()
 {
     
 }
-
+#include <iostream>
 void    Board::init()
 {
     if (this->_nbSquareSizeX != 0 && this->_nbSquareSizeY != 0)
