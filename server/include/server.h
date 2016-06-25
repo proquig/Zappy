@@ -85,13 +85,16 @@ typedef struct 		s_expulse
 
 int					tablen(char **tab);
 int					init_server(t_param *param, t_fds *fds);
+
+void 				send_msg(t_server *server, int fd, char *fmt, ...);
 void				error(const char *msg);
 int					is_number(const char *str);
+
 void				init_params(t_param *params);
 int					set_int_param(const char **args, void *param);
 int					set_char_param(const char **args, void *param);
 int					set_params(const char **args, t_param *params);
-int					start_server(t_server *server);
+void				start_server(t_server *server);
 char				**get_cmds(const char *str, const char *dels);
 int					analyse_commande(t_server *server, t_player *player);
 
@@ -110,7 +113,8 @@ void				free_tab(char **tab);
 
 
 int     			incantation_is_possible(t_server *server, t_player *player);
-int     			tell_to_players(t_player *root, t_player *t);
+int     			tell_to_players(t_server *server, t_player *t);
+int     			tell_ko_players(t_server *server, t_player *t);
 
 // TODO: define max actions
 void				init_action(t_action *action);
@@ -119,7 +123,5 @@ t_action			*find_free_action(t_action actions[10]);
 t_action        	*get_current_action(t_action actions[10]);
 void        		set_action(t_server *server, t_player *player, int time,
 							   void (*fn)(t_server *, t_player *));
-
-int     tell_ko_players(t_player *root, t_player *t);
 
 #endif /* _ZAPPY_SERVER_H_ */

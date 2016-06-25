@@ -58,16 +58,13 @@ void			client_read(t_server *server, int fd)
 
   // TODO: command ko
   // TODO: free
+  size = -1;
   i = -1;
   if (!(player = search_player(server->players, fd))
 	|| (size = read(fd, buff, 1023)) <= 0)
-
-  {
       close_client(server, fd);
-      return;
-  }
-    buff[size] = 0;
-  while (size && (i == - 1 || i != size))
+  buff[size] = 0;
+  while (size > 0 && (i == - 1 || i != size))
   	{
 	  j = i + 1;
 	  while (++i < size && buff[i] && buff[i] != '\n');
@@ -144,7 +141,6 @@ int			add_client(t_fds *fds, int fd)
   fds->fd_type[fd] = FD_CLIENT;
   fds->fct_read[fd] = client_read;
   fds->fct_write[fd] = client_write;
-  dprintf(fd, "BIENVENUE\n");
   return (fd);
 }
 

@@ -17,14 +17,14 @@ void		print_contents_seen(t_server *server, t_player *player, int x, int y)
   while (tmp)
   	{
 	  if (tmp->x == (unsigned int)x && tmp->y == (unsigned int)y)
-		dprintf(player->fd, " joueur");
+		send_msg(server, player->fd, " joueur");
 	  tmp = tmp->next;
 	}
   while (++i < RES_SIZE)
     {
       j = -1;
       while ((unsigned int)(++j) < server->map[y][x].res.res[i])
-		dprintf(player->fd, " %s", res_name[i]);
+		send_msg(server, player->fd, " %s", res_name[i]);
     }
 }
 
@@ -43,7 +43,7 @@ void 		voir(t_server *server, t_player *player)
 	i = (range * -1);
 	while (i <= range)
 	{
-	  dprintf(player->fd, range ? "," : "{");
+	  send_msg(server, player->fd, range ? "," : "{");
 	  print_contents_seen(server, player, (player->dir % 2)
 										  ? (player->x + (range * x))
 										  : (player->x - i * x),
@@ -53,5 +53,5 @@ void 		voir(t_server *server, t_player *player)
 	  ++i;
 	}
   }
-  dprintf(player->fd, "}\n");
+  send_msg(server, player->fd, "}\n");
 }

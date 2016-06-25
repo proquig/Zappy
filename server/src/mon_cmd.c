@@ -20,7 +20,7 @@ const t_cmd mon_cmds[] = {
 
 int 	cmd_mon_msz(t_server *server, t_player *player)
 {
-  dprintf(player->fd, "msz %u %u\n", server->param.x, server->param.y);
+  send_msg(server, player->fd, "msz %u %u\n", server->param.x, server->param.y);
   return (1);
 }
 
@@ -34,13 +34,13 @@ int 	cmd_mon_bct(t_server *server, t_player *player)
   if (x >= server->param.x
 	  || y >= server->param.y)
 	return (0);
-  print_square_contents(&server->map[x][y], player->fd);
+  print_square_contents(server, player, &server->map[y][x]);
   return (1);
 }
 
 int 	cmd_mon_mct(t_server *server, t_player *player)
 {
-  print_map_contents(server->map, player->fd);
+  print_map_contents(server, player);
   return (1);
 }
 
@@ -50,7 +50,7 @@ int 	cmd_mon_tna(t_server *server, t_player *player)
 
   i = -1;
   while (server->param.n[++i])
-	dprintf(player->fd, "tna %s\n", server->param.n[i]);
+	send_msg(server, player->fd, "tna %s\n", server->param.n[i]);
   return (1);
 }
 
@@ -64,7 +64,7 @@ int 	cmd_mon_ppo(t_server *server, t_player *player)
   while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
   if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
 	return (0);
-  dprintf(player->fd, "ppo %u %u %u %u\n", i,
+  send_msg(server, player->fd, "ppo %u %u %u %u\n", i,
 		  player->x, player->y, player->dir);
   return (1);
 }
@@ -79,7 +79,7 @@ int 	cmd_mon_plv(t_server *server, t_player *player)
   while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
   if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != atoi(player->tab[1]))
 	return (0);
-  dprintf(player->fd, "plv %u %u\n", i, player->lvl);
+  send_msg(server, player->fd, "plv %u %u\n", i, player->lvl);
   return (1);
 }
 
@@ -93,11 +93,11 @@ int 	cmd_mon_pin(t_server *server, t_player *player)
   while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
   if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
 	return (0);
-  dprintf(player->fd, "plv %u %u %u", i, player->x, player->y);
+  send_msg(server, player->fd, "plv %u %u %u", i, player->x, player->y);
   i = -1;
   while (++i < RES_SIZE)
-	dprintf(player->fd, " %d", player->res.res[i]);
-  dprintf(player->fd, "\n");
+	send_msg(server, player->fd, " %d", player->res.res[i]);
+  send_msg(server, player->fd, "\n");
   return (1);
 }
 
@@ -123,5 +123,5 @@ void	exec_graphic_cmd(t_server *server, t_player *player)
 		 && strcmp(mon_cmds[i].cmd, player->tab[0]));
   if (!mon_cmds[i].cmd || nb_params != (mon_cmds[i].nb_params + 1)
 	  || !mon_cmds[i].fn(server, player))
-	dprintf(player->fd, "%s\n", mon_cmds[i].cmd ? "sbp" : "suc");
+	send_msg(server, player->fd, "%s\n", mon_cmds[i].cmd ? "sbp" : "suc");
 }

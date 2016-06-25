@@ -14,6 +14,7 @@
 void			server_read(t_server *server, int fd)
 {
     int fdclient;
+    t_player    *player;
 
     if (server->param.c * tablen(server->param.n) <= len_players(server->players))
     {
@@ -23,11 +24,13 @@ void			server_read(t_server *server, int fd)
 	else
 	{
 	  fdclient = add_client(&server->fds, fd);
-	  server->players = add_player(server->players, init_player(fdclient, &server->param));
+      player = init_player(fdclient, &server->param);
+	  server->players = add_player(server->players, player);
+      send_msg(server, fdclient, "BIENVENUE\n");
 	}
 }
 
-int 			start_server(t_server *server)
+void 			start_server(t_server *server)
 {
   int			  fd_max;
   struct timeval  tv;

@@ -16,7 +16,7 @@ void 		right(t_server *server, t_player *player)
     player->dir = UP;
   if (player->dir == RIGHT)
     player->dir = DOWN;
-  dprintf(player->fd, "ok\n");
+  send_msg(server, player->fd, "ok\n");
 }
 
 void 		gauche(t_server *server, t_player *player)
@@ -30,7 +30,7 @@ void 		gauche(t_server *server, t_player *player)
     player->dir = DOWN;
   if (player->dir == RIGHT)
     player->dir = UP;
-  dprintf(player->fd, "ok\n");
+  send_msg(server, player->fd, "ok\n");
 }
 
 void 		inventaire(t_server *server, t_player *player)
@@ -40,7 +40,7 @@ void 		inventaire(t_server *server, t_player *player)
   i = -1;
   (void)server;
   while (++i < RES_SIZE)
-    dprintf(player->fd, "%s%s %u%s", i ? "" : "{", res_name[i],
+    send_msg(server, player->fd, "%s%s %u%s", i ? "" : "{", res_name[i],
 	    player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");
 }
 
@@ -64,7 +64,7 @@ void		prend(t_server *server, t_player *player)
 	    err = 0;
 	  }
     }
-  dprintf(player->fd, err ? "ko\n" : "ok\n");
+  send_msg(server, player->fd, err ? "ko\n" : "ok\n");
 }
 
 void 		pose(t_server *server, t_player *player)
@@ -86,7 +86,7 @@ void 		pose(t_server *server, t_player *player)
 	    err = 0;
 	  }
     }
-  dprintf(player->fd, err ? "ko\n" : "ok\n");
+  send_msg(server, player->fd, err ? "ko\n" : "ok\n");
 }
 
 void broadcast(t_server *server, t_player *player)
@@ -102,7 +102,7 @@ void forker(t_server *server, t_player *player)
 
     struct timeval tv;
 
-    dprintf(player->fd, "ok\n");
+    send_msg(server, player->fd, "ok\n");
     /*set_action_time(&tv, 600, server->param.t);
 */
 
@@ -111,7 +111,7 @@ void forker(t_server *server, t_player *player)
 
 void connect_nbr(t_server *server, t_player *player)
 {
-    dprintf(player->fd, "%i\n", player->teams.max > server->param.t ?
+    send_msg(server, player->fd, "%i\n", player->teams.max > server->param.t ?
                                 player->teams.max : server->param.t);
 }
 

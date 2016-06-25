@@ -43,5 +43,5 @@ void		avance(t_server *server, t_player *player)
     if (avance1[i].str == player->dir)
       avance1[i].ptr(server, player);
   //  fprintf(stderr, "Player nb : %i y=%i x=%i\n", player->fd, player->y, player->x);
-  dprintf(player->fd, "ok\n");
+  send_msg(server, player->fd, "ok\n");
 }

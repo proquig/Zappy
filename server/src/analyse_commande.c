@@ -34,8 +34,8 @@ int 	set_team(t_server *server, t_player *player)
       {
           player->teams.id = i;
           player->teams.max = server->param.c;
-          dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
-          dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
+          send_msg(server, player->fd, "%i\n", server->param.c - size_player(server->players, i));
+          send_msg(server, player->fd,"%i %i\n",server->param.x, server->param.y);
       }
   printf("%s\n", player->tab[0]);
   // TODO: clean that shit
@@ -73,7 +73,7 @@ int     analyse_commande(t_server *server, t_player *player)
     if (player->teams.id == -1)
         if (!set_team(server, player))
 		{
-            dprintf(player->fd, "ko\n");
+            send_msg(server, player->fd, "ko\n");
             return (-1);
         }
 		else
@@ -81,10 +81,10 @@ int     analyse_commande(t_server *server, t_player *player)
     if (player->teams.id != GRAPHIC) {
         while (commande[++i].cmd)
         {
-            if (!strcmp(player->tab[0], "incantation") )
+            if (!strcmp(player->tab[0], "incantation"))
             {
                if (incantation_is_possible(server, player) == 1) {
-                   tell_to_players(server->players, player);
+                   tell_to_players(server, player);
                    set_action(server, player, commande[9].time, commande[9].f);
                }
                 else
@@ -95,7 +95,7 @@ int     analyse_commande(t_server *server, t_player *player)
 		    	set_action(server, player, commande[i].time, commande[i].f);
         }
         if (!is_in_command(player->tab[0]))
-		  dprintf(player->fd,"ko\n");
+		  send_msg(server, player->fd,"ko\n");
     }
     else
         exec_graphic_cmd(server, player);

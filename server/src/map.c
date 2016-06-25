@@ -58,27 +58,27 @@ void 			put_random_ressource(t_square **map, int size_x, int size_y)
   map[y][x].res.res[rand() % RES_SIZE]++;
 }
 
-void			print_square_contents(t_square *square, int fd)
+void			print_square_contents(t_server *server, t_player *player, t_square *square)
 {
   int 			i;
 
   i = -1;
-  dprintf(fd, "bct %u %u", square->x, square->y);
+  send_msg(server, player->fd, "bct %u %u", square->x, square->y);
   while (++i < RES_SIZE)
-	dprintf(fd, " %u", square->res.res[i]);
-  dprintf(fd, "\n");
+	send_msg(server, player->fd, " %u", square->res.res[i]);
+  send_msg(server, player->fd, "\n");
 }
 
-void			print_map_contents(t_square **map, int fd)
+void			print_map_contents(t_server *server, t_player *player)
 {
   int 			i;
   int 			j;
 
   i = -1;
-  while ((unsigned int)(++i) < map[0][0].size_y)
+  while ((unsigned int)(++i) < server->map[0][0].size_y)
   {
 	j = -1;
-	while ((unsigned int)(++j) < map[0][0].size_x)
-	  print_square_contents(&map[i][j], fd);
+	while ((unsigned int)(++j) < server->map[0][0].size_x)
+	  print_square_contents(server, player, &server->map[i][j]);
   }
 }

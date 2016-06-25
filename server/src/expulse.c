@@ -45,11 +45,11 @@ void		expulse(t_server *server, t_player *player)
 	    if (tmp->dir == push[i].dir)
 	      {
 		expulse_player(player, tmp, server);
-		dprintf(tmp->fd, "deplacement: %u\n", push[i].pos);
+		send_msg(server, tmp->fd, "deplacement: %u\n", push[i].pos);
 	      }
 	  err = 0;
 	}
       tmp = tmp->next;
     }
-  dprintf(player->fd, err ? "ko\n" : "ok\n");
+  send_msg(server, player->fd, err ? "ko\n" : "ok\n");
 }

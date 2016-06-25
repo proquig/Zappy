@@ -8,7 +8,20 @@
 ** Last update Tue Jun 14 09:50:52 2016 Guillaume PROQUIN
 */
 
+#define _GNU_SOURCE
 #include "server.h"
+
+void 		send_msg(t_server *server, int fd, char *fmt, ...)
+{
+  va_list 	ap;
+  char 		*str;
+
+  va_start(ap, fmt);
+  vasprintf(&str, fmt, ap);
+  if (write(fd, str, strlen(str)) != strlen(str))
+	close_client(server, fd);
+  free(str);
+}
 
 void		error(const char *msg)
 {
