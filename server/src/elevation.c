@@ -80,7 +80,7 @@ int     incantation_is_possible(t_server *server, t_player *player)
         dprintf(player->fd, "ko\n");
         return (0);
     }
-    while (server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res.res[i])
+    while (i < 7 && server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res.res[i])
         i++;
     printf("blop %i\n",i );
     return (i == 7);

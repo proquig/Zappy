@@ -64,7 +64,7 @@ void			client_read(t_server *server, int fd)
 	|| (size = read(fd, buff, 1023)) < 0)
 	close_client(server, fd);
   buff[size] = 0;
-  while (size && (i == - 1 || i != size))
+  while (size > 0 && (i == - 1 || i != size))
   	{
 	  j = i + 1;
 	  while (++i < size && buff[i] && buff[i] != '\n');
