@@ -94,6 +94,8 @@ vector3df   GMap::randomResPos(Board *curBoard, IMesh *res)
         repos.Z++;
     else if (repos.Z > 0)
         repos.Z--;
+    if (repos.X > 0 || repos.Z > 0)
+        repos = randomResPos(curBoard, res);
     while (it != curBoard->getRessourcesNodes()->end())
     {
        if (((it->second->getPosition().X == repos.X) || (it->second->getPosition().X == repos.X + 2) || (it->second->getPosition().X == repos.X - 2)) && 
