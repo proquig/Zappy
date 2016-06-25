@@ -105,7 +105,7 @@ t_player		*search_player(t_player *list, int fd)
   return (tmp);
 }
 
-
+/*
 t_player		*del_player(t_player *list, int fd)
 {
     t_player		*tmp;
@@ -128,6 +128,16 @@ t_player		*del_player(t_player *list, int fd)
         free(tmp1);
     }
     return (list);
+}
+*/
+
+t_player		*del_player(t_player *players, int fd)
+{
+  t_player		*player;
+
+  if ((player = search_player(players, fd)))
+	player->fd = -1;
+  return (players);
 }
 
 /*t_player		*del_player(t_player *list, int fd)

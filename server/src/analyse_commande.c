@@ -87,7 +87,7 @@ int     analyse_commande(t_server *server, t_player *player)
                    tell_to_players(server->players, player);
                    set_action(server, player, commande[9].time, commande[9].f);
                }
-                player->tab[0] = "";
+                //player->tab[0] = "";
                 return 0;
             }
             else if (!strcmp(commande[i].cmd, player->tab[0]))
@@ -101,6 +101,6 @@ int     analyse_commande(t_server *server, t_player *player)
         exec_graphic_cmd(server, player);
 //    free_tab(player->tab);
     //TODO::free
-    player->tab[0] = "";
+    //player->tab[0] = "";
     return (0);
 }

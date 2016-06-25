@@ -27,7 +27,8 @@ int 	set_fds(t_server *server)
 void			close_client(t_server *server, int fd)
 {
   printf("Connection closed on %i\n", fd);
-  server->players = del_player(server->players, fd);
+  //server->players = del_player(server->players, fd);
+  // TODO: del player
   close(fd);
   server->fds.fd_type[fd] = FD_FREE;
 }
@@ -66,28 +67,24 @@ void			client_read(t_server *server, int fd)
   while (size && (i == - 1 || i != size))
   	{
 	  j = i + 1;
-	  printf("HELLO\n");
 	  while (++i < size && buff[i] && buff[i] != '\n');
-	  if (player->cmd)
-	  	printf("==>%s\n", player->cmd);
 	  if (buff[i])
 	  {
-		printf("IN THAT BITCH\n");
 		buff[i] = 0;
 		player->cmd = cat_buff(player->cmd, &buff[j]);
-		printf(">>%s<<\n", player->cmd);
 		player->tab = get_cmds(player->cmd, " \t\r\n");
-		printf("TAB[0] = %s TAB[1] = %s\n", player->tab[0], player->tab[1]);
 		if (analyse_commande(server, player) == -1)
 		  close_client(server, fd);
-		//free(player->cmd);
-		//free_tab(player->tab);
-		//player->cmd = NULL;
-		//player->tab = NULL;
+		else
+		{
+		  free(player->cmd);
+		  free_tab(player->tab);
+		  player->cmd = NULL;
+		  player->tab = NULL;
+		}
 	  }
 	  else
 	  {
-		printf("I PASS HERE\n");
 		buff[i] = 0;
 		player->cmd = cat_buff(player->cmd, &buff[j]);
 	  }
