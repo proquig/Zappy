@@ -27,8 +27,7 @@ int 	set_fds(t_server *server)
 void			close_client(t_server *server, int fd)
 {
   printf("Connection closed on %i\n", fd);
-  //server->players = del_player(server->players, fd);
-  // TODO: del player
+  server->players = del_player(server->players, fd);
   close(fd);
   server->fds.fd_type[fd] = FD_FREE;
 }
@@ -61,10 +60,14 @@ void			client_read(t_server *server, int fd)
   // TODO: free
   i = -1;
   if (!(player = search_player(server->players, fd))
-	|| (size = read(fd, buff, 1023)) < 0)
-	close_client(server, fd);
-  buff[size] = 0;
-  while (size > 0 && (i == - 1 || i != size))
+	|| (size = read(fd, buff, 1023)) <= 0)
+
+  {
+      close_client(server, fd);
+      return;
+  }
+    buff[size] = 0;
+  while (size && (i == - 1 || i != size))
   	{
 	  j = i + 1;
 	  while (++i < size && buff[i] && buff[i] != '\n');

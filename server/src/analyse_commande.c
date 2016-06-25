@@ -33,7 +33,7 @@ int 	set_team(t_server *server, t_player *player)
     size_player(server->players, i) < server->param.c)
       {
           player->teams.id = i;
-          player->teams.max = server->param.c; // danger
+          player->teams.max = server->param.c;
           dprintf(player->fd, "%i\n", server->param.c - size_player(server->players, i));
           dprintf(player->fd,"%i %i\n",server->param.x, server->param.y);
       }
@@ -87,20 +87,15 @@ int     analyse_commande(t_server *server, t_player *player)
                    tell_to_players(server->players, player);
                    set_action(server, player, commande[9].time, commande[9].f);
                }
-                //player->tab[0] = "";
                 return 0;
             }
             else if (!strcmp(commande[i].cmd, player->tab[0]))
 		    	set_action(server, player, commande[i].time, commande[i].f);
         }
-
         if (!is_in_command(player->tab[0]))
 		  dprintf(player->fd,"ko\n");
     }
     else
         exec_graphic_cmd(server, player);
-//    free_tab(player->tab);
-    //TODO::free
-    //player->tab[0] = "";
     return (0);
 }

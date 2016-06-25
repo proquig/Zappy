@@ -45,10 +45,11 @@ int 			size_player(t_player *root, int team)
   tmp = root;
   while (tmp)
     {
-      if (tmp->teams.id == team)
+      if (tmp->teams.id == team && tmp->fd != -1)
 	    i++;
       tmp = tmp->next;
     }
+    printf("nb payer in team :%i\n", i);
   return (i);
 }
 
@@ -61,9 +62,11 @@ int 			len_players(t_player *root)
     tmp = root;
     while (tmp)
     {
-        i++;
+        if (tmp->fd != -1)
+            i++;
         tmp = tmp->next;
     }
+    printf("nb payer TOTAL :%i\n", i);
     return (i);
 }
 

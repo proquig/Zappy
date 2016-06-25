@@ -31,15 +31,20 @@ int 			start_server(t_server *server)
 {
   int			  fd_max;
   struct timeval  tv;
+  int             error;
 
+  error = 1;
   server->players = NULL;
-  while (42)
+  while (error)
     {
       tv.tv_sec = 0;
       tv.tv_usec = (1 / server->param.t * FREQUENCY);
       fd_max = set_fds(server);
       if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
-        perror("select"); // SHUTDOWN
+      {
+        error = 0;
+        perror("select");
+      }
 	  handle_clients(server);
     }
 }
