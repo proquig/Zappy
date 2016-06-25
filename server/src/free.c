@@ -4,9 +4,9 @@
 
 #include "server.h"
 
-int tablen(char **tab)
+int	tablen(char **tab)
 {
-    int i;
+    int	i;
 
     i = -1;
     while(tab[++i])
@@ -14,9 +14,9 @@ int tablen(char **tab)
     return (i);
 }
 
-void free_tab(char **tab)
+void	free_tab(char **tab)
 {
-    int i;
+    int	i;
 
     i = -1;
     while (tab[++i])

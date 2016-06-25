@@ -4,11 +4,11 @@
 
 #include <server.h>
 
-int     players_on_square(t_player *root, unsigned int x,
+int			players_on_square(t_player *root, unsigned int x,
                           unsigned int y, int lvl)
 {
-    t_player * tmp;
-    int         i;
+    t_player		*tmp;
+    int			i;
 
     tmp = root;
     i = 0;
@@ -21,10 +21,10 @@ int     players_on_square(t_player *root, unsigned int x,
     return (i);
 }
 
-int     up_players(t_server *server, t_player *t)
+int			 up_players(t_server *server, t_player *t)
 {
-    t_player * tmp;
-    int         i;
+    t_player		*tmp;
+    int			i;
 
     tmp = server->players;
     i = 0;
@@ -34,6 +34,7 @@ int     up_players(t_server *server, t_player *t)
         if (tmp->x == t->x && tmp->y == t->y && tmp->lvl == t->lvl)
         {
             tmp->lvl++;
+            printf("niveau actuel : %u\n", tmp->lvl);
             send_msg(server, tmp->fd,"niveau actuel : %u\n", tmp->lvl);
         }
         tmp = tmp->next;
@@ -41,10 +42,10 @@ int     up_players(t_server *server, t_player *t)
     return (i);
 }
 
-int     tell_to_players(t_server *server, t_player *t)
+int			tell_to_players(t_server *server, t_player *t)
 {
-    t_player * tmp;
-    int         i;
+    t_player		*tmp;
+    int			i;
 
     tmp = server->players;
     i = 0;
@@ -58,10 +59,10 @@ int     tell_to_players(t_server *server, t_player *t)
   return (i);
 }
 
-int     tell_ko_players(t_server *server, t_player *player)
+int			 tell_ko_players(t_server *server, t_player *player)
 {
-    t_player *tmp;
-    int         i;
+    t_player		*tmp;
+    int			i;
 
     tmp = server->players;
     i = 0;
@@ -75,9 +76,9 @@ int     tell_ko_players(t_server *server, t_player *player)
     return (i);
 }
 
-int     incantation_is_possible(t_server *server, t_player *player)
+int			incantation_is_possible(t_server *server, t_player *player)
 {
-    t_incantation inc[] = {
+    t_incantation	inc[] = {
             {1, {{0, 1, 0, 0, 0, 0, 0}}},
             {2, {{0, 1, 1, 1, 0, 0, 0}}},
             {2, {{0, 2, 0, 1, 0, 2, 0}}},
@@ -103,7 +104,7 @@ int     incantation_is_possible(t_server *server, t_player *player)
     return (i == 7);
 }
 
-void    incantation(t_server *server, t_player *player)
+void		incantation(t_server *server, t_player *player)
 {
     if (!incantation_is_possible(server, player))
         return;

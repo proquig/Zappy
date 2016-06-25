@@ -28,8 +28,10 @@ void			close_client(t_server *server, int fd)
 {
   printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
-  close(fd);
-  server->fds.fd_type[fd] = FD_FREE;
+    FD_CLR(fd, &server->fds.fds_read);
+    FD_CLR(fd, &server->fds.fds_write);
+    close(fd);
+    server->fds.fd_type[fd] = FD_FREE;
 }
 
 char            *cat_buff(char *str, char *buff)

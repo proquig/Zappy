@@ -16,18 +16,13 @@ void			server_read(t_server *server, int fd)
     int fdclient;
     t_player    *player;
 
-    if (server->param.c * tablen(server->param.n) <= len_players(server->players))
-    {
-        close(fd);
-        server->fds.fd_type[fd] = FD_FREE;
-    }
-	else
-	{
-	  fdclient = add_client(&server->fds, fd);
-      player = init_player(fdclient, &server->param);
-	  server->players = add_player(server->players, player);
-      send_msg(server, fdclient, "BIENVENUE\n");
-	}
+    fdclient = add_client(&server->fds, fd);
+    player = init_player(fdclient, &server->param);
+    server->players = add_player(server->players, player);
+    if (server->param.c * tablen(server->param.n) < len_players(server->players))
+        close_client(server, fdclient);
+     else
+        send_msg(server, fdclient, "BIENVENUE\n");
 }
 
 void 			start_server(t_server *server)
@@ -35,11 +30,14 @@ void 			start_server(t_server *server)
   int			  fd_max;
   struct timeval  tv;
   int             error;
+    int res;
 
+    res = 0;
   error = 1;
   server->players = NULL;
   while (error)
     {
+        res++;
       tv.tv_sec = 0;
       tv.tv_usec = (1 / server->param.t * FREQUENCY);
       fd_max = set_fds(server);
@@ -49,6 +47,10 @@ void 			start_server(t_server *server)
         perror("select");
       }
 	  handle_clients(server);
+        if (res % 100000 == 0) {
+            res = 0;
+            put_random_ressource(server->map, server->param.x, server->param.y);
+        }
     }
 }
 

@@ -30,7 +30,7 @@ t_square		**create_map(unsigned int size_x, unsigned int size_y)
 {
   int 			i;
   int 			j;
-  unsigned int 	size[2] = {
+  unsigned int		size[2] = {
 		  size_x, size_y
   };
   t_square		**map;
@@ -50,8 +50,8 @@ t_square		**create_map(unsigned int size_x, unsigned int size_y)
 
 void 			put_random_ressource(t_square **map, int size_x, int size_y)
 {
-  unsigned int	x;
-  unsigned int	y;
+  unsigned int		x;
+  unsigned int		y;
 
   x = rand() % size_x;
   y = rand() % size_y;

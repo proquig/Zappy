@@ -16,7 +16,7 @@ void		print_contents_seen(t_server *server, t_player *player, int x, int y)
   tmp = server->players;
   while (tmp)
   	{
-	  if (tmp->x == (unsigned int)x && tmp->y == (unsigned int)y)
+	  if (tmp->x == (unsigned int)x && tmp->y == (unsigned int)y && tmp->fd != -1)
 		send_msg(server, player->fd, " joueur");
 	  tmp = tmp->next;
 	}

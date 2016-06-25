@@ -25,7 +25,7 @@ t_command commande[] = {
 
 int 	set_team(t_server *server, t_player *player)
 {
-  int i;
+  int	i;
 
   i = -1;
   while (server->param.n[++i] && player->teams.id == -1)
@@ -37,7 +37,7 @@ int 	set_team(t_server *server, t_player *player)
           send_msg(server, player->fd, "%i\n", server->param.c - size_player(server->players, i));
           send_msg(server, player->fd,"%i %i\n",server->param.x, server->param.y);
       }
-  printf("%s\n", player->tab[0]);
+//  printf("%s\n", player->tab[0]);
   // TODO: clean that shit
   if (player->teams.id == -1 && strcmp("GRAPHIC", player->tab[0]) == 0)
     {
@@ -47,14 +47,13 @@ int 	set_team(t_server *server, t_player *player)
 	  cmd_mon_mct(server, player);
 	  cmd_mon_tna(server, player);
     }
-    printf("id team=%i\n", player->teams.id);
-  return (player->teams.id != -1);
+
+    return (player->teams.id != -1);
 }
 
-int     is_in_command(char *str)
+int		is_in_command(char *str)
 {
-
-    int i;
+    int		i;
 
     i = -1;
     while (commande[++i].cmd)
@@ -63,21 +62,25 @@ int     is_in_command(char *str)
     return (0);
 }
 
-int     analyse_commande(t_server *server, t_player *player)
+int		analyse_commande(t_server *server, t_player *player)
 {
-  int	i;
+  int		i;
 
     i = -1;
     if (!player->tab || !player->tab[0])
         return (0);
     if (player->teams.id == -1)
-        if (!set_team(server, player))
-		{
+    {
+        printf("Client essaye de se co en temps que %s\n", player->tab[0]);
+        if (!set_team(server, player)) {
             send_msg(server, player->fd, "ko\n");
             return (-1);
         }
-		else
-		  return (0);
+        else {
+            printf("Client Connecte\n");
+            return (0);
+        }
+    }
     if (player->teams.id != GRAPHIC) {
         while (commande[++i].cmd)
         {

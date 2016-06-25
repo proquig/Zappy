@@ -38,12 +38,12 @@ t_action        *get_current_action(t_action actions[10])
   return (i == 10 ? NULL : &actions[i]);
 }
 
-void            set_action(t_server *server, t_player *player, int time,
+void			set_action(t_server *server, t_player *player, int time,
                            void (*fn)(t_server *, t_player *))
 {
-  int               i;
-  t_action        *action;
-  struct timeval  *old_time;
+  int			i;
+  t_action		*action;
+  struct timeval	*old_time;
 
   old_time = NULL;
   i = -1;

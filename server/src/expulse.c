@@ -4,16 +4,16 @@
 
 #include "player.h"
 
-static t_expulse push[] = {
+static t_expulse	push[] = {
 	{UP, 5},
 	{DOWN, 1},
 	{LEFT, 3},
 	{RIGHT, 7}
 };
 
-void 		expulse_player(t_player *player, t_player *victim, t_server*server)
+void			expulse_player(t_player *player, t_player *victim, t_server*server)
 {
-  t_avance	avance[] = {
+  t_avance		avance[] = {
 	  {UP,    &move_up},
 	  {DOWN,  &move_down},
 	  {LEFT,  &move_left},

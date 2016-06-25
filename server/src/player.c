@@ -12,8 +12,8 @@
 
 t_player		*init_player(int fd, t_param *param)
 {
-  t_player	*player;
-  int 		i;
+  t_player		*player;
+  int			i;
 
   i = 0;
   srand(0);
@@ -68,9 +68,9 @@ int 			len_players(t_player *root)
     return (i);
 }
 
-void        update_team(t_player *root, int id)
+void			update_team(t_player *root, int id)
 {
-    t_player *tmp;
+    t_player		*tmp;
 
     tmp = root;
     while (tmp)
@@ -100,7 +100,7 @@ t_player		*search_player(t_player *list, int fd)
   t_player		*tmp;
 
   if (!list)
-	return (NULL);
+    return (NULL);
   tmp = list;
   while (tmp->fd != fd && (tmp = tmp->next));
   return (tmp);
@@ -137,7 +137,7 @@ t_player		*del_player(t_player *players, int fd)
   t_player		*player;
 
   if ((player = search_player(players, fd)))
-	player->fd = -1;
+    player->fd = -1;
   return (players);
 }
 
