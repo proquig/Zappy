@@ -20,7 +20,7 @@ void			server_read(t_server *server, int fd)
     player = init_player(fdclient, &server->param);
     server->players = add_player(server->players, player);
     if (server->param.c * tablen(server->param.n) < len_players(server->players))
-        close_client(server, fdclient);
+        close_client(server, fdclient, NULL);
      else
         send_msg(server, fdclient, "BIENVENUE\n");
 }

@@ -19,7 +19,7 @@ void 		send_msg(t_server *server, int fd, char *fmt, ...)
   va_start(ap, fmt);
   vasprintf(&str, fmt, ap);
   if (fd && fd != -1 && write(fd, str, strlen(str)) != strlen(str))
-	close_client(server, fd);
+	close_client(server, fd, NULL);
   free(str);
 }
 

@@ -24,10 +24,12 @@ int 	set_fds(t_server *server)
 }
 
 
-void			close_client(t_server *server, int fd)
+void			close_client(t_server *server, int fd, char *msg)
 {
   if (!fd || fd == -1)
 	return ;
+  if (msg)
+	send_msg(server, fd, msg);
   printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
   FD_CLR(fd, &server->fds.fds_read);
@@ -66,7 +68,7 @@ void			client_read(t_server *server, int fd)
   i = -1;
   if (!(player = search_player(server->players, fd))
 	|| (size = read(fd, buff, 1023)) <= 0)
-      close_client(server, fd);
+      close_client(server, fd, NULL);
   buff[size] = 0;
   while (size > 0 && (i == - 1 || i != size))
   	{
@@ -78,7 +80,7 @@ void			client_read(t_server *server, int fd)
 		player->cmd = cat_buff(player->cmd, &buff[j]);
 		player->tab = get_cmds(player->cmd, " \t\r\n");
 		if (analyse_commande(server, player) == -1)
-		  close_client(server, fd);
+		  close_client(server, fd, NULL);
 		else
 		{
 		  free(player->cmd);
@@ -160,15 +162,13 @@ void 		handle_clients(t_server *server)
 	  set_action_time(&server->loop, 1, server->param.t);
 	  while (player)
 	  {
-		player->res.res[FOOD] -= (player->teams.id != -1);
+		player->res.res[FOOD] -= (player->teams.id != -1
+								  && player->teams.id != GRAPHIC);
 		if (player->fd != -1 && FD_ISSET(player->fd, &server->fds.fds_write)
 			&& server->fds.fd_type[player->fd] != FD_FREE)
 		  server->fds.fct_write[player->fd](server, player->fd);
 		if (player->teams.id != -1 && player->res.res[FOOD] <= 0)
-		{
-		  send_msg(server, player->fd, "mort\n");
-		  close_client(server, player->fd);
-		}
+		  close_client(server, player->fd, "mort\n");
 		player = player->next;
 	  }
   	}

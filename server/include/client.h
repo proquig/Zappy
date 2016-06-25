@@ -8,7 +8,7 @@
 # include	"server.h"
 
 int			set_fds(t_server *server);
-void		close_client(t_server *server, int fd);
+void		close_client(t_server *server, int fd, char *msg);
 void		client_read(t_server *server, int fd);
 void 		client_write(t_server *server, int fd);
 int			add_client(t_server *server, int fd);
