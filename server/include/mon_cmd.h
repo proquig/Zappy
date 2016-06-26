@@ -14,6 +14,14 @@ typedef struct	s_cmd
   int 			(*fn)(t_server *server, t_player *player);
 }				t_cmd;
 
+
+int 	event_pgt(t_server *server, t_player *player);
+int 	event_pdr(t_server *server, t_player *player);
+int		event_ppo(t_server *server, t_player *player);
+int		event_pnw(t_server *server, t_player *player);
+int		event_pdi(t_server *server, t_player *player);
+
+void 		notify(t_server *server, char *fn);
 void	exec_graphic_cmd(t_server *server, t_player *player);
 
 int 	cmd_mon_msz(t_server *server, t_player *player);

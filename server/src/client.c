@@ -4,6 +4,7 @@
 
 #include "server.h"
 #include "player.h"
+#include "mon_cmd.h"
 
 int 	set_fds(t_server *server)
 {
@@ -29,7 +30,12 @@ void			close_client(t_server *server, int fd, char *msg)
   if (!fd || fd == -1)
 	return ;
   if (msg)
+  {
 	send_msg(server, fd, msg);
+	search_player(server->players, fd)->notify = 1;
+	notify(server, "pdi");
+	search_player(server->players, fd)->notify = 0;
+  }
   printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
   FD_CLR(fd, &server->fds.fds_read);

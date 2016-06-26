@@ -79,13 +79,13 @@ int			 tell_ko_players(t_server *server, t_player *player)
 int			incantation_is_possible(t_server *server, t_player *player)
 {
     t_incantation	inc[] = {
-            {1, {{0, 1, 0, 0, 0, 0, 0}}},
-            {2, {{0, 1, 1, 1, 0, 0, 0}}},
-            {2, {{0, 2, 0, 1, 0, 2, 0}}},
-            {4, {{0, 1, 1, 2, 0, 1, 0}}},
-            {4, {{0, 1, 2, 1, 3, 0, 0}}},
-            {6, {{0, 1, 2, 3, 0, 1, 0}}},
-            {6, {{0, 2, 2, 2, 2, 2, 1}}},
+            {1, {0, 1, 0, 0, 0, 0, 0}},
+            {2, {0, 1, 1, 1, 0, 0, 0}},
+            {2, {0, 2, 0, 1, 0, 2, 0}},
+            {4, {0, 1, 1, 2, 0, 1, 0}},
+            {4, {0, 1, 2, 1, 3, 0, 0}},
+            {6, {0, 1, 2, 3, 0, 1, 0}},
+            {6, {0, 2, 2, 2, 2, 2, 1}},
     };
     int         i;
 
@@ -97,7 +97,7 @@ int			incantation_is_possible(t_server *server, t_player *player)
         send_msg(server, player->fd, "ko\n");
         return (0);
     }
-    while (i < 7 && server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res.res[i])
+    while (i < 7 && server->map[player->y][player->x].res.res[i] == inc[player->lvl -1].res[i])
         i++;
     if (i != 7)
         tell_ko_players(server, player);

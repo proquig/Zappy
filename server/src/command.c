@@ -3,6 +3,7 @@
 //
 
 #include <player.h>
+#include <mon_cmd.h>
 #include "server.h"
 
 void 		right(t_server *server, t_player *player)
@@ -17,6 +18,9 @@ void 		right(t_server *server, t_player *player)
   if (player->dir == RIGHT)
     player->dir = DOWN;
   send_msg(server, player->fd, "ok\n");
+  player->notify = 1;
+  notify(server, "ppo");
+  player->notify = 0;
 }
 
 void 		gauche(t_server *server, t_player *player)
@@ -31,6 +35,9 @@ void 		gauche(t_server *server, t_player *player)
   if (player->dir == RIGHT)
     player->dir = UP;
   send_msg(server, player->fd, "ok\n");
+  player->notify = 1;
+  notify(server, "ppo");
+  player->notify = 0;
 }
 
 void 		inventaire(t_server *server, t_player *player)
@@ -65,6 +72,13 @@ void		prend(t_server *server, t_player *player)
 	  }
     }
   send_msg(server, player->fd, err ? "ko\n" : "ok\n");
+  if (!err)
+  {
+	player->notify = 1;
+	notify(server, "pgt");
+	player->notify = 0;
+  }
+
 }
 
 void 		pose(t_server *server, t_player *player)
@@ -88,6 +102,12 @@ void 		pose(t_server *server, t_player *player)
 	  }
     }
   send_msg(server, player->fd, err ? "ko\n" : "ok\n");
+  if (!err)
+  {
+	player->notify = 1;
+	notify(server, "pdr");
+	player->notify = 0;
+  }
 }
 
 void broadcast(t_server *server, t_player *player)

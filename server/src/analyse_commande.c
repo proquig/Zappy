@@ -33,10 +33,13 @@ int 	set_team(t_server *server, t_player *player)
     if (strcmp(server->param.n[i], player->tab[0]) == 0 &&
     size_player(server->players, i) < get_team_max(server->players, i, server->param))
       {
-          player->teams.id = i;
-          player->teams.max = server->param.c;
-          send_msg(server, player->fd, "%i\n", server->param.c - size_player(server->players, i));
-          send_msg(server, player->fd,"%i %i\n",server->param.x, server->param.y);
+        player->teams.id = i;
+        player->teams.max = server->param.c;
+        player->notify = 1;
+        notify(server, "pnw");
+        player->notify = 0;
+        send_msg(server, player->fd, "%i\n", server->param.c - size_player(server->players, i));
+        send_msg(server, player->fd,"%i %i\n",server->param.x, server->param.y);
       }
 //  printf("%s\n", player->tab[0]);
   // TODO: clean that shit
@@ -77,12 +80,9 @@ int		analyse_commande(t_server *server, t_player *player)
             send_msg(server, player->fd, "ko\n");
             return (-1);
         }
-        else {
-            printf("Client Connecte\n");
-            return (0);
-        }
+ 	  printf("Client Connecte\n");
     }
-    if (player->teams.id != GRAPHIC) {
+    else if (player->teams.id != GRAPHIC) {
         while (commande[++i].cmd)
         {
             if (!strcmp(player->tab[0], "incantation"))

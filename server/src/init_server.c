@@ -27,7 +27,7 @@ void			server_read(t_server *server, int fd)
 
 int             server_is_running(int check)
 {
-  static        is_running = 1;
+  static int	is_running = 1;
 
   if (!check)
     is_running = 0;

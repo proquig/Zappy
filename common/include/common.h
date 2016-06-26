@@ -13,10 +13,16 @@
 
 enum			Direction
 {
-  UP,
+/*
+ * UP,
   LEFT,
   DOWN,
   RIGHT
+  */
+  UP = 1,
+  RIGHT = 2,
+  DOWN = 3,
+  LEFT = 4
 };
 
 enum 			RESSOURCES
@@ -34,6 +40,7 @@ enum 			RESSOURCES
 typedef struct		s_ressources
 {
   unsigned int 		res[RES_SIZE];
+  int 				notify[RES_SIZE];
 }			t_ressources;
 
 typedef struct          s_team
@@ -62,6 +69,8 @@ typedef struct		s_player
   t_ressources		res;
   int 		    	fd;
   int   			lvl;
+  int				notify;
+  int				param[2];
   char 				*cmd;
   char 				**tab;
   t_action			actions[10];
@@ -81,8 +90,8 @@ typedef struct		s_square
 
 typedef struct      s_incantation
 {
-    int             nb_player;
-    t_ressources    res;
+  int             	nb_player;
+  unsigned int 		res[RES_SIZE];
 }                   t_incantation;
 
 extern const char 		*res_name[];

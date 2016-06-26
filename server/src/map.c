@@ -43,7 +43,7 @@ t_square		**create_map(unsigned int size_x, unsigned int size_y)
 		return (NULL);
 	  j = -1;
 	  while ((unsigned int)(++j) < size_x)
-		init_square(&map[i][j], (unsigned int) i, (unsigned int) j, size);
+		init_square(&map[i][j], (unsigned int) j, (unsigned int) i, size);
   	}
   return (map);
 }

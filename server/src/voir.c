@@ -45,11 +45,11 @@ void 		voir(t_server *server, t_player *player)
 	{
 	  send_msg(server, player->fd, range ? "," : "{");
 	  print_contents_seen(server, player, (player->dir % 2)
-										  ? (player->x + (range * x))
-										  : (player->x - i * x),
+										  ? (player->x - i * x)
+										  : (player->x + (range * x)),
 						  (player->dir % 2)
-						  ? (player->y - i * y)
-						  : (player->y + (range * y)));
+						  ? (player->y + (range * y))
+						  : (player->y - i * y));
 	  ++i;
 	}
   }

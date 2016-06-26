@@ -4,6 +4,7 @@
 //
 
 #include "server.h"
+#include "mon_cmd.h"
 
 void		move_up(t_server *server, t_player *player)
 {
@@ -44,4 +45,7 @@ void		avance(t_server *server, t_player *player)
       avance1[i].ptr(server, player);
   //  fprintf(stderr, "Player nb : %i y=%i x=%i\n", player->fd, player->y, player->x);
   send_msg(server, player->fd, "ok\n");
+  player->notify = 1;
+  notify(server, "ppo");
+  player->notify = 0;
 }

@@ -18,9 +18,19 @@ const t_cmd mon_cmds[] = {
 		{NULL, 0, NULL}
 };
 
+const t_cmd events[] = {
+		{"pdi", 0, &event_pdi},
+		{"pnw", 0, &event_pnw},
+		{"ppo", 0, &event_ppo},
+		{"pdr", 0, &event_pdr},
+		{"pgt", 0, &event_pgt},
+		{NULL, 0, NULL}
+};
+
 int 	cmd_mon_msz(t_server *server, t_player *player)
 {
-  send_msg(server, player->fd, "msz %u %u\n", server->param.x, server->param.y);
+  send_msg(server, player->fd, "msz %u %u\n",
+		   server->param.x, server->param.y);
   return (1);
 }
 
@@ -29,8 +39,10 @@ int 	cmd_mon_bct(t_server *server, t_player *player)
   unsigned int 	x;
   unsigned int 	y;
 
-  x = strtoul(player->tab[1], NULL, 10);
-  y = strtoul(player->tab[2], NULL, 10);
+  x = player->param[0] != -1
+	  ? player->param[0] : strtoul(player->tab[1], NULL, 10);
+  y = player->param[1] != -1
+	  ? player->param[1] : strtoul(player->tab[2], NULL, 10);
   if (x >= server->param.x
 	  || y >= server->param.y)
 	return (0);
@@ -58,14 +70,17 @@ int 	cmd_mon_ppo(t_server *server, t_player *player)
 {
   t_player	*tmp;
   int 	i;
+  int 	nb;
 
   i = -1;
+  nb = (player->param[0] != -1) ? player->param[0] : atoi(player->tab[1]);
   tmp = server->players;
-  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
+  while (++i < nb && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != nb)
 	return (0);
+  printf("IM HERE TOO\n");
   send_msg(server, player->fd, "ppo %u %u %u %u\n", i,
-		  player->x, player->y, player->dir);
+		  tmp->x, tmp->y, tmp->dir);
   return (1);
 }
 
@@ -73,13 +88,15 @@ int 	cmd_mon_plv(t_server *server, t_player *player)
 {
   t_player	*tmp;
   int 	i;
+  int 	nb;
 
   i = -1;
+  nb = (player->param[0] != -1) ? player->param[0] : atoi(player->tab[1]);
   tmp = server->players;
-  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != atoi(player->tab[1]))
+  while (++i < nb && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != nb)
 	return (0);
-  send_msg(server, player->fd, "plv %u %u\n", i, player->lvl);
+  send_msg(server, player->fd, "plv %u %u\n", i, tmp->lvl);
   return (1);
 }
 
@@ -87,16 +104,18 @@ int 	cmd_mon_pin(t_server *server, t_player *player)
 {
   t_player	*tmp;
   int 	i;
+  int 	nb;
 
   i = -1;
+  nb = (player->param[0] != -1) ? player->param[0] : atoi(player->tab[1]);
   tmp = server->players;
-  while (++i < atoi(player->tab[1]) && (tmp = tmp->next));
-  if (!tmp || tmp->teams.id == GRAPHIC || i != atoi(player->tab[1]))
+  while (++i < nb && (tmp = tmp->next));
+  if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != nb)
 	return (0);
-  send_msg(server, player->fd, "plv %u %u %u", i, player->x, player->y);
+  send_msg(server, player->fd, "pin %u %u %u", i, tmp->x, tmp->y);
   i = -1;
   while (++i < RES_SIZE)
-	send_msg(server, player->fd, " %d", player->res.res[i]);
+	send_msg(server, player->fd, " %d", tmp->res.res[i]);
   send_msg(server, player->fd, "\n");
   return (1);
 }
@@ -130,4 +149,111 @@ void	exec_graphic_cmd(t_server *server, t_player *player)
   if (!mon_cmds[i].cmd || nb_params != (mon_cmds[i].nb_params + 1)
 	  || !mon_cmds[i].fn(server, player))
 	send_msg(server, player->fd, "%s\n", mon_cmds[i].cmd ? "sbp" : "suc");
+}
+
+int			event_pdi(t_server *server, t_player *player)
+{
+  int 		i;
+  t_player	*tmp;
+
+  tmp = server->players;
+  i = 0;
+  while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
+  if (!tmp || !tmp->notify)
+	return (0);
+  send_msg(server, player->fd, "pdi %u\n", i);
+  return (1);
+}
+
+int			event_pnw(t_server *server, t_player *player)
+{
+  int 		i;
+  t_player	*tmp;
+
+  tmp = server->players;
+  i = 0;
+  while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
+  if (!tmp || !tmp->notify)
+	return (0);
+  send_msg(server, player->fd, "pnw %u %u %u %u %u %s\n",
+		   i, tmp->x, tmp->y, tmp->dir, tmp->lvl,
+		   server->param.n[tmp->teams.id]);
+  return (1);
+}
+
+int			event_ppo(t_server *server, t_player *player)
+{
+  int 		i;
+  t_player	*tmp;
+
+  tmp = server->players;
+  i = 0;
+  while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
+  if (!tmp || !tmp->notify)
+	return (0);
+  player->param[0] = i;
+  cmd_mon_ppo(server, player);
+  player->param[0] = -1;
+  return (1);
+}
+
+int 		event_pdr(t_server *server, t_player *player)
+{
+  int 		i;
+  int 		j;
+  t_player	*tmp;
+
+  tmp = server->players;
+  i = 0;
+  j = -1;
+  while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
+  while (tmp && tmp->notify && !player->res.notify[++j]);
+  if (!tmp || !tmp->notify || !player->res.notify[j])
+	return (0);
+  send_msg(server, player->fd, "pdr %u %u\n", i, j);
+  player->param[0] = i;
+  cmd_mon_pin(server, player);
+  player->param[0] = tmp->x;
+  player->param[1] = tmp->y;
+  cmd_mon_bct(server, player);
+  player->param[0] = -1;
+  player->param[1] = -1;
+  return (1);
+}
+
+int			event_pgt(t_server *server, t_player *player)
+{
+  int 		i;
+  int 		j;
+  t_player	*tmp;
+
+  tmp = server->players;
+  i = 0;
+  j = -1;
+  while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
+  while (tmp && tmp->notify && !player->res.notify[++j]);
+  if (!tmp || !tmp->notify || !player->res.notify[j])
+	return (0);
+  send_msg(server, player->fd, "pgt %u %u\n", i, j);
+  player->param[0] = i;
+  cmd_mon_pin(server, player);
+  player->param[0] = tmp->x;
+  player->param[1] = tmp->y;
+  cmd_mon_bct(server, player);
+  player->param[0] = -1;
+  player->param[1] = -1;
+  return (1);
+}
+
+void 		notify(t_server *server, char *fn)
+{
+  int 		i;
+  t_player	*player;
+
+  i = -1;
+  player = server->players;
+  while (player && player->teams.id != GRAPHIC && (player = player->next));
+  while (events[++i].cmd && strcmp(fn, events[i].cmd));
+  if (player && player->teams.id == GRAPHIC && events[i].fn)
+	events[i].fn(server, player);
 }
