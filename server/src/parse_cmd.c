@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 09:55:06 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 12:15:17 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 12:59:22 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -13,22 +13,22 @@
 #include "map.h"
 #include "mon_cmd.h"
 
-t_command	commande[] = {
-        {"avance",	&avance,	7},
-        {"droite",	&right,		7},
-        {"gauche",	&gauche,	7},
-        {"voir",	&voir,		7},
-        {"inventaire",	&inventaire,	1},
-        {"prend",	&prend,		7},
-        {"pose",	&pose,		7},
-        {"expulse",	&expulse,	7},
-        {"broadcast",	&broadcast,	7},
-        {"incantation",	&incantation,	300},
-        {"fork",	&forker,	42},
-        {NULL,		NULL,		0}
+t_command	commande[12] = {
+  {"avance",		NULL,			&avance,	7},
+  {"droite",		NULL,			&right,		7},
+  {"gauche",		NULL,			&gauche,	7},
+  {"voir",		NULL,			&voir,		7},
+  {"inventaire",	NULL,			&inventaire,	1},
+  {"prend",		NULL,			&prend,		7},
+  {"pose",		NULL,			&pose,		7},
+  {"expulse",		NULL,			&expulse,	7},
+  {"broadcast",		NULL,			&broadcast,	7},
+  {"incantation",	&check_incantation,	&incantation,	300},
+  {"fork",		NULL,			&forker,	42},
+  {NULL,		NULL,			NULL,		0}
 };
 
-void	cmd_welcome(t_server *server, t_player *player)
+void		cmd_welcome(t_server *server, t_player *player)
 {
   player->teams.max = server->param.c;
   player->notify = 1;
@@ -55,33 +55,20 @@ int		analyse_commande(t_server *server, t_player *player)
   int		i;
 
   i = -1;
+  player->tab = get_cmds(player->cmd, " \t\r\n");
   if (!player->tab || !player->tab[0])
     return (0);
   if (player->teams.id == -1)
-    if (!set_team(server, player))
-      {
-	send_msg(server, player->fd, "ko\n");
-	return (-1);
-      }
-  else if (player->teams.id != GRAPHIC) {
-    while (commande[++i].cmd)
-      {
-	if (!strcmp(player->tab[0], "incantation"))
-	  {
-	    if (incantation_is_possible(server, player) == 1) {
-	      tell_to_players(server, player);
-	      set_action(server, player, commande[9].time, commande[9].f);
-	    }
-	    else
-	      tell_ko_players(server, player);
-	    return 0;
-	  }
-	else if (!strcmp(commande[i].cmd, player->tab[0]))
+    return (set_team(server, player));
+  else if (player->teams.id != GRAPHIC)
+    {
+      while (commande[++i].cmd)
+	if (!strcmp(commande[i].cmd, player->tab[0])
+	    && (!commande[i].check || commande[i].check(server, player)))
 	  set_action(server, player, commande[i].time, commande[i].f);
-      }
-    if (!is_in_command(player->tab[0]))
-      send_msg(server, player->fd, "ko\n");
-  }
+      if (!is_in_command(player->tab[0]))
+	send_msg(server, player->fd, "ko\n");
+    }
   else
     exec_graphic_cmd(server, player);
   return (0);

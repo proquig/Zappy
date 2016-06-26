@@ -5,10 +5,11 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 09:59:23 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 11:43:55 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 12:35:10 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
+#include "player.h"
 
 int		players_on_square(t_player *root, unsigned int x,
 				  unsigned int y, int lvl)
@@ -72,6 +73,18 @@ int		incantation_is_possible(t_server *server, t_player *player)
   if (i != 7)
     tell_ko_players(server, player);
   return (i == 7);
+}
+
+int		check_incantation(t_server *server, t_player *player)
+{
+  if (!incantation_is_possible(server, player))
+    {
+      tell_ko_players(server, player);
+      return (0);
+    }
+  tell_to_players(server, player);
+  set_action(server, player, commande[9].time, commande[9].f);
+  return (1);
 }
 
 void		incantation(t_server *server, t_player *player)

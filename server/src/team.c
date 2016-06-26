@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 11:39:54 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 12:14:14 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 12:52:50 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -49,8 +49,8 @@ int	set_team(t_server *server, t_player *player)
   i = -1;
   printf("Client essaye de se co en temps que %s\n", player->tab[0]);
   while (server->param.n[++i] && player->teams.id == -1)
-    if (strcmp(server->param.n[i], player->tab[0]) == 0 &&
-	size_player(server->players, i)
+    if (!strcmp(server->param.n[i], player->tab[0])
+	&& size_player(server->players, i)
 	< get_team_max(server->players, i, server->param))
       {
 	player->teams.id = i;
@@ -58,8 +58,10 @@ int	set_team(t_server *server, t_player *player)
       }
   if (player->teams.id == -1 && strcmp("GRAPHIC", player->tab[0]) == 0)
     cmd_mon_welcome(server, player);
+  if (player->teams.id == -1)
+    send_msg(server, player->fd, "ko\n");
   printf("Client Connecte\n");
-  return (player->teams.id != -1);
+  return (player->teams.id != -1 ? 0 : -1);
 }
 
 int			get_team_max(t_player *root, int id, t_param param)

@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 09:54:39 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 11:42:48 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 13:04:14 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -31,16 +31,16 @@ void		close_client(t_server *server, int fd, char *msg)
   server->fds.fd_type[fd] = FD_FREE;
 }
 
+// TODO: command ko
 void		client_read(t_server *server, int fd)
 {
   int 		i;
   int 		j;
+  int		check;
   char		buff[64];
   ssize_t 	size;
   t_player	*player;
 
-  // TODO: command ko
-  // TODO: free
   size = -1;
   i = -1;
   if (!(player = search_player(server->players, fd))
@@ -51,26 +51,13 @@ void		client_read(t_server *server, int fd)
     {
       j = i + 1;
       while (++i < size && buff[i] && buff[i] != '\n');
-      if (buff[i])
-	{
-	  buff[i] = 0;
-	  player->cmd = cat_buff(player->cmd, &buff[j]);
-	  player->tab = get_cmds(player->cmd, " \t\r\n");
-	  if (analyse_commande(server, player) == -1)
-	    close_client(server, fd, NULL);
-	  else
-	    {
-	      free(player->cmd);
-	      free_tab(player->tab);
-	      player->cmd = NULL;
-	      player->tab = NULL;
-	    }
-	}
-      else
-	{
-	  buff[i] = 0;
-	  player->cmd = cat_buff(player->cmd, &buff[j]);
-	}
+      check = buff[i] ? 1 : 0;
+      buff[i] = 0;
+      player->cmd = cat_buff(player->cmd, &buff[j]);
+      if (check && analyse_commande(server, player) == -1)
+	close_client(server, fd, NULL);
+      if (check)
+	free_cmds(player);
     }
 }
 
