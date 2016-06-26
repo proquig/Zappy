@@ -5,7 +5,7 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:17:55 2016 Cloquet
-** Last update Tue Jun 14 13:27:49 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 10:17:37 2016 Guillaume PROQUIN
 */
 
 #include <time.h>
@@ -13,9 +13,9 @@
 #include "server.h"
 #include "map.h"
 
-void        init_env(t_fds *fds)
+void			init_env(t_fds *fds)
 {
-  int       i;
+  int			i;
 
   i = -1;
   while (++i < MAX_FD)
@@ -26,24 +26,24 @@ void        init_env(t_fds *fds)
   }
 }
 
-void		print_param(t_param *param)
+void			print_param(t_param *param)
 {
-  int 		i;
+  int			i;
 
   i = -1;
-  printf("\033[32;1mListening on port %i\n"
-		 "Configuration : Max(%i) "
-		 "WorldX(%i) WorldY(%i) T(%i)\033[0m\n",
+  printf("Listening on port %i\n"
+	 "Configuration : Max(%i) "
+	 "WorldX(%i) WorldY(%i) T(%i)\n",
 	 param->p, param->c, param->x, param->y, param->t);
-  printf("\033[32;1mTeam :\033[0m\n");
+  printf("Team :\n");
   while (param->n[++i])
-      printf("\033[32;1m\tName(%s) Max(%i)\033[0m\n", param->n[i], param->c);
+      printf("\tName(%s) Max(%i)\n", param->n[i], param->c);
 }
 
-void 		zappy(t_server *server)
+void			zappy(t_server *server)
 {
-  int 		x;
-  int 		y;
+  int			x;
+  int			y;
 
   x = -1;
   if (init_server(&server->param, &server->fds) == -1)
@@ -54,24 +54,24 @@ void 		zappy(t_server *server)
     {
       y = -1;
       while (++y < (int)server->param.y)
-      {
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
-        put_random_ressource(server->map, server->param.x, server->param.y);
+	{
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
+	  put_random_ressource(server->map, server->param.x, server->param.y);
         }
     }
-  printf("\033[32;1mGenerating world...done\033[0m\n");
+  printf("Generating world...done\n");
   start_server(server);
 }
 
-int		main(int ac, const char **av)
+int			main(int ac, const char **av)
 {
-  t_server	server;
-    struct timeval val;
+  t_server		server;
+  struct timeval	val;
 
   srand(gettimeofday(&val, NULL) * time(NULL));
   if (ac < 7)

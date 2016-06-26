@@ -1,24 +1,30 @@
-//
-// Created by cloquet on 18/06/16.
-//
+/*
+** expulse.c for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Sun Jun 26 11:01:11 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 11:01:13 2016 Guillaume PROQUIN
+*/
 
 #include "player.h"
 
 static t_expulse	push[] = {
-	{UP, 5},
-	{DOWN, 1},
-	{LEFT, 3},
-	{RIGHT, 7}
+  {UP, 5},
+  {DOWN, 1},
+  {LEFT, 3},
+  {RIGHT, 7}
 };
 
 void			expulse_player(t_player *player, t_player *victim, t_server*server)
 {
   t_avance		avance[] = {
-	  {UP,    &move_up},
-	  {DOWN,  &move_down},
-	  {LEFT,  &move_left},
-	  {RIGHT, &move_right},
-	  {0, NULL},
+    {UP,    &move_up},
+    {DOWN,  &move_down},
+    {LEFT,  &move_left},
+    {RIGHT, &move_right},
+    {0, NULL},
   };
   int 		i;
 
@@ -28,11 +34,11 @@ void			expulse_player(t_player *player, t_player *victim, t_server*server)
       avance[i].ptr(server, victim);
 }
 
-void		expulse(t_server *server, t_player *player)
+void			expulse(t_server *server, t_player *player)
 {
-  t_player	*tmp;
-  int 		i;
-  int 		err;
+  t_player		*tmp;
+  int			i;
+  int			err;
 
   err = 1;
   tmp = server->players;

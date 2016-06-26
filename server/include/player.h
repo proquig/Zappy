@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Wed Jun 15 14:17:25 2016 Guillaume PROQUIN
-** Last update Wed Jun 15 14:17:27 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 10:42:52 2016 Guillaume PROQUIN
 */
 
 #ifndef				ZAPPY_SERVER_PLAYER_H
@@ -27,12 +27,15 @@ t_player			*add_player(t_player *list, t_player *player);
 t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
 int 				size_player(t_player *root, int team);
-int				    len_players(t_player *root);
-void                update_team(t_player *root, int id);
+int				len_players(t_player *root);
+void				update_team(t_player *root, int id);
+
 void 				avance(t_server *server, t_player *player);
 void 				right(t_server *server, t_player *player);
 void 				gauche(t_server *server, t_player *player);
-void				print_contents_seen(t_server *server, t_player *player, int x, int y);
+void				print_contents_seen(t_server *server,
+						    t_player *player,
+						    int x, int y);
 void 				voir(t_server *server, t_player *player);
 void 				inventaire(t_server *server, t_player *player);
 void 				prend(t_server *server, t_player *player);
@@ -42,7 +45,7 @@ void 				broadcast(t_server *server, t_player *player);
 void 				incantation(t_server *server, t_player *player);
 void 				forker(t_server *server, t_player *player);
 void 				connect_nbr(t_server *server, t_player *player);
-void 				die(t_server *server, t_player *player);
+
 void				move_up(t_server *server, t_player *player);
 void				move_down(t_server *server, t_player *player);
 void				move_left(t_server *server, t_player *player);

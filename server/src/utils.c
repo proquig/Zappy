@@ -5,27 +5,14 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Tue Jun 14 09:50:48 2016 Guillaume PROQUIN
-** Last update Tue Jun 14 09:50:52 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 11:53:19 2016 Guillaume PROQUIN
 */
 
-#define _GNU_SOURCE
 #include "server.h"
-
-void 		send_msg(t_server *server, int fd, char *fmt, ...)
-{
-  va_list 	ap;
-  char 		*str;
-
-  va_start(ap, fmt);
-  vasprintf(&str, fmt, ap);
-  if (fd && fd != -1 && write(fd, str, strlen(str)) != strlen(str))
-	close_client(server, fd, NULL);
-  free(str);
-}
 
 void		error(const char *msg)
 {
-  fprintf(stderr, "\033[31m%s\033[0m\n", msg);
+  fprintf(stderr, "%s\n", msg);
   exit(0);
 }
 
@@ -51,7 +38,7 @@ int		count_cmds(const char *line, const char *dels)
   count = 0;
   i = -1;
   while (line[++i])
-    if (!is_delimiter(line[i], dels) \
+    if (!is_delimiter(line[i], dels)				\
         && (is_delimiter(line[i + 1], dels) || !line[i + 1]))
       count++;
   return (count);

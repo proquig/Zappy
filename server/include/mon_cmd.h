@@ -1,6 +1,12 @@
-//
-// Created by proqui_g on 6/18/16.
-//
+/*
+** mon_cmd.h for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Sun Jun 26 10:54:03 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 10:54:05 2016 Guillaume PROQUIN
+*/
 
 #ifndef   		__ZAPPY_SERVER_GRAPHIC_CMD_H__
 # define  		__ZAPPY_SERVER_GRAPHIC_CMD_H__
@@ -13,7 +19,6 @@ typedef struct	s_cmd
   int 	nb_params;
   int 			(*fn)(t_server *server, t_player *player);
 }				t_cmd;
-
 
 int 	event_pgt(t_server *server, t_player *player);
 int 	event_pdr(t_server *server, t_player *player);

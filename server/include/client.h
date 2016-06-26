@@ -1,6 +1,12 @@
-//
-// Created by proqui_g on 6/22/16.
-//
+/*
+** client.h for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Sun Jun 26 10:53:51 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 10:53:52 2016 Guillaume PROQUIN
+*/
 
 #ifndef		__ZAPPY_SERVER_CLIENT_H__
 # define	__ZAPPY_SERVER_CLIENT_H__

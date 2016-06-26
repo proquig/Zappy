@@ -1,9 +1,15 @@
-//
-// Created by cloquet on 14/06/16.
-//
+/*
+** command.c for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Sun Jun 26 09:55:56 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 11:45:55 2016 Guillaume PROQUIN
+*/
 
-#include <player.h>
-#include <mon_cmd.h>
+#include "player.h"
+#include "mon_cmd.h"
 #include "server.h"
 
 void 		right(t_server *server, t_player *player)
@@ -48,14 +54,14 @@ void 		inventaire(t_server *server, t_player *player)
   (void)server;
   while (++i < RES_SIZE)
     send_msg(server, player->fd, "%s%s %u%s", i ? "" : "{", res_name[i],
-	    player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");
+	     player->res.res[i], i != (RES_SIZE - 1) ? "," : "}\n");
 }
 
 void		prend(t_server *server, t_player *player)
 {
   int 		i;
   int 		err;
-  t_action *action;
+  t_action	*action;
 
   err = 1;
   i = -1;
@@ -64,7 +70,7 @@ void		prend(t_server *server, t_player *player)
     {
       while (++i < RES_SIZE)
 	if (server->map[player->y][player->x].res.res[i]
-        && !strcmp(action->cmd[1], res_name[i]))
+	    && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] -= 1;
 	    player->res.res[i] += i ? 1 : 126;
@@ -73,12 +79,11 @@ void		prend(t_server *server, t_player *player)
     }
   send_msg(server, player->fd, err ? "ko\n" : "ok\n");
   if (!err)
-  {
-	player->notify = 1;
-	notify(server, "pgt");
-	player->notify = 0;
-  }
-
+    {
+      player->notify = 1;
+      notify(server, "pgt");
+      player->notify = 0;
+    }
 }
 
 void 		pose(t_server *server, t_player *player)
@@ -94,7 +99,7 @@ void 		pose(t_server *server, t_player *player)
     {
       while (++i < RES_SIZE)
 	if (((i && player->res.res[i]) || (!i && player->res.res[i] >= 126))
-        && !strcmp(action->cmd[1], res_name[i]))
+	    && !strcmp(action->cmd[1], res_name[i]))
 	  {
 	    server->map[player->y][player->x].res.res[i] += 1;
 	    player->res.res[i] -= i ? 1 : 126;
@@ -103,36 +108,9 @@ void 		pose(t_server *server, t_player *player)
     }
   send_msg(server, player->fd, err ? "ko\n" : "ok\n");
   if (!err)
-  {
-	player->notify = 1;
-	notify(server, "pdr");
-	player->notify = 0;
-  }
-}
-
-void broadcast(t_server *server, t_player *player)
-{
-  (void)server;
-  dprintf(player->fd, "ko\n");
-}
-
-void forker(t_server *server, t_player *player)
-{
-    struct timeval tv;
-
-    send_msg(server, player->fd, "ok\n");
-    /*set_action_time(&tv, 600, server->param.t);*/
-    update_team(server->players, player->teams.id);
-}
-
-void connect_nbr(t_server *server, t_player *player)
-{
-    send_msg(server, player->fd, "%i\n", player->teams.max > server->param.t ?
-                                player->teams.max : server->param.t);
-}
-
-void die(t_server *server, t_player *player)
-{
-  (void)server;
-  (void)player;
+    {
+      player->notify = 1;
+      notify(server, "pdr");
+      player->notify = 0;
+    }
 }

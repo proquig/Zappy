@@ -5,18 +5,28 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Wed Jun 15 13:55:08 2016 Guillaume PROQUIN
-** Last update Wed Jun 15 14:14:28 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 11:40:29 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
 
-t_player		*init_player(int fd, t_param *param)
+void 			init_player_res(t_player *player)
 {
-    static int x = 0;
-  t_player		*player;
-  int			i;
+  int 			i;
 
   i = -1;
+  while (++i < RES_SIZE)
+    {
+      player->res.res[i] = i ? 0 : 10 * 126;
+      player->res.notify[i] = 0;
+    }
+}
+
+t_player		*init_player(int fd, t_param *param)
+{
+  static int		x = 0;
+  t_player		*player;
+
   srand(0);
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
@@ -33,74 +43,9 @@ t_player		*init_player(int fd, t_param *param)
   player->cmd = NULL;
   player->tab = NULL;
   init_actions(player->actions);
-  while (++i < RES_SIZE)
-    {
-	  player->res.res[i] = i ? 0 : 10 * 126;
-	  player->res.notify[i] = 0;
-    }
+  init_player_res(player);
   player->next = NULL;
   return (player);
-}
-
-int 			size_player(t_player *root, int team)
-{
-  t_player		*tmp;
-  int			i;
-
-  i = 0;
-  tmp = root;
-  while (tmp)
-    {
-      if (tmp->teams.id == team && tmp->fd != -1)
-	    i++;
-      tmp = tmp->next;
-    }
-  return (i);
-}
-
-int 			len_players(t_player *root)
-{
-    t_player		*tmp;
-    int			i;
-
-    i = 0;
-    tmp = root;
-    while (tmp)
-    {
-        if (tmp->fd != -1)
-            i++;
-        tmp = tmp->next;
-    }
-    return (i);
-}
-
-int			get_team_max(t_player *root, int id, t_param param)
-{
-    t_player		*tmp;
-    int             max;
-
-    tmp = root;
-   max = param.c;
-    while (tmp)
-    {
-        if (tmp->teams.id == id)
-            max = tmp->teams.max > param.c ? tmp->teams.max : param.c;
-        tmp = tmp->next;
-    }
-    return (max);
-}
-
-void			update_team(t_player *root, int id)
-{
-    t_player		*tmp;
-
-    tmp = root;
-    while (tmp)
-    {
-        if (tmp->teams.id == id)
-            tmp->teams.max++;
-        tmp = tmp->next;
-    }
 }
 
 t_player		*add_player(t_player *list, t_player *player)
@@ -128,70 +73,15 @@ t_player		*search_player(t_player *list, int fd)
   return (tmp);
 }
 
-/*
-t_player		*del_player(t_player *list, int fd)
-{
-    t_player		*tmp;
-    t_player		*tmp1;
-
-    if (!list)
-        return (NULL);
-    tmp = list;
-    while (tmp->fd != fd && tmp->next &&
-           tmp->next->fd != fd && (tmp = tmp->next));
-    if (tmp == list)
-    {
-        list = list->next;
-        free(tmp);
-    }
-    else if (tmp->next && tmp->next->fd == fd)
-    {
-        tmp1 = tmp->next;
-        tmp->next = tmp->next->next;
-        free(tmp1);
-    }
-    return (list);
-}
-*/
-
 t_player		*del_player(t_player *players, int fd)
 {
   t_player		*player;
 
   if ((player = search_player(players, fd)))
-  {
-    if (player->teams.id == GRAPHIC)
-      player->teams.id = -1;
-    player->fd = -1;
-  }
+    {
+      if (player->teams.id == GRAPHIC)
+	player->teams.id = -1;
+      player->fd = -1;
+    }
   return (players);
 }
-
-/*t_player		*del_player(t_player *list, int fd)
-{
-  t_player		*tmp;
-  //t_player		*tmp1;
-
-  if (!list)
-	return (NULL);
-  if ((tmp = search_player(list, fd)))
-	tmp->fd = -1;
-  //tmp->lvl
-  //tmp->
- tmp = list;
-  while (tmp->fd != fd && tmp->next &&
-		 tmp->next->fd != fd && (tmp = tmp->next));
-  if (tmp == list)
-  {
-	list = list->next;
-	free(tmp);
-  }
-  else if (tmp->next && tmp->next->fd == fd)
-  {
-	tmp1 = tmp->next;
-	tmp->next = tmp->next->next;
-	free(tmp1);
-  }
-  return (list);
-
-}*/

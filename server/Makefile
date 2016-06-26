@@ -5,7 +5,7 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Wed Jun 22 13:33:13 2016 Guillaume PROQUIN
+## Last update Sun Jun 26 11:51:39 2016 Guillaume PROQUIN
 ##
 
 SRC	=	src/main.c		\
@@ -13,18 +13,26 @@ SRC	=	src/main.c		\
 		src/init_server.c	\
 		src/player.c		\
 		src/utils.c		\
-		src/analyse_commande.c	\
+		src/parse_cmd.c		\
 		src/command.c		\
+		src/command_other.c	\
 		src/avance.c		\
 		src/expulse.c		\
 		src/voir.c		\
 		src/map.c		\
 		src/mon_cmd.c		\
+		src/mon_cmd_player.c	\
+		src/mon_cmd_map.c	\
 		src/free.c		\
 		src/action.c		\
 		src/handle_time.c	\
 		src/client.c		\
 		src/elevation.c		\
+		src/communication.c	\
+		src/team.c		\
+		src/events.c		\
+		src/events_player_res.c	\
+		src/signal.c		\
 		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)
