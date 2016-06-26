@@ -56,7 +56,7 @@ int	set_team(t_server *server, t_player *player)
 	player->teams.id = i;
 	cmd_welcome(server, player);
       }
-  if (player->teams.id == -1 && strcmp("GRAPHIC", player->tab[0]) == 0)
+  if (player->teams.id == -1 && !strcmp("GRAPHIC", player->tab[0]))
     cmd_mon_welcome(server, player);
   if (player->teams.id == -1)
     send_msg(server, player->fd, "ko\n");

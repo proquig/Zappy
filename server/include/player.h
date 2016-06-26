@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Wed Jun 15 14:17:25 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 10:42:52 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 12:34:35 2016 Guillaume PROQUIN
 */
 
 #ifndef				ZAPPY_SERVER_PLAYER_H
@@ -15,12 +15,15 @@
 # include			"common.h"
 # include			"server.h"
 
-typedef struct 		s_command
+typedef struct			s_command
 {
   char *			cmd;
+  int 				(*check)(t_server *server, t_player *player);
   void 				(*f)(t_server *server, t_player *player);
   int				time;
 }				t_command;
+
+extern t_command		commande[12];
 
 t_player			*init_player(int fd, t_param *p);
 t_player			*add_player(t_player *list, t_player *player);

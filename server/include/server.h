@@ -5,7 +5,7 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:18:28 2016 Cloquet
-** Last update Sun Jun 26 10:52:25 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 12:33:17 2016 Guillaume PROQUIN
 */
 
 #ifndef			__ZAPPY_SERVER_H__
@@ -111,6 +111,7 @@ void			handle_clients(t_server *server);
 
 void			free_tab(char **tab);
 
+int			check_incantation(t_server *server, t_player *player);
 int     		incantation_is_possible(t_server *server, t_player *player);
 int     		tell_to_players(t_server *server, t_player *t);
 int     		tell_ko_players(t_server *server, t_player *t);
