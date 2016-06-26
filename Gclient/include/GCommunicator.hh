@@ -16,8 +16,6 @@ class   GCommunicator
    
     GUI             *_gui;
     Socket          _socket;
-    fd_set          _readf;
-    struct timeval  _tv;
     std::map<std::string, f>   _func_ptrs;
     public:
     GCommunicator(std::string const &address, int port, GUI *gui);

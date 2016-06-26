@@ -17,25 +17,12 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
         std::cerr << "Problem occured while creating socket" << std::endl;
         exit(EXIT_FAILURE);
     }
-    this->_tv.tv_sec = 1;
-    this->_tv.tv_usec = 0;
     if (connect(this->_socket.getFdSocket(), (struct sockaddr *)&sin, sizeof(sin)) == -1)
     {
-        std::cerr << "Problem occured while connection to the server, please retry later" << std::endl;
+        std::cerr << "Problem occured while connecting to the server, please retry later" << std::endl;
         exit(EXIT_FAILURE);
     }
     this->_socket.initFileFd();
-/*    while (1)
-    {
-        FD_ZERO(&this->_readf);
-        FD_SET(this->_socket._fd_socket, &this->_readf);
-        if (select(this->_socket._fd_socket + 1, &this->_readf, NULL, NULL, &this->_tv) == -1)
-            perror("select");
-        if (FD_ISSET(this->_socket._fd_socket, &this->_readf))
-        {*/
-
-/*        }
-    }*/
     this->_func_ptrs.insert(std::pair<std::string, f>("BIENVENUE", &GCommunicator::fbienvenue));
     this->_func_ptrs.insert(std::pair<std::string, f>("msz", &GCommunicator::mszf));
     this->_func_ptrs.insert(std::pair<std::string, f>("sgt", &GCommunicator::sgtf));
@@ -156,16 +143,16 @@ void    GCommunicator::ppof(std::string &line)
     std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
     GPlayer *curPlayer = this->_gui->getPlayer(std::stoi(words[0]));
 
-    this->_gui->getMutex().lock();
-    curPlayer->setX(std::stoi(words[1]));
-    curPlayer->setY(std::stoi(words[2]));
-    if (std::stoi(words[3]) == 1)
-        curPlayer->setDirection(RIGHT);
-    else if (std::stoi(words[3]) == 3)
-        curPlayer->setDirection(LEFT);
-    else
+    if (curPlayer != nullptr)
+    {
+        this->_gui->getMutex().lock();
+        curPlayer->setX(std::stoi(words[1]));
+        curPlayer->setY(std::stoi(words[2]));
         curPlayer->setDirection((Direction)std::stoi(words[3]));
-    this->_gui->getMutex().unlock();
+        this->_gui->getMutex().unlock();
+    }
+    else
+        std::cerr << "Error: server sent position of an undefined player on client side" << std::endl;
 }
 
 void    GCommunicator::picf(std::string &line)
