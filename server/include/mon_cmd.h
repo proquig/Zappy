@@ -28,6 +28,7 @@ int		event_pdi(t_server *server, t_player *player);
 
 void 		notify(t_server *server, char *fn);
 void	exec_graphic_cmd(t_server *server, t_player *player);
+void		cmd_mon_welcome(t_server *server, t_player *player);
 
 int 	cmd_mon_msz(t_server *server, t_player *player);
 int 	cmd_mon_bct(t_server *server, t_player *player);

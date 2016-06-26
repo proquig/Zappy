@@ -1,6 +1,12 @@
-//
-// Created by cloque_b on 26/06/16.
-//
+/*
+** eggs.c for zappy in /home/proqui_g/rendu/PSU_2015_zappy/server
+** 
+** Made by Guillaume PROQUIN
+** Login   <proqui_g@epitech.net>
+** 
+** Started on  Sun Jun 26 22:09:41 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 22:10:00 2016 Guillaume PROQUIN
+*/
 
 #include "server.h"
 
@@ -60,7 +66,7 @@ int			they_are_eggs(t_server *server)
 {
   t_eggs		*tmp;
   int		        i;
-  
+
   i = 0;
   tmp = server->eggs;
   while (tmp)

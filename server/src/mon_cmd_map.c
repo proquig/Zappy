@@ -22,10 +22,10 @@ int		cmd_mon_bct(t_server *server, t_player *player)
   unsigned int	y;
   int 		i;
 
-  x = player->param[0] != -1
-    ? player->param[0] : strtoul(player->tab[1], NULL, 10);
-  y = player->param[1] != -1
-    ? player->param[1] : strtoul(player->tab[2], NULL, 10);
+  x = player->param[0] != -1 ? (unsigned int)player->param[0]
+							 : (unsigned int)strtoul(player->tab[1], NULL, 10);
+  y = player->param[1] != -1 ? (unsigned int)player->param[1]
+							 : (unsigned int)strtoul(player->tab[2], NULL, 10);
   if (x >= server->param.x
       || y >= server->param.y)
     return (0);

@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 09:54:39 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 13:04:14 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 22:16:21 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -102,20 +102,16 @@ void			handle_clients(t_server *server)
   while (++i < MAX_FD)
     if (FD_ISSET(i, &server->fds.fds_read))
       server->fds.fct_read[i](server, i);
-  printf("GO FUCK YOURSELF");
   if (!action_is_waiting(&server->loop))
     {
-	  put_food_ressource(server, server->param.x, server->param.y);
+      put_food_ressource(server, server->param.x, server->param.y);
       set_action_time(&server->loop, 1, server->param.t);
       while (player)
 	{
-	  if (player->teams.id != -1
-		  && player->teams.id != GRAPHIC && player->res.res[FOOD] <= 0)
-		printf("NEED TO DIE\n");
 	  player->res.res[FOOD] -= (player->teams.id != -1
 				    && player->teams.id != GRAPHIC);
 	  if (player->fd != -1 && player->res.res[FOOD] <= 0)
-		close_client(server, player->fd, "mort\n");
+	    close_client(server, player->fd, "mort\n");
 	  if (player->fd != -1 && FD_ISSET(player->fd, &server->fds.fds_write)
 	      && server->fds.fd_type[player->fd] != FD_FREE)
 	    server->fds.fct_write[player->fd](server, player->fd);

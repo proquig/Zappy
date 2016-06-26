@@ -47,9 +47,14 @@ void			zappy(t_server *server)
   i = -1;
   if (init_server(&server->param, &server->fds) == -1)
     error("Server init failed");
+  if (server->param.c * tablen(server->param.n) + 1 > MAX_FD)
+	server->param.c = 5;
+  if (server->param.t > 1000000
+	  || server->param.x > 100 || server->param.y > 100)
+	error("Wrong parameter");
   print_param(&server->param);
   server->map = create_map(server->param.x, server->param.y);
-  while (++i < (server->param.x * server->param.y * 4))
+  while ((unsigned int)++i < (server->param.x * server->param.y * 4))
 	put_random_ressource(server->map, server->param.x, server->param.y);
   printf("Generating world...done\n");
   start_server(server);

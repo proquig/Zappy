@@ -5,7 +5,7 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:18:28 2016 Cloquet
-** Last update Sun Jun 26 12:33:17 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 22:17:01 2016 Guillaume PROQUIN
 */
 
 #ifndef			__ZAPPY_SERVER_H__
@@ -84,20 +84,35 @@ typedef struct 		s_expulse
   int 			pos;
 }			t_expulse;
 
+void			init_action(t_action *action);
+void			init_actions(t_action actions[10]);
+t_action		*find_free_action(t_action actions[10]);
+t_action        	*get_current_action(t_action actions[10]);
+void        		set_action(t_server *server, t_player *player, int time,
+							   void (*fn)(t_server *, t_player *));
+
+void			move_up(t_server *server, t_player *player);
+void			move_down(t_server *server, t_player *player);
+void			move_left(t_server *server, t_player *player);
+void			move_right(t_server *server, t_player *player);
+void			avance(t_server *server, t_player *player);
+
 int			tablen(char **tab);
 int			init_server(t_param *param, t_fds *fds);
 
 void 			send_msg(t_server *server, int fd, char *fmt, ...);
 void			error(const char *msg);
 int			is_number(const char *str);
+int			count_cmds(const char *line, const char *dels);
+char			**get_cmds(const char *str, const char *dels);
+
+int			analyse_commande(t_server *server, t_player *player);
 
 void			init_params(t_param *params);
 int			set_int_param(const char **args, void *param);
 int			set_char_param(const char **args, void *param);
 int			set_params(const char **args, t_param *params);
 void			start_server(t_server *server);
-char			**get_cmds(const char *str, const char *dels);
-int			analyse_commande(t_server *server, t_player *player);
 
 int 			time_is_lower(struct timeval *time1, struct timeval *time2);
 int			action_is_waiting(struct timeval *time);
@@ -111,18 +126,13 @@ int			add_client(t_server *server, int fd);
 void			handle_clients(t_server *server);
 
 void			free_tab(char **tab);
+void			free_cmds(t_player *player);
+char			*cat_buff(char *str, char *buff);
 
 int			check_incantation(t_server *server, t_player *player);
 int     		incantation_is_possible(t_server *server, t_player *player);
 int     		tell_to_players(t_server *server, t_player *t);
 int     		tell_ko_players(t_server *server, t_player *t);
-
-void			init_action(t_action *action);
-void			init_actions(t_action actions[10]);
-t_action		*find_free_action(t_action actions[10]);
-t_action        	*get_current_action(t_action actions[10]);
-void        		set_action(t_server *server, t_player *player, int time,
-							   void (*fn)(t_server *, t_player *));
 
 int             	server_is_running(int check);
 void            	handle_signal(int signal);

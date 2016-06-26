@@ -29,7 +29,8 @@ void			server_read(t_server *server, int fd)
         server->eggs = server->eggs->next;
     }
   server->players = add_player(server->players, player);
-  if (server->param.c * tablen(server->param.n) + nb_eggs< len_players(server->players))
+  if (server->param.c * tablen(server->param.n) + nb_eggs
+	  < len_players(server->players))
     close_client(server, fdclient, NULL);
   else if (nb_eggs == 0)
     send_msg(server, fdclient, "BIENVENUE\n");
@@ -76,9 +77,8 @@ void 			start_server(t_server *server)
     tv.tv_sec = 0;
     tv.tv_usec = (int)(1.0 / (double)server->param.t * FREQUENCY);
     fd_max = set_fds(server);
-	printf("MODIFIED\n");
-    if (select(fd_max + 1, NULL,
-	       /*&server->fds.fds_write*/NULL, NULL, &tv) == -1)
+    if (select(fd_max + 1, &server->fds.fds_read,
+	       &server->fds.fds_write, NULL, &tv) == -1)
       server_shutdown(server, "select");
     handle_clients(server);
   }
