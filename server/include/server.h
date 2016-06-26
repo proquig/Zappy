@@ -139,4 +139,4 @@ t_player		*init_player_from_eggs(int fd, t_eggs *egg);
 t_eggs			*init_eggs(unsigned int x, unsigned int y, t_team team);
 t_eggs			*add_egg(t_eggs *list, t_eggs *player);
 
-#endif /* _ZAPPY_SERVER_H_ */
+#endif      /* _ZAPPY_SERVER_H_ */
