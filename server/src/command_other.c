@@ -23,7 +23,7 @@ void		free_cmds(t_player *player)
 void		broadcast(t_server *server, t_player *player)
 {
   (void)server;
-  dprintf(player->fd, "ko\n");
+  send_msg(server, player->fd, "ko\n");
 }
 
 void		forker(t_server *server, t_player *player)
