@@ -33,6 +33,7 @@ SRC	=	src/main.c		\
 		src/events.c		\
 		src/events_player_res.c	\
 		src/signal.c		\
+		src/eggs.c		\
 		../common/src/common.c
 
 OBJ	=	$(SRC:.c=.o)

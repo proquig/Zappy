@@ -74,6 +74,7 @@ typedef struct		s_server
   t_player		*players;
   t_param		param;
   t_fds			fds;
+  t_eggs		*eggs;
   struct timeval	loop;
 }			t_server;
 
@@ -128,5 +129,14 @@ void            	handle_signal(int signal);
 void            	server_shutdown(t_server *server, char *msg);
 
 int			get_team_max(t_player *root, int id, t_param param);
+int			set_team(t_server *server, t_player *player);
+void			update_team(t_player *root, int id);
+
+void			cmd_welcome(t_server *server, t_player *player);
+void 			init_player_res(t_player *player);
+int			they_are_eggs(t_server *server);
+t_player		*init_player_from_eggs(int fd, t_eggs *egg);
+t_eggs			*init_eggs(unsigned int x, unsigned int y, t_team team);
+t_eggs			*add_egg(t_eggs *list, t_eggs *player);
 
 #endif /* _ZAPPY_SERVER_H_ */

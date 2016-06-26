@@ -13,12 +13,6 @@
 
 enum			Direction
 {
-/*
- * UP,
-  LEFT,
-  DOWN,
-  RIGHT
-  */
   UP = 1,
   RIGHT = 2,
   DOWN = 3,
@@ -40,7 +34,7 @@ enum 			RESSOURCES
 typedef struct		s_ressources
 {
   unsigned int 		res[RES_SIZE];
-  int 				notify[RES_SIZE];
+  int			notify[RES_SIZE];
 }			t_ressources;
 
 typedef struct          s_team
@@ -55,10 +49,10 @@ typedef struct 		s_action t_action;
 
 typedef struct		s_action
 {
-  void 				(*f)(t_server *server, t_player *player);
-  char				**cmd;
+  void 			(*f)(t_server *server, t_player *player);
+  char			**cmd;
   struct timeval	time;
-  char 				exec;
+  char 			exec;
 }               	t_action;
 
 typedef struct      s_eggs
@@ -66,7 +60,6 @@ typedef struct      s_eggs
     unsigned int             x;
     unsigned int             y;
     t_team          team;
-    struct timeval  val;
     struct s_eggs   *next;
 }                   t_eggs;
 
@@ -77,15 +70,15 @@ typedef struct		s_player
   enum Direction 	dir;
   t_ressources		res;
   int 		    	fd;
-  int   			lvl;
-  int				notify;
-  int				param[2];
-  char 				*cmd;
-  char 				**tab;
-  t_action			actions[10];
-  t_team			teams;
+  int   		lvl;
+  int			notify;
+  int			param[2];
+  char 			*cmd;
+  char 			**tab;
+  t_action		actions[10];
+  t_team		teams;
   struct s_player	*next;
-}					t_player;
+}			t_player;
 
 typedef struct		s_square
 {
@@ -97,12 +90,12 @@ typedef struct		s_square
   t_player		*players;
 }			t_square;
 
-typedef struct      s_incantation
+typedef struct		s_incantation
 {
   int             	nb_player;
   unsigned int 		res[RES_SIZE];
-}                   t_incantation;
+}			t_incantation;
 
-extern const char 		*res_name[];
+extern const char 	*res_name[];
 
 #endif

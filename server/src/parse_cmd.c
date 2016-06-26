@@ -30,7 +30,8 @@ t_command	commande[12] = {
 
 void		cmd_welcome(t_server *server, t_player *player)
 {
-  player->teams.max = server->param.c;
+  player->teams.max = server->param.c < player->teams.max ?
+    player->teams.max : server->param.c;
   player->notify = 1;
   notify(server, "pnw");
   player->notify = 0;

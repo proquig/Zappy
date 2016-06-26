@@ -13,15 +13,25 @@
 
 void			server_read(t_server *server, int fd)
 {
+  int		        nb_eggs;
   int			fdclient;
   t_player		*player;
 
+  nb_eggs = 0;
   fdclient = add_client(server, fd);
   player = init_player(fdclient, &server->param);
+  if (they_are_eggs(server) > 0 && player->teams.id == -1)
+    {
+        nb_eggs = they_are_eggs(server);
+        player = init_player_from_eggs(player->fd, server->eggs);
+        send_msg(server, fdclient, "BIENVENUE\n");
+        cmd_welcome(server, player);
+        server->eggs = server->eggs->next;
+    }
   server->players = add_player(server->players, player);
-  if (server->param.c * tablen(server->param.n) < len_players(server->players))
+  if (server->param.c * tablen(server->param.n) + nb_eggs< len_players(server->players))
     close_client(server, fdclient, NULL);
-  else
+  else if (nb_eggs == 0)
     send_msg(server, fdclient, "BIENVENUE\n");
 }
 
@@ -52,18 +62,13 @@ void			server_shutdown(t_server *server, char *msg)
   exit(0);
 }
 
-/*      if (res % 100000 == 0) {
-	res = 0;
-	put_food_ressource(server->map, server->param.x, server->param.y);
-	}*/
-
 void 			start_server(t_server *server)
 {
   int			fd_max;
   struct timeval	tv;
 
   server->players = NULL;
-  //  server->eggs = NULL;
+  server->eggs = NULL;
   server->loop.tv_sec = 0;
   server->loop.tv_usec = 0;
   while (server_is_running(1))

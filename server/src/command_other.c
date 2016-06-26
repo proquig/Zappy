@@ -26,11 +26,10 @@ void		broadcast(t_server *server, t_player *player)
   dprintf(player->fd, "ko\n");
 }
 
-/*set_action_time(&tv, 600, server->param.t);*/
-void			forker(t_server *server, t_player *player)
+void		forker(t_server *server, t_player *player)
 {
-  struct timeval	tv;
-
   send_msg(server, player->fd, "ok\n");
+  server->eggs = add_egg(server->eggs,
+			 init_eggs(player->x, player->y, player->teams));
   update_team(server->players, player->teams.id);
 }

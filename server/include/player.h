@@ -31,7 +31,6 @@ t_player			*del_player(t_player *list, int fd);
 t_player			*search_player(t_player *list, int fd);
 int 				size_player(t_player *root, int team);
 int				len_players(t_player *root);
-void				update_team(t_player *root, int id);
 
 void 				avance(t_server *server, t_player *player);
 void 				right(t_server *server, t_player *player);
