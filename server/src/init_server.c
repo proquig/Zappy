@@ -63,6 +63,7 @@ void 			start_server(t_server *server)
   struct timeval	tv;
 
   server->players = NULL;
+    server->eggs = NULL;
   server->loop.tv_sec = 0;
   server->loop.tv_usec = 0;
   while (server_is_running(1))

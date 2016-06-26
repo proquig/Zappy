@@ -61,6 +61,15 @@ typedef struct		s_action
   char 				exec;
 }               	t_action;
 
+typedef struct      s_eggs
+{
+    unsigned int             x;
+    unsigned int             y;
+    t_team          team;
+    struct timeval  val;
+    struct s_eggs   *next;
+}                   t_eggs;
+
 typedef struct		s_player
 {
   unsigned int 		x;
