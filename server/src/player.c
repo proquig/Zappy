@@ -159,7 +159,11 @@ t_player		*del_player(t_player *players, int fd)
   t_player		*player;
 
   if ((player = search_player(players, fd)))
+  {
+    if (player->teams.id == GRAPHIC)
+      player->teams.id = -1;
     player->fd = -1;
+  }
   return (players);
 }
 

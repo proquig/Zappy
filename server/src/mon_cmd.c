@@ -78,7 +78,6 @@ int 	cmd_mon_ppo(t_server *server, t_player *player)
   while (++i < nb && (tmp = tmp->next));
   if (!tmp || tmp->teams.id == GRAPHIC || tmp->fd == -1 || i != nb)
 	return (0);
-  printf("IM HERE TOO\n");
   send_msg(server, player->fd, "ppo %u %u %u %u\n", i,
 		  tmp->x, tmp->y, tmp->dir);
   return (1);
@@ -254,6 +253,11 @@ void 		notify(t_server *server, char *fn)
   player = server->players;
   while (player && player->teams.id != GRAPHIC && (player = player->next));
   while (events[++i].cmd && strcmp(fn, events[i].cmd));
-  if (player && player->teams.id == GRAPHIC && events[i].fn)
+  if (player && player->fd != -1
+	  && player->teams.id == GRAPHIC && events[i].fn)
 	events[i].fn(server, player);
+  else
+	printf("YOU LOSE\n");
+  if (player)
+	printf(">>>= %d %d\n", player->fd, player->teams.id);
 }

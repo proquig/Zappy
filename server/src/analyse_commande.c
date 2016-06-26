@@ -50,6 +50,18 @@ int 	set_team(t_server *server, t_player *player)
 	  cmd_mon_sgt(server, player);
 	  cmd_mon_mct(server, player);
 	  cmd_mon_tna(server, player);
+      t_player *tmp = server->players;
+      while (tmp)
+      {
+        if (tmp->fd != -1 && tmp->teams.id != GRAPHIC)
+        {
+          tmp->notify = 1;
+          printf("I PASS HERE BITCH\n");
+          notify(server, "pnw");
+          tmp->notify = 0;
+        }
+        tmp = tmp->next;
+      }
     }
 
     return (player->teams.id != -1);

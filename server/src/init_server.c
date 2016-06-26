@@ -84,7 +84,7 @@ void 			start_server(t_server *server)
       if (select(fd_max + 1, &server->fds.fds_read, &server->fds.fds_write, NULL, &tv) == -1)
         server_shutdown(server, "select");
 	  handle_clients(server);
-      if (res % 100 == 0) {
+      if (res % 100000 == 0) {
           res = 0;
           put_food_ressource(server->map, server->param.x, server->param.y);
       }
