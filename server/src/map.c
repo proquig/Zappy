@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Thu Jun 16 10:31:00 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 11:19:24 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 23:16:23 2016 Guillaume PROQUIN
 */
 
 #include <time.h>
@@ -85,32 +85,3 @@ void 			put_food_ressource(t_server *server, int size_x, int size_y)
 	}
   }
 }
-
-/*
-void			print_square_contents(t_server *server, t_player *player,
-					      t_square *square)
-{
-  int 			i;
-
-  i = -1;
-  send_msg(server, player->fd, "bct %u %u", square->x, square->y);
-  while (++i < RES_SIZE)
-    send_msg(server, player->fd, " %u", square->res.res[i]);
-  send_msg(server, player->fd, "\n");
-}
-*/
- /*
-void			print_map_contents(t_server *server, t_player *player)
-{
-  int 			i;
-  int 			j;
-
-  i = -1;
-  while ((unsigned int)(++i) < server->map[0][0].size_y)
-    {
-      j = -1;
-      while ((unsigned int)(++j) < server->map[0][0].size_x)
-	print_square_contents(server, player, &server->map[i][j]);
-    }
-}
- */

@@ -5,10 +5,9 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 11:42:11 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 11:54:04 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 23:17:15 2016 Guillaume PROQUIN
 */
 
-#define _GNU_SOURCE
 #include "server.h"
 
 void 		send_msg(t_server *server, int fd, char *fmt, ...)

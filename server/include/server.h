@@ -5,12 +5,13 @@
 ** Login   <cloquet@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:18:28 2016 Cloquet
-** Last update Sun Jun 26 22:17:01 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 23:18:01 2016 Guillaume PROQUIN
 */
 
 #ifndef			__ZAPPY_SERVER_H__
 # define		__ZAPPY_SERVER_H__
 
+# define		_GNU_SOURCE
 #include		<stdlib.h>
 #include		<stdio.h>
 #include		<memory.h>

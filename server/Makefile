@@ -5,7 +5,7 @@
 ## Login   <cloquet@epitech.net>
 ## 
 ## Started on  Mon Jun 13 20:20:46 2016 Cloquet
-## Last update Sun Jun 26 11:51:39 2016 Guillaume PROQUIN
+## Last update Sun Jun 26 23:15:04 2016 Guillaume PROQUIN
 ##
 
 SRC	=	src/main.c		\

@@ -5,7 +5,7 @@
 ** Login   <proqui_g@epitech.net>
 ** 
 ** Started on  Sun Jun 26 09:54:39 2016 Guillaume PROQUIN
-** Last update Sun Jun 26 22:16:21 2016 Guillaume PROQUIN
+** Last update Sun Jun 26 23:18:55 2016 Guillaume PROQUIN
 */
 
 #include "server.h"
@@ -29,8 +29,6 @@ void		close_client(t_server *server, int fd, char *msg)
   close(fd);
   server->fds.fd_type[fd] = FD_FREE;
 }
-
-// TODO: command ko
 
 void		client_read(t_server *server, int fd)
 {
