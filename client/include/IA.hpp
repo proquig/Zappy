@@ -5,7 +5,7 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Fri Jun 17 17:33:54 2016 jacque_x
-// Last update Tue Jun 21 18:03:21 2016 jacque_x
+// Last update Sun Jun 26 16:15:33 2016 jacque_x
 //
 
 #ifndef _IA_HPP_
@@ -24,9 +24,11 @@ private:
   int                       _players;
   int                       _nbr_client;
   int	                    _food;
+  bool			    _up;
   std::string               _command;
   std::string               _ressource_parcer;
   std::string               _team_name;
+  std::string		    _str_voir;
   std::vector<int>          _ressources;
   std::vector<std::string>  _table_res;
   std::vector<std::string>  _tab_voir;
@@ -51,6 +53,7 @@ private:
   void	pose(Client *client, int i);
   void	expulse(Client *client);
   void	broad(Client *client);
+  void  fork(Client *client);
   int	incant(Client *client);
   void  get_command(Client *client);
   void  print(std::string command, int i);

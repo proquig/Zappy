@@ -5,12 +5,14 @@
 ## Login   <jacque_x@epitech.net>
 ## 
 ## Started on  Wed Jun 15 16:53:16 2016 jacque_x
-## Last update Sat Jun 18 12:52:23 2016 Cloquet
+## Last update Sun Jun 26 11:32:35 2016 jacque_x
 ##
 
 SRC     =       src/main.cpp		\
 		src/utils.cpp		\
 		src/Client.cpp		\
+		src/think.cpp		\
+		src/action.cpp		\
 		src/get_command.cpp	\
 		src/SocketBuf.cpp	\
 		src/IA.cpp

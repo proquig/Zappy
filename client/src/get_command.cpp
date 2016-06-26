@@ -5,7 +5,7 @@
 // Login   <jacque_x@epitech.net>
 // 
 // Started on  Fri Jun 17 14:44:55 2016 jacque_x
-// Last update Tue Jun 21 14:06:37 2016 jacque_x
+// Last update Sun Jun 26 11:15:13 2016 jacque_x
 //
 
 #include "IA.hpp"
@@ -21,18 +21,18 @@ void    IA::get_command(Client *client)
       this->print(this->getCommand(), 1);
       if (map.count(this->getCommand()))
         {
-            (this->*map.at(this->getCommand()))(client);
-            this->set_command("");
+	  (this->*map.at(this->getCommand()))(client);
+	  this->set_command("");
         }
       else if (this->getCommand() == "ok\n" || this->getCommand() == "ko\n")
         {
-            this->set_command("");
-            this->voir(client);
+	  this->set_command("");
+	  this->voir(client);
         }
       else
         {
-            this->parse_command(client);
-            this->set_command("");
+	  this->parse_command(client);
+	  this->set_command("");
         }
       this->set_command("");
     }

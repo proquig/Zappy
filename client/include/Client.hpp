@@ -5,7 +5,7 @@
 // Login   <jacque_x@epitech.net>
 //
 // Started on  Wed Jun 15 19:02:22 2016 jacque_x
-// Last update Sat Jun 18 11:40:35 2016 jacque_x
+// Last update Sun Jun 26 14:30:55 2016 jacque_x
 //
 
 #ifndef _CLIENT_HPP_
@@ -64,8 +64,9 @@ public:
 };
 
 void get_command(Client client);
-void verif_params(char **av);
+std::vector<std::string> verif_params(char **av);
 void error(const char *msg);
 void print(std::string command, int i);
+void verif2(std::vector<std::string> args);
 
 #endif
