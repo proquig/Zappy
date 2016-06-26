@@ -76,8 +76,9 @@ void 			start_server(t_server *server)
     tv.tv_sec = 0;
     tv.tv_usec = (int)(1.0 / (double)server->param.t * FREQUENCY);
     fd_max = set_fds(server);
-    if (select(fd_max + 1, &server->fds.fds_read,
-	       &server->fds.fds_write, NULL, &tv) == -1)
+	printf("MODIFIED\n");
+    if (select(fd_max + 1, NULL,
+	       /*&server->fds.fds_write*/NULL, NULL, &tv) == -1)
       server_shutdown(server, "select");
     handle_clients(server);
   }

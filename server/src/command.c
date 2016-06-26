@@ -15,14 +15,7 @@
 void 		right(t_server *server, t_player *player)
 {
   (void)server;
-  if (player->dir == UP)
-    player->dir = RIGHT;
-  if (player->dir == DOWN)
-    player->dir = LEFT;
-  if (player->dir == LEFT)
-    player->dir = UP;
-  if (player->dir == RIGHT)
-    player->dir = DOWN;
+  player->dir = player->dir % 4 + 1;
   send_msg(server, player->fd, "ok\n");
   player->notify = 1;
   notify(server, "ppo");
@@ -32,14 +25,7 @@ void 		right(t_server *server, t_player *player)
 void 		gauche(t_server *server, t_player *player)
 {
   (void)server;
-  if (player->dir == UP)
-    player->dir = LEFT;
-  if (player->dir == DOWN)
-    player->dir = RIGHT;
-  if (player->dir == LEFT)
-    player->dir = DOWN;
-  if (player->dir == RIGHT)
-    player->dir = UP;
+  player->dir = (player->dir - 1 + 4 - 1) % 4 + 1;
   send_msg(server, player->fd, "ok\n");
   player->notify = 1;
   notify(server, "ppo");

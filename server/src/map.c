@@ -19,7 +19,10 @@ void			init_square(t_square *square, unsigned int x,
 
   i = -1;
   while (++i < RES_SIZE)
-    square->res.res[i] = 0;
+  {
+	square->res.res[i] = 0;
+	square->res.notify[i] = 0;
+  }
   square->players = NULL;
   square->x = x;
   square->y = y;
@@ -69,7 +72,7 @@ void 			put_food_ressource(t_server *server, int size_x, int size_y)
   {
 	x = rand() % size_x;
 	y = rand() % size_y;
-	server->map[y][x].res.res[FOOD] += 126;
+	server->map[y][x].res.res[FOOD]++;
 	player = server->players;
 	while (player && player->teams.id != GRAPHIC && (player = player->next));
 	if (player && player->fd != -1 && player->teams.id == GRAPHIC)

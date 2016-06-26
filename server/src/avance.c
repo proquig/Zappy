@@ -23,7 +23,7 @@ void		move_down(t_server *server, t_player *player)
 
 void		move_left(t_server *server, t_player *player)
 {
-    player->x = (player->x - 1 == 0) ? (server->param.x - 1) : player->x - 1;
+    player->x = (player->x == 0) ? (server->param.x - 1) : player->x - 1;
 }
 
 void		move_right(t_server *server, t_player *player)

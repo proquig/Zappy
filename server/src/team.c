@@ -47,6 +47,7 @@ int			set_team(t_server *server, t_player *player)
   int			i;
 
   i = -1;
+  //printf("Client essaye de se co en temps que %s\n", player->tab[0]);
   while (server->param.n[++i] && player->teams.id == -1)
     if (!strcmp(server->param.n[i], player->tab[0])
 	&& size_player(server->players, i)
@@ -59,7 +60,7 @@ int			set_team(t_server *server, t_player *player)
     cmd_mon_welcome(server, player);
   if (player->teams.id == -1)
     send_msg(server, player->fd, "ko\n");
-  printf("Client Connecte\n");
+  //printf("Client Connecte\n");
   return (player->teams.id != -1 ? 0 : -1);
 }
 

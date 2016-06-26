@@ -18,12 +18,10 @@ void		close_client(t_server *server, int fd, char *msg)
   if (!fd || fd == -1)
     return ;
   if (msg)
-    {
-      send_msg(server, fd, msg);
-      search_player(server->players, fd)->notify = 1;
-      notify(server, "pdi");
-      search_player(server->players, fd)->notify = 0;
-    }
+	send_msg(server, fd, msg);
+  search_player(server->players, fd)->notify = 1;
+  notify(server, "pdi");
+  search_player(server->players, fd)->notify = 0;
   printf("Connection closed on %i\n", fd);
   server->players = del_player(server->players, fd);
   FD_CLR(fd, &server->fds.fds_read);
@@ -104,19 +102,23 @@ void			handle_clients(t_server *server)
   while (++i < MAX_FD)
     if (FD_ISSET(i, &server->fds.fds_read))
       server->fds.fct_read[i](server, i);
+  printf("GO FUCK YOURSELF");
   if (!action_is_waiting(&server->loop))
     {
+	  put_food_ressource(server, server->param.x, server->param.y);
       set_action_time(&server->loop, 1, server->param.t);
       while (player)
 	{
-	  put_food_ressource(server, server->param.x, server->param.y);
+	  if (player->teams.id != -1
+		  && player->teams.id != GRAPHIC && player->res.res[FOOD] <= 0)
+		printf("NEED TO DIE\n");
 	  player->res.res[FOOD] -= (player->teams.id != -1
 				    && player->teams.id != GRAPHIC);
+	  if (player->fd != -1 && player->res.res[FOOD] <= 0)
+		close_client(server, player->fd, "mort\n");
 	  if (player->fd != -1 && FD_ISSET(player->fd, &server->fds.fds_write)
 	      && server->fds.fd_type[player->fd] != FD_FREE)
 	    server->fds.fct_write[player->fd](server, player->fd);
-	  if (player->teams.id != -1 && player->res.res[FOOD] <= 0)
-	    close_client(server, player->fd, "mort\n");
 	  player = player->next;
 	}
     }
