@@ -24,15 +24,15 @@ void 			init_player_res(t_player *player)
 
 t_player		*init_player(int fd, t_param *param)
 {
-  static int		x = 0;
+  static int	x = 0;
   t_player		*player;
 
-  srand(0);
+  x = (x + 1) % 1024;
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->fd = fd;
-  player->x = rand() % param->x;
-  player->y = rand() * x++ % param->y;
+  player->x = (rand() * ++x) % param->x;
+  player->y = (rand() ^ ++x) % param->y;
   player->dir = (enum Direction)(rand() % 4);
   player->teams.id = -1;
   player->teams.max = param->c;

@@ -16,6 +16,7 @@
 
 void		init_square(t_square *square, unsigned int x, unsigned int y);
 t_square	**create_map(unsigned int x, unsigned int y);
+void 		put_food_ressource(t_server *server, int size_x, int size_y);
 void		put_random_ressource(t_square **map, int size_x, int size_y);
 void		print_square_contents(t_server *server, t_player *player,
 				      t_square *square);

@@ -43,6 +43,7 @@ int		event_pnw(t_server *server, t_player *player)
   while (tmp && !tmp->notify && ++i && (tmp = tmp->next));
   if (!tmp || !tmp->notify)
     return (0);
+  fprintf(stderr, "%d %d\n", tmp->fd, tmp->teams.id);
   send_msg(server, player->fd, "pnw %u %u %u %u %u %s\n",
 	   i, tmp->x, tmp->y, tmp->dir, tmp->lvl,
 	   server->param.n[tmp->teams.id]);

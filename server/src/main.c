@@ -47,7 +47,7 @@ void			zappy(t_server *server)
 
   x = -1;
   if (init_server(&server->param, &server->fds) == -1)
-    server_shutdown(server, "Server init failed");
+    error("Server init failed");
   print_param(&server->param);
   server->map = create_map(server->param.x, server->param.y);
   while (++x < (int)server->param.x)
@@ -82,6 +82,7 @@ int			main(int ac, const char **av)
     error("Wrong args");
   signal(SIGPIPE, SIG_IGN);
   signal(SIGINT, handle_signal);
+  server_is_running(1);
   zappy(&server);
   return (0);
 }

@@ -66,7 +66,8 @@ void		cmd_mon_welcome(t_server *server, t_player *player)
   cmd_mon_tna(server, player);
   while (tmp)
     {
-      if (tmp->fd != -1 && tmp->teams.id != GRAPHIC)
+      if (tmp->fd != -1 && tmp->teams.id != -1
+		  && tmp->teams.id != GRAPHIC)
 	{
 	  tmp->notify = 1;
 	  notify(server, "pnw");

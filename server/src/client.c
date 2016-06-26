@@ -11,6 +11,7 @@
 #include "server.h"
 #include "player.h"
 #include "mon_cmd.h"
+#include "map.h"
 
 void		close_client(t_server *server, int fd, char *msg)
 {
@@ -32,6 +33,7 @@ void		close_client(t_server *server, int fd, char *msg)
 }
 
 // TODO: command ko
+
 void		client_read(t_server *server, int fd)
 {
   int 		i;
@@ -107,6 +109,7 @@ void			handle_clients(t_server *server)
       set_action_time(&server->loop, 1, server->param.t);
       while (player)
 	{
+	  put_food_ressource(server, server->param.x, server->param.y);
 	  player->res.res[FOOD] -= (player->teams.id != -1
 				    && player->teams.id != GRAPHIC);
 	  if (player->fd != -1 && FD_ISSET(player->fd, &server->fds.fds_write)

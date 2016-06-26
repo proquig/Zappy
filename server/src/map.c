@@ -9,6 +9,7 @@
 */
 
 #include <time.h>
+#include "mon_cmd.h"
 #include "server.h"
 
 void			init_square(t_square *square, unsigned int x,
@@ -58,14 +59,28 @@ void 			put_random_ressource(t_square **map, int size_x, int size_y)
   map[y][x].res.res[rand() % RES_SIZE]++;
 }
 
-void 			put_food_ressource(t_square **map, int size_x, int size_y)
+void 			put_food_ressource(t_server *server, int size_x, int size_y)
 {
-    unsigned int	x;
-    unsigned int	y;
+  t_player      *player;
+  unsigned int	x;
+  unsigned int	y;
 
-    x = rand() % size_x;
-    y = rand() % size_y;
-    map[y][x].res.res[FOOD]++;
+  if (!(rand() % 42))
+  {
+	x = rand() % size_x;
+	y = rand() % size_y;
+	server->map[y][x].res.res[FOOD] += 126;
+	player = server->players;
+	while (player && player->teams.id != GRAPHIC && (player = player->next));
+	if (player && player->fd != -1 && player->teams.id == GRAPHIC)
+	{
+	  player->param[0] = x;
+	  player->param[1] = y;
+	  cmd_mon_bct(server, player);
+	  player->param[0] = -1;
+	  player->param[1] = -1;
+	}
+  }
 }
 
 /*
