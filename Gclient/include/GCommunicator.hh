@@ -7,7 +7,7 @@
 #include "GUI.hh"
 #include "SocketBuf.hpp"
 #include "Tool.hh"
-
+#include <thread>
 
 
 class   GCommunicator
@@ -17,6 +17,7 @@ class   GCommunicator
     GUI             *_gui;
     Socket          _socket;
     std::map<std::string, f>   _func_ptrs;
+    std::thread     *_gui_thread;
     public:
     GCommunicator(std::string const &address, int port, GUI *gui);
     ~GCommunicator();
@@ -34,6 +35,7 @@ class   GCommunicator
     void    enwf(std::string &line);
     void    ehtf(std::string &line);
     void    ebof(std::string &line);
+    void    pgtf(std::string &line);
 };
 
 #endif

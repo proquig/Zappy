@@ -40,7 +40,7 @@ GCommunicator::GCommunicator(std::string const &address, int port, GUI *gui)
     this->_func_ptrs.insert(std::pair<std::string, f>("pie", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pfk", &GCommunicator::sgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("pdr", &GCommunicator::sgtf));
-    this->_func_ptrs.insert(std::pair<std::string, f>("pgt", &GCommunicator::sgtf));
+    this->_func_ptrs.insert(std::pair<std::string, f>("pgt", &GCommunicator::pgtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("enw", &GCommunicator::enwf));
     this->_func_ptrs.insert(std::pair<std::string, f>("eht", &GCommunicator::ehtf));
     this->_func_ptrs.insert(std::pair<std::string, f>("ebo", &GCommunicator::ebof));
@@ -193,4 +193,13 @@ void    GCommunicator::ebof(std::string &line)
     this->_gui->getMutex().lock();
     this->_gui->getGMap()->eraseEgg(std::stoi(line));
     this->_gui->getMutex().unlock();
+}
+
+void    GCommunicator::pgtf(std::string &line)
+{
+/*    this->_gui->getMutex().lock();
+    std::vector<std::string>    words = Tool::strToWordVector(line, ' ');
+
+    this->_gui->dropAnimation(std::stoi(words[0]));
+    this->_gui->getMutex().unlock();*/
 }

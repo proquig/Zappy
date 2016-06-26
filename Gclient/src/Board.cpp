@@ -134,14 +134,14 @@ ITexture *Board::getTexture()
     return (this->_texture);
 }
 
-void            Board::setPlayerNode(IMeshSceneNode *newPlayerNode)
+void            Board::setPlayerNode(IAnimatedMeshSceneNode *newPlayerNode)
 {
     if (this->_playerNode != nullptr)
           this->_playerNode->remove();
     this->_playerNode = newPlayerNode;
 }
 
-IMeshSceneNode  *Board::getPlayerNode()
+IAnimatedMeshSceneNode  *Board::getPlayerNode()
 {
     return (this->_playerNode);
 }
@@ -161,7 +161,7 @@ IMesh   *Board::getCurPlayerMesh()
     return (this->_playerNode->getMesh());
 }
 
-void    Board::setCurPlayerMesh(IMesh *newCurModelMesh)
+void    Board::setCurPlayerMesh(IAnimatedMesh *newCurModelMesh)
 {
     this->_playerNode->setMesh(newCurModelMesh);
 }

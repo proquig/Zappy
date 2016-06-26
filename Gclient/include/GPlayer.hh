@@ -13,6 +13,7 @@ class   GPlayer
     Direction    _direction;
     int     _id;
     int     _lvl;
+    IAnimatedMeshSceneNode  *_sceneNode;
   public:
     GPlayer(t_player const &newPlayer, IMesh *mesh);
     ~GPlayer();
@@ -26,6 +27,8 @@ class   GPlayer
     void    setDirection(Direction newDirection);
     void    setMesh(IMesh *newMesh);
     void    setLvl(int lvl);
+    IAnimatedMeshSceneNode    *getSceneNode();
+    void  setSceneNode(IAnimatedMeshSceneNode *newNode);
 };
 
 #endif

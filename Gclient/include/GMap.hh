@@ -12,10 +12,10 @@ class   GMap
       ISceneManager   *_smgr;
       Board   *_board;
       std::map<RESSOURCES, IMesh *> _ressourcesMeshes; 
-      std::array<IMesh *, 8> _playersMeshes;
+      std::array<IAnimatedMesh *, 8> _playersMeshes;
       t_square                **_map;
    public:
-      GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IMesh *, 8> const &playersMeshes, IMesh *eggMesh);
+      GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IAnimatedMesh *, 8> const &playersMeshes, IMesh *eggMesh);
       ~GMap();
       void   initGMap(IMesh *eggMesh);
       void   initPlayerNode(Board *curBoard);

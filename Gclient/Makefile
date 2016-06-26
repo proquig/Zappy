@@ -17,6 +17,7 @@ SRC	=	src/main.cpp	\
 		src/Tool.cpp	\
 		src/Mutex.cpp	\
 		src/Egg.cpp		\
+		src/EventReceiver.cpp	\
 		src/GCommunicator.cpp
 
 OBJ	=	$(SRC:.cpp=.o)

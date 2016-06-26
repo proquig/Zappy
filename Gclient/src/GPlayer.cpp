@@ -63,3 +63,13 @@ void    GPlayer::setLvl(int lvl)
 {
     this->_lvl = lvl;
 }
+
+IAnimatedMeshSceneNode    *GPlayer::getSceneNode()
+{
+    return (this->_sceneNode);
+}
+
+void  GPlayer::setSceneNode(IAnimatedMeshSceneNode *newNode)
+{
+    this->_sceneNode = newNode;
+}

@@ -24,7 +24,7 @@ class   Board
     ITexture     *_texture;
     f32                 _squareSizeX;
     f32                 _squareSizeY;
-    IMeshSceneNode      *_playerNode;
+    IAnimatedMeshSceneNode      *_playerNode;
     std::map<RESSOURCES, IMeshSceneNode *>  _ressourcesNodes;
     Egg                 *_egg;
 
@@ -48,12 +48,12 @@ public:
     const vector3df   &getScale() const;
     ISceneManager   *getSceneManager(void) const;
     video::ITexture *getTexture();
-    void            setPlayerNode(IMeshSceneNode *newPlayerNode);
-    IMeshSceneNode  *getPlayerNode();
+    void            setPlayerNode(IAnimatedMeshSceneNode *newPlayerNode);
+    IAnimatedMeshSceneNode  *getPlayerNode();
     f32             getSquareSizeX();
     f32             getSquareSizeY();
     IMesh           *getCurPlayerMesh();
-    void            setCurPlayerMesh(IMesh *newCurModelMesh);
+    void            setCurPlayerMesh(IAnimatedMesh *newCurModelMesh);
     std::map<RESSOURCES, IMeshSceneNode *>  *getRessourcesNodes();
     void    setRessourcesNodes(std::map<RESSOURCES, IMeshSceneNode *>  const &resourcesNodes);
     Egg     *getEgg();

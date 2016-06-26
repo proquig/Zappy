@@ -14,6 +14,7 @@
 #include "common.h"
 #include "driverChoice.h"
 #include "Mutex.hh"
+#include "EventReceiver.hh"
 
 using namespace irr;
 using namespace core;
@@ -30,7 +31,7 @@ class GUI
     IGUIEnvironment     *_env;
     ITexture            *_floor;
     std::map<RESSOURCES, IMesh *>   _ressourcesMeshes;
-    std::array<IMesh *, 8>        _playersMeshes;
+    std::array<IAnimatedMesh *, 8>        _playersMeshes;
     ITexture            *_textures;
     Board               *_gameBoard;
     E_DRIVER_TYPE       _driverType;
@@ -40,6 +41,7 @@ class GUI
     int                 _sizeX;
     int                 _sizeY;
     Mutex               _mutex;
+    ITexture            *_background;
     
 public:
     GUI();
@@ -51,7 +53,7 @@ public:
     ISceneManager   *getSmgr();
     IGUIEnvironment *getEnv();
     std::map<RESSOURCES, IMesh *>  const &getRessourcesMeshes();
-    std::array<IMesh *, 8>  const &getPlayersMeshes();
+    std::array<IAnimatedMesh *, 8>  const &getPlayersMeshes();
     ITexture    *getTextures();
     Board       *getBoard();
     void        initMap();
@@ -64,6 +66,8 @@ public:
     GPlayer     *getPlayer(int id);
     Mutex       &getMutex();
     GMap        *getGMap();
+    void        dispBackground();
+    void        dropAnimation(int id);
 };
 
 #endif

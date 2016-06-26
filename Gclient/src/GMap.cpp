@@ -1,7 +1,7 @@
 #include "GMap.hh"
 #include <iostream>
 
-GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IMesh *, 8> const &playersMeshes, IMesh *eggMesh) : _ressourcesMeshes(ressourcesMeshes), _playersMeshes(playersMeshes)
+GMap::GMap(ISceneManager *smgr, Board *board, std::map<RESSOURCES, IMesh *> const &ressourcesMeshes, std::array<IAnimatedMesh *, 8> const &playersMeshes, IMesh *eggMesh) : _ressourcesMeshes(ressourcesMeshes), _playersMeshes(playersMeshes)
 {
     this->_board = board;
     this->_smgr = smgr;
@@ -39,7 +39,7 @@ void    GMap::initPlayerNode(Board *curBoard)
     
     meshRepos = 1.0f / this->_playersMeshes[0]->getBoundingBox().getExtent().Y;
     meshRescale = 15.0f / ((this->_playersMeshes[0]->getBoundingBox().getExtent().X + this->_playersMeshes[0]->getBoundingBox().getExtent().Y + this->_playersMeshes[0]->getBoundingBox().getExtent().Z) / 3.0f);
-    IMeshSceneNode *newNode = this->_smgr->addMeshSceneNode(this->_playersMeshes[0], curBoard->getBoardRootNode(), -1, vector3df(0.0f, meshRepos, 0.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(meshRescale, meshRescale, meshRescale));
+    IAnimatedMeshSceneNode *newNode = this->_smgr->addAnimatedMeshSceneNode(this->_playersMeshes[0], curBoard->getBoardRootNode(), -1, vector3df(0.0f, meshRepos, 0.0f), vector3df(0.0f, 0.0f, 0.0f), vector3df(meshRescale, meshRescale, meshRescale));
     newNode->setMaterialFlag(EMF_WIREFRAME, false);
     newNode->setMaterialFlag(EMF_LIGHTING, false);
     newNode->setMaterialType(EMT_SOLID);
@@ -145,6 +145,7 @@ void   GMap::refreshGMapPlayers(std::vector<GPlayer *> const &players)
     while (it != players.end())
     {
         (*underSquares)[(*it)->getY()][(*it)->getX()]->setCurPlayerMesh(this->_playersMeshes[(*it)->getLvl()]);
+        (*it)->setSceneNode((*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode());
         (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setVisible(true);
         (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setMaterialFlag(EMF_LIGHTING, false);
         (*underSquares)[(*it)->getY()][(*it)->getX()]->getPlayerNode()->setRotation(vector3df(0.0f, 0.0f, 0.0f));

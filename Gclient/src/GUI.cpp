@@ -28,7 +28,8 @@ void    GUI::launch()
     int lastFPS = -1;
     int FPS;
 
-  if (!(this->_device = createDevice(this->_driverType, this->_deskres, 32, false, false, false, 0)))
+    EventReceiver   *eventReceiver = new EventReceiver;
+  if (!(this->_device = createDevice(this->_driverType, this->_deskres, 32, false, false, false, eventReceiver)))
     exit(EXIT_FAILURE);
   this->_driver = _device->getVideoDriver();
   this->_smgr = _device->getSceneManager();
@@ -54,10 +55,12 @@ void    GUI::launch()
 
     while (this->_device->run())
     {
-        if (this->_device->isWindowActive())
-        {
+        /*if (this->_device->isWindowActive())
+        {*/
+            eventReceiver->handle();
             FPS = this->_driver->getFPS();
             this->_driver->beginScene(true, true, irr::video::SColor(255,200,200,200));
+            this->dispBackground();
             this->_smgr->drawAll();
             this->_env->drawAll();
             this->refreshGame();
@@ -71,13 +74,16 @@ void    GUI::launch()
               this->_device->setWindowCaption(str.c_str());
               lastFPS = FPS;
             }
-        }
+        //}
     }
+    exit(EXIT_SUCCESS);
 }
 
 bool    GUI::loadMeshesAndTextures()
 {
     if ((this->_floor = this->_driver->getTexture("modelsAndTextures/Floor/grass2.jpg")) == nullptr)
+        return (false);
+    if ((this->_background = this->_driver->getTexture("modelsAndTextures/Background/Hyrule.png")) == nullptr)
         return (false);
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(FOOD, this->_smgr->getMesh("modelsAndTextures/Pizza/pizza.obj")));
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(LINEMATE, this->_smgr->getMesh("modelsAndTextures/Gems/diamond_gray.obj")));
@@ -86,7 +92,7 @@ bool    GUI::loadMeshesAndTextures()
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(MENDIANE, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_yellow.obj")));
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(PHIRAS, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
     this->_ressourcesMeshes.insert(std::pair<RESSOURCES, IMesh*>(THYSTAME, this->_smgr->getMesh("modelsAndTextures/Gems/large_diamond_blue.obj")));
-    this->_playersMeshes[0] = this->_smgr->getMesh("modelsAndTextures/Players/Level1/Brendan/Brendan_ColladaMax.DAE");
+    this->_playersMeshes[0] = this->_smgr->getMesh("modelsAndTextures/Players/Level1/Young Link/final.b3d");
     this->_playersMeshes[1] = this->_playersMeshes[0];
     this->_playersMeshes[2] = this->_playersMeshes[0];
     this->_playersMeshes[3] = this->_playersMeshes[0];
@@ -101,6 +107,13 @@ bool    GUI::loadMeshesAndTextures()
         if (it->second == nullptr)
             return (false);
         ++it;
+    }
+    int i = 0;
+    while (i < 8)
+    {
+        if (this->_playersMeshes[i] == nullptr)
+            return (false);
+        i++;;
     }
     return (true);
 }
@@ -130,7 +143,7 @@ std::map<RESSOURCES, IMesh *>  const &GUI::getRessourcesMeshes()
     return (this->_ressourcesMeshes);
 }
 
-std::array<IMesh *, 8>  const &GUI::getPlayersMeshes()
+std::array<IAnimatedMesh *, 8>  const &GUI::getPlayersMeshes()
 {
     return (this->_playersMeshes);
 }
@@ -221,4 +234,21 @@ Mutex   &GUI::getMutex()
 GMap    *GUI::getGMap()
 {
     return (this->_gMap);
+}
+
+void    GUI::dispBackground()
+{
+    dimension2d<u32> backgroundSize(this->_background->getOriginalSize());
+
+    this->_driver->draw2DImage(this->_background, rect<s32>(position2d<s32>(0, 0), this->_deskres), rect<s32>(position2d<s32>(0,0), backgroundSize), 0, NULL, true);
+}
+
+void    GUI::dropAnimation(int id)
+{
+    GPlayer *curPlayer = this->getPlayer(id);
+
+    curPlayer->getSceneNode()->setAnimationSpeed(10000);
+    curPlayer->getSceneNode()->setFrameLoop(203, 264);
+    usleep(1000000);
+    curPlayer->getSceneNode()->setFrameLoop(0, 0);
 }
